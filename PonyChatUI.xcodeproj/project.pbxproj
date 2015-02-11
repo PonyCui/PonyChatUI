@@ -1,0 +1,427 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		632885DA1A8B023C0032C99C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 632885D91A8B023C0032C99C /* main.m */; };
+		632885DD1A8B023C0032C99C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 632885DC1A8B023C0032C99C /* AppDelegate.m */; };
+		632885E01A8B023C0032C99C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 632885DF1A8B023C0032C99C /* ViewController.m */; };
+		632885E31A8B023C0032C99C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 632885E11A8B023C0032C99C /* Main.storyboard */; };
+		632885E51A8B023C0032C99C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 632885E41A8B023C0032C99C /* Images.xcassets */; };
+		632885E81A8B023C0032C99C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 632885E61A8B023C0032C99C /* LaunchScreen.xib */; };
+		632885F41A8B023C0032C99C /* PonyChatUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 632885F31A8B023C0032C99C /* PonyChatUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		632885EE1A8B023C0032C99C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 632885CC1A8B023C0032C99C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 632885D31A8B023C0032C99C;
+			remoteInfo = PonyChatUI;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		632885D41A8B023C0032C99C /* PonyChatUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PonyChatUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		632885D81A8B023C0032C99C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		632885D91A8B023C0032C99C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		632885DB1A8B023C0032C99C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		632885DC1A8B023C0032C99C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		632885DE1A8B023C0032C99C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		632885DF1A8B023C0032C99C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		632885E21A8B023C0032C99C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		632885E41A8B023C0032C99C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		632885E71A8B023C0032C99C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		632885ED1A8B023C0032C99C /* PonyChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PonyChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		632885F21A8B023C0032C99C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		632885F31A8B023C0032C99C /* PonyChatUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PonyChatUITests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		632885D11A8B023C0032C99C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		632885EA1A8B023C0032C99C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		632885CB1A8B023C0032C99C = {
+			isa = PBXGroup;
+			children = (
+				632885D61A8B023C0032C99C /* PonyChatUI */,
+				632885F01A8B023C0032C99C /* PonyChatUITests */,
+				632885D51A8B023C0032C99C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		632885D51A8B023C0032C99C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				632885D41A8B023C0032C99C /* PonyChatUI.app */,
+				632885ED1A8B023C0032C99C /* PonyChatUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		632885D61A8B023C0032C99C /* PonyChatUI */ = {
+			isa = PBXGroup;
+			children = (
+				632885DB1A8B023C0032C99C /* AppDelegate.h */,
+				632885DC1A8B023C0032C99C /* AppDelegate.m */,
+				632885DE1A8B023C0032C99C /* ViewController.h */,
+				632885DF1A8B023C0032C99C /* ViewController.m */,
+				632885E11A8B023C0032C99C /* Main.storyboard */,
+				632885E41A8B023C0032C99C /* Images.xcassets */,
+				632885E61A8B023C0032C99C /* LaunchScreen.xib */,
+				632885D71A8B023C0032C99C /* Supporting Files */,
+			);
+			path = PonyChatUI;
+			sourceTree = "<group>";
+		};
+		632885D71A8B023C0032C99C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				632885D81A8B023C0032C99C /* Info.plist */,
+				632885D91A8B023C0032C99C /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		632885F01A8B023C0032C99C /* PonyChatUITests */ = {
+			isa = PBXGroup;
+			children = (
+				632885F31A8B023C0032C99C /* PonyChatUITests.m */,
+				632885F11A8B023C0032C99C /* Supporting Files */,
+			);
+			path = PonyChatUITests;
+			sourceTree = "<group>";
+		};
+		632885F11A8B023C0032C99C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				632885F21A8B023C0032C99C /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		632885D31A8B023C0032C99C /* PonyChatUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 632885F71A8B023C0032C99C /* Build configuration list for PBXNativeTarget "PonyChatUI" */;
+			buildPhases = (
+				632885D01A8B023C0032C99C /* Sources */,
+				632885D11A8B023C0032C99C /* Frameworks */,
+				632885D21A8B023C0032C99C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PonyChatUI;
+			productName = PonyChatUI;
+			productReference = 632885D41A8B023C0032C99C /* PonyChatUI.app */;
+			productType = "com.apple.product-type.application";
+		};
+		632885EC1A8B023C0032C99C /* PonyChatUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 632885FA1A8B023C0032C99C /* Build configuration list for PBXNativeTarget "PonyChatUITests" */;
+			buildPhases = (
+				632885E91A8B023C0032C99C /* Sources */,
+				632885EA1A8B023C0032C99C /* Frameworks */,
+				632885EB1A8B023C0032C99C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				632885EF1A8B023C0032C99C /* PBXTargetDependency */,
+			);
+			name = PonyChatUITests;
+			productName = PonyChatUITests;
+			productReference = 632885ED1A8B023C0032C99C /* PonyChatUITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		632885CC1A8B023C0032C99C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "多玩事业部 iOS开发组 YY Inc.";
+				TargetAttributes = {
+					632885D31A8B023C0032C99C = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					632885EC1A8B023C0032C99C = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 632885D31A8B023C0032C99C;
+					};
+				};
+			};
+			buildConfigurationList = 632885CF1A8B023C0032C99C /* Build configuration list for PBXProject "PonyChatUI" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 632885CB1A8B023C0032C99C;
+			productRefGroup = 632885D51A8B023C0032C99C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				632885D31A8B023C0032C99C /* PonyChatUI */,
+				632885EC1A8B023C0032C99C /* PonyChatUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		632885D21A8B023C0032C99C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				632885E31A8B023C0032C99C /* Main.storyboard in Resources */,
+				632885E81A8B023C0032C99C /* LaunchScreen.xib in Resources */,
+				632885E51A8B023C0032C99C /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		632885EB1A8B023C0032C99C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		632885D01A8B023C0032C99C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				632885E01A8B023C0032C99C /* ViewController.m in Sources */,
+				632885DD1A8B023C0032C99C /* AppDelegate.m in Sources */,
+				632885DA1A8B023C0032C99C /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		632885E91A8B023C0032C99C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				632885F41A8B023C0032C99C /* PonyChatUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		632885EF1A8B023C0032C99C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 632885D31A8B023C0032C99C /* PonyChatUI */;
+			targetProxy = 632885EE1A8B023C0032C99C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		632885E11A8B023C0032C99C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				632885E21A8B023C0032C99C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		632885E61A8B023C0032C99C /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				632885E71A8B023C0032C99C /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		632885F51A8B023C0032C99C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		632885F61A8B023C0032C99C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		632885F81A8B023C0032C99C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = PonyChatUI/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		632885F91A8B023C0032C99C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = PonyChatUI/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		632885FB1A8B023C0032C99C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = PonyChatUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PonyChatUI.app/PonyChatUI";
+			};
+			name = Debug;
+		};
+		632885FC1A8B023C0032C99C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = PonyChatUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PonyChatUI.app/PonyChatUI";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		632885CF1A8B023C0032C99C /* Build configuration list for PBXProject "PonyChatUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				632885F51A8B023C0032C99C /* Debug */,
+				632885F61A8B023C0032C99C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		632885F71A8B023C0032C99C /* Build configuration list for PBXNativeTarget "PonyChatUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				632885F81A8B023C0032C99C /* Debug */,
+				632885F91A8B023C0032C99C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		632885FA1A8B023C0032C99C /* Build configuration list for PBXNativeTarget "PonyChatUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				632885FB1A8B023C0032C99C /* Debug */,
+				632885FC1A8B023C0032C99C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 632885CC1A8B023C0032C99C /* Project object */;
+}
