@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="IqE-aR-LeG">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <scenes>
+        <!--Chat View Controller-->
+        <scene sceneID="z97-my-BZT">
+            <objects>
+                <viewController storyboardIdentifier="PCUChatViewController" id="IqE-aR-LeG" customClass="PCUChatViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8R3-1L-yn1"/>
+                        <viewControllerLayoutGuide type="bottom" id="Uz0-na-1t9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Lin-PM-jIt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="568" translatesAutoresizingMaskIntoConstraints="NO" id="i5v-Lt-mL3">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="i5v-Lt-mL3" secondAttribute="trailing" id="Kbu-Ea-3MW"/>
+                            <constraint firstItem="i5v-Lt-mL3" firstAttribute="top" secondItem="8R3-1L-yn1" secondAttribute="bottom" id="RS7-mv-Fwe"/>
+                            <constraint firstItem="i5v-Lt-mL3" firstAttribute="leading" secondItem="Lin-PM-jIt" secondAttribute="leading" id="nZS-x2-1om"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="chatScrollView" destination="i5v-Lt-mL3" id="67U-jL-B5B"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gjj-Dr-HIV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="276" y="374"/>
+        </scene>
+        <!--Tool View Controller-->
+        <scene sceneID="Irh-g4-Qtz">
+            <objects>
+                <viewController storyboardIdentifier="PCUToolViewController" id="M3T-Pn-VII" customClass="PCUToolViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2aT-k5-Sby"/>
+                        <viewControllerLayoutGuide type="bottom" id="6u0-sQ-X44"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iJ0-Db-Xo3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="48"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9AH-RF-GJ6">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
+                                <color key="backgroundColor" red="0.88627450980392153" green="0.88627450980392153" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="os9-5Z-Ay4"/>
+                                </constraints>
+                            </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hAi-QZ-C1i">
+                                <rect key="frame" x="45" y="9" width="197" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="yKd-Zy-kLk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6a-xQ-lwO">
+                                <rect key="frame" x="4" y="7" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="LnJ-zr-sUg"/>
+                                    <constraint firstAttribute="height" constant="35" id="eQs-de-gL6"/>
+                                </constraints>
+                                <state key="normal" image="ToolViewInputVoice">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wHp-Ar-i0M">
+                                <rect key="frame" x="281" y="7" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="fAF-Mz-aDg"/>
+                                    <constraint firstAttribute="width" constant="35" id="t8E-Xn-BgR"/>
+                                </constraints>
+                                <state key="normal" image="TypeSelectorBtn_Black">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6F0-Cf-QO7">
+                                <rect key="frame" x="246" y="7" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="9qX-NT-XwF"/>
+                                    <constraint firstAttribute="width" constant="35" id="miv-8L-OL4"/>
+                                </constraints>
+                                <state key="normal" image="ToolViewEmotion">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.95686274509803926" green="0.95686274509803926" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="wHp-Ar-i0M" secondAttribute="centerY" id="4cn-IR-gOb"/>
+                            <constraint firstAttribute="centerY" secondItem="hAi-QZ-C1i" secondAttribute="centerY" id="9yo-wu-GO9"/>
+                            <constraint firstItem="9AH-RF-GJ6" firstAttribute="top" secondItem="2aT-k5-Sby" secondAttribute="bottom" id="B18-gx-DEB"/>
+                            <constraint firstAttribute="trailing" secondItem="9AH-RF-GJ6" secondAttribute="trailing" id="FOF-xd-Vz2"/>
+                            <constraint firstAttribute="centerY" secondItem="i6a-xQ-lwO" secondAttribute="centerY" id="QKq-eD-nL0"/>
+                            <constraint firstItem="i6a-xQ-lwO" firstAttribute="leading" secondItem="iJ0-Db-Xo3" secondAttribute="leading" constant="4" id="cpT-j6-FJm"/>
+                            <constraint firstItem="9AH-RF-GJ6" firstAttribute="leading" secondItem="iJ0-Db-Xo3" secondAttribute="leading" id="djQ-00-1RN"/>
+                            <constraint firstItem="wHp-Ar-i0M" firstAttribute="leading" secondItem="6F0-Cf-QO7" secondAttribute="trailing" id="l1u-Iu-1pv"/>
+                            <constraint firstItem="hAi-QZ-C1i" firstAttribute="leading" secondItem="i6a-xQ-lwO" secondAttribute="trailing" constant="6" id="s4I-lP-TCz"/>
+                            <constraint firstAttribute="centerY" secondItem="6F0-Cf-QO7" secondAttribute="centerY" id="ssS-22-IQd"/>
+                            <constraint firstAttribute="trailing" secondItem="hAi-QZ-C1i" secondAttribute="trailing" constant="78" id="u4l-oY-wlj"/>
+                            <constraint firstAttribute="trailing" secondItem="wHp-Ar-i0M" secondAttribute="trailing" constant="4" id="yRw-Eg-Szy"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="48"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zaa-5u-Yha" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="276" y="760"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ToolViewEmotion" width="35" height="35"/>
+        <image name="ToolViewInputVoice" width="35" height="35"/>
+        <image name="TypeSelectorBtn_Black" width="35" height="35"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
