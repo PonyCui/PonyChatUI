@@ -141,26 +141,34 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ReceiverTextNodeBkg" translatesAutoresizingMaskIntoConstraints="NO" id="fyw-J4-gIf">
-                                <rect key="frame" x="52" y="6" width="185" height="54"/>
+                                <rect key="frame" x="52" y="8" width="185" height="54"/>
                                 <rect key="contentStretch" x="0.5" y="0.5" width="0.0" height="0.0"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你妹我只是测试的啊" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VFz-11-0Sb">
-                                <rect key="frame" x="68" y="13" width="153" height="31"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VFz-11-0Sb">
+                                <rect key="frame" x="68" y="8" width="153" height="38"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="你妹我只是测试的啊">
+                                        <attributes>
+                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" minimumLineHeight="23" maximumLineHeight="23"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="fyw-J4-gIf" firstAttribute="trailing" secondItem="VFz-11-0Sb" secondAttribute="trailing" constant="16" id="2kC-c5-ns1"/>
                             <constraint firstItem="fyw-J4-gIf" firstAttribute="leading" secondItem="VFz-11-0Sb" secondAttribute="leading" constant="-16" id="6ge-Wt-wgO"/>
                             <constraint firstItem="fyw-J4-gIf" firstAttribute="bottom" secondItem="VFz-11-0Sb" secondAttribute="bottom" constant="16" id="9Hb-wZ-Wcb"/>
-                            <constraint firstItem="VFz-11-0Sb" firstAttribute="top" secondItem="HLY-Xg-0S6" secondAttribute="top" constant="5" id="Gbc-JL-5oc"/>
+                            <constraint firstItem="VFz-11-0Sb" firstAttribute="top" secondItem="HLY-Xg-0S6" secondAttribute="top" id="Gbc-JL-5oc"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="VFz-11-0Sb" secondAttribute="trailing" constant="8" id="IsF-cI-tq5"/>
                             <constraint firstItem="HLY-Xg-0S6" firstAttribute="leading" secondAttribute="leading" constant="8" id="KeT-Nh-kXR"/>
                             <constraint firstItem="VFz-11-0Sb" firstAttribute="leading" secondItem="HLY-Xg-0S6" secondAttribute="trailing" constant="20" id="ewF-sp-x0K"/>
                             <constraint firstItem="HLY-Xg-0S6" firstAttribute="top" secondAttribute="top" constant="8" id="qV8-Km-rGq"/>
-                            <constraint firstItem="fyw-J4-gIf" firstAttribute="top" secondItem="VFz-11-0Sb" secondAttribute="top" constant="-7" id="w0g-UU-epQ"/>
+                            <constraint firstItem="fyw-J4-gIf" firstAttribute="top" secondItem="VFz-11-0Sb" secondAttribute="top" id="w0g-UU-epQ"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -168,6 +176,12 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="80"/>
+                    <connections>
+                        <outlet property="iconImageView" destination="HLY-Xg-0S6" id="XPk-Mc-n8T"/>
+                        <outlet property="textLabel" destination="VFz-11-0Sb" id="YVh-Ot-wGA"/>
+                        <outlet property="textLabelBackgroundImageView" destination="fyw-J4-gIf" id="tLn-mS-kMC"/>
+                        <outlet property="textLabelTrailingSpace" destination="IsF-cI-tq5" id="UpD-vO-QQa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bV3-7X-Jaa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

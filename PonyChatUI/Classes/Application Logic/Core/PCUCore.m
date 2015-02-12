@@ -9,12 +9,21 @@
 #import "PCUCore.h"
 #import "PCUProtocols.h"
 #import "PCUWireframe.h"
+#import "PCUAttributedStringManager.h"
+#import "PCUAttributedStringConfigure.h"
 
 @implementation PCUCore
 
 - (void)configure {
     [self bindClass:[PCUWireframe class] inScope:JSObjectionScopeSingleton];
     [self bindClass:[PCUWireframe class] toProtocol:@protocol(PCUWireframe)];
+    
+    [self bindClass:[PCUAttributedStringManager class] inScope:JSObjectionScopeSingleton];
+    [self bindBlock:^id(JSObjectionInjector *context) {
+        PCUAttributedStringConfigure *configure = [[PCUAttributedStringConfigure alloc] init];
+        return [[PCUAttributedStringManager alloc] initWithConfigure:configure];
+    } toClass:[PCUAttributedStringManager class]];
+    
 }
 
 @end

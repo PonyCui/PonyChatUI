@@ -14,4 +14,6 @@
 
 @property (nonatomic, strong) NSLayoutConstraint *heightConstraint;
 
+- (void)setTextLabelText:(NSString *)text;
+
 @end
