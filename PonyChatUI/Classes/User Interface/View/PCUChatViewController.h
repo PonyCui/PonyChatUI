@@ -8,12 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@class PCUChatPresenter;
+@class PCUChatPresenter, PCUTextNodeViewController;
 
 @interface PCUChatViewController : UIViewController
 
 @property (nonatomic, strong) PCUChatPresenter *chatPresenter;
 
 - (void)setBottomLayoutHeight:(CGFloat)layoutHeight;
+
+
+#pragma mark - Node Operations
+
+- (void)addNodeViewController:(PCUTextNodeViewController *)nodeViewController;
 
 @end

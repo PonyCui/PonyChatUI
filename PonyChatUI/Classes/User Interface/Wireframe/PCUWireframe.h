@@ -9,12 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "PCUApplication.h"
 
-@class PCUToolViewController;
+@class PCUToolViewController, PCUTextNodeViewController, PCUChatViewController;
 
 @interface PCUWireframe : NSObject
 
 - (UIView *)addChatViewToView:(UIView *)view;
 
 - (PCUToolViewController *)addToolViewToView:(UIView *)view;
+
+- (void)addTextNodeToView:(UIScrollView *)view toChatViewController:(PCUChatViewController *)chatViewController;
 
 @end

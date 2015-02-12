@@ -23,6 +23,7 @@
 		6390B4571A8B0E000025A64D /* PCUStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6390B4561A8B0E000025A64D /* PCUStoryBoard.storyboard */; };
 		6390B45B1A8B40F00025A64D /* PCUImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6390B45A1A8B40F00025A64D /* PCUImages.xcassets */; };
 		6390B45E1A8B44FE0025A64D /* PCUToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6390B45D1A8B44FE0025A64D /* PCUToolViewController.m */; };
+		63FF1C021A8C4394007C3A18 /* PCUTextNodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FF1C011A8C4394007C3A18 /* PCUTextNodeViewController.m */; };
 		77B27DC368BB62974F4FF2F5 /* libPods-PonyChatUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACC89F67F39C439C21543284 /* libPods-PonyChatUI.a */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +67,8 @@
 		6390B45A1A8B40F00025A64D /* PCUImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PCUImages.xcassets; sourceTree = "<group>"; };
 		6390B45C1A8B44FE0025A64D /* PCUToolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUToolViewController.h; sourceTree = "<group>"; };
 		6390B45D1A8B44FE0025A64D /* PCUToolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUToolViewController.m; sourceTree = "<group>"; };
+		63FF1C001A8C4394007C3A18 /* PCUTextNodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUTextNodeViewController.h; sourceTree = "<group>"; };
+		63FF1C011A8C4394007C3A18 /* PCUTextNodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUTextNodeViewController.m; sourceTree = "<group>"; };
 		ACC89F67F39C439C21543284 /* libPods-PonyChatUI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PonyChatUI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFFD382C3BEE47F55164881E /* Pods-PonyChatUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PonyChatUI.release.xcconfig"; path = "Pods/Target Support Files/Pods-PonyChatUI/Pods-PonyChatUI.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -230,6 +233,8 @@
 				6390B4501A8B0AEE0025A64D /* PCUChatViewController.m */,
 				6390B45C1A8B44FE0025A64D /* PCUToolViewController.h */,
 				6390B45D1A8B44FE0025A64D /* PCUToolViewController.m */,
+				63FF1C001A8C4394007C3A18 /* PCUTextNodeViewController.h */,
+				63FF1C011A8C4394007C3A18 /* PCUTextNodeViewController.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -421,6 +426,7 @@
 				6390B44E1A8B08BE0025A64D /* PCUCore.m in Sources */,
 				6390B44A1A8B06750025A64D /* PCUWireframe.m in Sources */,
 				632886101A8B02790032C99C /* AppDelegate.m in Sources */,
+				63FF1C021A8C4394007C3A18 /* PCUTextNodeViewController.m in Sources */,
 				6390B4541A8B0B760025A64D /* PCUChatPresenter.m in Sources */,
 				6390B45E1A8B44FE0025A64D /* PCUToolViewController.m in Sources */,
 				6328860A1A8B02790032C99C /* ViewController.m in Sources */,

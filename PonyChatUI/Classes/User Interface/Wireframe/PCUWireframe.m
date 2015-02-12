@@ -10,6 +10,7 @@
 #import "PCUChatViewController.h"
 #import "PCUChatPresenter.h"
 #import "PCUToolViewController.h"
+#import "PCUTextNodeViewController.h"
 
 @implementation PCUWireframe
 
@@ -32,6 +33,13 @@
     return toolViewController;
 }
 
+- (void)addTextNodeToView:(UIScrollView *)view toChatViewController:(PCUChatViewController *)chatViewController {
+    PCUTextNodeViewController *textNodeViewController = [self textNodeViewController];
+    [view addSubview:textNodeViewController.view];
+    [self configureTextNodeViewLayouts:textNodeViewController.view];
+    [chatViewController addNodeViewController:textNodeViewController];
+}
+
 #pragma mark - Getter
 
 - (PCUChatViewController *)chatViewController {
@@ -48,6 +56,14 @@
     PCUToolViewController *toolViewController = [storyBoard
                                                  instantiateViewControllerWithIdentifier:@"PCUToolViewController"];
     return toolViewController;
+}
+
+- (PCUTextNodeViewController *)textNodeViewController {
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"PCUStoryBoard" bundle:nil];
+    PCUTextNodeViewController *textNodeViewController = [storyBoard
+                                                         instantiateViewControllerWithIdentifier:
+                                                         @"PCUTextNodeViewControllerReceiver"];
+    return textNodeViewController;
 }
 
 #pragma mark - Configure Wireframe View Autolayout
@@ -80,6 +96,16 @@
                                                                       views:views];
     [[toolView superview] addConstraints:wConstraints];
     [[toolView superview] addConstraints:hConstraints];
+}
+
+- (void)configureTextNodeViewLayouts:(UIView *)textNodeView {
+    textNodeView.translatesAutoresizingMaskIntoConstraints = NO;
+    NSDictionary *views = @{@"textNodeView": textNodeView, @"topView": [textNodeView superview]};
+    NSArray *wConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[textNodeView(==topView)]"
+                                                                    options:kNilOptions
+                                                                    metrics:nil
+                                                                      views:views];
+    [[textNodeView superview] addConstraints:wConstraints];
 }
 
 @end
