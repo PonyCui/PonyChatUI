@@ -124,8 +124,7 @@
 
 #pragma mark - Layouts
 
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [self calculateContentSize];
 }
 
