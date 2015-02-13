@@ -30,9 +30,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self setTextLabelText:@"我只是测试一下换行到底会怎么样啦我只是测试一下换行到底会怎么样啦我只是测试一下换行到底会怎么样啦我只是测试一下换行到底会怎么样啦"];
-    });
     // Do any additional setup after loading the view.
 }
 

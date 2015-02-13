@@ -29,14 +29,15 @@
     PCUWireframe *wireframe = PCU[@protocol(PCUWireframe)];
     self.toolViewController = [wireframe addToolViewToView:self.view];
     [self configureViewLayouts];
-    [wireframe addTextNodeToView:self.chatScrollView toChatViewController:self];
-    [wireframe addTextNodeToView:self.chatScrollView toChatViewController:self];
+    
+    NSUInteger i=0;
+    do {
+        [wireframe addTextNodeToView:self.chatScrollView toChatViewController:self];
+        i++;
+    } while (i<15);
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        NSUInteger i=0;
-        do {
-            [wireframe addTextNodeToView:self.chatScrollView toChatViewController:self];
-            i++;
-        } while (i<30);//压测一下，目前效率不是太好
+        [wireframe addTextNodeToView:self.chatScrollView toChatViewController:self];
+        [self scrollToLastNodeViewController];
     });
     // Do any additional setup after loading the view.
 }
@@ -69,7 +70,27 @@
     
 }
 
-#pragma mark - ContentSize & ContentOffset
+#pragma mark - ContentOffset
+
+- (void)scrollToLastNodeViewController {
+    PCUTextNodeViewController *nodeViewController = [self.nodeViewControllers lastObject];
+    [self scrollToSpecificNodeViewController:nodeViewController];
+}
+
+- (void)scrollToSpecificNodeViewController:(PCUTextNodeViewController *)nodeViewController {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.010 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //always delay
+        if ([self.nodeViewControllers containsObject:nodeViewController]) {
+            CGFloat yOffset = CGRectGetMinY(nodeViewController.view.frame);
+            if (yOffset + CGRectGetHeight(self.chatScrollView.bounds) > self.chatScrollView.contentSize.height) {
+                yOffset = self.chatScrollView.contentSize.height - CGRectGetHeight(self.chatScrollView.bounds);
+            }
+            [self.chatScrollView setContentOffset:CGPointMake(0, yOffset) animated:YES];
+        }
+    });
+}
+
+#pragma mark - ContentSize
 
 - (void)textNodeViewHeightDidChange {
     [self calculateContentSize];
@@ -83,7 +104,9 @@
     if (currentHeight < CGRectGetHeight(self.chatScrollView.bounds)) {
         currentHeight = CGRectGetHeight(self.chatScrollView.bounds) + 1.0;
     }
-    [self.chatScrollView setContentSize:CGSizeMake(CGRectGetWidth(self.chatScrollView.bounds), currentHeight)];
+    if (currentHeight != self.chatScrollView.contentSize.height) {
+        [self.chatScrollView setContentSize:CGSizeMake(CGRectGetWidth(self.chatScrollView.bounds), currentHeight)];
+    }
 }
 
 - (void)scrollToBottom {
