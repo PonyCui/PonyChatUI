@@ -90,6 +90,19 @@
     });
 }
 
+- (CGPoint)offsetForSpecificNodeViewController:(PCUTextNodeViewController *)nodeViewController {
+    if ([self.nodeViewControllers containsObject:nodeViewController]) {
+        CGFloat yOffset = CGRectGetMinY(nodeViewController.view.frame);
+        if (yOffset + CGRectGetHeight(self.chatScrollView.bounds) > self.chatScrollView.contentSize.height) {
+            yOffset = self.chatScrollView.contentSize.height - CGRectGetHeight(self.chatScrollView.bounds);
+        }
+        return CGPointMake(0, yOffset);
+    }
+    else {
+        return CGPointZero;
+    }
+}
+
 #pragma mark - ContentSize
 
 - (void)textNodeViewHeightDidChange {
@@ -109,10 +122,6 @@
     }
 }
 
-- (void)scrollToBottom {
-    [self.chatScrollView setContentOffset:CGPointMake(0, self.chatScrollView.contentSize.height) animated:YES];
-}
-
 #pragma mark - Layouts
 
 - (void)viewDidLayoutSubviews {
@@ -130,10 +139,12 @@
             constraint = obj;
         }
     }];
-    [self.view layoutIfNeeded];
     constraint.constant = layoutHeight;
     [UIView animateWithDuration:0.25 animations:^{
         [self.view layoutIfNeeded];
+        [self.chatScrollView
+         setContentOffset:[self offsetForSpecificNodeViewController:[self.nodeViewControllers lastObject]]
+         animated:NO];
     }];
 }
 
@@ -189,6 +200,12 @@
         _nodeViewControllers = @[];
     }
     return _nodeViewControllers;
+}
+
+#pragma mark - handle events
+
+- (IBAction)handleScrollViewTapped:(UITapGestureRecognizer *)sender {
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
 }
 
 @end
