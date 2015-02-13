@@ -12,7 +12,7 @@
 #import "PCUWireframe.h"
 #import "PCUTextNodeViewController.h"
 
-@interface PCUChatViewController ()
+@interface PCUChatViewController ()<PCUTextNodeViewControllerDelegate>
 
 @property (nonatomic, strong) NSArray *nodeViewControllers;
 
@@ -31,6 +31,13 @@
     [self configureViewLayouts];
     [wireframe addTextNodeToView:self.chatScrollView toChatViewController:self];
     [wireframe addTextNodeToView:self.chatScrollView toChatViewController:self];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSUInteger i=0;
+        do {
+            [wireframe addTextNodeToView:self.chatScrollView toChatViewController:self];
+            i++;
+        } while (i<30);//压测一下，目前效率不是太好
+    });
     // Do any additional setup after loading the view.
 }
 
@@ -46,6 +53,7 @@
     [nodeViewControllers addObject:nodeViewController];
     self.nodeViewControllers = [nodeViewControllers copy];
     [self configureNodeLayouts];
+    [self calculateContentSize];
 }
 
 - (void)insertNodeViewController:(PCUTextNodeViewController *)nodeViewController
@@ -61,7 +69,33 @@
     
 }
 
+#pragma mark - ContentSize & ContentOffset
+
+- (void)textNodeViewHeightDidChange {
+    [self calculateContentSize];
+}
+
+- (void)calculateContentSize {
+    __block CGFloat currentHeight = 0.0;
+    [self.nodeViewControllers enumerateObjectsUsingBlock:^(PCUTextNodeViewController *obj, NSUInteger idx, BOOL *stop) {
+        currentHeight += obj.heightConstraint.constant;
+    }];
+    if (currentHeight < CGRectGetHeight(self.chatScrollView.bounds)) {
+        currentHeight = CGRectGetHeight(self.chatScrollView.bounds) + 1.0;
+    }
+    [self.chatScrollView setContentSize:CGSizeMake(CGRectGetWidth(self.chatScrollView.bounds), currentHeight)];
+}
+
+- (void)scrollToBottom {
+    [self.chatScrollView setContentOffset:CGPointMake(0, self.chatScrollView.contentSize.height) animated:YES];
+}
+
 #pragma mark - Layouts
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [self calculateContentSize];
+}
 
 - (void)setBottomLayoutHeight:(CGFloat)layoutHeight {
     __block NSLayoutConstraint *constraint;
@@ -119,7 +153,7 @@
             [self.chatScrollView layoutIfNeeded];
         }
         if (obj.heightConstraint == nil) {
-            NSLayoutConstraint *constaints = [NSLayoutConstraint constraintWithItem:obj.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:70];
+            NSLayoutConstraint *constaints = [NSLayoutConstraint constraintWithItem:obj.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:0.0];
             obj.heightConstraint = constaints;
             [self.chatScrollView addConstraint:obj.heightConstraint];
         }

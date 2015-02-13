@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="568" translatesAutoresizingMaskIntoConstraints="NO" id="i5v-Lt-mL3">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="568" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="i5v-Lt-mL3">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </scrollView>
                         </subviews>
@@ -180,6 +180,8 @@
                         <outlet property="iconImageView" destination="HLY-Xg-0S6" id="XPk-Mc-n8T"/>
                         <outlet property="textLabel" destination="VFz-11-0Sb" id="YVh-Ot-wGA"/>
                         <outlet property="textLabelBackgroundImageView" destination="fyw-J4-gIf" id="tLn-mS-kMC"/>
+                        <outlet property="textLabelBottomSpace" destination="9Hb-wZ-Wcb" id="tmT-9P-QY2"/>
+                        <outlet property="textLabelTopSpace" destination="w0g-UU-epQ" id="Kmo-Tf-KHn"/>
                         <outlet property="textLabelTrailingSpace" destination="IsF-cI-tq5" id="UpD-vO-QQa"/>
                     </connections>
                 </viewController>

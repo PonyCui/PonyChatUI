@@ -84,17 +84,23 @@
 
 - (NSParagraphStyle *)pragraphStyle {
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+    style.lineBreakMode = NSLineBreakByTruncatingTail;
     switch (self.configure.fontSize) {
         case PCUAttributedStringFontSizeSmall:
+            style.minimumLineHeight = 21.0;
+            style.maximumLineHeight = 21.0;
             break;
         case PCUAttributedStringFontSizeNormal:
             style.minimumLineHeight = 23.0;
             style.maximumLineHeight = 23.0;
-            style.lineBreakMode = NSLineBreakByTruncatingTail;
             break;
         case PCUAttributedStringFontSizeLarge:
+            style.minimumLineHeight = 25.0;
+            style.maximumLineHeight = 25.0;
             break;
         default:
+            style.minimumLineHeight = 23.0;
+            style.maximumLineHeight = 23.0;
             break;
     }
     return [style copy];

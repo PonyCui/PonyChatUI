@@ -33,8 +33,10 @@
     return toolViewController;
 }
 
-- (void)addTextNodeToView:(UIScrollView *)view toChatViewController:(PCUChatViewController *)chatViewController {
+- (void)addTextNodeToView:(UIScrollView *)view
+     toChatViewController:(PCUChatViewController<PCUTextNodeViewControllerDelegate> *)chatViewController {
     PCUTextNodeViewController *textNodeViewController = [self textNodeViewController];
+    textNodeViewController.delegate = chatViewController;
     [view addSubview:textNodeViewController.view];
     [self configureTextNodeViewLayouts:textNodeViewController.view];
     [chatViewController addNodeViewController:textNodeViewController];
