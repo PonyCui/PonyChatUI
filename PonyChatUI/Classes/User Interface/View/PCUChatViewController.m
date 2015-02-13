@@ -35,10 +35,6 @@
         [wireframe addTextNodeToView:self.chatScrollView toChatViewController:self];
         i++;
     } while (i<15);
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [wireframe addTextNodeToView:self.chatScrollView toChatViewController:self];
-        [self scrollToLastNodeViewController];
-    });
     // Do any additional setup after loading the view.
 }
 
@@ -59,15 +55,45 @@
 
 - (void)insertNodeViewController:(PCUTextNodeViewController *)nodeViewController
                          atIndex:(NSUInteger)index {
-    
+    if (index < [self.nodeViewControllers count]) {
+        NSMutableArray *nodeViewControllers = [self.nodeViewControllers mutableCopy];
+        if (index < [nodeViewControllers count]) {
+            //Should Remove Next NodeViewController TopConstraint
+            PCUTextNodeViewController *nextNodeViewController = [nodeViewControllers objectAtIndex:index];
+            [self.chatScrollView removeConstraint:nextNodeViewController.topConstraint];
+            nextNodeViewController.topConstraint = nil;
+        }
+        [nodeViewControllers insertObject:nodeViewController atIndex:index];
+        self.nodeViewControllers = [nodeViewControllers copy];
+        [self configureNodeLayouts];
+        [self calculateContentSize];
+    }
 }
 
 - (void)removeNodeViewController:(PCUTextNodeViewController *)nodeViewController {
-    
+    NSUInteger nodeIndex = [self.nodeViewControllers indexOfObject:nodeViewController];
+    if (nodeIndex != NSNotFound) {
+        [self removeNodeViewControllerAtIndex:nodeIndex];
+    }
 }
 
 - (void)removeNodeViewControllerAtIndex:(NSUInteger)index {
-    
+    if (index < [self.nodeViewControllers count]) {
+        NSMutableArray *nodeViewControllers = [self.nodeViewControllers mutableCopy];
+        if (index+1 < [nodeViewControllers count]) {
+            //Should Remove Next NodeViewController TopConstraint
+            PCUTextNodeViewController *nextNodeViewController = [nodeViewControllers objectAtIndex:index+1];
+            [self.chatScrollView removeConstraint:nextNodeViewController.topConstraint];
+            nextNodeViewController.topConstraint = nil;
+        }
+        PCUTextNodeViewController *thisNodeViewController = [nodeViewControllers objectAtIndex:index];
+        [self.chatScrollView removeConstraint:thisNodeViewController.topConstraint];
+        [thisNodeViewController.view removeFromSuperview];
+        [nodeViewControllers removeObjectAtIndex:index];
+        self.nodeViewControllers = nodeViewControllers;
+        [self configureNodeLayouts];
+        [self calculateContentSize];
+    }
 }
 
 #pragma mark - ContentOffset
@@ -183,7 +209,6 @@
                 obj.topConstraint = constaints;
             }
             [self.chatScrollView addConstraint:obj.topConstraint];
-            [self.chatScrollView layoutIfNeeded];
         }
         if (obj.heightConstraint == nil) {
             NSLayoutConstraint *constaints = [NSLayoutConstraint constraintWithItem:obj.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:0.0];

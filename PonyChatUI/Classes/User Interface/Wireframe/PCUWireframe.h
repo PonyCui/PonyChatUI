@@ -17,6 +17,17 @@
 
 - (PCUToolViewController *)addToolViewToView:(UIView *)view;
 
-- (void)addTextNodeToView:(UIScrollView *)view toChatViewController:(PCUChatViewController *)chatViewController;
+- (void)addTextNodeToView:(UIScrollView *)view
+     toChatViewController:(PCUChatViewController *)chatViewController;
+
+- (void)insertTextNodeToView:(UIScrollView *)view
+                     atIndex:(NSUInteger)index
+        toChatViewController:(PCUChatViewController *)chatViewController;
+
+- (void)removeNodeViewController:(PCUTextNodeViewController *)nodeViewController
+          fromChatViewController:(PCUChatViewController *)chatViewController;
+
+- (void)removeNodeViewControllerAtIndex:(NSUInteger)index
+                 fromChatViewController:(PCUChatViewController *)chatViewController;
 
 @end

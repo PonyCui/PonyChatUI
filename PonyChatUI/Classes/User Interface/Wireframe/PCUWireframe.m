@@ -42,6 +42,26 @@
     [chatViewController addNodeViewController:textNodeViewController];
 }
 
+- (void)insertTextNodeToView:(UIScrollView *)view
+                     atIndex:(NSUInteger)index
+        toChatViewController:(PCUChatViewController<PCUTextNodeViewControllerDelegate> *)chatViewController {
+    PCUTextNodeViewController *textNodeViewController = [self textNodeViewController];
+    textNodeViewController.delegate = chatViewController;
+    [view addSubview:textNodeViewController.view];
+    [self configureTextNodeViewLayouts:textNodeViewController.view];
+    [chatViewController insertNodeViewController:textNodeViewController atIndex:index];
+}
+
+- (void)removeNodeViewController:(PCUTextNodeViewController *)nodeViewController
+          fromChatViewController:(PCUChatViewController *)chatViewController {
+    [chatViewController removeNodeViewController:nodeViewController];
+}
+
+- (void)removeNodeViewControllerAtIndex:(NSUInteger)index
+                 fromChatViewController:(PCUChatViewController *)chatViewController {
+    [chatViewController removeNodeViewControllerAtIndex:index];
+}
+
 #pragma mark - Getter
 
 - (PCUChatViewController *)chatViewController {

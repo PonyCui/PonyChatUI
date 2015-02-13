@@ -21,6 +21,13 @@
 
 - (void)addNodeViewController:(PCUTextNodeViewController *)nodeViewController;
 
+- (void)insertNodeViewController:(PCUTextNodeViewController *)nodeViewController
+                         atIndex:(NSUInteger)index;
+
+- (void)removeNodeViewController:(PCUTextNodeViewController *)nodeViewController;
+
+- (void)removeNodeViewControllerAtIndex:(NSUInteger)index;
+
 - (void)scrollToLastNodeViewController;
 
 @end
