@@ -4,7 +4,7 @@
 target 'PonyChatUI' do
 
 pod "Objection"
-pod "ReactiveCocoa"
+pod "ReactiveCocoa", "2.4.4"
 
 end
 
