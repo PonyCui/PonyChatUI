@@ -90,6 +90,7 @@
             }];
         }
         self.nodeEventHanlders = nodeEventHandlers;
+        self.chatInteractor.minusInteractors = nil;
     }
     if (self.chatInteractor.plusInteractors != nil) {
         NSMutableArray *nodeEventHandlers = [self.nodeEventHanlders mutableCopy];
@@ -103,6 +104,7 @@
             [self.userInterface addChildViewController:nodeViewController];
         }];
         self.nodeEventHanlders = nodeEventHandlers;
+        self.chatInteractor.plusInteractors = nil;
     }
 }
 
