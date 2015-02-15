@@ -75,6 +75,8 @@
 }
 
 - (void)calculateContentSize {
+    BOOL isScrollToBottom = self.chatScrollView.contentOffset.y >= self.chatScrollView.contentSize.height -
+    CGRectGetHeight(self.chatScrollView.bounds);
     __block CGFloat currentHeight = 0.0; 
     [[self childViewControllers] enumerateObjectsUsingBlock:^(PCUNodeViewController *obj, NSUInteger idx, BOOL *stop) {
         if ([obj isKindOfClass:[PCUNodeViewController class]]) {
@@ -86,6 +88,9 @@
     }
     if (currentHeight != self.chatScrollView.contentSize.height) {
         [self.chatScrollView setContentSize:CGSizeMake(CGRectGetWidth(self.chatScrollView.bounds), currentHeight)];
+        if (isScrollToBottom) {
+            [self scrollToBottom:YES];
+        }
     }
 }
 
