@@ -30,6 +30,13 @@
     return self;
 }
 
+- (void)updateView {
+    [super updateView];
+    [self.userInterface setTextLabelTextWithString:self.nodeInteractor.titleString];
+    [self.userInterface setSenderNickLabelTextWithString:self.nodeInteractor.senderName];
+    [self.userInterface setSenderThumbImageViewWithImage:self.nodeInteractor.senderThumbImage];
+}
+
 - (void)configureReactiveCocoa {
     @weakify(self);
     [RACObserve(self, nodeInteractor.titleString) subscribeNext:^(NSString *x) {

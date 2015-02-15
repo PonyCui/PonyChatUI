@@ -26,6 +26,10 @@
     }
 }
 
+- (void)updateView {
+    
+}
+
 - (void)removeViewFromSuperView {
     [self.userInterface.view removeFromSuperview];
 }

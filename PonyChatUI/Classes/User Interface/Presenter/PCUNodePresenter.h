@@ -18,6 +18,8 @@
 
 + (PCUNodePresenter *)nodePresenterWithNodeInteractor:(PCUNodeInteractor *)nodeInteractor;
 
+- (void)updateView;
+
 - (void)removeViewFromSuperView;
 
 @end

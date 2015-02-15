@@ -30,6 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[self eventHandler] updateView];
     // Do any additional setup after loading the view.
 }
 
@@ -77,7 +78,7 @@
     }
     else {
         self.textLabelTrailingSpace.constant = 8.0;//单行
-        self.textLabelTopSpace.constant = 0.0;
+        self.textLabelTopSpace.constant = -3.0;
         self.textLabelBottomSpace.constant = 16.0;
     }
 }
