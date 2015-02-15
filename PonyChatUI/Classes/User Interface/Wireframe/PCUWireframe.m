@@ -30,35 +30,6 @@
     [chatViewController.view addSubview:toolViewController.view];
 }
 
-- (void)addTextNodeToView:(UIScrollView *)view
-     toChatViewController:(PCUChatViewController<PCUNodeViewControllerDelegate> *)chatViewController {
-    PCUTextNodeViewController *textNodeViewController = [self textNodeViewController];
-    textNodeViewController.delegate = chatViewController;
-    [view addSubview:textNodeViewController.view];
-    [self configureTextNodeViewLayouts:textNodeViewController.view];
-    [chatViewController addNodeViewController:textNodeViewController];
-}
-
-- (void)insertTextNodeToView:(UIScrollView *)view
-                     atIndex:(NSUInteger)index
-        toChatViewController:(PCUChatViewController<PCUNodeViewControllerDelegate> *)chatViewController {
-    PCUTextNodeViewController *textNodeViewController = [self textNodeViewController];
-    textNodeViewController.delegate = chatViewController;
-    [view addSubview:textNodeViewController.view];
-    [self configureTextNodeViewLayouts:textNodeViewController.view];
-    [chatViewController insertNodeViewController:textNodeViewController atIndex:index];
-}
-
-- (void)removeNodeViewController:(PCUTextNodeViewController *)nodeViewController
-          fromChatViewController:(PCUChatViewController *)chatViewController {
-    [chatViewController removeNodeViewController:nodeViewController];
-}
-
-- (void)removeNodeViewControllerAtIndex:(NSUInteger)index
-                 fromChatViewController:(PCUChatViewController *)chatViewController {
-    [chatViewController removeNodeViewControllerAtIndex:index];
-}
-
 #pragma mark - Getter
 
 - (PCUChatViewController *)chatViewController {
@@ -78,14 +49,6 @@
     return toolViewController;
 }
 
-- (PCUTextNodeViewController *)textNodeViewController {
-    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"PCUStoryBoard" bundle:nil];
-    PCUTextNodeViewController *textNodeViewController = [storyBoard
-                                                         instantiateViewControllerWithIdentifier:
-                                                         @"PCUTextNodeViewControllerReceiver"];
-    return textNodeViewController;
-}
-
 #pragma mark - Configure Wireframe View Autolayout
 
 - (void)configureChatViewLayouts:(UIView *)chatView {
@@ -101,16 +64,6 @@
                                                                       views:views];
     [[chatView superview] addConstraints:wConstraints];
     [[chatView superview] addConstraints:hConstraints];
-}
-
-- (void)configureTextNodeViewLayouts:(UIView *)textNodeView {
-    textNodeView.translatesAutoresizingMaskIntoConstraints = NO;
-    NSDictionary *views = @{@"textNodeView": textNodeView, @"topView": [textNodeView superview]};
-    NSArray *wConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[textNodeView(==topView)]"
-                                                                    options:kNilOptions
-                                                                    metrics:nil
-                                                                      views:views];
-    [[textNodeView superview] addConstraints:wConstraints];
 }
 
 @end

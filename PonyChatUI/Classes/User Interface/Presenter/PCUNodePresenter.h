@@ -8,16 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-@class PCUNodeInterator, PCUNodeViewController;
+@class PCUNodeInteractor, PCUNodeViewController;
 
 @interface PCUNodePresenter : NSObject
 
 @property (nonatomic, weak) PCUNodeViewController *userInterface;
 
-@property (nonatomic, strong) PCUNodeInterator *nodeInteractor;
+@property (nonatomic, strong) PCUNodeInteractor *nodeInteractor;
 
-+ (PCUNodePresenter *)nodePresenterWithNodeInteractor:(PCUNodeInterator *)nodeInteractor;
++ (PCUNodePresenter *)nodePresenterWithNodeInteractor:(PCUNodeInteractor *)nodeInteractor;
 
-
+- (void)removeViewFromSuperView;
 
 @end

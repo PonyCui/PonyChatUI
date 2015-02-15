@@ -7,30 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PCUNodeViewController.h"
 
 @class PCUChatPresenter, PCUTextNodeViewController, PCUToolViewController;
 
-@interface PCUChatViewController : UIViewController
+@interface PCUChatViewController : UIViewController<PCUNodeViewControllerDelegate>
 
 @property (nonatomic, strong) PCUChatPresenter *eventHandler;
 
 @property (nonatomic, strong) PCUToolViewController *toolViewController;
 
+#pragma mark - Datasource
+
+- (void)reloadData;
+
 #pragma mark - Layouts
 
 - (void)setBottomLayoutHeight:(CGFloat)layoutHeight;
 
-#pragma mark - Node Operations
-
-- (void)addNodeViewController:(PCUTextNodeViewController *)nodeViewController;
-
-- (void)insertNodeViewController:(PCUTextNodeViewController *)nodeViewController
-                         atIndex:(NSUInteger)index;
-
-- (void)removeNodeViewController:(PCUTextNodeViewController *)nodeViewController;
-
-- (void)removeNodeViewControllerAtIndex:(NSUInteger)index;
-
-- (void)scrollToLastNodeViewController;
+- (void)scrollToBottom:(BOOL)animated;
 
 @end

@@ -13,7 +13,7 @@
 #import "PCUAttributedStringConfigure.h"
 #import "PCUNodeViewController.h"
 #import "PCUNodePresenter.h"
-#import "PCUNodeInterator.h"
+#import "PCUNodeInteractor.h"
 #import "PCUMessageManager.h"
 
 @implementation PCUCore

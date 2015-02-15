@@ -6,17 +6,17 @@
 //  Copyright (c) 2015年 多玩事业部 iOS开发组 YY Inc. All rights reserved.
 //
 
-#import "PCUNodeInterator.h"
+#import "PCUNodeInteractor.h"
 #import "PCUMessage.h"
 #import "PCUTextNodeInteractor.h"
 
-@interface PCUNodeInterator ()
+@interface PCUNodeInteractor ()
 
 @end
 
-@implementation PCUNodeInterator
+@implementation PCUNodeInteractor
 
-+ (PCUNodeInterator *)nodeInteractorWithMessage:(PCUMessage *)message {
++ (PCUNodeInteractor *)nodeInteractorWithMessage:(PCUMessage *)message {
     if (message.type == PCUMessageTypeTextMessage) {
         return [[PCUTextNodeInteractor alloc] initWithMessage:message];
     }
@@ -30,6 +30,19 @@
         self.orderIndex = message.orderIndex;
     }
     return self;
+}
+
+- (NSUInteger)hash {
+    return self.orderIndex;
+}
+
+- (BOOL)isEqual:(PCUNodeInteractor *)object {
+    if ([object isKindOfClass:[PCUNodeInteractor class]] && object.orderIndex == self.orderIndex) {
+        return YES;
+    }
+    else {
+        return NO;
+    }
 }
 
 @end

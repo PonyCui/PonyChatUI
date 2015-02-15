@@ -7,12 +7,27 @@
 //
 
 #import "PCUNodeViewController.h"
+#import "PCUNodePresenter.h"
+#import "PCUNodeInteractor.h"
+#import "PCUTextNodeInteractor.h"
 
 @interface PCUNodeViewController ()
 
 @end
 
 @implementation PCUNodeViewController
+
++ (PCUNodeViewController *)nodeViewControllerWithNodeInteractor:(PCUNodeInteractor *)nodeInteractor {
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"PCUStoryBoard" bundle:nil];
+    PCUNodeViewController *nodeViewController;
+    if ([nodeInteractor isKindOfClass:[PCUTextNodeInteractor class]]) {
+        nodeViewController = [storyBoard
+                              instantiateViewControllerWithIdentifier:@"PCUTextNodeViewControllerReceiver"];
+    }
+    nodeViewController.eventHandler = [PCUNodePresenter nodePresenterWithNodeInteractor:nodeInteractor];
+    nodeViewController.eventHandler.userInterface = nodeViewController;
+    return nodeViewController;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,6 +37,29 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)configureLayouts {
+    self.view.translatesAutoresizingMaskIntoConstraints = NO;
+    {
+        NSDictionary *views = @{@"nodeView": self.view, @"superView": [self.view superview]};
+        NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[nodeView(==superView)]"
+                                                                        options:kNilOptions
+                                                                        metrics:nil
+                                                                          views:views];
+        [[self.view superview] addConstraints:constraints];
+    }
+    {
+        NSLayoutConstraint *constaints = [NSLayoutConstraint constraintWithItem:self.view
+                                                                      attribute:NSLayoutAttributeHeight
+                                                                      relatedBy:NSLayoutRelationEqual
+                                                                         toItem:nil
+                                                                      attribute:NSLayoutAttributeNotAnAttribute
+                                                                     multiplier:1.0
+                                                                       constant:0.0];
+        self.heightConstraint = constaints;
+        [[self.view superview] addConstraint:self.heightConstraint];
+    }
 }
 
 @end

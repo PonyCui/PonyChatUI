@@ -17,6 +17,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    NSArray *array1 = @[@"1", @"2", @"3"];
+    
+    NSArray *array2 = @[@"4", @"2", @"6"];
+    
+    NSSet *set1 = [NSSet setWithArray:array1];
+    NSSet *set2 = [NSSet setWithArray:array2];
+    
+    NSMutableSet *set = [set1 mutableCopy];
+    [set minusSet:set2];
+    
+    
     return YES;
 }
 

@@ -9,8 +9,7 @@
 #import "PCUChatInterator.h"
 #import "PCUMessageManager.h"
 #import "PCUMessage.h"
-#import "PCUChat.h"
-#import "PCUNodeInterator.h"
+#import "PCUNodeInteractor.h"
 #import "PCUApplication.h"
 
 @interface PCUChatInterator ()<PCUMessageManagerDelegate>
@@ -30,22 +29,41 @@
 }
 
 - (void)messageManagerDidReceivedMessage:(PCUMessage *)message {
-    NSMutableArray *nodeInteractors = self.nodeInteractors == nil ? [@[] mutableCopy] : [self.nodeInteractors mutableCopy];
+    NSMutableSet *nodeInteractors = self.nodeInteractors == nil ? [NSMutableSet set] : [self.nodeInteractors mutableCopy];
     if (message != nil) {
-        PCUNodeInterator *nodeInteractor = [PCUNodeInterator nodeInteractorWithMessage:message];
+        PCUNodeInteractor *nodeInteractor = [PCUNodeInteractor nodeInteractorWithMessage:message];
         if (nodeInteractor != nil) {
             [nodeInteractors addObject:nodeInteractor];
-            [nodeInteractors sortUsingComparator:^NSComparisonResult(PCUNodeInterator *obj1, PCUNodeInterator *obj2) {
-                if (obj1.orderIndex == obj2.orderIndex) {
-                    return NSOrderedSame;
-                }
-                else {
-                    return obj1.orderIndex < obj2.orderIndex ? NSOrderedAscending : NSOrderedDescending;
-                }
-            }];
             self.nodeInteractors = nodeInteractors;
         }
     }
 }
 
+- (void)compareWithNewSet:(NSSet *)newSet {
+    {
+        NSMutableSet *minusSet = [self.nodeInteractors mutableCopy];
+        [minusSet minusSet:newSet];
+        self.minusInteractors = [minusSet copy];
+    }
+    {
+        NSMutableSet *plusSet = [newSet mutableCopy];
+        [plusSet minusSet:self.nodeInteractors];
+        self.plusInteractors = plusSet;
+    }
+}
+
+- (void)setNodeInteractors:(NSSet *)nodeInteractors {
+    [self compareWithNewSet:nodeInteractors];
+    _nodeInteractors = nodeInteractors;
+}
+
 @end
+
+//[nodeInteractors sortUsingComparator:^NSComparisonResult(PCUNodeInterator *obj1, PCUNodeInterator *obj2) {
+//    if (obj1.orderIndex == obj2.orderIndex) {
+//        return NSOrderedSame;
+//    }
+//    else {
+//        return obj1.orderIndex < obj2.orderIndex ? NSOrderedAscending : NSOrderedDescending;
+//    }
+//}];

@@ -11,11 +11,11 @@
 
 @class PCUMessage;
 
-@interface PCUNodeInterator : NSObject
+@interface PCUNodeInteractor : NSObject
 
 @property (nonatomic, assign) NSUInteger orderIndex;
 
-+ (PCUNodeInterator *)nodeInteractorWithMessage:(PCUMessage *)message;
++ (PCUNodeInteractor *)nodeInteractorWithMessage:(PCUMessage *)message;
 
 - (instancetype)initWithMessage:(PCUMessage *)message;
 

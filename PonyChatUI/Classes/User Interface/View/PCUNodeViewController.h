@@ -15,12 +15,20 @@
 
 @end
 
+@class PCUNodeInteractor, PCUNodePresenter;
+
 @interface PCUNodeViewController : UIViewController
 
 @property (nonatomic, weak) id<PCUNodeViewControllerDelegate> delegate;
 
+@property (nonatomic, strong) PCUNodePresenter *eventHandler;
+
 @property (nonatomic, strong) NSLayoutConstraint *topConstraint;
 
 @property (nonatomic, strong) NSLayoutConstraint *heightConstraint;
+
++ (PCUNodeViewController *)nodeViewControllerWithNodeInteractor:(PCUNodeInteractor *)nodeInteractor;
+
+- (void)configureLayouts;
 
 @end

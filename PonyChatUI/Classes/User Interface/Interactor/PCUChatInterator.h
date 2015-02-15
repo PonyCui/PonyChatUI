@@ -19,9 +19,13 @@
 @property (nonatomic, copy) NSString *titleString;
 
 /**
- *  @brief Array -> PCUNodeInterator
+ *  @brief NSSet -> PCUNodeInterator
  */
-@property (nonatomic, copy) NSArray *nodeInteractors;
+@property (nonatomic, copy) NSSet *nodeInteractors;
+
+@property (nonatomic, copy) NSSet *minusInteractors;
+
+@property (nonatomic, copy) NSSet *plusInteractors;
 
 /**
  *  @brief Message Manager

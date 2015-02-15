@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PCUNodeInterator.h"
+#import "PCUNodeInteractor.h"
 
 @class PCUMessage;
-@interface PCUTextNodeInteractor : PCUNodeInterator
+@interface PCUTextNodeInteractor : PCUNodeInteractor
 
 /**
  *  @brief 消息正文

@@ -16,4 +16,6 @@
 
 @property (nonatomic, strong) PCUChatInterator *chatInteractor;
 
+- (NSArray *)orderedEventHandler;
+
 @end

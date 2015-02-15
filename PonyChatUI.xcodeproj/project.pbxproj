@@ -30,7 +30,7 @@
 		63BACEB21A8DE7C70013DB6C /* PCUTextNodeInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BACEB11A8DE7C70013DB6C /* PCUTextNodeInteractor.m */; };
 		63BACEB51A8DE7DB0013DB6C /* PCUChatInterator.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BACEB41A8DE7DB0013DB6C /* PCUChatInterator.m */; };
 		63BACEB81A8DE80B0013DB6C /* PCUTextNodePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BACEB71A8DE80B0013DB6C /* PCUTextNodePresenter.m */; };
-		63BACEBB1A8DE8450013DB6C /* PCUNodeInterator.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BACEBA1A8DE8450013DB6C /* PCUNodeInterator.m */; };
+		63BACEBB1A8DE8450013DB6C /* PCUNodeInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BACEBA1A8DE8450013DB6C /* PCUNodeInteractor.m */; };
 		63BACEBE1A8DE86A0013DB6C /* PCUNodePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BACEBD1A8DE86A0013DB6C /* PCUNodePresenter.m */; };
 		63BACEC11A8DE89C0013DB6C /* PCUNodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BACEC01A8DE89C0013DB6C /* PCUNodeViewController.m */; };
 		63BACEC41A903C7C0013DB6C /* PCUMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BACEC31A903C7C0013DB6C /* PCUMessageManager.m */; };
@@ -93,8 +93,8 @@
 		63BACEB41A8DE7DB0013DB6C /* PCUChatInterator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUChatInterator.m; sourceTree = "<group>"; };
 		63BACEB61A8DE80B0013DB6C /* PCUTextNodePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUTextNodePresenter.h; sourceTree = "<group>"; };
 		63BACEB71A8DE80B0013DB6C /* PCUTextNodePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUTextNodePresenter.m; sourceTree = "<group>"; };
-		63BACEB91A8DE8450013DB6C /* PCUNodeInterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUNodeInterator.h; sourceTree = "<group>"; };
-		63BACEBA1A8DE8450013DB6C /* PCUNodeInterator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUNodeInterator.m; sourceTree = "<group>"; };
+		63BACEB91A8DE8450013DB6C /* PCUNodeInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUNodeInteractor.h; sourceTree = "<group>"; };
+		63BACEBA1A8DE8450013DB6C /* PCUNodeInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUNodeInteractor.m; sourceTree = "<group>"; };
 		63BACEBC1A8DE86A0013DB6C /* PCUNodePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUNodePresenter.h; sourceTree = "<group>"; };
 		63BACEBD1A8DE86A0013DB6C /* PCUNodePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUNodePresenter.m; sourceTree = "<group>"; };
 		63BACEBF1A8DE89C0013DB6C /* PCUNodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUNodeViewController.h; sourceTree = "<group>"; };
@@ -262,8 +262,8 @@
 			children = (
 				63BACEB31A8DE7DB0013DB6C /* PCUChatInterator.h */,
 				63BACEB41A8DE7DB0013DB6C /* PCUChatInterator.m */,
-				63BACEB91A8DE8450013DB6C /* PCUNodeInterator.h */,
-				63BACEBA1A8DE8450013DB6C /* PCUNodeInterator.m */,
+				63BACEB91A8DE8450013DB6C /* PCUNodeInteractor.h */,
+				63BACEBA1A8DE8450013DB6C /* PCUNodeInteractor.m */,
 				63BACEB01A8DE7C70013DB6C /* PCUTextNodeInteractor.h */,
 				63BACEB11A8DE7C70013DB6C /* PCUTextNodeInteractor.m */,
 			);
@@ -507,7 +507,7 @@
 				63BACEC71A903D9F0013DB6C /* PCUChat.m in Sources */,
 				6390B45E1A8B44FE0025A64D /* PCUToolViewController.m in Sources */,
 				6328860A1A8B02790032C99C /* ViewController.m in Sources */,
-				63BACEBB1A8DE8450013DB6C /* PCUNodeInterator.m in Sources */,
+				63BACEBB1A8DE8450013DB6C /* PCUNodeInteractor.m in Sources */,
 				6390B4511A8B0AEE0025A64D /* PCUChatViewController.m in Sources */,
 				63BACEB51A8DE7DB0013DB6C /* PCUChatInterator.m in Sources */,
 				63BACEA61A8C7CF10013DB6C /* PCUAttributedStringConfigure.m in Sources */,

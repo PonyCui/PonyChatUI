@@ -10,9 +10,12 @@
 #import "PCUToolViewController.h"
 #import "PCUApplication.h"
 #import "PCUWireframe.h"
-#import "PCUNodeViewController.h"
+#import "PCUChatPresenter.h"
+#import "PCUChatInterator.h"
+#import "PCUNodeInteractor.h"
+#import "PCUNodePresenter.h"
 
-@interface PCUChatViewController ()<PCUNodeViewControllerDelegate>
+@interface PCUChatViewController ()
 
 @property (nonatomic, strong) NSArray *nodeViewControllers;
 
@@ -34,6 +37,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)reloadData {
+    [self.childViewControllers enumerateObjectsUsingBlock:^(UIViewController *obj, NSUInteger idx, BOOL *stop) {
+        if ([obj isKindOfClass:[PCUNodeViewController class]] &&
+            [obj.view superview] == nil) {
+            [self.chatScrollView addSubview:obj.view];
+            [(PCUNodeViewController *)obj configureLayouts];
+        }
+    }];
+    [self configureNodeLayouts];
+    [self calculateContentSize];
+}
+
 #pragma mark - ToolViewController
 
 - (void)configureToolView {
@@ -41,96 +56,12 @@
     [wireFrame presentToolViewToChatViewController:self];
 }
 
-#pragma mark - NodeViewControllers
-
-- (void)addNodeViewController:(PCUNodeViewController *)nodeViewController {
-    NSMutableArray *nodeViewControllers = [self.nodeViewControllers mutableCopy];
-    if (nodeViewControllers == nil) {
-        nodeViewControllers = [NSMutableArray array];
-    }
-    [nodeViewControllers addObject:nodeViewController];
-    self.nodeViewControllers = [nodeViewControllers copy];
-    [self configureNodeLayouts];
-    [self calculateContentSize];
-}
-
-- (void)insertNodeViewController:(PCUNodeViewController *)nodeViewController
-                         atIndex:(NSUInteger)index {
-    if (index <= [self.nodeViewControllers count]) {
-        NSMutableArray *nodeViewControllers = [self.nodeViewControllers mutableCopy];
-        if (nodeViewControllers == nil) {
-            nodeViewControllers = [NSMutableArray array];
-        }
-        if (index < [nodeViewControllers count]) {
-            //Should Remove Next NodeViewController TopConstraint
-            PCUNodeViewController *nextNodeViewController = [nodeViewControllers objectAtIndex:index];
-            [self.chatScrollView removeConstraint:nextNodeViewController.topConstraint];
-            nextNodeViewController.topConstraint = nil;
-        }
-        [nodeViewControllers insertObject:nodeViewController atIndex:index];
-        self.nodeViewControllers = [nodeViewControllers copy];
-        [self configureNodeLayouts];
-        [self calculateContentSize];
-    }
-}
-
-- (void)removeNodeViewController:(PCUNodeViewController *)nodeViewController {
-    NSUInteger nodeIndex = [self.nodeViewControllers indexOfObject:nodeViewController];
-    if (nodeIndex != NSNotFound) {
-        [self removeNodeViewControllerAtIndex:nodeIndex];
-    }
-}
-
-- (void)removeNodeViewControllerAtIndex:(NSUInteger)index {
-    if (index < [self.nodeViewControllers count]) {
-        NSMutableArray *nodeViewControllers = [self.nodeViewControllers mutableCopy];
-        if (index+1 < [nodeViewControllers count]) {
-            //Should Remove Next NodeViewController TopConstraint
-            PCUNodeViewController *nextNodeViewController = [nodeViewControllers objectAtIndex:index+1];
-            [self.chatScrollView removeConstraint:nextNodeViewController.topConstraint];
-            nextNodeViewController.topConstraint = nil;
-        }
-        PCUNodeViewController *thisNodeViewController = [nodeViewControllers objectAtIndex:index];
-        [self.chatScrollView removeConstraint:thisNodeViewController.topConstraint];
-        [thisNodeViewController.view removeFromSuperview];
-        [nodeViewControllers removeObjectAtIndex:index];
-        self.nodeViewControllers = nodeViewControllers;
-        [self configureNodeLayouts];
-        [self calculateContentSize];
-    }
-}
-
 #pragma mark - ContentOffset
 
-- (void)scrollToLastNodeViewController {
-    PCUNodeViewController *nodeViewController = [self.nodeViewControllers lastObject];
-    [self scrollToSpecificNodeViewController:nodeViewController];
-}
-
-- (void)scrollToSpecificNodeViewController:(PCUNodeViewController *)nodeViewController {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.010 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        //always delay
-        if ([self.nodeViewControllers containsObject:nodeViewController]) {
-            CGFloat yOffset = CGRectGetMinY(nodeViewController.view.frame);
-            if (yOffset + CGRectGetHeight(self.chatScrollView.bounds) > self.chatScrollView.contentSize.height) {
-                yOffset = self.chatScrollView.contentSize.height - CGRectGetHeight(self.chatScrollView.bounds);
-            }
-            [self.chatScrollView setContentOffset:CGPointMake(0, yOffset) animated:YES];
-        }
-    });
-}
-
-- (CGPoint)offsetForSpecificNodeViewController:(PCUNodeViewController *)nodeViewController {
-    if ([self.nodeViewControllers containsObject:nodeViewController]) {
-        CGFloat yOffset = CGRectGetMinY(nodeViewController.view.frame);
-        if (yOffset + CGRectGetHeight(self.chatScrollView.bounds) > self.chatScrollView.contentSize.height) {
-            yOffset = self.chatScrollView.contentSize.height - CGRectGetHeight(self.chatScrollView.bounds);
-        }
-        return CGPointMake(0, yOffset);
-    }
-    else {
-        return CGPointZero;
-    }
+- (void)scrollToBottom:(BOOL)animated {
+    CGPoint bottomPoint = CGPointMake(0, self.chatScrollView.contentSize.height -
+                                      CGRectGetHeight(self.chatScrollView.bounds));
+    [self.chatScrollView setContentOffset:bottomPoint animated:animated];
 }
 
 #pragma mark - ContentSize
@@ -144,9 +75,11 @@
 }
 
 - (void)calculateContentSize {
-    __block CGFloat currentHeight = 0.0;
-    [self.nodeViewControllers enumerateObjectsUsingBlock:^(PCUNodeViewController *obj, NSUInteger idx, BOOL *stop) {
-        currentHeight += obj.heightConstraint.constant;
+    __block CGFloat currentHeight = 0.0; 
+    [[self childViewControllers] enumerateObjectsUsingBlock:^(PCUNodeViewController *obj, NSUInteger idx, BOOL *stop) {
+        if ([obj isKindOfClass:[PCUNodeViewController class]]) {
+            currentHeight += obj.heightConstraint.constant;
+        }
     }];
     if (currentHeight < CGRectGetHeight(self.chatScrollView.bounds)) {
         currentHeight = CGRectGetHeight(self.chatScrollView.bounds) + 1.0;
@@ -171,9 +104,7 @@
     constraint.constant = layoutHeight;
     [UIView animateWithDuration:0.25 animations:^{
         [self.view layoutIfNeeded];
-        [self.chatScrollView
-         setContentOffset:[self offsetForSpecificNodeViewController:[self.nodeViewControllers lastObject]]
-         animated:NO];
+        [self scrollToBottom:NO];
     }];
 }
 
@@ -199,37 +130,35 @@
 }
 
 - (void)configureNodeLayouts {
+    NSArray *nodeEventHandlers = [self.eventHandler orderedEventHandler];
     __block PCUNodeViewController *previousViewController;
-    [self.nodeViewControllers enumerateObjectsUsingBlock:^(PCUNodeViewController *obj, NSUInteger idx, BOOL *stop) {
-        if (obj.topConstraint == nil) {
-            if (previousViewController == nil) {
-                NSLayoutConstraint *constaints = [NSLayoutConstraint constraintWithItem:obj.view
-                                                                              attribute:NSLayoutAttributeTop
-                                                                              relatedBy:NSLayoutRelationEqual
-                                                                                 toItem:self.chatScrollView
-                                                                              attribute:NSLayoutAttributeTop
-                                                                             multiplier:1.0
-                                                                               constant:0.0];
-                obj.topConstraint = constaints;
-            }
-            else {
-                NSLayoutConstraint *constaints = [NSLayoutConstraint constraintWithItem:previousViewController.view
-                                                                              attribute:NSLayoutAttributeBottom
-                                                                              relatedBy:NSLayoutRelationEqual
-                                                                                 toItem:obj.view
-                                                                              attribute:NSLayoutAttributeTop
-                                                                             multiplier:1.0
-                                                                               constant:0.0];
-                obj.topConstraint = constaints;
-            }
-            [self.chatScrollView addConstraint:obj.topConstraint];
+    [nodeEventHandlers enumerateObjectsUsingBlock:^(PCUNodePresenter *obj, NSUInteger idx, BOOL *stop) {
+        PCUNodeViewController *nodeViewController = obj.userInterface;
+        if (nodeViewController.topConstraint != nil) {
+            [self.chatScrollView removeConstraint:nodeViewController.topConstraint];
         }
-        if (obj.heightConstraint == nil) {
-            NSLayoutConstraint *constaints = [NSLayoutConstraint constraintWithItem:obj.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:0.0];
-            obj.heightConstraint = constaints;
-            [self.chatScrollView addConstraint:obj.heightConstraint];
+        if (previousViewController == nil) {
+            NSLayoutConstraint *constaints = [NSLayoutConstraint constraintWithItem:nodeViewController.view
+                                                                          attribute:NSLayoutAttributeTop
+                                                                          relatedBy:NSLayoutRelationEqual
+                                                                             toItem:self.chatScrollView
+                                                                          attribute:NSLayoutAttributeTop
+                                                                         multiplier:1.0
+                                                                           constant:0.0];
+            nodeViewController.topConstraint = constaints;
         }
-        previousViewController = obj;
+        else {
+            NSLayoutConstraint *constaints = [NSLayoutConstraint constraintWithItem:previousViewController.view
+                                                                          attribute:NSLayoutAttributeBottom
+                                                                          relatedBy:NSLayoutRelationEqual
+                                                                             toItem:nodeViewController.view
+                                                                          attribute:NSLayoutAttributeTop
+                                                                         multiplier:1.0
+                                                                           constant:0.0];
+            nodeViewController.topConstraint = constaints;
+        }
+        [self.chatScrollView addConstraint:nodeViewController.topConstraint];
+        previousViewController = nodeViewController;
     }];
 }
 

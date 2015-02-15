@@ -9,12 +9,13 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PCUNodePresenter.h"
 #import "PCUTextNodePresenter.h"
-#import "PCUNodeInterator.h"
+#import "PCUNodeInteractor.h"
 #import "PCUTextNodeInteractor.h"
+#import "PCUNodeViewController.h"
 
 @implementation PCUNodePresenter
 
-+ (PCUNodePresenter *)nodePresenterWithNodeInteractor:(PCUNodeInterator *)nodeInteractor {
++ (PCUNodePresenter *)nodePresenterWithNodeInteractor:(PCUNodeInteractor *)nodeInteractor {
     if ([nodeInteractor isKindOfClass:[PCUTextNodeInteractor class]]) {
         PCUTextNodePresenter *textNodePresenter = [[PCUTextNodePresenter alloc] init];
         textNodePresenter.nodeInteractor = nodeInteractor;
@@ -23,6 +24,10 @@
     else {
         return nil;
     }
+}
+
+- (void)removeViewFromSuperView {
+    [self.userInterface.view removeFromSuperview];
 }
 
 @end

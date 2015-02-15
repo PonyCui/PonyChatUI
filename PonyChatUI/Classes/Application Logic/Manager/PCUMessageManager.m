@@ -39,7 +39,7 @@
 - (void)openConnection {
     //If you use NSTimer or GCD, Be careful, should call closeConnection by yourself,
     //dealloc will do nothing.
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0
                                                   target:self
                                                 selector:@selector(didReceivedData)
                                                 userInfo:nil
