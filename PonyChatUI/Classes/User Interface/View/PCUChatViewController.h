@@ -12,7 +12,7 @@
 
 @interface PCUChatViewController : UIViewController
 
-@property (nonatomic, strong) PCUChatPresenter *chatPresenter;
+@property (nonatomic, strong) PCUChatPresenter *eventHandler;
 
 @property (nonatomic, strong) PCUToolViewController *toolViewController;
 

@@ -18,7 +18,7 @@
 
 - (void)presentChatViewToViewController:(UIViewController *)viewController withChatItem:(PCUChat *)chatItem {
     PCUChatViewController *chatViewController = [self chatViewController];
-    chatViewController.chatPresenter.chatInteractor.messageManager.chatItem = chatItem;
+    chatViewController.eventHandler.chatInteractor.messageManager.chatItem = chatItem;
     [viewController addChildViewController:chatViewController];
     [viewController.view addSubview:chatViewController.view];
     [self configureChatViewLayouts:chatViewController.view];
@@ -65,9 +65,9 @@
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"PCUStoryBoard" bundle:nil];
     PCUChatViewController *chatViewController = [storyBoard
                                                  instantiateViewControllerWithIdentifier:@"PCUChatViewController"];
-    chatViewController.chatPresenter = [[PCUChatPresenter alloc] init];
-    chatViewController.chatPresenter.userInterface = chatViewController;
-    chatViewController.chatPresenter.chatInteractor = [[PCUChatInterator alloc] init];
+    chatViewController.eventHandler = [[PCUChatPresenter alloc] init];
+    chatViewController.eventHandler.userInterface = chatViewController;
+    chatViewController.eventHandler.chatInteractor = [[PCUChatInterator alloc] init];
     return chatViewController;
 }
 
