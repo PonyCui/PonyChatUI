@@ -9,17 +9,24 @@
 #import "PCUApplication.h"
 #import "PCUCore.h"
 
+static PCUCore *coreModule;
+
 @implementation PCUApplication
 
 + (JSObjectionInjector *)injector {
     static JSObjectionInjector *injector;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+        coreModule = [[PCUCore alloc] init];
         injector = [JSObjection createInjectorWithModules:
-                    [[PCUCore alloc] init],
+                    coreModule,
                     nil];
     });
     return injector;
+}
+
++ (void)setAttributedStringManagerClass:(Class)managerClass {
+    [coreModule bindCustomAttributedStringManager:managerClass];
 }
 
 @end

@@ -17,4 +17,6 @@
 
 + (JSObjectionInjector *)injector;
 
++ (void)setAttributedStringManagerClass:(Class)managerClass;
+
 @end

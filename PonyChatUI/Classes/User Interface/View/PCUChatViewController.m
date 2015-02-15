@@ -10,9 +10,9 @@
 #import "PCUToolViewController.h"
 #import "PCUApplication.h"
 #import "PCUWireframe.h"
-#import "PCUTextNodeViewController.h"
+#import "PCUNodeViewController.h"
 
-@interface PCUChatViewController ()<PCUTextNodeViewControllerDelegate>
+@interface PCUChatViewController ()<PCUNodeViewControllerDelegate>
 
 @property (nonatomic, strong) NSArray *nodeViewControllers;
 
@@ -45,7 +45,7 @@
 
 #pragma mark - NodeViewControllers
 
-- (void)addNodeViewController:(PCUTextNodeViewController *)nodeViewController {
+- (void)addNodeViewController:(PCUNodeViewController *)nodeViewController {
     NSMutableArray *nodeViewControllers = [self.nodeViewControllers mutableCopy];
     [nodeViewControllers addObject:nodeViewController];
     self.nodeViewControllers = [nodeViewControllers copy];
@@ -53,13 +53,13 @@
     [self calculateContentSize];
 }
 
-- (void)insertNodeViewController:(PCUTextNodeViewController *)nodeViewController
+- (void)insertNodeViewController:(PCUNodeViewController *)nodeViewController
                          atIndex:(NSUInteger)index {
     if (index < [self.nodeViewControllers count]) {
         NSMutableArray *nodeViewControllers = [self.nodeViewControllers mutableCopy];
         if (index < [nodeViewControllers count]) {
             //Should Remove Next NodeViewController TopConstraint
-            PCUTextNodeViewController *nextNodeViewController = [nodeViewControllers objectAtIndex:index];
+            PCUNodeViewController *nextNodeViewController = [nodeViewControllers objectAtIndex:index];
             [self.chatScrollView removeConstraint:nextNodeViewController.topConstraint];
             nextNodeViewController.topConstraint = nil;
         }
@@ -70,7 +70,7 @@
     }
 }
 
-- (void)removeNodeViewController:(PCUTextNodeViewController *)nodeViewController {
+- (void)removeNodeViewController:(PCUNodeViewController *)nodeViewController {
     NSUInteger nodeIndex = [self.nodeViewControllers indexOfObject:nodeViewController];
     if (nodeIndex != NSNotFound) {
         [self removeNodeViewControllerAtIndex:nodeIndex];
@@ -82,11 +82,11 @@
         NSMutableArray *nodeViewControllers = [self.nodeViewControllers mutableCopy];
         if (index+1 < [nodeViewControllers count]) {
             //Should Remove Next NodeViewController TopConstraint
-            PCUTextNodeViewController *nextNodeViewController = [nodeViewControllers objectAtIndex:index+1];
+            PCUNodeViewController *nextNodeViewController = [nodeViewControllers objectAtIndex:index+1];
             [self.chatScrollView removeConstraint:nextNodeViewController.topConstraint];
             nextNodeViewController.topConstraint = nil;
         }
-        PCUTextNodeViewController *thisNodeViewController = [nodeViewControllers objectAtIndex:index];
+        PCUNodeViewController *thisNodeViewController = [nodeViewControllers objectAtIndex:index];
         [self.chatScrollView removeConstraint:thisNodeViewController.topConstraint];
         [thisNodeViewController.view removeFromSuperview];
         [nodeViewControllers removeObjectAtIndex:index];
@@ -99,11 +99,11 @@
 #pragma mark - ContentOffset
 
 - (void)scrollToLastNodeViewController {
-    PCUTextNodeViewController *nodeViewController = [self.nodeViewControllers lastObject];
+    PCUNodeViewController *nodeViewController = [self.nodeViewControllers lastObject];
     [self scrollToSpecificNodeViewController:nodeViewController];
 }
 
-- (void)scrollToSpecificNodeViewController:(PCUTextNodeViewController *)nodeViewController {
+- (void)scrollToSpecificNodeViewController:(PCUNodeViewController *)nodeViewController {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.010 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         //always delay
         if ([self.nodeViewControllers containsObject:nodeViewController]) {
@@ -116,7 +116,7 @@
     });
 }
 
-- (CGPoint)offsetForSpecificNodeViewController:(PCUTextNodeViewController *)nodeViewController {
+- (CGPoint)offsetForSpecificNodeViewController:(PCUNodeViewController *)nodeViewController {
     if ([self.nodeViewControllers containsObject:nodeViewController]) {
         CGFloat yOffset = CGRectGetMinY(nodeViewController.view.frame);
         if (yOffset + CGRectGetHeight(self.chatScrollView.bounds) > self.chatScrollView.contentSize.height) {
@@ -131,13 +131,13 @@
 
 #pragma mark - ContentSize
 
-- (void)textNodeViewHeightDidChange {
+- (void)nodeViewHeightDidChange {
     [self calculateContentSize];
 }
 
 - (void)calculateContentSize {
     __block CGFloat currentHeight = 0.0;
-    [self.nodeViewControllers enumerateObjectsUsingBlock:^(PCUTextNodeViewController *obj, NSUInteger idx, BOOL *stop) {
+    [self.nodeViewControllers enumerateObjectsUsingBlock:^(PCUNodeViewController *obj, NSUInteger idx, BOOL *stop) {
         currentHeight += obj.heightConstraint.constant;
     }];
     if (currentHeight < CGRectGetHeight(self.chatScrollView.bounds)) {
@@ -185,8 +185,8 @@
 }
 
 - (void)configureNodeLayouts {
-    __block PCUTextNodeViewController *previousViewController;
-    [self.nodeViewControllers enumerateObjectsUsingBlock:^(PCUTextNodeViewController *obj, NSUInteger idx, BOOL *stop) {
+    __block PCUNodeViewController *previousViewController;
+    [self.nodeViewControllers enumerateObjectsUsingBlock:^(PCUNodeViewController *obj, NSUInteger idx, BOOL *stop) {
         if (obj.topConstraint == nil) {
             if (previousViewController == nil) {
                 NSLayoutConstraint *constaints = [NSLayoutConstraint constraintWithItem:obj.view
@@ -218,6 +218,8 @@
         previousViewController = obj;
     }];
 }
+
+#pragma mark - Getter
 
 - (NSArray *)nodeViewControllers {
     if (_nodeViewControllers == nil) {

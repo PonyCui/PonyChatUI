@@ -7,22 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PCUNodeViewController.h"
 
-@protocol PCUTextNodeViewControllerDelegate <NSObject>
+@interface PCUTextNodeViewController : PCUNodeViewController
 
-@required
-- (void)textNodeViewHeightDidChange;
+- (void)setTextLabelTextWithString:(NSString *)string;
 
-@end
+- (void)setSenderThumbImageViewWithImage:(UIImage *)image;
 
-@interface PCUTextNodeViewController : UIViewController
-
-@property (nonatomic, weak) id<PCUTextNodeViewControllerDelegate> delegate;
-
-@property (nonatomic, strong) NSLayoutConstraint *topConstraint;
-
-@property (nonatomic, strong) NSLayoutConstraint *heightConstraint;
-
-- (void)setTextLabelText:(NSString *)text;
+- (void)setSenderNickLabelTextWithString:(NSString *)string;
 
 @end

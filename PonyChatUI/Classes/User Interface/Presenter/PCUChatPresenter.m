@@ -8,6 +8,8 @@
 
 #import "PCUChatPresenter.h"
 #import "PCUChatViewController.h"
+#import "PCUChatInterator.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @implementation PCUChatPresenter
 
@@ -19,6 +21,7 @@
 {
     self = [super init];
     if (self) {
+        [self configureReactiveCocoa];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(handleKeyboardWillShowNotification:)
                                                      name:UIKeyboardWillShowNotification
@@ -39,6 +42,22 @@
 
 - (void)handleKeyboardWillHideNotification:(NSNotification *)notification {
     [self.userInterface setBottomLayoutHeight:0];
+}
+
+- (void)configureReactiveCocoa {
+    @weakify(self);
+    [RACObserve(self, chatInteractor.titleString) subscribeNext:^(id x) {
+        @strongify(self);
+        self.userInterface.title = x;
+    }];
+    [RACObserve(self, chatInteractor.nodeInteractors) subscribeNext:^(id x) {
+        @strongify(self);
+        [self updateChatView];
+    }];
+}
+
+- (void)updateChatView {
+    
 }
 
 @end

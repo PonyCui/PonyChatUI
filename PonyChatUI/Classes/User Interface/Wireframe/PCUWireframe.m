@@ -11,6 +11,7 @@
 #import "PCUChatPresenter.h"
 #import "PCUToolViewController.h"
 #import "PCUTextNodeViewController.h"
+#import "PCUChatInterator.h"
 
 @implementation PCUWireframe
 
@@ -34,7 +35,7 @@
 }
 
 - (void)addTextNodeToView:(UIScrollView *)view
-     toChatViewController:(PCUChatViewController<PCUTextNodeViewControllerDelegate> *)chatViewController {
+     toChatViewController:(PCUChatViewController<PCUNodeViewControllerDelegate> *)chatViewController {
     PCUTextNodeViewController *textNodeViewController = [self textNodeViewController];
     textNodeViewController.delegate = chatViewController;
     [view addSubview:textNodeViewController.view];
@@ -44,7 +45,7 @@
 
 - (void)insertTextNodeToView:(UIScrollView *)view
                      atIndex:(NSUInteger)index
-        toChatViewController:(PCUChatViewController<PCUTextNodeViewControllerDelegate> *)chatViewController {
+        toChatViewController:(PCUChatViewController<PCUNodeViewControllerDelegate> *)chatViewController {
     PCUTextNodeViewController *textNodeViewController = [self textNodeViewController];
     textNodeViewController.delegate = chatViewController;
     [view addSubview:textNodeViewController.view];
@@ -70,6 +71,10 @@
                                                  instantiateViewControllerWithIdentifier:@"PCUChatViewController"];
     chatViewController.chatPresenter = [[PCUChatPresenter alloc] init];
     chatViewController.chatPresenter.userInterface = chatViewController;
+    chatViewController.chatPresenter.chatInteractor = [[PCUChatInterator alloc] init];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(15.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        chatViewController.chatPresenter.chatInteractor = [[PCUChatInterator alloc] init];
+    });
     return chatViewController;
 }
 

@@ -10,4 +10,6 @@
 
 @interface PCUCore : JSObjectionModule
 
+- (void)bindCustomAttributedStringManager:(Class)managerClass;
+
 @end

@@ -38,25 +38,29 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)setTextLabelText:(NSString *)text {
-    self.textLabel.attributedText = [PCU[[PCUAttributedStringManager class]] attributedStringWithString:text];
+#pragma mark - Render
+
+- (void)setTextLabelTextWithString:(NSString *)string {
+    self.textLabel.attributedText = [PCU[[PCUAttributedStringManager class]] attributedStringWithString:string];
     [self adjustLabelSpace];
-    [self performSelector:@selector(adjustHeight)
-               withObject:nil
-               afterDelay:0.001];
+    [self adjustHeight];
 }
 
-#pragma mark - Setter
+- (void)setSenderNickLabelTextWithString:(NSString *)string {
+    
+}
 
-- (void)setHeightConstraint:(NSLayoutConstraint *)heightConstraint {
-    _heightConstraint = heightConstraint;
-    [self adjustLabelSpace];
-    [self performSelector:@selector(adjustHeight)
-               withObject:nil
-               afterDelay:0.001];
+- (void)setSenderThumbImageViewWithImage:(UIImage *)image {
+    self.iconImageView.image = image;
 }
 
 #pragma mark - Layouts
+
+- (void)setHeightConstraint:(NSLayoutConstraint *)heightConstraint {
+    super.heightConstraint = heightConstraint;
+    [self adjustLabelSpace];
+    [self performSelector:@selector(adjustHeight) withObject:nil afterDelay:0.001];
+}
 
 - (void)adjustLabelSpace {
     NSAttributedString *attributedString = self.textLabel.attributedText;
@@ -80,7 +84,7 @@
 
 - (void)adjustHeight {
     self.heightConstraint.constant = CGRectGetHeight(self.textLabelBackgroundImageView.bounds) + 6.0;
-    [self.delegate textNodeViewHeightDidChange];
+    [self.delegate nodeViewHeightDidChange];
 }
 
 @end
