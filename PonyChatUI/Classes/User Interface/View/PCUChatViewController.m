@@ -16,8 +16,6 @@
 
 @property (nonatomic, strong) NSArray *nodeViewControllers;
 
-@property (nonatomic, strong) PCUToolViewController *toolViewController;
-
 @property (weak, nonatomic) IBOutlet UIScrollView *chatScrollView;
 
 @end
@@ -26,15 +24,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    PCUWireframe *wireframe = PCU[@protocol(PCUWireframe)];
-    self.toolViewController = [wireframe addToolViewToView:self.view];
+    [self configureToolView];
     [self configureViewLayouts];
-    
-    NSUInteger i=0;
-    do {
-        [wireframe addTextNodeToView:self.chatScrollView toChatViewController:self];
-        i++;
-    } while (i<15);
     // Do any additional setup after loading the view.
 }
 
@@ -43,10 +34,20 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - ToolViewController
+
+- (void)configureToolView {
+    PCUWireframe *wireFrame = PCU[[PCUWireframe class]];
+    [wireFrame presentToolViewToChatViewController:self];
+}
+
 #pragma mark - NodeViewControllers
 
 - (void)addNodeViewController:(PCUNodeViewController *)nodeViewController {
     NSMutableArray *nodeViewControllers = [self.nodeViewControllers mutableCopy];
+    if (nodeViewControllers == nil) {
+        nodeViewControllers = [NSMutableArray array];
+    }
     [nodeViewControllers addObject:nodeViewController];
     self.nodeViewControllers = [nodeViewControllers copy];
     [self configureNodeLayouts];
@@ -55,8 +56,11 @@
 
 - (void)insertNodeViewController:(PCUNodeViewController *)nodeViewController
                          atIndex:(NSUInteger)index {
-    if (index < [self.nodeViewControllers count]) {
+    if (index <= [self.nodeViewControllers count]) {
         NSMutableArray *nodeViewControllers = [self.nodeViewControllers mutableCopy];
+        if (nodeViewControllers == nil) {
+            nodeViewControllers = [NSMutableArray array];
+        }
         if (index < [nodeViewControllers count]) {
             //Should Remove Next NodeViewController TopConstraint
             PCUNodeViewController *nextNodeViewController = [nodeViewControllers objectAtIndex:index];
@@ -135,6 +139,10 @@
     [self calculateContentSize];
 }
 
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [self calculateContentSize];
+}
+
 - (void)calculateContentSize {
     __block CGFloat currentHeight = 0.0;
     [self.nodeViewControllers enumerateObjectsUsingBlock:^(PCUNodeViewController *obj, NSUInteger idx, BOOL *stop) {
@@ -149,10 +157,6 @@
 }
 
 #pragma mark - Layouts
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    [self calculateContentSize];
-}
 
 - (void)setBottomLayoutHeight:(CGFloat)layoutHeight {
     __block NSLayoutConstraint *constraint;
@@ -175,13 +179,23 @@
 
 - (void)configureViewLayouts {
     self.chatScrollView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.toolViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
     NSDictionary *views = @{@"toolView": self.toolViewController.view,
-                            @"chatScrollView": self.chatScrollView};
-    NSArray *hConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[chatScrollView]-0-[toolView]-0-|"
-                                                                    options:kNilOptions
-                                                                    metrics:nil
-                                                                      views:views];
-    [self.view addConstraints:hConstraints];
+                            @"chatView": self.chatScrollView};
+    {
+        NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[chatView]-0-[toolView(48)]-0-|"
+                                                                        options:kNilOptions
+                                                                        metrics:nil
+                                                                          views:views];
+        [self.view addConstraints:constraints];
+    }
+    {
+        NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[toolView]-0-|"
+                                                                       options:kNilOptions
+                                                                       metrics:nil
+                                                                         views:views];
+        [self.view addConstraints:constraints];
+    }
 }
 
 - (void)configureNodeLayouts {
@@ -217,15 +231,6 @@
         }
         previousViewController = obj;
     }];
-}
-
-#pragma mark - Getter
-
-- (NSArray *)nodeViewControllers {
-    if (_nodeViewControllers == nil) {
-        _nodeViewControllers = @[];
-    }
-    return _nodeViewControllers;
 }
 
 #pragma mark - handle events

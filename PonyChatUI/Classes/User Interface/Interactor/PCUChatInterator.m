@@ -23,19 +23,16 @@
 {
     self = [super init];
     if (self) {
+        self.messageManager = PCU[[PCUMessageManager class]];
+        self.messageManager.delegate = self;
     }
     return self;
 }
 
-- (void)setMessageManager:(PCUMessageManager *)messageManager {
-    _messageManager = messageManager;
-    _messageManager.delegate = self;
-}
-
 - (void)messageManagerDidReceivedMessage:(PCUMessage *)message {
-    NSMutableArray *nodeInteractors = [self.nodeInteractors mutableCopy];
+    NSMutableArray *nodeInteractors = self.nodeInteractors == nil ? [@[] mutableCopy] : [self.nodeInteractors mutableCopy];
     if (message != nil) {
-        PCUNodeInterator *nodeInteractor = [PCU getObject:[PCUNodeInterator class] argumentList:@[message]];
+        PCUNodeInterator *nodeInteractor = [PCUNodeInterator nodeInteractorWithMessage:message];
         if (nodeInteractor != nil) {
             [nodeInteractors addObject:nodeInteractor];
             [nodeInteractors sortUsingComparator:^NSComparisonResult(PCUNodeInterator *obj1, PCUNodeInterator *obj2) {
@@ -43,7 +40,7 @@
                     return NSOrderedSame;
                 }
                 else {
-                    return obj1.orderIndex > obj2.orderIndex ? NSOrderedAscending : NSOrderedDescending;
+                    return obj1.orderIndex < obj2.orderIndex ? NSOrderedAscending : NSOrderedDescending;
                 }
             }];
             self.nodeInteractors = nodeInteractors;

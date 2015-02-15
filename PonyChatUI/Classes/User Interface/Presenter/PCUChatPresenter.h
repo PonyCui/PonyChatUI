@@ -12,7 +12,7 @@
 
 @interface PCUChatPresenter : NSObject
 
-@property (nonatomic, weak) PCUChatViewController *userInterface;
+@property (nonatomic, strong) PCUChatViewController *userInterface;
 
 @property (nonatomic, strong) PCUChatInterator *chatInteractor;
 

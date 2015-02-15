@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PCUMessageManager.h"
 
 @class PCUMessageManager;
 
-@interface PCUChatInterator : NSObject
+@interface PCUChatInterator : NSObject<PCUMessageManagerDelegate>
 
 /**
  *  @brief 对话窗口标题

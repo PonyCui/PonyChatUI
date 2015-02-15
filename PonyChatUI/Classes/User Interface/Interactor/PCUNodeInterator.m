@@ -7,7 +7,29 @@
 //
 
 #import "PCUNodeInterator.h"
+#import "PCUMessage.h"
+#import "PCUTextNodeInteractor.h"
+
+@interface PCUNodeInterator ()
+
+@end
 
 @implementation PCUNodeInterator
+
++ (PCUNodeInterator *)nodeInteractorWithMessage:(PCUMessage *)message {
+    if (message.type == PCUMessageTypeTextMessage) {
+        return [[PCUTextNodeInteractor alloc] initWithMessage:message];
+    }
+    return nil;
+}
+
+- (instancetype)initWithMessage:(PCUMessage *)message
+{
+    self = [super init];
+    if (self) {
+        self.orderIndex = message.orderIndex;
+    }
+    return self;
+}
 
 @end

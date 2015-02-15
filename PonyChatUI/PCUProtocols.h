@@ -8,10 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "PCUChat.h"
+
+@class PCUChat;
 
 @protocol PCUWireframe <NSObject>
 
-- (UIView *)addChatViewToView:(UIView *)view;
+- (void)presentChatViewToViewController:(UIViewController *)viewController withChatItem:(PCUChat *)chatItem;
 
 @end
 

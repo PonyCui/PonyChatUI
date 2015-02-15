@@ -53,7 +53,7 @@
     PCUMessage *message = [[PCUMessage alloc] init];
     message.identifier = [NSString stringWithFormat:@"%u", arc4random()];
     message.orderIndex = [[NSDate date] timeIntervalSince1970];
-    message.type = arc4random() % 3;
+    message.type = PCUMessageTypeTextMessage;
     message.sender = [[PCUSender alloc] init];
     message.sender.identifier = @"1";
     message.sender.title = @"Pony";

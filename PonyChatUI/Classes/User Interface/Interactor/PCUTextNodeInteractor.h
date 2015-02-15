@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "PCUNodeInterator.h"
 
+@class PCUMessage;
 @interface PCUTextNodeInteractor : PCUNodeInterator
 
 /**
@@ -25,5 +26,7 @@
  *  @brief 发送者头像缩略图
  */
 @property (nonatomic, copy) UIImage  *senderThumbImage;
+
+- (instancetype)initWithMessage:(PCUMessage *)message;
 
 @end

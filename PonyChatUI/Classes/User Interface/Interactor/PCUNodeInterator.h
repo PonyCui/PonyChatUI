@@ -9,8 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@class PCUMessage;
+
 @interface PCUNodeInterator : NSObject
 
 @property (nonatomic, assign) NSUInteger orderIndex;
+
++ (PCUNodeInterator *)nodeInteractorWithMessage:(PCUMessage *)message;
+
+- (instancetype)initWithMessage:(PCUMessage *)message;
 
 @end

@@ -26,18 +26,6 @@
         PCUAttributedStringConfigure *configure = [[PCUAttributedStringConfigure alloc] init];
         return [[PCUAttributedStringManager alloc] initWithConfigure:configure];
     } toClass:[PCUAttributedStringManager class]];
-    [self bindBlock:^id(JSObjectionInjector *context) {
-        return nil;
-    } toClass:[PCUNodeViewController class]];
-    [self bindBlock:^id(JSObjectionInjector *context) {
-        return nil;
-    } toClass:[PCUNodePresenter class]];
-    [self bindBlock:^id(JSObjectionInjector *context) {
-        return nil;
-    } toClass:[PCUNodeInterator class]];
-    [self bindBlock:^id(JSObjectionInjector *context) {
-        return [[PCUMessageManager alloc] init];
-    } toClass:[PCUMessageManager class]];
 }
 
 - (void)bindCustomAttributedStringManager:(Class)managerClass {

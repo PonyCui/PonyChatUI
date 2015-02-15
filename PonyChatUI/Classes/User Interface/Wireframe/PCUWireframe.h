@@ -9,25 +9,26 @@
 #import <Foundation/Foundation.h>
 #import "PCUApplication.h"
 
-@class PCUToolViewController, PCUTextNodeViewController, PCUChatViewController;
+@class PCUToolViewController, PCUTextNodeViewController, PCUChatViewController, PCUChat;
 
 @interface PCUWireframe : NSObject
 
-- (UIView *)addChatViewToView:(UIView *)view;
+- (void)presentChatViewToViewController:(UIViewController *)viewController
+                           withChatItem:(PCUChat *)chatItem;
 
-- (PCUToolViewController *)addToolViewToView:(UIView *)view;
+- (void)presentToolViewToChatViewController:(PCUChatViewController *)chatViewController;
 
-- (void)addTextNodeToView:(UIScrollView *)view
-     toChatViewController:(PCUChatViewController *)chatViewController;
-
-- (void)insertTextNodeToView:(UIScrollView *)view
-                     atIndex:(NSUInteger)index
-        toChatViewController:(PCUChatViewController *)chatViewController;
-
-- (void)removeNodeViewController:(PCUTextNodeViewController *)nodeViewController
-          fromChatViewController:(PCUChatViewController *)chatViewController;
-
-- (void)removeNodeViewControllerAtIndex:(NSUInteger)index
-                 fromChatViewController:(PCUChatViewController *)chatViewController;
+//- (void)addTextNodeToView:(UIScrollView *)view
+//     toChatViewController:(PCUChatViewController *)chatViewController;
+//
+//- (void)insertTextNodeToView:(UIScrollView *)view
+//                     atIndex:(NSUInteger)index
+//        toChatViewController:(PCUChatViewController *)chatViewController;
+//
+//- (void)removeNodeViewController:(PCUTextNodeViewController *)nodeViewController
+//          fromChatViewController:(PCUChatViewController *)chatViewController;
+//
+//- (void)removeNodeViewControllerAtIndex:(NSUInteger)index
+//                 fromChatViewController:(PCUChatViewController *)chatViewController;
 
 @end

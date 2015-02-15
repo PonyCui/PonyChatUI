@@ -12,26 +12,22 @@
 #import "PCUToolViewController.h"
 #import "PCUTextNodeViewController.h"
 #import "PCUChatInterator.h"
+#import "PCUMessageManager.h"
 
 @implementation PCUWireframe
 
-- (UIView *)addChatViewToView:(UIView *)view {
+- (void)presentChatViewToViewController:(UIViewController *)viewController withChatItem:(PCUChat *)chatItem {
     PCUChatViewController *chatViewController = [self chatViewController];
-    id parentViewController;
-    do {
-        parentViewController = [view nextResponder];
-    } while (![parentViewController isKindOfClass:[UIViewController class]] && parentViewController != nil);
-    [parentViewController addChildViewController:chatViewController];
-    [view addSubview:chatViewController.view];
+    chatViewController.chatPresenter.chatInteractor.messageManager.chatItem = chatItem;
+    [viewController addChildViewController:chatViewController];
+    [viewController.view addSubview:chatViewController.view];
     [self configureChatViewLayouts:chatViewController.view];
-    return chatViewController.view;
 }
 
-- (PCUToolViewController *)addToolViewToView:(UIView *)view {
+- (void)presentToolViewToChatViewController:(PCUChatViewController *)chatViewController {
     PCUToolViewController *toolViewController = [self toolViewController];
-    [view addSubview:toolViewController.view];
-    [self configureToolViewLayouts:toolViewController.view];
-    return toolViewController;
+    chatViewController.toolViewController = toolViewController;
+    [chatViewController.view addSubview:toolViewController.view];
 }
 
 - (void)addTextNodeToView:(UIScrollView *)view
@@ -72,9 +68,6 @@
     chatViewController.chatPresenter = [[PCUChatPresenter alloc] init];
     chatViewController.chatPresenter.userInterface = chatViewController;
     chatViewController.chatPresenter.chatInteractor = [[PCUChatInterator alloc] init];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(15.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        chatViewController.chatPresenter.chatInteractor = [[PCUChatInterator alloc] init];
-    });
     return chatViewController;
 }
 
@@ -108,21 +101,6 @@
                                                                       views:views];
     [[chatView superview] addConstraints:wConstraints];
     [[chatView superview] addConstraints:hConstraints];
-}
-
-- (void)configureToolViewLayouts:(UIView *)toolView {
-    toolView.translatesAutoresizingMaskIntoConstraints = NO;
-    NSDictionary *views = @{@"toolView": toolView};
-    NSArray *wConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[toolView]-0-|"
-                                                                    options:kNilOptions
-                                                                    metrics:nil
-                                                                      views:views];
-    NSArray *hConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[toolView(48)]"
-                                                                    options:kNilOptions
-                                                                    metrics:nil
-                                                                      views:views];
-    [[toolView superview] addConstraints:wConstraints];
-    [[toolView superview] addConstraints:hConstraints];
 }
 
 - (void)configureTextNodeViewLayouts:(UIView *)textNodeView {

@@ -6,24 +6,23 @@
 //  Copyright (c) 2015年 多玩事业部 iOS开发组 YY Inc. All rights reserved.
 //
 
-#import "PCUNodePresenter.h"
-#import "PCUNodeInterator.h"
-#import "PCUNodeViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import "PCUNodePresenter.h"
+#import "PCUTextNodePresenter.h"
+#import "PCUNodeInterator.h"
+#import "PCUTextNodeInteractor.h"
 
 @implementation PCUNodePresenter
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        [self configureReactiveCocoa];
++ (PCUNodePresenter *)nodePresenterWithNodeInteractor:(PCUNodeInterator *)nodeInteractor {
+    if ([nodeInteractor isKindOfClass:[PCUTextNodeInteractor class]]) {
+        PCUTextNodePresenter *textNodePresenter = [[PCUTextNodePresenter alloc] init];
+        textNodePresenter.nodeInteractor = nodeInteractor;
+        return textNodePresenter;
     }
-    return self;
-}
-
-- (void)configureReactiveCocoa {
-    
+    else {
+        return nil;
+    }
 }
 
 @end

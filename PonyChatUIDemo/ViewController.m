@@ -17,7 +17,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [PCU[@protocol(PCUWireframe)] addChatViewToView:self.view];
+    PCUChat *chatItem = [[PCUChat alloc] init];
+    chatItem.identifier = @"Debug";
+    chatItem.title = @"Hello";
+    [PCU[@protocol(PCUWireframe)] presentChatViewToViewController:self withChatItem:chatItem];
     // Do any additional setup after loading the view, typically from a nib.
 }
 

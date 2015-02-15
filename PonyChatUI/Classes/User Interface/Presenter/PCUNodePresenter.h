@@ -16,4 +16,8 @@
 
 @property (nonatomic, strong) PCUNodeInterator *nodeInteractor;
 
++ (PCUNodePresenter *)nodePresenterWithNodeInteractor:(PCUNodeInterator *)nodeInteractor;
+
+
+
 @end

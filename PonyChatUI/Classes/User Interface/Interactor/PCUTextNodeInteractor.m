@@ -7,7 +7,26 @@
 //
 
 #import "PCUTextNodeInteractor.h"
+#import "PCUMessage.h"
+#import "PCUSender.h"
+
+@interface PCUTextNodeInteractor ()
+
+@property (nonatomic, copy) NSString *senderThumbURLString;
+
+@end
 
 @implementation PCUTextNodeInteractor
+
+- (instancetype)initWithMessage:(PCUMessage *)message
+{
+    self = [super initWithMessage:message];
+    if (self) {
+        self.titleString = message.title;
+        self.senderName = message.sender.title;
+        self.senderThumbURLString = message.sender.thumbURLString;
+    }
+    return self;
+}
 
 @end
