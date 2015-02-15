@@ -161,6 +161,7 @@
 				<string>6328860A1A8B02790032C99C</string>
 				<string>63BACEBB1A8DE8450013DB6C</string>
 				<string>6390B4511A8B0AEE0025A64D</string>
+				<string>F0A57CC51A90E32C00068694</string>
 				<string>63BACEB51A8DE7DB0013DB6C</string>
 				<string>63BACEA61A8C7CF10013DB6C</string>
 				<string>6390B43D1A8B05A40025A64D</string>
@@ -1027,6 +1028,8 @@
 				<string>63BACEA81A8C7E7B0013DB6C</string>
 				<string>63BACEC21A903C7C0013DB6C</string>
 				<string>63BACEC31A903C7C0013DB6C</string>
+				<string>F0A57CC31A90E32C00068694</string>
+				<string>F0A57CC41A90E32C00068694</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -1886,6 +1889,39 @@ fi
 			<string>Pods/Target Support Files/Pods-PonyChatUI/Pods-PonyChatUI.release.xcconfig</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F0A57CC31A90E32C00068694</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>PCUAvatarManager.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F0A57CC41A90E32C00068694</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>PCUAvatarManager.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F0A57CC51A90E32C00068694</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F0A57CC41A90E32C00068694</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 	</dict>
 	<key>rootObject</key>

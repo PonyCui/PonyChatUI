@@ -6,6 +6,7 @@ target 'PonyChatUI' do
 pod "Objection"
 pod "ReactiveCocoa", "2.4.4"
 pod "AFNetworking"
+pod "TMCache"
 
 end
 

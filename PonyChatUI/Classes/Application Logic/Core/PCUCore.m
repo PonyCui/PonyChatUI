@@ -11,10 +11,8 @@
 #import "PCUWireframe.h"
 #import "PCUAttributedStringManager.h"
 #import "PCUAttributedStringConfigure.h"
-#import "PCUNodeViewController.h"
-#import "PCUNodePresenter.h"
-#import "PCUNodeInteractor.h"
 #import "PCUMessageManager.h"
+#import "PCUAvatarManager.h"
 
 @implementation PCUCore
 
@@ -22,6 +20,7 @@
     [self bindClass:[PCUWireframe class] inScope:JSObjectionScopeSingleton];
     [self bindClass:[PCUWireframe class] toProtocol:@protocol(PCUWireframe)];
     [self bindClass:[PCUAttributedStringManager class] inScope:JSObjectionScopeSingleton];
+    [self bindClass:[PCUAvatarManager class] inScope:JSObjectionScopeSingleton];
     [self bindBlock:^id(JSObjectionInjector *context) {
         PCUAttributedStringConfigure *configure = [[PCUAttributedStringConfigure alloc] init];
         return [[PCUAttributedStringManager alloc] initWithConfigure:configure];
