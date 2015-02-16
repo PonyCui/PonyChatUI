@@ -154,7 +154,7 @@
                                 <rect key="frame" x="52" y="8" width="185" height="54"/>
                                 <rect key="contentStretch" x="0.5" y="0.5" width="0.0" height="0.0"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VFz-11-0Sb">
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VFz-11-0Sb">
                                 <rect key="frame" x="68" y="8" width="153" height="38"/>
                                 <attributedString key="attributedText">
                                     <fragment content="你妹我只是测试的啊">
@@ -222,7 +222,7 @@
                                 <rect key="frame" x="83" y="8" width="185" height="54"/>
                                 <rect key="contentStretch" x="0.5" y="0.5" width="0.0" height="0.0"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ag0-Ib-0e3">
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ag0-Ib-0e3">
                                 <rect key="frame" x="99" y="8" width="153" height="38"/>
                                 <attributedString key="attributedText">
                                     <fragment content="你妹我只是测试的啊">
@@ -239,8 +239,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="3gD-cF-hgZ" firstAttribute="bottom" secondItem="Ag0-Ib-0e3" secondAttribute="bottom" constant="16" id="72p-En-0PC"/>
+                            <constraint firstItem="Ag0-Ib-0e3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gfq-r3-CjD" secondAttribute="leading" constant="8" id="G8c-xM-ebG"/>
                             <constraint firstItem="3gD-cF-hgZ" firstAttribute="leading" secondItem="Ag0-Ib-0e3" secondAttribute="leading" constant="-16" id="LhV-cf-DEM"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ag0-Ib-0e3" secondAttribute="trailing" constant="8" id="M1N-kC-fNf"/>
                             <constraint firstAttribute="trailing" secondItem="azx-S0-MYR" secondAttribute="trailing" constant="8" id="RLS-MX-KeY"/>
                             <constraint firstItem="3gD-cF-hgZ" firstAttribute="top" secondItem="Ag0-Ib-0e3" secondAttribute="top" id="Ufm-kg-KQ8"/>
                             <constraint firstItem="azx-S0-MYR" firstAttribute="top" secondAttribute="top" constant="8" id="Uiv-e0-3fs"/>
@@ -260,7 +260,7 @@
                         <outlet property="textLabelBackgroundImageView" destination="3gD-cF-hgZ" id="ofc-uj-1ym"/>
                         <outlet property="textLabelBottomSpace" destination="72p-En-0PC" id="dDY-36-IYC"/>
                         <outlet property="textLabelTopSpace" destination="Ufm-kg-KQ8" id="aJ0-or-8Ht"/>
-                        <outlet property="textLabelTrailingSpace" destination="M1N-kC-fNf" id="Jgp-u8-ZKH"/>
+                        <outlet property="textLabelTrailingSpace" destination="G8c-xM-ebG" id="eAC-ek-eZQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CXR-q6-jcC" userLabel="First Responder" sceneMemberID="firstResponder"/>

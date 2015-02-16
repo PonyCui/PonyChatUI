@@ -9,6 +9,7 @@
 #import "PCUSystemNodeViewController.h"
 #import "PCUApplication.h"
 #import "PCUAttributedStringManager.h"
+#import "NSAttributedString+PCUAttributedString.h"
 
 @interface PCUSystemNodeViewController ()
 
@@ -22,6 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.textButton.titleLabel.userInteractionEnabled = YES;
     self.textButton.titleLabel.numberOfLines = 0;
     self.textButton.layer.cornerRadius = 6.0f;
     [self.eventHandler updateView];
@@ -34,7 +36,11 @@
 }
 
 - (void)setTextWithString:(NSString *)string {
-    [self.textButton setTitle:string forState:UIControlStateNormal];
+    NSAttributedString *attributedString = [PCU[[PCUAttributedStringManager class]]
+                                            systemNodeAttrbutedStringWithString:string];
+    attributedString = [attributedString pcu_linkAttributedString];
+    [self.textButton setAttributedTitle:attributedString forState:UIControlStateNormal];
+//    [self.textButton setTitle:string forState:UIControlStateNormal];
     [self performSelector:@selector(adjustButtonHeight) withObject:nil afterDelay:0.001];
 }
 

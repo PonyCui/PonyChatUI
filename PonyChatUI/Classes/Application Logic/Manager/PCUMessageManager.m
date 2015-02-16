@@ -57,7 +57,7 @@
             message.identifier = [NSString stringWithFormat:@"%u", arc4random()];
             message.orderIndex = [[NSDate date] timeIntervalSince1970] * 1000 + 2;
             message.type = PCUMessageTypeSystem;
-            message.title = @"多玩游戏 多交朋友";
+            message.title = @"多玩游戏 多交朋友 [多玩首页](http://www.duowan.com/)";
             [self.delegate messageManagerDidReceivedMessage:message];
         }
     }
@@ -71,7 +71,7 @@
         message.sender.identifier = [NSString stringWithFormat:@"%d", arc4random()%2+1];
         message.sender.title = @"Pony";
         message.sender.thumbURLString = @"http://tp3.sinaimg.cn/1642351362/180/5708018784/0";
-        message.title = @"测试一下嘛";
+        message.title = @"测试一下嘛 [多玩首页](http://www.duowan.com/)";
         message.params = @{};
         [self.delegate messageManagerDidReceivedMessage:message];
     }

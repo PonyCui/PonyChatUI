@@ -26,7 +26,7 @@ typedef NS_ENUM(NSUInteger, PCUMessageType) {
 
 /**
  *  消息的序列号
- *  @brief 此值与接收到该条消息的时间相关
+ *  @brief 此值与接收到该条消息的时间相关，需要保证唯一
  */
 @property (nonatomic, assign) NSUInteger orderIndex;
 

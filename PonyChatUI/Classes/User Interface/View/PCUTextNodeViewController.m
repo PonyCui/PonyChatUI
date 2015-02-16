@@ -9,6 +9,7 @@
 #import "PCUTextNodeViewController.h"
 #import "PCUApplication.h"
 #import "PCUAttributedStringManager.h"
+#import "NSAttributedString+PCUAttributedString.h"
 
 @interface PCUTextNodeViewController ()
 
@@ -42,7 +43,9 @@
 #pragma mark - Render
 
 - (void)setTextLabelTextWithString:(NSString *)string {
-    self.textLabel.attributedText = [PCU[[PCUAttributedStringManager class]] attributedStringWithString:string];
+    NSAttributedString *attributedString = [PCU[[PCUAttributedStringManager class]] attributedStringWithString:string];
+    attributedString = [attributedString pcu_linkAttributedString];
+    self.textLabel.attributedText = attributedString;
     [self adjustLabelSpace];
     [self adjustHeight];
 }

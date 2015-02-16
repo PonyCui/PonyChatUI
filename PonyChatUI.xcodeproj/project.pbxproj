@@ -38,6 +38,7 @@
 		63BACECB1A919D040013DB6C /* PCUSystemNodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BACECA1A919D040013DB6C /* PCUSystemNodeViewController.m */; };
 		63BACECE1A91A00D0013DB6C /* PCUSystemNodePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BACECD1A91A00D0013DB6C /* PCUSystemNodePresenter.m */; };
 		63BACED11A91A0740013DB6C /* PCUSystemNodeInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BACED01A91A0740013DB6C /* PCUSystemNodeInteractor.m */; };
+		63BACED51A91C2160013DB6C /* NSAttributedString+PCUAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BACED41A91C2160013DB6C /* NSAttributedString+PCUAttributedString.m */; };
 		63FF1C021A8C4394007C3A18 /* PCUTextNodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FF1C011A8C4394007C3A18 /* PCUTextNodeViewController.m */; };
 		77B27DC368BB62974F4FF2F5 /* libPods-PonyChatUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACC89F67F39C439C21543284 /* libPods-PonyChatUI.a */; };
 		F0A57CC51A90E32C00068694 /* PCUAvatarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A57CC41A90E32C00068694 /* PCUAvatarManager.m */; };
@@ -113,6 +114,8 @@
 		63BACECD1A91A00D0013DB6C /* PCUSystemNodePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUSystemNodePresenter.m; sourceTree = "<group>"; };
 		63BACECF1A91A0740013DB6C /* PCUSystemNodeInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUSystemNodeInteractor.h; sourceTree = "<group>"; };
 		63BACED01A91A0740013DB6C /* PCUSystemNodeInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUSystemNodeInteractor.m; sourceTree = "<group>"; };
+		63BACED31A91C2160013DB6C /* NSAttributedString+PCUAttributedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+PCUAttributedString.h"; sourceTree = "<group>"; };
+		63BACED41A91C2160013DB6C /* NSAttributedString+PCUAttributedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+PCUAttributedString.m"; sourceTree = "<group>"; };
 		63FF1C001A8C4394007C3A18 /* PCUTextNodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUTextNodeViewController.h; sourceTree = "<group>"; };
 		63FF1C011A8C4394007C3A18 /* PCUTextNodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUTextNodeViewController.m; sourceTree = "<group>"; };
 		ACC89F67F39C439C21543284 /* libPods-PonyChatUI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PonyChatUI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -226,6 +229,7 @@
 		6390B4401A8B06380025A64D /* Application Logic */ = {
 			isa = PBXGroup;
 			children = (
+				63BACED21A91C1FB0013DB6C /* Categories */,
 				63BACEA31A8C7CE40013DB6C /* Configure */,
 				6390B44B1A8B08B20025A64D /* Core */,
 				6390B4411A8B06380025A64D /* Entity */,
@@ -352,6 +356,15 @@
 				63BACEA51A8C7CF10013DB6C /* PCUAttributedStringConfigure.m */,
 			);
 			path = Configure;
+			sourceTree = "<group>";
+		};
+		63BACED21A91C1FB0013DB6C /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				63BACED31A91C2160013DB6C /* NSAttributedString+PCUAttributedString.h */,
+				63BACED41A91C2160013DB6C /* NSAttributedString+PCUAttributedString.m */,
+			);
+			path = Categories;
 			sourceTree = "<group>";
 		};
 		7AE1D43D810961388EC28908 /* Frameworks */ = {
@@ -526,6 +539,7 @@
 				63FF1C021A8C4394007C3A18 /* PCUTextNodeViewController.m in Sources */,
 				63BACEA91A8C7E7B0013DB6C /* PCUAttributedStringManager.m in Sources */,
 				63BACEAC1A8DDFA70013DB6C /* PCUMessage.m in Sources */,
+				63BACED51A91C2160013DB6C /* NSAttributedString+PCUAttributedString.m in Sources */,
 				6390B4541A8B0B760025A64D /* PCUChatPresenter.m in Sources */,
 				63BACEC71A903D9F0013DB6C /* PCUChat.m in Sources */,
 				6390B45E1A8B44FE0025A64D /* PCUToolViewController.m in Sources */,

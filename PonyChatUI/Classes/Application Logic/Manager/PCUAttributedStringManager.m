@@ -29,6 +29,19 @@
     return [[NSAttributedString alloc] initWithString:argString attributes:self.attributes];
 }
 
+- (NSAttributedString *)systemNodeAttrbutedStringWithString:(NSString *)argString {
+    NSMutableAttributedString *normalString = [[self attributedStringWithString:argString]
+                                               mutableCopy];
+    [normalString addAttributes:@{
+                                  NSForegroundColorAttributeName: [UIColor whiteColor],
+                                  NSFontAttributeName : [UIFont systemFontOfSize:15.0]
+                                  }
+                          range:NSMakeRange(0, [normalString length])];
+    [normalString removeAttribute:NSParagraphStyleAttributeName
+                            range:NSMakeRange(0, [normalString length])];
+    return [normalString copy];
+}
+
 - (void)setConfigure:(PCUAttributedStringConfigure *)configure {
     _configure = configure;
     self.attributes = nil;
