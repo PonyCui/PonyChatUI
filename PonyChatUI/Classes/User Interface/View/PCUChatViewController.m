@@ -72,6 +72,7 @@
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [self calculateContentSize];
+    [self scrollToBottom:YES];
 }
 
 - (void)calculateContentSize {
