@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="IqE-aR-LeG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="IqE-aR-LeG">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Unknown constraint types" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -198,9 +199,78 @@
             </objects>
             <point key="canvasLocation" x="665" y="130"/>
         </scene>
+        <!--Text Node View Controller-->
+        <scene sceneID="yZ4-CF-EH5">
+            <objects>
+                <viewController storyboardIdentifier="PCUTextNodeViewControllerSender" id="5cV-t0-hW9" customClass="PCUTextNodeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YPr-4A-NH0"/>
+                        <viewControllerLayoutGuide type="bottom" id="Tg1-Lf-Vj3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gfq-r3-CjD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="azx-S0-MYR">
+                                <rect key="frame" x="272" y="8" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="FVm-Uc-ltS"/>
+                                    <constraint firstAttribute="height" constant="40" id="jys-te-iiB"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SenderTextNodeBkg" translatesAutoresizingMaskIntoConstraints="NO" id="3gD-cF-hgZ">
+                                <rect key="frame" x="83" y="8" width="185" height="54"/>
+                                <rect key="contentStretch" x="0.5" y="0.5" width="0.0" height="0.0"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ag0-Ib-0e3">
+                                <rect key="frame" x="99" y="8" width="153" height="38"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="你妹我只是测试的啊">
+                                        <attributes>
+                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" minimumLineHeight="23" maximumLineHeight="23"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3gD-cF-hgZ" firstAttribute="bottom" secondItem="Ag0-Ib-0e3" secondAttribute="bottom" constant="16" id="72p-En-0PC"/>
+                            <constraint firstItem="3gD-cF-hgZ" firstAttribute="leading" secondItem="Ag0-Ib-0e3" secondAttribute="leading" constant="-16" id="LhV-cf-DEM"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ag0-Ib-0e3" secondAttribute="trailing" constant="8" id="M1N-kC-fNf"/>
+                            <constraint firstAttribute="trailing" secondItem="azx-S0-MYR" secondAttribute="trailing" constant="8" id="RLS-MX-KeY"/>
+                            <constraint firstItem="3gD-cF-hgZ" firstAttribute="top" secondItem="Ag0-Ib-0e3" secondAttribute="top" id="Ufm-kg-KQ8"/>
+                            <constraint firstItem="azx-S0-MYR" firstAttribute="top" secondAttribute="top" constant="8" id="Uiv-e0-3fs"/>
+                            <constraint firstItem="Ag0-Ib-0e3" firstAttribute="top" secondItem="azx-S0-MYR" secondAttribute="top" id="ZoZ-45-kJg"/>
+                            <constraint firstItem="3gD-cF-hgZ" firstAttribute="trailing" secondItem="Ag0-Ib-0e3" secondAttribute="trailing" constant="16" id="os2-I3-xVd"/>
+                            <constraint firstItem="azx-S0-MYR" firstAttribute="leading" secondItem="Ag0-Ib-0e3" secondAttribute="trailing" constant="20" id="prM-0u-j8o"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="80"/>
+                    <connections>
+                        <outlet property="iconImageView" destination="azx-S0-MYR" id="K7D-sX-WFQ"/>
+                        <outlet property="textLabel" destination="Ag0-Ib-0e3" id="2Mj-Cm-eZs"/>
+                        <outlet property="textLabelBackgroundImageView" destination="3gD-cF-hgZ" id="ofc-uj-1ym"/>
+                        <outlet property="textLabelBottomSpace" destination="72p-En-0PC" id="dDY-36-IYC"/>
+                        <outlet property="textLabelTopSpace" destination="Ufm-kg-KQ8" id="aJ0-or-8Ht"/>
+                        <outlet property="textLabelTrailingSpace" destination="M1N-kC-fNf" id="Jgp-u8-ZKH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CXR-q6-jcC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="665" y="286"/>
+        </scene>
     </scenes>
     <resources>
         <image name="ReceiverTextNodeBkg" width="66" height="54"/>
+        <image name="SenderTextNodeBkg" width="66" height="54"/>
         <image name="ToolViewEmotion" width="35" height="35"/>
         <image name="ToolViewInputVoice" width="35" height="35"/>
         <image name="TypeSelectorBtn_Black" width="35" height="35"/>

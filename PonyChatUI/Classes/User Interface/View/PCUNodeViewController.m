@@ -20,13 +20,24 @@
 + (PCUNodeViewController *)nodeViewControllerWithNodeInteractor:(PCUNodeInteractor *)nodeInteractor {
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"PCUStoryBoard" bundle:nil];
     PCUNodeViewController *nodeViewController;
+    NSString *viewControllerIdentifier;
     if ([nodeInteractor isKindOfClass:[PCUTextNodeInteractor class]]) {
-        nodeViewController = [storyBoard
-                              instantiateViewControllerWithIdentifier:@"PCUTextNodeViewControllerReceiver"];
+        if (nodeInteractor.isOwner) {
+            viewControllerIdentifier = @"PCUTextNodeViewControllerSender";
+        }
+        else {
+            viewControllerIdentifier = @"PCUTextNodeViewControllerReceiver";
+        }
     }
-    nodeViewController.eventHandler = [PCUNodePresenter nodePresenterWithNodeInteractor:nodeInteractor];
-    nodeViewController.eventHandler.userInterface = nodeViewController;
-    return nodeViewController;
+    if (viewControllerIdentifier == nil) {
+        return nil;
+    }
+    else {
+        nodeViewController = [storyBoard instantiateViewControllerWithIdentifier:viewControllerIdentifier];
+        nodeViewController.eventHandler = [PCUNodePresenter nodePresenterWithNodeInteractor:nodeInteractor];
+        nodeViewController.eventHandler.userInterface = nodeViewController;
+        return nodeViewController;
+    }
 }
 
 - (void)viewDidLoad {

@@ -55,7 +55,7 @@
     message.orderIndex = [[NSDate date] timeIntervalSince1970];
     message.type = PCUMessageTypeTextMessage;
     message.sender = [[PCUSender alloc] init];
-    message.sender.identifier = @"1";
+    message.sender.identifier = [NSString stringWithFormat:@"%d", arc4random()%2+1];
     message.sender.title = @"Pony";
     message.sender.thumbURLString = @"http://tp3.sinaimg.cn/1642351362/180/5708018784/0";
     message.title = @"测试一下嘛";

@@ -17,6 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [PCUApplication setOwnerIdentifier:@"1"];
     PCUChat *chatItem = [[PCUChat alloc] init];
     chatItem.identifier = @"Debug";
     chatItem.title = @"Hello";

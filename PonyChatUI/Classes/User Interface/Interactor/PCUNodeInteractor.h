@@ -13,6 +13,11 @@
 
 @interface PCUNodeInteractor : NSObject
 
+/**
+ *  如果这条消息是自己发送出去的，返回YES
+ */
+@property (nonatomic, assign) BOOL isOwner;
+
 @property (nonatomic, assign) NSUInteger orderIndex;
 
 + (PCUNodeInteractor *)nodeInteractorWithMessage:(PCUMessage *)message;

@@ -9,6 +9,8 @@
 #import "PCUNodeInteractor.h"
 #import "PCUMessage.h"
 #import "PCUTextNodeInteractor.h"
+#import "PCUSender.h"
+#import "PCUApplication.h"
 
 @interface PCUNodeInteractor ()
 
@@ -27,6 +29,7 @@
 {
     self = [super init];
     if (self) {
+        self.isOwner = [message.sender.identifier isEqualToString:[PCUApplication ownerIdentifier]];
         self.orderIndex = message.orderIndex;
     }
     return self;

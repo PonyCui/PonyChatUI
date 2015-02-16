@@ -17,6 +17,10 @@
 
 + (JSObjectionInjector *)injector;
 
++ (NSString *)ownerIdentifier;
+
++ (void)setOwnerIdentifier:(NSString *)ownerIdentifier;
+
 + (void)setAttributedStringManagerClass:(Class)managerClass;
 
 @end

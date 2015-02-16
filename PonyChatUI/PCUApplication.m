@@ -10,6 +10,7 @@
 #import "PCUCore.h"
 
 static PCUCore *coreModule;
+static NSString *PCUOwnerIdentifier;
 
 @implementation PCUApplication
 
@@ -23,6 +24,14 @@ static PCUCore *coreModule;
                     nil];
     });
     return injector;
+}
+
++ (NSString *)ownerIdentifier {
+    return PCUOwnerIdentifier;
+}
+
++ (void)setOwnerIdentifier:(NSString *)ownerIdentifier {
+    PCUOwnerIdentifier = ownerIdentifier;
 }
 
 + (void)setAttributedStringManagerClass:(Class)managerClass {
