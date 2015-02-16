@@ -9,6 +9,7 @@
 #import "PCUNodeInteractor.h"
 #import "PCUMessage.h"
 #import "PCUTextNodeInteractor.h"
+#import "PCUSystemNodeInteractor.h"
 #import "PCUSender.h"
 #import "PCUApplication.h"
 
@@ -21,6 +22,9 @@
 + (PCUNodeInteractor *)nodeInteractorWithMessage:(PCUMessage *)message {
     if (message.type == PCUMessageTypeTextMessage) {
         return [[PCUTextNodeInteractor alloc] initWithMessage:message];
+    }
+    else if (message.type == PCUMessageTypeSystem) {
+        return [[PCUSystemNodeInteractor alloc] initWithMessage:message];
     }
     return nil;
 }

@@ -50,17 +50,31 @@
  *  Received Data, Here is Demo Data.
  */
 - (void)didReceivedData {
-    PCUMessage *message = [[PCUMessage alloc] init];
-    message.identifier = [NSString stringWithFormat:@"%u", arc4random()];
-    message.orderIndex = [[NSDate date] timeIntervalSince1970];
-    message.type = PCUMessageTypeTextMessage;
-    message.sender = [[PCUSender alloc] init];
-    message.sender.identifier = [NSString stringWithFormat:@"%d", arc4random()%2+1];
-    message.sender.title = @"Pony";
-    message.sender.thumbURLString = @"http://tp3.sinaimg.cn/1642351362/180/5708018784/0";
-    message.title = @"测试一下嘛";
-    message.params = @{};
-    [self.delegate messageManagerDidReceivedMessage:message];
+    //System Demo
+    {
+        if (arc4random() % 3 < 1) {
+            PCUMessage *message = [[PCUMessage alloc] init];
+            message.identifier = [NSString stringWithFormat:@"%u", arc4random()];
+            message.orderIndex = [[NSDate date] timeIntervalSince1970] * 1000 + 2;
+            message.type = PCUMessageTypeSystem;
+            message.title = @"多玩游戏 多交朋友";
+            [self.delegate messageManagerDidReceivedMessage:message];
+        }
+    }
+    //Text Demo
+    {
+        PCUMessage *message = [[PCUMessage alloc] init];
+        message.identifier = [NSString stringWithFormat:@"%u", arc4random()];
+        message.orderIndex = [[NSDate date] timeIntervalSince1970] * 1000 + 1;//必须保证orderIndex是唯一的
+        message.type = PCUMessageTypeTextMessage;
+        message.sender = [[PCUSender alloc] init];
+        message.sender.identifier = [NSString stringWithFormat:@"%d", arc4random()%2+1];
+        message.sender.title = @"Pony";
+        message.sender.thumbURLString = @"http://tp3.sinaimg.cn/1642351362/180/5708018784/0";
+        message.title = @"测试一下嘛";
+        message.params = @{};
+        [self.delegate messageManagerDidReceivedMessage:message];
+    }
 }
 
 - (void)closeConnection {

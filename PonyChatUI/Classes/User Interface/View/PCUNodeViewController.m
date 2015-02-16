@@ -10,6 +10,7 @@
 #import "PCUNodePresenter.h"
 #import "PCUNodeInteractor.h"
 #import "PCUTextNodeInteractor.h"
+#import "PCUSystemNodeInteractor.h"
 
 @interface PCUNodeViewController ()
 
@@ -28,6 +29,9 @@
         else {
             viewControllerIdentifier = @"PCUTextNodeViewControllerReceiver";
         }
+    }
+    else if ([nodeInteractor isKindOfClass:[PCUSystemNodeInteractor class]]) {
+        viewControllerIdentifier = @"PCUSystemNodeViewController";
     }
     if (viewControllerIdentifier == nil) {
         return nil;

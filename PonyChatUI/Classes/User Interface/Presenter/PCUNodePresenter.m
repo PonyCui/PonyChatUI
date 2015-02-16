@@ -9,9 +9,12 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PCUNodePresenter.h"
 #import "PCUTextNodePresenter.h"
+#import "PCUSystemNodePresenter.h"
 #import "PCUNodeInteractor.h"
 #import "PCUTextNodeInteractor.h"
+#import "PCUSystemNodeInteractor.h"
 #import "PCUNodeViewController.h"
+
 
 @implementation PCUNodePresenter
 
@@ -20,6 +23,11 @@
         PCUTextNodePresenter *textNodePresenter = [[PCUTextNodePresenter alloc] init];
         textNodePresenter.nodeInteractor = nodeInteractor;
         return textNodePresenter;
+    }
+    else if ([nodeInteractor isKindOfClass:[PCUSystemNodeInteractor class]]) {
+        PCUSystemNodePresenter *systemNodePresenter = [[PCUSystemNodePresenter alloc] init];
+        systemNodePresenter.nodeInteractor = nodeInteractor;
+        return systemNodePresenter;
     }
     else {
         return nil;
