@@ -46,7 +46,8 @@
 }
 
 - (void)handleAvatarManagerResponseUIImage:(NSNotification *)sender {
-    if ([sender.object isKindOfClass:[UIImage class]]) {
+    if ([[sender userInfo][@"URLString"] isEqualToString:self.senderThumbURLString] &&
+        [sender.object isKindOfClass:[UIImage class]]) {
         self.senderThumbImage = sender.object;
     }
 }

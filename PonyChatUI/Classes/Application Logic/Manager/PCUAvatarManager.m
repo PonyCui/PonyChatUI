@@ -30,6 +30,9 @@
 }
 
 - (void)sendAsyncRequestWithURLString:(NSString *)URLString {
+    if (URLString == nil || !URLString.length) {
+        return;
+    }
     if (self.asyncQueue[URLString] == nil) {
         [self.asyncQueue setObject:@1 forKey:URLString];
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:URLString]
@@ -44,7 +47,9 @@
                                   kPCUAvatarManagerTMCachePrefix, URLString];
             [[TMCache sharedCache] setObject:avatarImage forKey:cacheKey];
             [[NSNotificationCenter defaultCenter]
-             postNotificationName:kPCUAvatarManagerDidResponseUIImageNotification object:avatarImage];
+             postNotificationName:kPCUAvatarManagerDidResponseUIImageNotification
+             object:avatarImage
+             userInfo:@{@"URLString": URLString}];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             [self.asyncQueue performSelector:@selector(removeObjectForKey:) withObject:URLString afterDelay:15.0];
         }];
