@@ -39,7 +39,9 @@
 }
 
 - (void)updateView {
-    [self.userInterface setTextWithString:self.nodeInteractor.titleString];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.userInterface setTextWithString:self.nodeInteractor.titleString];
+    });
 }
 
 @end

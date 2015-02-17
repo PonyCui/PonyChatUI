@@ -58,25 +58,29 @@
 }
 
 - (void)updateNodeStatus {
-    if (self.nodeInteractor.isOwner) {
-        if (self.nodeInteractor.sendStatus == PCUNodeSendMessageStatusSending) {
-            [[self.userInterface sendingIndicatorView] startAnimating];
-            [[self.userInterface sendingRetryButton] setHidden:YES];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.nodeInteractor.isOwner) {
+            if (self.nodeInteractor.sendStatus == PCUNodeSendMessageStatusSending) {
+                [[self.userInterface sendingIndicatorView] startAnimating];
+                [[self.userInterface sendingRetryButton] setHidden:YES];
+            }
+            else if (self.nodeInteractor.sendStatus == PCUNodeSendMessageStatusTimeout ||
+                     self.nodeInteractor.sendStatus == PCUNodeSendMessageStatusError) {
+                [[self.userInterface sendingIndicatorView] stopAnimating];
+                [[self.userInterface sendingRetryButton] setHidden:NO];
+            }
+            else {
+                [[self.userInterface sendingIndicatorView] stopAnimating];
+                [[self.userInterface sendingRetryButton] setHidden:YES];
+            }
         }
-        else if (self.nodeInteractor.sendStatus == PCUNodeSendMessageStatusTimeout ||
-                 self.nodeInteractor.sendStatus == PCUNodeSendMessageStatusError) {
-            [[self.userInterface sendingIndicatorView] stopAnimating];
-            [[self.userInterface sendingRetryButton] setHidden:NO];
-        }
-        else {
-            [[self.userInterface sendingIndicatorView] stopAnimating];
-            [[self.userInterface sendingRetryButton] setHidden:YES];
-        }
-    }
+    });
 }
 
 - (void)removeViewFromSuperView {
-    [self.userInterface.view removeFromSuperview];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.userInterface.view removeFromSuperview];
+    });
 }
 
 - (void)configureReactiveCocoa {

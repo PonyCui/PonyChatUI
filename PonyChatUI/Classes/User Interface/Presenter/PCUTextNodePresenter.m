@@ -45,7 +45,9 @@
     }];
     [RACObserve(self, nodeInteractor.senderThumbImage) subscribeNext:^(UIImage *x) {
         @strongify(self);
-        [self.userInterface setSenderThumbImageViewWithImage:x];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.userInterface setSenderThumbImageViewWithImage:x];
+        });
     }];
     [RACObserve(self, nodeInteractor.senderName) subscribeNext:^(NSString *x) {
         @strongify(self);
