@@ -49,6 +49,15 @@
     self.timer = nil;
 }
 
+- (void)sendMessage:(PCUMessage *)message {
+    //Here send message to server
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.delegate messageManagerDidSentMessage:message];
+    });
+    [self.delegate messageManagerDidReceivedMessage:message];
+    [self.delegate messageManagerSendMessageStarted:message];
+}
+
 /**
  *  Received Data, Here is Demo Data.
  */
@@ -68,7 +77,7 @@
     {
         PCUMessage *message = [[PCUMessage alloc] init];
         message.identifier = [NSString stringWithFormat:@"%u", arc4random()];
-        message.orderIndex = [[NSDate date] timeIntervalSince1970] * 1000 + 1;//必须保证orderIndex是唯一的
+        message.orderIndex = [[NSDate date] timeIntervalSince1970] * 1000 + 1;
         message.type = PCUMessageTypeTextMessage;
         message.sender = [[PCUSender alloc] init];
         message.sender.identifier = [NSString stringWithFormat:@"%d", arc4random()%2+1];

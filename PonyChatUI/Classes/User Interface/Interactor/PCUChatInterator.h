@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "PCUMessageManager.h"
 
-@class PCUMessageManager;
+@class PCUMessageManager, PCUMessage;
 
 @interface PCUChatInterator : NSObject<PCUMessageManagerDelegate>
 
@@ -31,5 +31,9 @@
  *  @brief Message Manager
  */
 @property (nonatomic, strong) PCUMessageManager *messageManager;
+
+#pragma mark - Send Text
+
+- (void)sendTextMessageWithString:(NSString *)argString;
 
 @end

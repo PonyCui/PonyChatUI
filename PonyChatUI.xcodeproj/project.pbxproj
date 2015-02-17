@@ -43,6 +43,7 @@
 		63FF1C021A8C4394007C3A18 /* PCUTextNodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FF1C011A8C4394007C3A18 /* PCUTextNodeViewController.m */; };
 		77B27DC368BB62974F4FF2F5 /* libPods-PonyChatUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACC89F67F39C439C21543284 /* libPods-PonyChatUI.a */; };
 		F0A57CC51A90E32C00068694 /* PCUAvatarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A57CC41A90E32C00068694 /* PCUAvatarManager.m */; };
+		F0B123E71A93401500A0DB10 /* PCUToolPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B123E61A93401500A0DB10 /* PCUToolPresenter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +126,8 @@
 		EFFD382C3BEE47F55164881E /* Pods-PonyChatUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PonyChatUI.release.xcconfig"; path = "Pods/Target Support Files/Pods-PonyChatUI/Pods-PonyChatUI.release.xcconfig"; sourceTree = "<group>"; };
 		F0A57CC31A90E32C00068694 /* PCUAvatarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUAvatarManager.h; sourceTree = "<group>"; };
 		F0A57CC41A90E32C00068694 /* PCUAvatarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUAvatarManager.m; sourceTree = "<group>"; };
+		F0B123E51A93401500A0DB10 /* PCUToolPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUToolPresenter.h; sourceTree = "<group>"; };
+		F0B123E61A93401500A0DB10 /* PCUToolPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUToolPresenter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,6 +301,8 @@
 			children = (
 				6390B4521A8B0B760025A64D /* PCUChatPresenter.h */,
 				6390B4531A8B0B760025A64D /* PCUChatPresenter.m */,
+				F0B123E51A93401500A0DB10 /* PCUToolPresenter.h */,
+				F0B123E61A93401500A0DB10 /* PCUToolPresenter.m */,
 				63BACEBC1A8DE86A0013DB6C /* PCUNodePresenter.h */,
 				63BACEBD1A8DE86A0013DB6C /* PCUNodePresenter.m */,
 				63BACEB61A8DE80B0013DB6C /* PCUTextNodePresenter.h */,
@@ -551,6 +556,7 @@
 				6328860A1A8B02790032C99C /* ViewController.m in Sources */,
 				63BACEBB1A8DE8450013DB6C /* PCUNodeInteractor.m in Sources */,
 				6390B4511A8B0AEE0025A64D /* PCUChatViewController.m in Sources */,
+				F0B123E71A93401500A0DB10 /* PCUToolPresenter.m in Sources */,
 				F0A57CC51A90E32C00068694 /* PCUAvatarManager.m in Sources */,
 				63BACEB51A8DE7DB0013DB6C /* PCUChatInterator.m in Sources */,
 				63BACEDA1A91DD410013DB6C /* UILabel+PCUAttributedStringLinkResponder.m in Sources */,

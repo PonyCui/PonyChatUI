@@ -14,6 +14,9 @@
 
 @required
 - (void)messageManagerDidReceivedMessage:(PCUMessage *)message;
+- (void)messageManagerSendMessageStarted:(PCUMessage *)message;
+- (void)messageManagerDidSentMessage:(PCUMessage *)message;
+- (void)messageManagerSendMessageFailed:(PCUMessage *)message error:(NSError *)error;
 
 @end
 
@@ -26,5 +29,7 @@
 - (void)connect;
 
 - (void)disconnect;
+
+- (void)sendMessage:(PCUMessage *)message;
 
 @end

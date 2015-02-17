@@ -33,7 +33,8 @@
 {
     self = [super init];
     if (self) {
-        self.isOwner = [message.sender.identifier isEqualToString:[PCUApplication ownerIdentifier]];
+        self.messageIdentifier = message.identifier;
+        self.isOwner = [message.sender.identifier isEqualToString:[[PCUApplication sender] identifier]];
         self.orderIndex = message.orderIndex;
     }
     return self;

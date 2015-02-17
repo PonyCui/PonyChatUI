@@ -34,12 +34,42 @@
     }
 }
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self configureReactiveCocoa];
+    }
+    return self;
+}
+
 - (void)updateView {
-    
+    [self updateIndicatorView];
+}
+
+- (void)updateIndicatorView {
+    if (self.nodeInteractor.isOwner) {
+        if ([self.userInterface respondsToSelector:@selector(sendingIndicatorView)]) {
+            if (self.nodeInteractor.sendStatus == PCUNodeSendMessageStatusSending) {
+                [[self.userInterface sendingIndicatorView] startAnimating];
+            }
+            else {
+                [[self.userInterface sendingIndicatorView] stopAnimating];
+            }
+        }
+    }
 }
 
 - (void)removeViewFromSuperView {
     [self.userInterface.view removeFromSuperview];
+}
+
+- (void)configureReactiveCocoa {
+    @weakify(self);
+    [RACObserve(self, nodeInteractor.sendStatus) subscribeNext:^(id x) {
+        @strongify(self);
+        [self updateIndicatorView];
+    }];
 }
 
 @end

@@ -25,7 +25,6 @@
 {
     self = [super init];
     if (self) {
-        [self configureReactiveCocoa];
     }
     return self;
 }
@@ -38,6 +37,7 @@
 }
 
 - (void)configureReactiveCocoa {
+    [super configureReactiveCocoa];
     @weakify(self);
     [RACObserve(self, nodeInteractor.titleString) subscribeNext:^(NSString *x) {
         @strongify(self);

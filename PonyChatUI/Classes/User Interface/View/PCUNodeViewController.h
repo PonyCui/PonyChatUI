@@ -34,4 +34,6 @@
 
 - (void)configureLayouts;
 
+- (UIActivityIndicatorView *)sendingIndicatorView;
+
 @end

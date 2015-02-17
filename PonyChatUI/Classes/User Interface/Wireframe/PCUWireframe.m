@@ -13,6 +13,7 @@
 #import "PCUTextNodeViewController.h"
 #import "PCUChatInterator.h"
 #import "PCUMessageManager.h"
+#import "PCUToolPresenter.h"
 
 @implementation PCUWireframe
 
@@ -27,6 +28,7 @@
 - (void)presentToolViewToChatViewController:(PCUChatViewController *)chatViewController {
     PCUToolViewController *toolViewController = [self toolViewController];
     chatViewController.toolViewController = toolViewController;
+    toolViewController.eventHandler.chatInteractor = chatViewController.eventHandler.chatInteractor;
     [chatViewController.view addSubview:toolViewController.view];
 }
 
@@ -46,6 +48,8 @@
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"PCUStoryBoard" bundle:nil];
     PCUToolViewController *toolViewController = [storyBoard
                                                  instantiateViewControllerWithIdentifier:@"PCUToolViewController"];
+    toolViewController.eventHandler = [[PCUToolPresenter alloc] init];
+    toolViewController.eventHandler.userInterface = toolViewController;
     return toolViewController;
 }
 

@@ -32,6 +32,21 @@
     return self;
 }
 
+#pragma mark - Send Message
+
+- (void)sendTextMessageWithString:(NSString *)argString {
+    PCUMessage *message = [[PCUMessage alloc] init];
+    message.identifier = [NSString stringWithFormat:@"%d", arc4random()];
+    message.type = PCUMessageTypeTextMessage;
+    message.sender = [PCUApplication sender];
+    message.orderIndex = [[NSDate date] timeIntervalSince1970] * 1000;
+    message.title = argString;
+    [self.messageManager sendMessage:message];
+    
+}
+
+#pragma mark - PCUMessageManagerDelegate
+
 - (void)messageManagerDidReceivedMessage:(PCUMessage *)message {
     NSMutableSet *nodeInteractors = self.nodeInteractors == nil ? [NSMutableSet set] : [self.nodeInteractors mutableCopy];
     if (message != nil) {
@@ -41,6 +56,37 @@
             self.nodeInteractors = nodeInteractors;
         }
     }
+}
+
+- (void)messageManagerSendMessageStarted:(PCUMessage *)message {
+    if (message != nil) {
+        [self.nodeInteractors
+         enumerateObjectsWithOptions:NSEnumerationConcurrent
+         usingBlock:^(PCUNodeInteractor *obj, BOOL *stop) {
+             if ([obj.messageIdentifier isEqualToString:message.identifier]) {
+                 obj.sendStatus = PCUNodeSendMessageStatusSending;
+             }
+        }];
+    }
+}
+
+- (void)messageManagerDidSentMessage:(PCUMessage *)message {
+    if (message != nil) {
+        [self.nodeInteractors
+         enumerateObjectsWithOptions:NSEnumerationConcurrent
+         usingBlock:^(PCUNodeInteractor *obj, BOOL *stop) {
+             if ([obj.messageIdentifier isEqualToString:message.identifier]) {
+                 obj.sendStatus = PCUNodeSendMessageStatusSent;
+             }
+         }];
+    }
+}
+
+#pragma mark - Setter
+
+- (void)setNodeInteractors:(NSSet *)nodeInteractors {
+    [self compareWithNewSet:nodeInteractors];
+    _nodeInteractors = nodeInteractors;
 }
 
 - (void)compareWithNewSet:(NSSet *)newSet {
@@ -54,11 +100,6 @@
         [plusSet minusSet:self.nodeInteractors];
         self.plusInteractors = plusSet;
     }
-}
-
-- (void)setNodeInteractors:(NSSet *)nodeInteractors {
-    [self compareWithNewSet:nodeInteractors];
-    _nodeInteractors = nodeInteractors;
 }
 
 @end

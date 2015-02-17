@@ -8,9 +8,10 @@
 
 #import "PCUApplication.h"
 #import "PCUCore.h"
+#import "PCUSender.h"
 
 static PCUCore *coreModule;
-static NSString *PCUOwnerIdentifier;
+static PCUSender *ownerSender;
 
 @implementation PCUApplication
 
@@ -26,12 +27,12 @@ static NSString *PCUOwnerIdentifier;
     return injector;
 }
 
-+ (NSString *)ownerIdentifier {
-    return PCUOwnerIdentifier;
++ (PCUSender *)sender {
+    return ownerSender;
 }
 
-+ (void)setOwnerIdentifier:(NSString *)ownerIdentifier {
-    PCUOwnerIdentifier = ownerIdentifier;
++ (void)setSender:(PCUSender *)sender {
+    ownerSender = sender;
 }
 
 + (void)setAttributedStringManagerClass:(Class)managerClass {

@@ -26,6 +26,8 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textLabelBottomSpace;
 
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *sendingIndicatorView;
+
 @end
 
 @implementation PCUTextNodeViewController

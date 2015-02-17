@@ -22,4 +22,6 @@
 
 - (void)removeViewFromSuperView;
 
+- (void)configureReactiveCocoa;
+
 @end

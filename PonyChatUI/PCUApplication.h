@@ -13,13 +13,15 @@
 
 #define PCU [PCUApplication injector]
 
+@class PCUSender;
+
 @interface PCUApplication : NSObject
 
 + (JSObjectionInjector *)injector;
 
-+ (NSString *)ownerIdentifier;
++ (PCUSender *)sender;
 
-+ (void)setOwnerIdentifier:(NSString *)ownerIdentifier;
++ (void)setSender:(PCUSender *)sender;
 
 + (void)setAttributedStringManagerClass:(Class)managerClass;
 
