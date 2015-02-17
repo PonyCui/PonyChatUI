@@ -81,6 +81,8 @@
     return nil;
 }
 
-- (UIButton *)sendingRetryButton {return nil;}
+- (UIButton *)sendingRetryButton {
+    return nil;
+}
 
 @end

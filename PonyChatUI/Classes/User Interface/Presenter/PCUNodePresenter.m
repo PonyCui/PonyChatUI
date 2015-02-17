@@ -101,7 +101,7 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (alertView == self.retrySendMessageAlertView) {
+    if (alertView == self.retrySendMessageAlertView && buttonIndex != alertView.cancelButtonIndex) {
         [self.nodeInteractor retrySendMessage];
     }
 }

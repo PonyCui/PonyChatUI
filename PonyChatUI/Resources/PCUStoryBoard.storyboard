@@ -245,7 +245,11 @@
                                 <rect key="frame" x="59" y="21" width="20" height="20"/>
                             </activityIndicatorView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bHf-We-frC">
-                                <rect key="frame" x="55" y="17" width="28" height="28"/>
+                                <rect key="frame" x="47" y="9" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="5y3-Yb-L5y"/>
+                                    <constraint firstAttribute="width" constant="44" id="L0m-3b-kl2"/>
+                                </constraints>
                                 <state key="normal" image="MessageSendFail">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
