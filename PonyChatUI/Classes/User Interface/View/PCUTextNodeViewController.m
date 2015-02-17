@@ -28,6 +28,8 @@
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *sendingIndicatorView;
 
+@property (weak, nonatomic) IBOutlet UIButton *sendingRetryButton;
+
 @end
 
 @implementation PCUTextNodeViewController
@@ -101,6 +103,12 @@
         self.heightConstraint.constant = CGRectGetHeight(self.textLabelBackgroundImageView.bounds) + 6.0;
         [self.delegate nodeViewHeightDidChange];
     }
+}
+
+#pragma mark - Events
+
+- (IBAction)handleRetryButtonTapped:(id)sender {
+    [self.eventHandler retrySendMessage];
 }
 
 @end

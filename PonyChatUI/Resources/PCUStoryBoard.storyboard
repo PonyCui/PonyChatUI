@@ -241,9 +241,18 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="vMb-To-eMD">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="vMb-To-eMD">
                                 <rect key="frame" x="59" y="21" width="20" height="20"/>
                             </activityIndicatorView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bHf-We-frC">
+                                <rect key="frame" x="55" y="17" width="28" height="28"/>
+                                <state key="normal" image="MessageSendFail">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="handleRetryButtonTapped:" destination="5cV-t0-hW9" eventType="touchUpInside" id="Sjb-iu-psM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -255,7 +264,9 @@
                             <constraint firstItem="azx-S0-MYR" firstAttribute="top" secondAttribute="top" constant="8" id="Uiv-e0-3fs"/>
                             <constraint firstItem="Ag0-Ib-0e3" firstAttribute="top" secondItem="azx-S0-MYR" secondAttribute="top" id="ZoZ-45-kJg"/>
                             <constraint firstItem="3gD-cF-hgZ" firstAttribute="centerY" secondItem="vMb-To-eMD" secondAttribute="centerY" constant="4" id="c92-nv-a4S"/>
+                            <constraint firstItem="bHf-We-frC" firstAttribute="centerY" secondItem="vMb-To-eMD" secondAttribute="centerY" id="gNa-vO-U6Z"/>
                             <constraint firstItem="3gD-cF-hgZ" firstAttribute="leading" secondItem="vMb-To-eMD" secondAttribute="trailing" constant="4" id="hyC-rr-dBi"/>
+                            <constraint firstItem="bHf-We-frC" firstAttribute="centerX" secondItem="vMb-To-eMD" secondAttribute="centerX" id="il3-Zv-9SI"/>
                             <constraint firstItem="3gD-cF-hgZ" firstAttribute="trailing" secondItem="Ag0-Ib-0e3" secondAttribute="trailing" constant="16" id="os2-I3-xVd"/>
                             <constraint firstItem="azx-S0-MYR" firstAttribute="leading" secondItem="Ag0-Ib-0e3" secondAttribute="trailing" constant="20" id="prM-0u-j8o"/>
                         </constraints>
@@ -268,6 +279,7 @@
                     <connections>
                         <outlet property="iconImageView" destination="azx-S0-MYR" id="K7D-sX-WFQ"/>
                         <outlet property="sendingIndicatorView" destination="vMb-To-eMD" id="PoR-ld-cmT"/>
+                        <outlet property="sendingRetryButton" destination="bHf-We-frC" id="rqn-LM-qZp"/>
                         <outlet property="textLabel" destination="Ag0-Ib-0e3" id="2Mj-Cm-eZs"/>
                         <outlet property="textLabelBackgroundImageView" destination="3gD-cF-hgZ" id="ofc-uj-1ym"/>
                         <outlet property="textLabelBottomSpace" destination="72p-En-0PC" id="dDY-36-IYC"/>
@@ -328,6 +340,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="MessageSendFail" width="28" height="28"/>
         <image name="ReceiverTextNodeBkg" width="66" height="54"/>
         <image name="SenderTextNodeBkg" width="66" height="54"/>
         <image name="ToolViewEmotion" width="35" height="35"/>

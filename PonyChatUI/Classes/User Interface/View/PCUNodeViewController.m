@@ -77,4 +77,10 @@
     }
 }
 
+- (UIActivityIndicatorView *)sendingIndicatorView {
+    return nil;
+}
+
+- (UIButton *)sendingRetryButton {return nil;}
+
 @end

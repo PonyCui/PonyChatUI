@@ -36,4 +36,6 @@
 
 - (UIActivityIndicatorView *)sendingIndicatorView;
 
+- (UIButton *)sendingRetryButton;
+
 @end

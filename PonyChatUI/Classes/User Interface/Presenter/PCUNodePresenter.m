@@ -16,6 +16,12 @@
 #import "PCUNodeViewController.h"
 
 
+@interface PCUNodePresenter ()<UIAlertViewDelegate>
+
+@property (nonatomic, strong) UIAlertView *retrySendMessageAlertView;
+
+@end
+
 @implementation PCUNodePresenter
 
 + (PCUNodePresenter *)nodePresenterWithNodeInteractor:(PCUNodeInteractor *)nodeInteractor {
@@ -34,6 +40,10 @@
     }
 }
 
+- (void)dealloc {
+    self.retrySendMessageAlertView.delegate = nil;
+}
+
 - (instancetype)init
 {
     self = [super init];
@@ -44,18 +54,23 @@
 }
 
 - (void)updateView {
-    [self updateIndicatorView];
+    [self updateNodeStatus];
 }
 
-- (void)updateIndicatorView {
+- (void)updateNodeStatus {
     if (self.nodeInteractor.isOwner) {
-        if ([self.userInterface respondsToSelector:@selector(sendingIndicatorView)]) {
-            if (self.nodeInteractor.sendStatus == PCUNodeSendMessageStatusSending) {
-                [[self.userInterface sendingIndicatorView] startAnimating];
-            }
-            else {
-                [[self.userInterface sendingIndicatorView] stopAnimating];
-            }
+        if (self.nodeInteractor.sendStatus == PCUNodeSendMessageStatusSending) {
+            [[self.userInterface sendingIndicatorView] startAnimating];
+            [[self.userInterface sendingRetryButton] setHidden:YES];
+        }
+        else if (self.nodeInteractor.sendStatus == PCUNodeSendMessageStatusTimeout ||
+                 self.nodeInteractor.sendStatus == PCUNodeSendMessageStatusError) {
+            [[self.userInterface sendingIndicatorView] stopAnimating];
+            [[self.userInterface sendingRetryButton] setHidden:NO];
+        }
+        else {
+            [[self.userInterface sendingIndicatorView] stopAnimating];
+            [[self.userInterface sendingRetryButton] setHidden:YES];
         }
     }
 }
@@ -68,8 +83,23 @@
     @weakify(self);
     [RACObserve(self, nodeInteractor.sendStatus) subscribeNext:^(id x) {
         @strongify(self);
-        [self updateIndicatorView];
+        [self updateNodeStatus];
     }];
+}
+
+- (void)retrySendMessage {
+    self.retrySendMessageAlertView = [[UIAlertView alloc] initWithTitle:nil
+                                                message:@"重发该消息？"
+                                               delegate:self
+                                      cancelButtonTitle:@"取消"
+                                      otherButtonTitles:@"重发", nil];
+    [self.retrySendMessageAlertView show];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (alertView == self.retrySendMessageAlertView) {
+        [self.nodeInteractor retrySendMessage];
+    }
 }
 
 @end

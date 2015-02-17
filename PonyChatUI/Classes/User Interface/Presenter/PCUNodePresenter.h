@@ -24,4 +24,6 @@
 
 - (void)configureReactiveCocoa;
 
+- (void)retrySendMessage;
+
 @end

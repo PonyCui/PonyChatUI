@@ -51,8 +51,18 @@
 
 - (void)sendMessage:(PCUMessage *)message {
     //Here send message to server
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.delegate messageManagerDidSentMessage:message];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (arc4random() % 10 < 3) {
+            //模拟发送失败
+            NSError *error = [NSError errorWithDomain:NSStringFromClass([self class])
+                                                 code:-1
+                                             userInfo:nil];
+            [self.delegate messageManagerSendMessageFailed:message error:error];
+        }
+        else {
+            //发送成功
+            [self.delegate messageManagerDidSentMessage:message];
+        }
     });
     [self.delegate messageManagerDidReceivedMessage:message];
     [self.delegate messageManagerSendMessageStarted:message];

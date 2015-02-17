@@ -51,6 +51,7 @@
     NSMutableSet *nodeInteractors = self.nodeInteractors == nil ? [NSMutableSet set] : [self.nodeInteractors mutableCopy];
     if (message != nil) {
         PCUNodeInteractor *nodeInteractor = [PCUNodeInteractor nodeInteractorWithMessage:message];
+        nodeInteractor.messageManager = self.messageManager;
         if ([self.nodeInteractors containsObject:nodeInteractor]) {
             //已经有相同的消息添加到对话框中了
         }
@@ -66,7 +67,8 @@
         [self.nodeInteractors
          enumerateObjectsWithOptions:NSEnumerationConcurrent
          usingBlock:^(PCUNodeInteractor *obj, BOOL *stop) {
-             if ([obj.messageIdentifier isEqualToString:message.identifier]) {
+             if ([obj isNodeForMessage
+                  :message]) {
                  obj.sendStatus = PCUNodeSendMessageStatusSending;
              }
         }];
@@ -78,7 +80,7 @@
         [self.nodeInteractors
          enumerateObjectsWithOptions:NSEnumerationConcurrent
          usingBlock:^(PCUNodeInteractor *obj, BOOL *stop) {
-             if ([obj.messageIdentifier isEqualToString:message.identifier]) {
+             if ([obj isNodeForMessage:message]) {
                  obj.sendStatus = PCUNodeSendMessageStatusSent;
              }
          }];
@@ -86,7 +88,15 @@
 }
 
 - (void)messageManagerSendMessageFailed:(PCUMessage *)message error:(NSError *)error {
-    
+    if (message != nil) {
+        [self.nodeInteractors
+         enumerateObjectsWithOptions:NSEnumerationConcurrent
+         usingBlock:^(PCUNodeInteractor *obj, BOOL *stop) {
+             if ([obj isNodeForMessage:message]) {
+                 obj.sendStatus = PCUNodeSendMessageStatusError;
+             }
+         }];
+    }
 }
 
 #pragma mark - Setter

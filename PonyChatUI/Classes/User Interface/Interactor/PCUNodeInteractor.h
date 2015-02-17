@@ -17,7 +17,7 @@ typedef NS_ENUM(NSUInteger, PCUNodeSendMessageStatus) {
     PCUNodeSendMessageStatusError
 };
 
-@class PCUMessage;
+@class PCUMessage, PCUMessageManager;
 
 @interface PCUNodeInteractor : NSObject
 
@@ -31,12 +31,16 @@ typedef NS_ENUM(NSUInteger, PCUNodeSendMessageStatus) {
  */
 @property (nonatomic, assign) PCUNodeSendMessageStatus sendStatus;
 
-@property (nonatomic, copy) NSString *messageIdentifier;
-
 @property (nonatomic, assign) NSUInteger orderIndex;
+
+@property (nonatomic, strong) PCUMessageManager *messageManager;
 
 + (PCUNodeInteractor *)nodeInteractorWithMessage:(PCUMessage *)message;
 
 - (instancetype)initWithMessage:(PCUMessage *)message;
+
+- (BOOL)isNodeForMessage:(PCUMessage *)message;
+
+- (void)retrySendMessage;
 
 @end

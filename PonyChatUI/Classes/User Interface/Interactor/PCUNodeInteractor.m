@@ -12,8 +12,11 @@
 #import "PCUSystemNodeInteractor.h"
 #import "PCUSender.h"
 #import "PCUApplication.h"
+#import "PCUMessageManager.h"
 
 @interface PCUNodeInteractor ()
+
+@property (nonatomic, strong) PCUMessage *message;
 
 @end
 
@@ -33,24 +36,45 @@
 {
     self = [super init];
     if (self) {
-        self.messageIdentifier = message.identifier;
-        self.isOwner = [message.sender.identifier isEqualToString:[[PCUApplication sender] identifier]];
-        self.orderIndex = message.orderIndex;
+        self.message = message;
     }
     return self;
 }
 
+- (BOOL)isOwner {
+    return [self.message.sender.identifier isEqualToString:[[PCUApplication sender] identifier]];
+}
+
+- (NSUInteger)orderIndex {
+    return self.message.orderIndex;
+}
+
 - (NSUInteger)hash {
-    return [self.messageIdentifier hash];
+    return [self.message.identifier hash];
 }
 
 - (BOOL)isEqual:(PCUNodeInteractor *)object {
     if ([object isKindOfClass:[PCUNodeInteractor class]] &&
-        [object.messageIdentifier isEqualToString:self.messageIdentifier]) {
+        [object.message.identifier isEqualToString:self.message.identifier]) {
         return YES;
     }
     else {
         return NO;
+    }
+}
+
+- (BOOL)isNodeForMessage:(PCUMessage *)message {
+    if ([self.message isEqual:message]) {
+        return YES;
+    }
+    else {
+        return NO;
+    }
+}
+
+- (void)retrySendMessage {
+    if ([self isOwner]) {
+        [self.messageManager sendMessage:self.message];
     }
 }
 
