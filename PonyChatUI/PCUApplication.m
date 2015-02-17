@@ -15,11 +15,14 @@ static PCUSender *ownerSender;
 
 @implementation PCUApplication
 
++ (void)load {
+    coreModule = [[PCUCore alloc] init];
+}
+
 + (JSObjectionInjector *)injector {
     static JSObjectionInjector *injector;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        coreModule = [[PCUCore alloc] init];
         injector = [JSObjection createInjectorWithModules:
                     coreModule,
                     nil];
@@ -36,7 +39,11 @@ static PCUSender *ownerSender;
 }
 
 + (void)setAttributedStringManagerClass:(Class)managerClass {
-    [coreModule bindCustomAttributedStringManager:managerClass];
+    coreModule.attributedStringManagerClass = managerClass;
+}
+
++ (void)setMessageManagerClass:(Class)managerClass {
+    coreModule.messageManagerClass = managerClass;
 }
 
 @end

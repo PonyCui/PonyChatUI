@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "PCUApplication.h"
+#import "PCUCustomMessageManager.h"
 
 @interface AppDelegate ()
 
@@ -14,21 +16,9 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    
-    NSArray *array1 = @[@"1", @"2", @"3"];
-    
-    NSArray *array2 = @[@"4", @"2", @"6"];
-    
-    NSSet *set1 = [NSSet setWithArray:array1];
-    NSSet *set2 = [NSSet setWithArray:array2];
-    
-    NSMutableSet *set = [set1 mutableCopy];
-    [set minusSet:set2];
-    
-    
+    //使用这行代码，可以创建一个消息管理器
+//    [PCUApplication setMessageManagerClass:[PCUCustomMessageManager class]];
     return YES;
 }
 

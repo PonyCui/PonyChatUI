@@ -25,4 +25,6 @@
 
 + (void)setAttributedStringManagerClass:(Class)managerClass;
 
++ (void)setMessageManagerClass:(Class)managerClass;
+
 @end

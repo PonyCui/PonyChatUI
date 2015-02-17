@@ -17,6 +17,15 @@
 
 @implementation PCUAttributedStringManager
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.configure = [[PCUAttributedStringConfigure alloc] init];
+    }
+    return self;
+}
+
 - (instancetype)initWithConfigure:(PCUAttributedStringConfigure *)configure {
     self = [super init];
     if (self) {

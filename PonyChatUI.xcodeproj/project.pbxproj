@@ -44,6 +44,7 @@
 		77B27DC368BB62974F4FF2F5 /* libPods-PonyChatUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACC89F67F39C439C21543284 /* libPods-PonyChatUI.a */; };
 		F0A57CC51A90E32C00068694 /* PCUAvatarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A57CC41A90E32C00068694 /* PCUAvatarManager.m */; };
 		F0B123E71A93401500A0DB10 /* PCUToolPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B123E61A93401500A0DB10 /* PCUToolPresenter.m */; };
+		F0B123EA1A93631400A0DB10 /* PCUCustomMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B123E91A93631400A0DB10 /* PCUCustomMessageManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +129,8 @@
 		F0A57CC41A90E32C00068694 /* PCUAvatarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUAvatarManager.m; sourceTree = "<group>"; };
 		F0B123E51A93401500A0DB10 /* PCUToolPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUToolPresenter.h; sourceTree = "<group>"; };
 		F0B123E61A93401500A0DB10 /* PCUToolPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUToolPresenter.m; sourceTree = "<group>"; };
+		F0B123E81A93631400A0DB10 /* PCUCustomMessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUCustomMessageManager.h; sourceTree = "<group>"; };
+		F0B123E91A93631400A0DB10 /* PCUCustomMessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUCustomMessageManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +201,8 @@
 				632886031A8B02790032C99C /* Base.lproj */,
 				632886081A8B02790032C99C /* AppDelegate.m */,
 				632886091A8B02790032C99C /* AppDelegate.h */,
+				F0B123E81A93631400A0DB10 /* PCUCustomMessageManager.h */,
+				F0B123E91A93631400A0DB10 /* PCUCustomMessageManager.m */,
 			);
 			path = PonyChatUIDemo;
 			sourceTree = "<group>";
@@ -540,6 +545,7 @@
 				63BACECB1A919D040013DB6C /* PCUSystemNodeViewController.m in Sources */,
 				63BACEBE1A8DE86A0013DB6C /* PCUNodePresenter.m in Sources */,
 				63BACEB21A8DE7C70013DB6C /* PCUTextNodeInteractor.m in Sources */,
+				F0B123EA1A93631400A0DB10 /* PCUCustomMessageManager.m in Sources */,
 				63BACEAF1A8DE4150013DB6C /* PCUSender.m in Sources */,
 				6390B44E1A8B08BE0025A64D /* PCUCore.m in Sources */,
 				63BACEC41A903C7C0013DB6C /* PCUMessageManager.m in Sources */,
