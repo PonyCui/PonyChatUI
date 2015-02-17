@@ -19,16 +19,11 @@
 
 @implementation PCUMessageManager
 
-- (void)dealloc
-{
-    [self closeConnection];
-}
-
 - (instancetype)init
 {
     self = [super init];
     if (self) {
-        [self openConnection];
+        [self connect];
     }
     return self;
 }
@@ -36,7 +31,7 @@
 /**
  *  Open a socket connection here, or query CoreData with GCD, or anything else.
  */
-- (void)openConnection {
+- (void)connect {
     //If you use NSTimer or GCD, Be careful, should call closeConnection by yourself,
     //dealloc will do nothing.
     self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0
@@ -44,6 +39,14 @@
                                                 selector:@selector(didReceivedData)
                                                 userInfo:nil
                                                  repeats:YES];
+}
+
+/**
+ *  Disconnect
+ */
+- (void)disconnect {
+    [self.timer invalidate];
+    self.timer = nil;
 }
 
 /**
@@ -75,11 +78,6 @@
         message.params = @{};
         [self.delegate messageManagerDidReceivedMessage:message];
     }
-}
-
-- (void)closeConnection {
-    [self.timer invalidate];
-    self.timer = nil;
 }
 
 @end

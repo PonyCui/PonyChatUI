@@ -23,4 +23,8 @@
 
 @property (nonatomic, strong) PCUChat *chatItem;
 
+- (void)connect;
+
+- (void)disconnect;
+
 @end

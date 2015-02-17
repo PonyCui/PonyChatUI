@@ -18,6 +18,10 @@
 
 @implementation PCUChatInterator
 
+- (void)dealloc {
+    [self.messageManager disconnect];
+}
+
 - (instancetype)init
 {
     self = [super init];
@@ -58,12 +62,3 @@
 }
 
 @end
-
-//[nodeInteractors sortUsingComparator:^NSComparisonResult(PCUNodeInterator *obj1, PCUNodeInterator *obj2) {
-//    if (obj1.orderIndex == obj2.orderIndex) {
-//        return NSOrderedSame;
-//    }
-//    else {
-//        return obj1.orderIndex < obj2.orderIndex ? NSOrderedAscending : NSOrderedDescending;
-//    }
-//}];
