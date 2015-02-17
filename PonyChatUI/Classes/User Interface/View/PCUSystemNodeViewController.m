@@ -10,6 +10,7 @@
 #import "PCUApplication.h"
 #import "PCUAttributedStringManager.h"
 #import "NSAttributedString+PCUAttributedString.h"
+#import "UILabel+PCUAttributedStringLinkResponder.h"
 
 @interface PCUSystemNodeViewController ()
 
@@ -40,8 +41,8 @@
                                             systemNodeAttrbutedStringWithString:string];
     attributedString = [attributedString pcu_linkAttributedString];
     [self.textButton setAttributedTitle:attributedString forState:UIControlStateNormal];
-//    [self.textButton setTitle:string forState:UIControlStateNormal];
     [self performSelector:@selector(adjustButtonHeight) withObject:nil afterDelay:0.001];
+    [self performSelector:@selector(configureLinkResponder) withObject:nil afterDelay:0.001];
 }
 
 - (void)adjustButtonHeight {
@@ -50,8 +51,12 @@
 }
 
 - (void)adjustHeight {
-    self.heightConstraint.constant = self.buttonHeightConstraint.constant + 8.0;
+    self.heightConstraint.constant = self.buttonHeightConstraint.constant + 12.0;
     [self.delegate nodeViewHeightDidChange];
+}
+
+- (void)configureLinkResponder {
+    [self.textButton.titleLabel pcu_configureAttributedStringLinkResponder];
 }
 
 @end

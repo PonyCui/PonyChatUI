@@ -8,7 +8,18 @@
 
 #import "NSAttributedString+PCUAttributedString.h"
 
+#define kPCULinkAttributeName @"PCULinkAttributeName"
+
+static UIColor *linkColor;
+
 @implementation NSAttributedString (PCUAttributedString)
+
++ (void)load {
+    linkColor = [UIColor colorWithRed:35.0/255.0
+                                green:157.0/255.0
+                                 blue:237.0/255.0
+                                alpha:1.0];
+}
 
 - (NSAttributedString *)pcu_linkAttributedString {
     NSMutableAttributedString *mutableAttributedString = [self mutableCopy];
@@ -34,7 +45,8 @@
             URLString = [[components lastObject] substringToIndex:[[components lastObject] length]-1];
         }
         [mutableAttributedString addAttributes:@{
-                                                 NSLinkAttributeName : URLString
+                                                 kPCULinkAttributeName : URLString,
+                                                 NSForegroundColorAttributeName : linkColor
                                                  } range:obj.range];
         [mutableAttributedString replaceCharactersInRange:obj.range withString:titleString];
     }];

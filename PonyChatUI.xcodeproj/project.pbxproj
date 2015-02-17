@@ -39,6 +39,7 @@
 		63BACECE1A91A00D0013DB6C /* PCUSystemNodePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BACECD1A91A00D0013DB6C /* PCUSystemNodePresenter.m */; };
 		63BACED11A91A0740013DB6C /* PCUSystemNodeInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BACED01A91A0740013DB6C /* PCUSystemNodeInteractor.m */; };
 		63BACED51A91C2160013DB6C /* NSAttributedString+PCUAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BACED41A91C2160013DB6C /* NSAttributedString+PCUAttributedString.m */; };
+		63BACEDA1A91DD410013DB6C /* UILabel+PCUAttributedStringLinkResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BACED91A91DD410013DB6C /* UILabel+PCUAttributedStringLinkResponder.m */; };
 		63FF1C021A8C4394007C3A18 /* PCUTextNodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FF1C011A8C4394007C3A18 /* PCUTextNodeViewController.m */; };
 		77B27DC368BB62974F4FF2F5 /* libPods-PonyChatUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACC89F67F39C439C21543284 /* libPods-PonyChatUI.a */; };
 		F0A57CC51A90E32C00068694 /* PCUAvatarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A57CC41A90E32C00068694 /* PCUAvatarManager.m */; };
@@ -116,6 +117,8 @@
 		63BACED01A91A0740013DB6C /* PCUSystemNodeInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUSystemNodeInteractor.m; sourceTree = "<group>"; };
 		63BACED31A91C2160013DB6C /* NSAttributedString+PCUAttributedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+PCUAttributedString.h"; sourceTree = "<group>"; };
 		63BACED41A91C2160013DB6C /* NSAttributedString+PCUAttributedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+PCUAttributedString.m"; sourceTree = "<group>"; };
+		63BACED81A91DD410013DB6C /* UILabel+PCUAttributedStringLinkResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+PCUAttributedStringLinkResponder.h"; sourceTree = "<group>"; };
+		63BACED91A91DD410013DB6C /* UILabel+PCUAttributedStringLinkResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+PCUAttributedStringLinkResponder.m"; sourceTree = "<group>"; };
 		63FF1C001A8C4394007C3A18 /* PCUTextNodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUTextNodeViewController.h; sourceTree = "<group>"; };
 		63FF1C011A8C4394007C3A18 /* PCUTextNodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUTextNodeViewController.m; sourceTree = "<group>"; };
 		ACC89F67F39C439C21543284 /* libPods-PonyChatUI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PonyChatUI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -363,6 +366,8 @@
 			children = (
 				63BACED31A91C2160013DB6C /* NSAttributedString+PCUAttributedString.h */,
 				63BACED41A91C2160013DB6C /* NSAttributedString+PCUAttributedString.m */,
+				63BACED81A91DD410013DB6C /* UILabel+PCUAttributedStringLinkResponder.h */,
+				63BACED91A91DD410013DB6C /* UILabel+PCUAttributedStringLinkResponder.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -548,6 +553,7 @@
 				6390B4511A8B0AEE0025A64D /* PCUChatViewController.m in Sources */,
 				F0A57CC51A90E32C00068694 /* PCUAvatarManager.m in Sources */,
 				63BACEB51A8DE7DB0013DB6C /* PCUChatInterator.m in Sources */,
+				63BACEDA1A91DD410013DB6C /* UILabel+PCUAttributedStringLinkResponder.m in Sources */,
 				63BACEA61A8C7CF10013DB6C /* PCUAttributedStringConfigure.m in Sources */,
 				6390B43D1A8B05A40025A64D /* PCUApplication.m in Sources */,
 			);

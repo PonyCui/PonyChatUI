@@ -280,7 +280,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uBB-ct-RYb">
-                                <rect key="frame" x="118" y="8" width="85" height="28"/>
+                                <rect key="frame" x="118" y="4" width="85" height="28"/>
                                 <color key="backgroundColor" red="0.80784313725490198" green="0.80784313725490198" blue="0.80784313725490198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="vd8-cn-NRc"/>
@@ -295,7 +295,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="uBB-ct-RYb" secondAttribute="trailing" constant="16" id="3dV-qC-Ial"/>
-                            <constraint firstAttribute="centerY" secondItem="uBB-ct-RYb" secondAttribute="centerY" id="A5e-TH-ctE"/>
+                            <constraint firstAttribute="centerY" secondItem="uBB-ct-RYb" secondAttribute="centerY" constant="4" id="A5e-TH-ctE"/>
                             <constraint firstAttribute="centerX" secondItem="uBB-ct-RYb" secondAttribute="centerX" id="HcN-ne-Aas"/>
                             <constraint firstItem="uBB-ct-RYb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eMD-JJ-0xY" secondAttribute="leading" constant="16" id="gCR-5z-fbx"/>
                         </constraints>

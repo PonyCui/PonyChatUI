@@ -10,6 +10,7 @@
 #import "PCUApplication.h"
 #import "PCUAttributedStringManager.h"
 #import "NSAttributedString+PCUAttributedString.h"
+#import "UILabel+PCUAttributedStringLinkResponder.h"
 
 @interface PCUTextNodeViewController ()
 
@@ -48,6 +49,9 @@
     self.textLabel.attributedText = attributedString;
     [self adjustLabelSpace];
     [self adjustHeight];
+    [self.textLabel performSelector:@selector(pcu_configureAttributedStringLinkResponder)
+                         withObject:nil
+                         afterDelay:0.001];
 }
 
 - (void)setSenderNickLabelTextWithString:(NSString *)string {

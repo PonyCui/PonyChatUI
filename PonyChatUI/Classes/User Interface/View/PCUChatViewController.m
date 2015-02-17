@@ -59,6 +59,9 @@
 #pragma mark - ContentOffset
 
 - (void)scrollToBottom:(BOOL)animated {
+    if (self.chatScrollView.isTracking) {
+        return;
+    }
     CGPoint bottomPoint = CGPointMake(0, self.chatScrollView.contentSize.height -
                                       CGRectGetHeight(self.chatScrollView.bounds));
     [self.chatScrollView setContentOffset:bottomPoint animated:animated];
