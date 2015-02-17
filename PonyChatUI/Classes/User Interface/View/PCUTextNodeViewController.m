@@ -30,6 +30,10 @@
 
 @implementation PCUTextNodeViewController
 
+- (CGFloat)heightConstraintDefaultValue {
+    return 60.0;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[self eventHandler] updateView];
@@ -91,8 +95,10 @@
 }
 
 - (void)adjustHeight {
-    self.heightConstraint.constant = CGRectGetHeight(self.textLabelBackgroundImageView.bounds) + 6.0;
-    [self.delegate nodeViewHeightDidChange];
+    if (CGRectGetHeight(self.textLabelBackgroundImageView.bounds) + 6.0 != self.heightConstraint.constant) {
+        self.heightConstraint.constant = CGRectGetHeight(self.textLabelBackgroundImageView.bounds) + 6.0;
+        [self.delegate nodeViewHeightDidChange];
+    }
 }
 
 @end

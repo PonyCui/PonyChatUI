@@ -71,7 +71,7 @@
                                                                          toItem:nil
                                                                       attribute:NSLayoutAttributeNotAnAttribute
                                                                      multiplier:1.0
-                                                                       constant:0.0];
+                                                                       constant:self.heightConstraintDefaultValue];
         self.heightConstraint = constaints;
         [[self.view superview] addConstraint:self.heightConstraint];
     }

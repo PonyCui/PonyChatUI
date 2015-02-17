@@ -22,6 +22,10 @@
 
 @implementation PCUSystemNodeViewController
 
+- (CGFloat)heightConstraintDefaultValue {
+    return 40.0;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.textButton.titleLabel.userInteractionEnabled = YES;
@@ -51,8 +55,10 @@
 }
 
 - (void)adjustHeight {
-    self.heightConstraint.constant = self.buttonHeightConstraint.constant + 12.0;
-    [self.delegate nodeViewHeightDidChange];
+    if (self.buttonHeightConstraint.constant + 12.0 != self.heightConstraint.constant) {
+        self.heightConstraint.constant = self.buttonHeightConstraint.constant + 12.0;
+        [self.delegate nodeViewHeightDidChange];
+    }
 }
 
 - (void)configureLinkResponder {

@@ -28,6 +28,8 @@
 
 @property (nonatomic, strong) NSLayoutConstraint *heightConstraint;
 
+@property (nonatomic, readonly) CGFloat heightConstraintDefaultValue;
+
 + (PCUNodeViewController *)nodeViewControllerWithNodeInteractor:(PCUNodeInteractor *)nodeInteractor;
 
 - (void)configureLayouts;
