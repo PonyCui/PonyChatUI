@@ -51,7 +51,10 @@
     NSMutableSet *nodeInteractors = self.nodeInteractors == nil ? [NSMutableSet set] : [self.nodeInteractors mutableCopy];
     if (message != nil) {
         PCUNodeInteractor *nodeInteractor = [PCUNodeInteractor nodeInteractorWithMessage:message];
-        if (nodeInteractor != nil) {
+        if ([self.nodeInteractors containsObject:nodeInteractor]) {
+            //已经有相同的消息添加到对话框中了
+        }
+        else if (nodeInteractor != nil) {
             [nodeInteractors addObject:nodeInteractor];
             self.nodeInteractors = nodeInteractors;
         }
@@ -80,6 +83,10 @@
              }
          }];
     }
+}
+
+- (void)messageManagerSendMessageFailed:(PCUMessage *)message error:(NSError *)error {
+    
 }
 
 #pragma mark - Setter

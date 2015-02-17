@@ -41,11 +41,12 @@
 }
 
 - (NSUInteger)hash {
-    return self.orderIndex;
+    return [self.messageIdentifier hash];
 }
 
 - (BOOL)isEqual:(PCUNodeInteractor *)object {
-    if ([object isKindOfClass:[PCUNodeInteractor class]] && object.orderIndex == self.orderIndex) {
+    if ([object isKindOfClass:[PCUNodeInteractor class]] &&
+        [object.messageIdentifier isEqualToString:self.messageIdentifier]) {
         return YES;
     }
     else {
