@@ -97,7 +97,6 @@
 
 - (NSParagraphStyle *)pragraphStyle {
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
-    style.lineBreakMode = NSLineBreakByTruncatingTail;
     switch (self.configure.fontSize) {
         case PCUAttributedStringFontSizeSmall:
             style.minimumLineHeight = 21.0;

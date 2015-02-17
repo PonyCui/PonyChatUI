@@ -72,9 +72,6 @@ static char kPCUAttributedStringLinkResponderLinkStringBounds;
 
 - (void)handlePCUAttributedStringLinkResponderSingleTapped:(UITapGestureRecognizer *)tapGesture {
     CGPoint locationInView = [tapGesture locationInView:self];
-    NSUInteger i = [self glyphIndexForPoint:locationInView];
-    NSLog(@"%ld", (unsigned long)i);
-    
     [self.pcu_linkStringBounds
      enumerateObjectsUsingBlock:^(PCULinkResponderClickableItem *obj, NSUInteger idx, BOOL *stop) {
          if (locationInView.x > obj.responseRect.origin.x &&
@@ -107,32 +104,13 @@ static char kPCUAttributedStringLinkResponderLinkStringBounds;
     NSLayoutManager *layoutManager = [[NSLayoutManager alloc] init];
     [textStorage addLayoutManager:layoutManager];
     
-    NSTextContainer *textContainer = [[NSTextContainer alloc] initWithSize:CGSizeMake(200, CGFLOAT_MAX)];
+    NSTextContainer *textContainer = [[NSTextContainer alloc] initWithSize:CGSizeMake(self.bounds.size.width, CGFLOAT_MAX)];
+    [textContainer setLineFragmentPadding:0.0];
     
     [layoutManager addTextContainer:textContainer];
     NSRange glyphRange;
     [layoutManager characterRangeForGlyphRange:range actualGlyphRange:&glyphRange];
-    CGRect originalRect = [layoutManager boundingRectForGlyphRange:glyphRange inTextContainer:textContainer];
-    return CGRectZero;
-}
-
-- (CGFloat)pcu_linesWidthForIndex:(NSUInteger)index {
-    CFRange rangeToSize = CFRangeMake(0, (CFIndex)[[self attributedText] length]);
-    CFAttributedStringRef attibutedStringRef = (__bridge_retained CFAttributedStringRef)[self attributedText];
-    CTFramesetterRef frameSetter = CTFramesetterCreateWithAttributedString(attibutedStringRef);
-    CGMutablePathRef path = CGPathCreateMutable();
-    CGPathAddRect(path, NULL, CGRectMake(0.0, 0.0, self.bounds.size.width, CGFLOAT_MAX));
-    CTFrameRef frame = CTFramesetterCreateFrame(frameSetter, CFRangeMake(0, 0), path, NULL);
-    CFArrayRef lines = CTFrameGetLines(frame);
-    if (CFArrayGetCount(lines) > 0) {
-        NSInteger lastVisibleLineIndex = MIN((CFIndex)self.numberOfLines, CFArrayGetCount(lines)) - 1;
-        CTLineRef lastVisibleLine = CFArrayGetValueAtIndex(lines, lastVisibleLineIndex);
-        
-        CFRange rangeToLayout = CTLineGetStringRange(lastVisibleLine);
-        rangeToSize = CFRangeMake(0, rangeToLayout.location + rangeToLayout.length);
-        
-    }
-    return 0;
+    return [layoutManager boundingRectForGlyphRange:glyphRange inTextContainer:textContainer];
 }
 
 @end
