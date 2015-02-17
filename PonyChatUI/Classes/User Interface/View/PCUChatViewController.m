@@ -81,12 +81,7 @@
 - (void)calculateContentSize {
     BOOL isScrollToBottom = self.chatScrollView.contentOffset.y >= self.chatScrollView.contentSize.height -
     CGRectGetHeight(self.chatScrollView.bounds) * 1.15;
-    __block CGFloat currentHeight = 0.0; 
-    [[self childViewControllers] enumerateObjectsUsingBlock:^(PCUNodeViewController *obj, NSUInteger idx, BOOL *stop) {
-        if ([obj isKindOfClass:[PCUNodeViewController class]]) {
-            currentHeight += obj.heightConstraint.constant;
-        }
-    }];
+    CGFloat currentHeight = [self contentHeight];
     if (currentHeight < CGRectGetHeight(self.chatScrollView.bounds)) {
         currentHeight = CGRectGetHeight(self.chatScrollView.bounds) + 1.0;
     }
@@ -96,6 +91,16 @@
             [self scrollToBottom:YES];
         }
     }
+}
+
+- (CGFloat)contentHeight {
+    __block CGFloat contentHeight = 0.0;
+    [[self childViewControllers] enumerateObjectsUsingBlock:^(PCUNodeViewController *obj, NSUInteger idx, BOOL *stop) {
+        if ([obj isKindOfClass:[PCUNodeViewController class]]) {
+            contentHeight += obj.heightConstraint.constant;
+        }
+    }];
+    return contentHeight;
 }
 
 #pragma mark - Layouts
@@ -111,9 +116,13 @@
         }
     }];
     constraint.constant = layoutHeight;
+    CGFloat contentHeight = [self contentHeight];
     [UIView animateWithDuration:0.25 animations:^{
         [self.view layoutIfNeeded];
-        [self scrollToBottom:NO];
+        [self calculateContentSize];
+        if (contentHeight >= CGRectGetHeight(self.chatScrollView.bounds)) {
+            [self scrollToBottom:NO];
+        }
     }];
 }
 
