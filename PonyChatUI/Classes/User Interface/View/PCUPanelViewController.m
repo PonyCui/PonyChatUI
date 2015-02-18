@@ -10,12 +10,17 @@
 #import "PCUChatViewController.h"
 #import "PCUToolViewController.h"
 #import "PCUApplication.h"
+#import "PCUPanelCollectionViewLayout.h"
 
-@interface PCUPanelViewController ()
+@interface PCUPanelViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, assign) BOOL wasEditing;
 
 @property (nonatomic, weak) NSLayoutConstraint *bottomSpaceConstraint;
+
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
+@property (weak, nonatomic) IBOutlet PCUPanelCollectionViewLayout *collectionViewLayout;
 
 @end
 
@@ -32,6 +37,11 @@
     [self configureKeyboardNotifications];
     [self configurePCUEndEditingNotifications];
     // Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.collectionViewLayout configureInsetWithBounds:self.view.bounds];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -158,6 +168,38 @@
         self.bottomSpaceConstraint = [constraints lastObject];
         [[self.view superview] addConstraints:constraints];
     }
+}
+
+#pragma mark - UICollectionViewDataSource
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [self.collectionViewLayout configureInsetWithBounds:self.view.bounds];
+}
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return 16;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    {
+        UIImageView *imageView = (UIImageView *)[cell viewWithTag:1001];
+        imageView.layer.masksToBounds = YES;
+        imageView.layer.borderWidth = 1.0;
+        imageView.layer.cornerRadius = 6.0;
+        imageView.layer.borderColor = [UIColor colorWithRed:202.0/255.0
+                                                      green:204.0/255.0
+                                                       blue:206.0/255.0
+                                                      alpha:1.0].CGColor;
+    }
+    {
+        UILabel *label = (UILabel *)[cell viewWithTag:1002];
+    }
+    return cell;
 }
 
 @end
