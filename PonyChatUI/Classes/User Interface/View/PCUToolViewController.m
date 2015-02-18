@@ -34,4 +34,8 @@
     return YES;
 }
 
+- (IBAction)handlePannelButtonTapped:(UIButton *)sender {
+    [self.eventHandler togglePanelView];
+}
+
 @end

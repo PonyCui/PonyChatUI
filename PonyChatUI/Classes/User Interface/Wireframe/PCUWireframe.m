@@ -14,6 +14,7 @@
 #import "PCUChatInterator.h"
 #import "PCUMessageManager.h"
 #import "PCUToolPresenter.h"
+#import "PCUPanelViewController.h"
 
 @implementation PCUWireframe
 
@@ -22,14 +23,23 @@
     chatViewController.eventHandler.chatInteractor.messageManager.chatItem = chatItem;
     [viewController addChildViewController:chatViewController];
     [viewController.view addSubview:chatViewController.view];
-    [self configureChatViewLayouts:chatViewController.view];
+    [chatViewController configureViewLayouts];
 }
 
 - (void)presentToolViewToChatViewController:(PCUChatViewController *)chatViewController {
     PCUToolViewController *toolViewController = [self toolViewController];
+    [chatViewController addChildViewController:toolViewController];
     chatViewController.toolViewController = toolViewController;
     toolViewController.eventHandler.chatInteractor = chatViewController.eventHandler.chatInteractor;
     [chatViewController.view addSubview:toolViewController.view];
+}
+
+- (PCUPanelViewController *)presentPanelViewToChatViewController:(PCUChatViewController *)chatViewController {
+    PCUPanelViewController *panelViewController = [self panelViewController];
+    [chatViewController addChildViewController:panelViewController];
+    [chatViewController.view addSubview:panelViewController.view];
+    [panelViewController configureViewLayouts];
+    return panelViewController;
 }
 
 #pragma mark - Getter
@@ -53,21 +63,11 @@
     return toolViewController;
 }
 
-#pragma mark - Configure Wireframe View Autolayout
-
-- (void)configureChatViewLayouts:(UIView *)chatView {
-    chatView.translatesAutoresizingMaskIntoConstraints = NO;
-    NSDictionary *views = @{@"chatView": chatView};
-    NSArray *wConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[chatView]-0-|"
-                                                                    options:kNilOptions
-                                                                    metrics:nil
-                                                                      views:views];
-    NSArray *hConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[chatView]-0-|"
-                                                                    options:kNilOptions
-                                                                    metrics:nil
-                                                                      views:views];
-    [[chatView superview] addConstraints:wConstraints];
-    [[chatView superview] addConstraints:hConstraints];
+- (PCUPanelViewController *)panelViewController {
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"PCUStoryBoard" bundle:nil];
+    PCUPanelViewController *panelViewController = [storyBoard
+                                                   instantiateViewControllerWithIdentifier:@"PCUPanelViewController"];
+    return panelViewController;
 }
 
 @end

@@ -45,6 +45,7 @@
 		F0A57CC51A90E32C00068694 /* PCUAvatarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A57CC41A90E32C00068694 /* PCUAvatarManager.m */; };
 		F0B123E71A93401500A0DB10 /* PCUToolPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B123E61A93401500A0DB10 /* PCUToolPresenter.m */; };
 		F0B123EA1A93631400A0DB10 /* PCUCustomMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B123E91A93631400A0DB10 /* PCUCustomMessageManager.m */; };
+		F0B123ED1A938D9B00A0DB10 /* PCUPanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B123EC1A938D9B00A0DB10 /* PCUPanelViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +132,8 @@
 		F0B123E61A93401500A0DB10 /* PCUToolPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUToolPresenter.m; sourceTree = "<group>"; };
 		F0B123E81A93631400A0DB10 /* PCUCustomMessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUCustomMessageManager.h; sourceTree = "<group>"; };
 		F0B123E91A93631400A0DB10 /* PCUCustomMessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUCustomMessageManager.m; sourceTree = "<group>"; };
+		F0B123EB1A938D9B00A0DB10 /* PCUPanelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUPanelViewController.h; sourceTree = "<group>"; };
+		F0B123EC1A938D9B00A0DB10 /* PCUPanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUPanelViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -331,6 +334,8 @@
 				63FF1C011A8C4394007C3A18 /* PCUTextNodeViewController.m */,
 				63BACEC91A919D040013DB6C /* PCUSystemNodeViewController.h */,
 				63BACECA1A919D040013DB6C /* PCUSystemNodeViewController.m */,
+				F0B123EB1A938D9B00A0DB10 /* PCUPanelViewController.h */,
+				F0B123EC1A938D9B00A0DB10 /* PCUPanelViewController.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -561,6 +566,7 @@
 				6390B45E1A8B44FE0025A64D /* PCUToolViewController.m in Sources */,
 				6328860A1A8B02790032C99C /* ViewController.m in Sources */,
 				63BACEBB1A8DE8450013DB6C /* PCUNodeInteractor.m in Sources */,
+				F0B123ED1A938D9B00A0DB10 /* PCUPanelViewController.m in Sources */,
 				6390B4511A8B0AEE0025A64D /* PCUChatViewController.m in Sources */,
 				F0B123E71A93401500A0DB10 /* PCUToolPresenter.m in Sources */,
 				F0A57CC51A90E32C00068694 /* PCUAvatarManager.m in Sources */,

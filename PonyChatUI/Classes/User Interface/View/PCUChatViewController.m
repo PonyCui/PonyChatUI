@@ -28,7 +28,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configureToolView];
-    [self configureViewLayouts];
     // Do any additional setup after loading the view.
 }
 
@@ -127,10 +126,28 @@
 }
 
 - (void)configureViewLayouts {
+    self.view.translatesAutoresizingMaskIntoConstraints = NO;
     self.chatScrollView.translatesAutoresizingMaskIntoConstraints = NO;
     self.toolViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
     NSDictionary *views = @{@"toolView": self.toolViewController.view,
-                            @"chatView": self.chatScrollView};
+                            @"chatView": self.chatScrollView,
+                            @"wrapView": self.view};
+    {
+        
+        NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[wrapView]-0-|"
+                                                                       options:kNilOptions
+                                                                       metrics:nil
+                                                                         views:views];
+        [[self.view superview] addConstraints:constraints];
+        
+    }
+    {
+        NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[wrapView]-0-|"
+                                                                       options:kNilOptions
+                                                                       metrics:nil
+                                                                         views:views];
+        [[self.view superview] addConstraints:constraints];
+    }
     {
         NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[chatView]-0-[toolView(48)]-0-|"
                                                                         options:kNilOptions

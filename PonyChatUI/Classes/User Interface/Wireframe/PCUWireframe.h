@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "PCUApplication.h"
 
-@class PCUToolViewController, PCUTextNodeViewController, PCUChatViewController, PCUChat;
+@class PCUChatViewController, PCUChat, PCUPanelViewController;
 
 @interface PCUWireframe : NSObject
 
@@ -17,5 +17,7 @@
                            withChatItem:(PCUChat *)chatItem;
 
 - (void)presentToolViewToChatViewController:(PCUChatViewController *)chatViewController;
+
+- (PCUPanelViewController *)presentPanelViewToChatViewController:(PCUChatViewController *)chatViewController;
 
 @end

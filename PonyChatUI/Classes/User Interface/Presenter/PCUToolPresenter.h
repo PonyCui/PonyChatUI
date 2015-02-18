@@ -18,4 +18,6 @@
 
 - (void)sendTextMessage;
 
+- (void)togglePanelView;
+
 @end

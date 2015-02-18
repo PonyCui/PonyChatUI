@@ -23,6 +23,8 @@
 
 #pragma mark - Layouts
 
+- (void)configureViewLayouts;
+
 - (void)setBottomLayoutHeight:(CGFloat)layoutHeight;
 
 - (void)scrollToBottom:(BOOL)animated;
