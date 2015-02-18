@@ -13,6 +13,8 @@
 
 #define PCU [PCUApplication injector]
 
+#define kPCUEndEditingNotification @"kPCUEndEditingNotification"
+
 @class PCUSender;
 
 @interface PCUApplication : NSObject
@@ -26,5 +28,7 @@
 + (void)setAttributedStringManagerClass:(Class)managerClass;
 
 + (void)setMessageManagerClass:(Class)managerClass;
+
++ (void)endEditing;
 
 @end

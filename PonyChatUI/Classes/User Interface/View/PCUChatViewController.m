@@ -15,7 +15,7 @@
 #import "PCUNodeInteractor.h"
 #import "PCUNodePresenter.h"
 
-@interface PCUChatViewController ()
+@interface PCUChatViewController ()<UIScrollViewDelegate>
 
 @property (nonatomic, strong) NSArray *nodeViewControllers;
 
@@ -203,7 +203,7 @@
 #pragma mark - handle events
 
 - (IBAction)handleScrollViewTapped:(UITapGestureRecognizer *)sender {
-    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+    [PCUApplication endEditing];
 }
 
 @end

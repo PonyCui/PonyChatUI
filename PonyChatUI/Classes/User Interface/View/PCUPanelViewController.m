@@ -9,6 +9,7 @@
 #import "PCUPanelViewController.h"
 #import "PCUChatViewController.h"
 #import "PCUToolViewController.h"
+#import "PCUApplication.h"
 
 @interface PCUPanelViewController ()
 
@@ -29,6 +30,7 @@
     [super viewDidLoad];
     _isPresenting = NO;
     [self configureKeyboardNotifications];
+    [self configurePCUEndEditingNotifications];
     // Do any additional setup after loading the view.
 }
 
@@ -56,6 +58,22 @@
     }
 }
 
+#pragma mark - Observe PCUApplication endEditing Notification
+
+- (void)configurePCUEndEditingNotifications {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleEndEditingNotification)
+                                                 name:kPCUEndEditingNotification
+                                               object:nil];
+}
+
+- (void)handleEndEditingNotification {
+    if (self.isPresenting) {
+        self.wasEditing = NO;
+        self.isPresenting = NO;
+    }
+}
+
 #pragma mark - toggle
 
 - (void)setIsPresenting:(BOOL)isPresenting {
@@ -71,8 +89,6 @@
         self.wasEditing = YES;
         [chatViewController.toolViewController.textField endEditing:YES];
         [self performSelector:@selector(presentPanel) withObject:nil afterDelay:0.50];
-//        self.bottomSpaceConstraint.constant = 0.0;
-//        [self.view layoutIfNeeded];
     }
     else {
         self.bottomSpaceConstraint.constant = 0.0;

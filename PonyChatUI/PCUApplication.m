@@ -46,4 +46,11 @@ static PCUSender *ownerSender;
     coreModule.messageManagerClass = managerClass;
 }
 
++ (void)endEditing {
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:kPCUEndEditingNotification
+     object:nil];
+}
+
 @end
