@@ -46,7 +46,8 @@
 		F0B123E71A93401500A0DB10 /* PCUToolPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B123E61A93401500A0DB10 /* PCUToolPresenter.m */; };
 		F0B123EA1A93631400A0DB10 /* PCUCustomMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B123E91A93631400A0DB10 /* PCUCustomMessageManager.m */; };
 		F0B123ED1A938D9B00A0DB10 /* PCUPanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B123EC1A938D9B00A0DB10 /* PCUPanelViewController.m */; };
-		F0B123F01A94D72700A0DB10 /* PCUPanelCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B123EF1A94D72700A0DB10 /* PCUPanelCollectionViewLayout.m */; };
+		F0B123F31A94EDF500A0DB10 /* PCUPanelCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B123F21A94EDF500A0DB10 /* PCUPanelCollectionViewCell.m */; };
+		F0B123F61A94F0FA00A0DB10 /* PCUPanelItemPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B123F51A94F0FA00A0DB10 /* PCUPanelItemPresenter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,8 +136,10 @@
 		F0B123E91A93631400A0DB10 /* PCUCustomMessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUCustomMessageManager.m; sourceTree = "<group>"; };
 		F0B123EB1A938D9B00A0DB10 /* PCUPanelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUPanelViewController.h; sourceTree = "<group>"; };
 		F0B123EC1A938D9B00A0DB10 /* PCUPanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUPanelViewController.m; sourceTree = "<group>"; };
-		F0B123EE1A94D72700A0DB10 /* PCUPanelCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUPanelCollectionViewLayout.h; sourceTree = "<group>"; };
-		F0B123EF1A94D72700A0DB10 /* PCUPanelCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUPanelCollectionViewLayout.m; sourceTree = "<group>"; };
+		F0B123F11A94EDF500A0DB10 /* PCUPanelCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUPanelCollectionViewCell.h; sourceTree = "<group>"; };
+		F0B123F21A94EDF500A0DB10 /* PCUPanelCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUPanelCollectionViewCell.m; sourceTree = "<group>"; };
+		F0B123F41A94F0FA00A0DB10 /* PCUPanelItemPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUPanelItemPresenter.h; sourceTree = "<group>"; };
+		F0B123F51A94F0FA00A0DB10 /* PCUPanelItemPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUPanelItemPresenter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -320,6 +323,8 @@
 				63BACEB71A8DE80B0013DB6C /* PCUTextNodePresenter.m */,
 				63BACECC1A91A00D0013DB6C /* PCUSystemNodePresenter.h */,
 				63BACECD1A91A00D0013DB6C /* PCUSystemNodePresenter.m */,
+				F0B123F41A94F0FA00A0DB10 /* PCUPanelItemPresenter.h */,
+				F0B123F51A94F0FA00A0DB10 /* PCUPanelItemPresenter.m */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -339,8 +344,8 @@
 				63BACECA1A919D040013DB6C /* PCUSystemNodeViewController.m */,
 				F0B123EB1A938D9B00A0DB10 /* PCUPanelViewController.h */,
 				F0B123EC1A938D9B00A0DB10 /* PCUPanelViewController.m */,
-				F0B123EE1A94D72700A0DB10 /* PCUPanelCollectionViewLayout.h */,
-				F0B123EF1A94D72700A0DB10 /* PCUPanelCollectionViewLayout.m */,
+				F0B123F11A94EDF500A0DB10 /* PCUPanelCollectionViewCell.h */,
+				F0B123F21A94EDF500A0DB10 /* PCUPanelCollectionViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -564,13 +569,13 @@
 				632886101A8B02790032C99C /* AppDelegate.m in Sources */,
 				63FF1C021A8C4394007C3A18 /* PCUTextNodeViewController.m in Sources */,
 				63BACEA91A8C7E7B0013DB6C /* PCUAttributedStringManager.m in Sources */,
+				F0B123F31A94EDF500A0DB10 /* PCUPanelCollectionViewCell.m in Sources */,
 				63BACEAC1A8DDFA70013DB6C /* PCUMessage.m in Sources */,
 				63BACED51A91C2160013DB6C /* NSAttributedString+PCUAttributedString.m in Sources */,
 				6390B4541A8B0B760025A64D /* PCUChatPresenter.m in Sources */,
 				63BACEC71A903D9F0013DB6C /* PCUChat.m in Sources */,
 				6390B45E1A8B44FE0025A64D /* PCUToolViewController.m in Sources */,
 				6328860A1A8B02790032C99C /* ViewController.m in Sources */,
-				F0B123F01A94D72700A0DB10 /* PCUPanelCollectionViewLayout.m in Sources */,
 				63BACEBB1A8DE8450013DB6C /* PCUNodeInteractor.m in Sources */,
 				F0B123ED1A938D9B00A0DB10 /* PCUPanelViewController.m in Sources */,
 				6390B4511A8B0AEE0025A64D /* PCUChatViewController.m in Sources */,
@@ -580,6 +585,7 @@
 				63BACEDA1A91DD410013DB6C /* UILabel+PCUAttributedStringLinkResponder.m in Sources */,
 				63BACEA61A8C7CF10013DB6C /* PCUAttributedStringConfigure.m in Sources */,
 				6390B43D1A8B05A40025A64D /* PCUApplication.m in Sources */,
+				F0B123F61A94F0FA00A0DB10 /* PCUPanelItemPresenter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

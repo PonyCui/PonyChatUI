@@ -10,17 +10,18 @@
 #import "PCUChatViewController.h"
 #import "PCUToolViewController.h"
 #import "PCUApplication.h"
-#import "PCUPanelCollectionViewLayout.h"
 
 @interface PCUPanelViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, assign) BOOL wasEditing;
 
+@property (nonatomic, weak) NSLayoutConstraint *viewHeightConstraint;
+
 @property (nonatomic, weak) NSLayoutConstraint *bottomSpaceConstraint;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
-@property (weak, nonatomic) IBOutlet PCUPanelCollectionViewLayout *collectionViewLayout;
+@property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *collectionViewLayout;
 
 @end
 
@@ -41,7 +42,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.collectionViewLayout configureInsetWithBounds:self.view.bounds];
+    [self configureLayoutInset];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,7 +64,7 @@
     if (sender.userInfo[UIKeyboardFrameBeginUserInfoKey] != nil) {
         //It's real
         _isPresenting = NO;
-        self.bottomSpaceConstraint.constant = -216.0;
+        self.bottomSpaceConstraint.constant = -self.viewHeightConstraint.constant;
         [self.view layoutIfNeeded];
     }
 }
@@ -112,8 +113,8 @@
                     UIKeyboardFrameEndUserInfoKey :
                         [NSValue valueWithCGRect:CGRectMake(0,
                                                             0,
-                                                            CGRectGetWidth(self.view.bounds),
-                                                            CGRectGetHeight(self.view.bounds))]
+                                                            0,
+                                                            self.viewHeightConstraint.constant)]
                     }];
     }
 }
@@ -123,11 +124,11 @@
         self.wasEditing = NO;
         PCUChatViewController *chatViewController = (PCUChatViewController *)[self parentViewController];
         [chatViewController.toolViewController.textField becomeFirstResponder];
-        self.bottomSpaceConstraint.constant = -216.0;
+        self.bottomSpaceConstraint.constant = -self.viewHeightConstraint.constant;
         [self.view layoutIfNeeded];
     }
     else {
-        self.bottomSpaceConstraint.constant = -216.0;
+        self.bottomSpaceConstraint.constant = -self.viewHeightConstraint.constant;
         [UIView animateWithDuration:0.25 animations:^{
             [self.view layoutIfNeeded];
         }];
@@ -138,8 +139,8 @@
                     UIKeyboardFrameEndUserInfoKey :
                         [NSValue valueWithCGRect:CGRectMake(0,
                                                             0,
-                                                            CGRectGetWidth(self.view.bounds),
-                                                            CGRectGetHeight(self.view.bounds))]
+                                                            0,
+                                                            self.viewHeightConstraint.constant)]
                     }];
     }
 }
@@ -147,59 +148,116 @@
 #pragma mark - Layouts
 
 - (void)configureViewLayouts {
-    self.view.translatesAutoresizingMaskIntoConstraints = NO;
-    NSDictionary *views = @{
-                            @"wrapView": self.view
-                            };
-    {
-        NSArray *constraints = [NSLayoutConstraint
-                               constraintsWithVisualFormat:@"|-0-[wrapView]-0-|"
-                               options:kNilOptions
-                               metrics:nil
-                               views:views];
-        [[self.view superview] addConstraints:constraints];
+    if (self.viewHeightConstraint == nil && self.bottomSpaceConstraint == nil) {
+        self.view.translatesAutoresizingMaskIntoConstraints = NO;
+        NSDictionary *views = @{
+                                @"wrapView": self.view
+                                };
+        {
+            NSArray *constraints = [NSLayoutConstraint
+                                    constraintsWithVisualFormat:@"|-0-[wrapView]-0-|"
+                                    options:kNilOptions
+                                    metrics:nil
+                                    views:views];
+            [[self.view superview] addConstraints:constraints];
+        }
+        {
+            NSArray *constraints = [NSLayoutConstraint
+                                    constraintsWithVisualFormat:@"V:[wrapView(216)]-(-216)-|"
+                                    options:kNilOptions
+                                    metrics:nil
+                                    views:views];
+            self.viewHeightConstraint = [constraints firstObject];
+            self.bottomSpaceConstraint = [constraints lastObject];
+            [[self.view superview] addConstraints:constraints];
+        }
     }
-    {
-        NSArray *constraints = [NSLayoutConstraint
-                                constraintsWithVisualFormat:@"V:[wrapView(216)]-(-216)-|"
-                                options:kNilOptions
-                                metrics:nil
-                                views:views];
-        self.bottomSpaceConstraint = [constraints lastObject];
-        [[self.view superview] addConstraints:constraints];
+    if (CGRectGetWidth(self.view.bounds) >= 480.0) {
+        self.viewHeightConstraint.constant = 126.0;
+    }
+    else {
+        self.viewHeightConstraint.constant = 216.0;
+    }
+    if (self.isPresenting) {
+        self.bottomSpaceConstraint.constant = 0.0;
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:UIKeyboardWillShowNotification
+         object:nil
+         userInfo:@{
+                    UIKeyboardFrameEndUserInfoKey :
+                        [NSValue valueWithCGRect:CGRectMake(0,
+                                                            0,
+                                                            0,
+                                                            self.viewHeightConstraint.constant)]
+                    }];
+    }
+    else {
+        self.bottomSpaceConstraint.constant = -self.viewHeightConstraint.constant;
     }
 }
 
 #pragma mark - UICollectionViewDataSource
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    [self.collectionViewLayout configureInsetWithBounds:self.view.bounds];
+    [self configureViewLayouts];
+    [self configureLayoutInset];
+    [self.collectionView reloadData];
 }
 
+static int demoCount = 22;
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
+    return (NSInteger)ceil((CGFloat)demoCount / (CGFloat)[self numberOfCellsPerPage]);
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 16;
+    //计算当前宽度最大可容纳Cell数目
+    return [self numberOfCellsPerPage];
+}
+
+- (NSInteger)numberOfCellsPerPage {
+    return [self numberOfCells] * [self numberOfLines];
+}
+
+- (NSInteger)numberOfCells {
+    return (NSInteger)floor(CGRectGetWidth(self.view.bounds) / (60.0 + 30.0));
+}
+
+- (NSInteger)numberOfLines {
+    return (NSInteger)floor(CGRectGetHeight(self.view.bounds) / 90.0);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-    {
-        UIImageView *imageView = (UIImageView *)[cell viewWithTag:1001];
-        imageView.layer.masksToBounds = YES;
-        imageView.layer.borderWidth = 1.0;
-        imageView.layer.cornerRadius = 6.0;
-        imageView.layer.borderColor = [UIColor colorWithRed:202.0/255.0
-                                                      green:204.0/255.0
-                                                       blue:206.0/255.0
-                                                      alpha:1.0].CGColor;
-    }
-    {
-        UILabel *label = (UILabel *)[cell viewWithTag:1002];
-    }
+    NSUInteger cellIndex = [self cellIndexForIndexPath:indexPath];
+    cell.hidden = cellIndex >= demoCount;
     return cell;
+}
+
+- (NSInteger)cellIndexForIndexPath:(NSIndexPath *)indexPath {
+    NSUInteger cellIndex = [self numberOfCellsPerPage] * indexPath.section + indexPath.row;
+    if ([self numberOfLines] > 1) {
+        NSInteger pageInitIndex = [self numberOfCellsPerPage] * indexPath.section;
+        NSInteger currentIndex = cellIndex % [self numberOfCellsPerPage];
+        NSInteger fixIndex;
+        if (currentIndex % [self numberOfLines] == 0) {
+            fixIndex = currentIndex / [self numberOfLines];
+        }
+        else {
+            fixIndex = currentIndex + [self numberOfCells] - (currentIndex + 1) / [self numberOfLines];
+        }
+        cellIndex = pageInitIndex + fixIndex;
+    }
+    return cellIndex;
+}
+
+#pragma mark - CollectionViewLayout
+
+- (void)configureLayoutInset {
+    NSInteger numberOfCells = [self numberOfCells];
+    CGFloat gapWidth = (CGRectGetWidth(self.view.bounds) - 60.0 * numberOfCells) / (numberOfCells + 1);
+    self.collectionViewLayout.sectionInset = UIEdgeInsetsMake(14, gapWidth, 0, gapWidth);
+    self.collectionViewLayout.minimumLineSpacing = gapWidth;
 }
 
 @end
