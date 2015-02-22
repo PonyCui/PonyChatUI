@@ -8,7 +8,7 @@
 
 #import "PCUChatPresenter.h"
 #import "PCUChatViewController.h"
-#import "PCUChatInterator.h"
+#import "PCUChatInteractor.h"
 #import "PCUNodeInteractor.h"
 #import "PCUNodePresenter.h"
 #import "PCUNodeViewController.h"
@@ -119,12 +119,6 @@
              return obj1.nodeInteractor.orderIndex < obj2.nodeInteractor.orderIndex ? NSOrderedAscending : NSOrderedDescending;
          }
      }];
-}
-
-#pragma mark - Send Message
-
-- (void)sendMessage {
-
 }
 
 @end

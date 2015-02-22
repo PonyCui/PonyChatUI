@@ -8,10 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-@class PCUPanelCollectionViewCell;
+@class PCUPanelCollectionViewCell, PCUPanelItemInteractor;
 
 @interface PCUPanelItemPresenter : NSObject
 
 @property (nonatomic, weak) PCUPanelCollectionViewCell *userInterface;
+
+@property (nonatomic, strong) PCUPanelItemInteractor *itemInteractor;
+
+- (void)updateView;
+
+- (void)sendAction;
 
 @end

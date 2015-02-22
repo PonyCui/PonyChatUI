@@ -11,7 +11,7 @@
 
 @class PCUMessageManager, PCUMessage;
 
-@interface PCUChatInterator : NSObject<PCUMessageManagerDelegate>
+@interface PCUChatInteractor : NSObject<PCUMessageManagerDelegate>
 
 /**
  *  @brief 对话窗口标题

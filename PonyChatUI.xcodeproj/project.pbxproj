@@ -28,7 +28,7 @@
 		63BACEAC1A8DDFA70013DB6C /* PCUMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BACEAB1A8DDFA70013DB6C /* PCUMessage.m */; };
 		63BACEAF1A8DE4150013DB6C /* PCUSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BACEAE1A8DE4150013DB6C /* PCUSender.m */; };
 		63BACEB21A8DE7C70013DB6C /* PCUTextNodeInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BACEB11A8DE7C70013DB6C /* PCUTextNodeInteractor.m */; };
-		63BACEB51A8DE7DB0013DB6C /* PCUChatInterator.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BACEB41A8DE7DB0013DB6C /* PCUChatInterator.m */; };
+		63BACEB51A8DE7DB0013DB6C /* PCUChatInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BACEB41A8DE7DB0013DB6C /* PCUChatInteractor.m */; };
 		63BACEB81A8DE80B0013DB6C /* PCUTextNodePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BACEB71A8DE80B0013DB6C /* PCUTextNodePresenter.m */; };
 		63BACEBB1A8DE8450013DB6C /* PCUNodeInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BACEBA1A8DE8450013DB6C /* PCUNodeInteractor.m */; };
 		63BACEBE1A8DE86A0013DB6C /* PCUNodePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BACEBD1A8DE86A0013DB6C /* PCUNodePresenter.m */; };
@@ -42,6 +42,11 @@
 		63BACEDA1A91DD410013DB6C /* UILabel+PCUAttributedStringLinkResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BACED91A91DD410013DB6C /* UILabel+PCUAttributedStringLinkResponder.m */; };
 		63FF1C021A8C4394007C3A18 /* PCUTextNodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FF1C011A8C4394007C3A18 /* PCUTextNodeViewController.m */; };
 		77B27DC368BB62974F4FF2F5 /* libPods-PonyChatUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACC89F67F39C439C21543284 /* libPods-PonyChatUI.a */; };
+		F070D3131A9A0B750083F6A3 /* PCUPanelPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F070D3121A9A0B750083F6A3 /* PCUPanelPresenter.m */; };
+		F070D3161A9A0BE30083F6A3 /* PCUPanelInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = F070D3151A9A0BE30083F6A3 /* PCUPanelInteractor.m */; };
+		F070D3191A9A0C320083F6A3 /* PCUPanelItemInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = F070D3181A9A0C320083F6A3 /* PCUPanelItemInteractor.m */; };
+		F070D31C1A9A0D4D0083F6A3 /* PCUPanelItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F070D31B1A9A0D4D0083F6A3 /* PCUPanelItemManager.m */; };
+		F070D31F1A9A0D5D0083F6A3 /* PCUPanelItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F070D31E1A9A0D5D0083F6A3 /* PCUPanelItem.m */; };
 		F0A57CC51A90E32C00068694 /* PCUAvatarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A57CC41A90E32C00068694 /* PCUAvatarManager.m */; };
 		F0B123E71A93401500A0DB10 /* PCUToolPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B123E61A93401500A0DB10 /* PCUToolPresenter.m */; };
 		F0B123EA1A93631400A0DB10 /* PCUCustomMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B123E91A93631400A0DB10 /* PCUCustomMessageManager.m */; };
@@ -100,8 +105,8 @@
 		63BACEAE1A8DE4150013DB6C /* PCUSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUSender.m; sourceTree = "<group>"; };
 		63BACEB01A8DE7C70013DB6C /* PCUTextNodeInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUTextNodeInteractor.h; sourceTree = "<group>"; };
 		63BACEB11A8DE7C70013DB6C /* PCUTextNodeInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUTextNodeInteractor.m; sourceTree = "<group>"; };
-		63BACEB31A8DE7DB0013DB6C /* PCUChatInterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUChatInterator.h; sourceTree = "<group>"; };
-		63BACEB41A8DE7DB0013DB6C /* PCUChatInterator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUChatInterator.m; sourceTree = "<group>"; };
+		63BACEB31A8DE7DB0013DB6C /* PCUChatInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUChatInteractor.h; sourceTree = "<group>"; };
+		63BACEB41A8DE7DB0013DB6C /* PCUChatInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUChatInteractor.m; sourceTree = "<group>"; };
 		63BACEB61A8DE80B0013DB6C /* PCUTextNodePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUTextNodePresenter.h; sourceTree = "<group>"; };
 		63BACEB71A8DE80B0013DB6C /* PCUTextNodePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUTextNodePresenter.m; sourceTree = "<group>"; };
 		63BACEB91A8DE8450013DB6C /* PCUNodeInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUNodeInteractor.h; sourceTree = "<group>"; };
@@ -128,6 +133,16 @@
 		63FF1C011A8C4394007C3A18 /* PCUTextNodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUTextNodeViewController.m; sourceTree = "<group>"; };
 		ACC89F67F39C439C21543284 /* libPods-PonyChatUI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PonyChatUI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFFD382C3BEE47F55164881E /* Pods-PonyChatUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PonyChatUI.release.xcconfig"; path = "Pods/Target Support Files/Pods-PonyChatUI/Pods-PonyChatUI.release.xcconfig"; sourceTree = "<group>"; };
+		F070D3111A9A0B750083F6A3 /* PCUPanelPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUPanelPresenter.h; sourceTree = "<group>"; };
+		F070D3121A9A0B750083F6A3 /* PCUPanelPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUPanelPresenter.m; sourceTree = "<group>"; };
+		F070D3141A9A0BE30083F6A3 /* PCUPanelInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUPanelInteractor.h; sourceTree = "<group>"; };
+		F070D3151A9A0BE30083F6A3 /* PCUPanelInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUPanelInteractor.m; sourceTree = "<group>"; };
+		F070D3171A9A0C320083F6A3 /* PCUPanelItemInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUPanelItemInteractor.h; sourceTree = "<group>"; };
+		F070D3181A9A0C320083F6A3 /* PCUPanelItemInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUPanelItemInteractor.m; sourceTree = "<group>"; };
+		F070D31A1A9A0D4D0083F6A3 /* PCUPanelItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUPanelItemManager.h; sourceTree = "<group>"; };
+		F070D31B1A9A0D4D0083F6A3 /* PCUPanelItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUPanelItemManager.m; sourceTree = "<group>"; };
+		F070D31D1A9A0D5D0083F6A3 /* PCUPanelItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUPanelItem.h; sourceTree = "<group>"; };
+		F070D31E1A9A0D5D0083F6A3 /* PCUPanelItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUPanelItem.m; sourceTree = "<group>"; };
 		F0A57CC31A90E32C00068694 /* PCUAvatarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUAvatarManager.h; sourceTree = "<group>"; };
 		F0A57CC41A90E32C00068694 /* PCUAvatarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUAvatarManager.m; sourceTree = "<group>"; };
 		F0B123E51A93401500A0DB10 /* PCUToolPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUToolPresenter.h; sourceTree = "<group>"; };
@@ -267,6 +282,8 @@
 				63BACEAB1A8DDFA70013DB6C /* PCUMessage.m */,
 				63BACEAD1A8DE4150013DB6C /* PCUSender.h */,
 				63BACEAE1A8DE4150013DB6C /* PCUSender.m */,
+				F070D31D1A9A0D5D0083F6A3 /* PCUPanelItem.h */,
+				F070D31E1A9A0D5D0083F6A3 /* PCUPanelItem.m */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -280,6 +297,8 @@
 				63BACEC31A903C7C0013DB6C /* PCUMessageManager.m */,
 				F0A57CC31A90E32C00068694 /* PCUAvatarManager.h */,
 				F0A57CC41A90E32C00068694 /* PCUAvatarManager.m */,
+				F070D31A1A9A0D4D0083F6A3 /* PCUPanelItemManager.h */,
+				F070D31B1A9A0D4D0083F6A3 /* PCUPanelItemManager.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -298,14 +317,18 @@
 		6390B4441A8B06380025A64D /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
-				63BACEB31A8DE7DB0013DB6C /* PCUChatInterator.h */,
-				63BACEB41A8DE7DB0013DB6C /* PCUChatInterator.m */,
+				63BACEB31A8DE7DB0013DB6C /* PCUChatInteractor.h */,
+				63BACEB41A8DE7DB0013DB6C /* PCUChatInteractor.m */,
 				63BACEB91A8DE8450013DB6C /* PCUNodeInteractor.h */,
 				63BACEBA1A8DE8450013DB6C /* PCUNodeInteractor.m */,
 				63BACEB01A8DE7C70013DB6C /* PCUTextNodeInteractor.h */,
 				63BACEB11A8DE7C70013DB6C /* PCUTextNodeInteractor.m */,
 				63BACECF1A91A0740013DB6C /* PCUSystemNodeInteractor.h */,
 				63BACED01A91A0740013DB6C /* PCUSystemNodeInteractor.m */,
+				F070D3141A9A0BE30083F6A3 /* PCUPanelInteractor.h */,
+				F070D3151A9A0BE30083F6A3 /* PCUPanelInteractor.m */,
+				F070D3171A9A0C320083F6A3 /* PCUPanelItemInteractor.h */,
+				F070D3181A9A0C320083F6A3 /* PCUPanelItemInteractor.m */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -325,6 +348,8 @@
 				63BACECD1A91A00D0013DB6C /* PCUSystemNodePresenter.m */,
 				F0B123F41A94F0FA00A0DB10 /* PCUPanelItemPresenter.h */,
 				F0B123F51A94F0FA00A0DB10 /* PCUPanelItemPresenter.m */,
+				F070D3111A9A0B750083F6A3 /* PCUPanelPresenter.h */,
+				F070D3121A9A0B750083F6A3 /* PCUPanelPresenter.m */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -557,6 +582,9 @@
 				63BACEB81A8DE80B0013DB6C /* PCUTextNodePresenter.m in Sources */,
 				63BACED11A91A0740013DB6C /* PCUSystemNodeInteractor.m in Sources */,
 				63BACECE1A91A00D0013DB6C /* PCUSystemNodePresenter.m in Sources */,
+				F070D31C1A9A0D4D0083F6A3 /* PCUPanelItemManager.m in Sources */,
+				F070D3161A9A0BE30083F6A3 /* PCUPanelInteractor.m in Sources */,
+				F070D3191A9A0C320083F6A3 /* PCUPanelItemInteractor.m in Sources */,
 				63BACECB1A919D040013DB6C /* PCUSystemNodeViewController.m in Sources */,
 				63BACEBE1A8DE86A0013DB6C /* PCUNodePresenter.m in Sources */,
 				63BACEB21A8DE7C70013DB6C /* PCUTextNodeInteractor.m in Sources */,
@@ -567,6 +595,7 @@
 				6390B44A1A8B06750025A64D /* PCUWireframe.m in Sources */,
 				63BACEC11A8DE89C0013DB6C /* PCUNodeViewController.m in Sources */,
 				632886101A8B02790032C99C /* AppDelegate.m in Sources */,
+				F070D3131A9A0B750083F6A3 /* PCUPanelPresenter.m in Sources */,
 				63FF1C021A8C4394007C3A18 /* PCUTextNodeViewController.m in Sources */,
 				63BACEA91A8C7E7B0013DB6C /* PCUAttributedStringManager.m in Sources */,
 				F0B123F31A94EDF500A0DB10 /* PCUPanelCollectionViewCell.m in Sources */,
@@ -581,7 +610,8 @@
 				6390B4511A8B0AEE0025A64D /* PCUChatViewController.m in Sources */,
 				F0B123E71A93401500A0DB10 /* PCUToolPresenter.m in Sources */,
 				F0A57CC51A90E32C00068694 /* PCUAvatarManager.m in Sources */,
-				63BACEB51A8DE7DB0013DB6C /* PCUChatInterator.m in Sources */,
+				F070D31F1A9A0D5D0083F6A3 /* PCUPanelItem.m in Sources */,
+				63BACEB51A8DE7DB0013DB6C /* PCUChatInteractor.m in Sources */,
 				63BACEDA1A91DD410013DB6C /* UILabel+PCUAttributedStringLinkResponder.m in Sources */,
 				63BACEA61A8C7CF10013DB6C /* PCUAttributedStringConfigure.m in Sources */,
 				6390B43D1A8B05A40025A64D /* PCUApplication.m in Sources */,

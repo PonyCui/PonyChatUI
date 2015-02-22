@@ -7,7 +7,51 @@
 //
 
 #import "PCUPanelItemPresenter.h"
+#import "PCUPanelItemInteractor.h"
+#import "PCUPanelCollectionViewCell.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @implementation PCUPanelItemPresenter
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self configureReactiveCocoa];
+    }
+    return self;
+}
+
+- (void)updateView {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.userInterface.titleLabel.text = self.itemInteractor.titleString;
+        self.userInterface.imageView.image = self.itemInteractor.iconImage;
+    });
+}
+
+- (void)configureReactiveCocoa {
+    @weakify(self);
+    [RACObserve(self, itemInteractor.titleString) subscribeNext:^(id x) {
+        @strongify(self);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.userInterface.titleLabel.text = x;
+        });
+    }];
+    [RACObserve(self, itemInteractor.iconImage) subscribeNext:^(id x) {
+        @strongify(self);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.userInterface.imageView.image = x;
+        });
+    }];
+}
+
+- (void)sendAction {
+    [self.itemInteractor sendRequest];
+}
+
+- (void)setItemInteractor:(PCUPanelItemInteractor *)itemInteractor {
+    _itemInteractor = itemInteractor;
+    [self updateView];
+}
 
 @end

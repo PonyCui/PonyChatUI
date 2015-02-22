@@ -11,7 +11,7 @@
 #import "PCUApplication.h"
 #import "PCUWireframe.h"
 #import "PCUChatPresenter.h"
-#import "PCUChatInterator.h"
+#import "PCUChatInteractor.h"
 #import "PCUNodeInteractor.h"
 #import "PCUNodePresenter.h"
 

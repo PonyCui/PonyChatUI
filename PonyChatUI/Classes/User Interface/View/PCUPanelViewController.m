@@ -9,6 +9,10 @@
 #import "PCUPanelViewController.h"
 #import "PCUChatViewController.h"
 #import "PCUToolViewController.h"
+#import "PCUPanelPresenter.h"
+#import "PCUPanelInteractor.h"
+#import "PCUPanelCollectionViewCell.h"
+#import "PCUPanelItemPresenter.h"
 #import "PCUApplication.h"
 
 @interface PCUPanelViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
@@ -40,16 +44,17 @@
     _isPresenting = NO;
     [self configureKeyboardNotifications];
     [self configurePCUEndEditingNotifications];
+    [self.eventHandler updateView];
     // Do any additional setup after loading the view.
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self configureLayoutInset];
-    [self updateView];
+    [self reloadCollectionView];
 }
 
-- (void)updateView {
+- (void)reloadCollectionView {
     [self.collectionView reloadData];
 }
 
@@ -209,13 +214,12 @@
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [self configureViewLayouts];
     [self configureLayoutInset];
-    [self updateView];
+    [self reloadCollectionView];
 }
 
-static int demoCount = 22;
-
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return (NSInteger)ceil((CGFloat)demoCount / (CGFloat)[self numberOfCellsPerPage]);
+    return (NSInteger)ceil((CGFloat)self.eventHandler.panelInteractor.items.count /
+                           (CGFloat)[self numberOfCellsPerPage]);
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -237,10 +241,23 @@ static int demoCount = 22;
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     [self updatePageControl];
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    PCUPanelCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell"
+                                                                                 forIndexPath:indexPath];
     NSUInteger cellIndex = [self cellIndexForIndexPath:indexPath];
-    cell.hidden = cellIndex >= demoCount;
+    cell.hidden = cellIndex >= self.eventHandler.panelInteractor.items.count;
+    if (cellIndex < self.eventHandler.panelInteractor.items.count) {
+        id itemInteractor = self.eventHandler.panelInteractor.items[cellIndex];
+        cell.eventHandler.itemInteractor = itemInteractor;
+    }
+    else {
+        cell.eventHandler.itemInteractor = nil;
+    }
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    PCUPanelCollectionViewCell *cell = (PCUPanelCollectionViewCell *)[self collectionView:collectionView cellForItemAtIndexPath:indexPath];
+    [cell.eventHandler sendAction];
 }
 
 - (NSInteger)cellIndexForIndexPath:(NSIndexPath *)indexPath {
@@ -280,6 +297,7 @@ static int demoCount = 22;
     NSInteger currentPage = (NSInteger)(self.collectionView.contentOffset.x / CGRectGetWidth(self.collectionView.bounds));
     [self.pageControl setNumberOfPages:numberOfPages];
     [self.pageControl setCurrentPage:currentPage];
+    self.pageControl.hidden = numberOfPages <= 1;
 }
 
 @end

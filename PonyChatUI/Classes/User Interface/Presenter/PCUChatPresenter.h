@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@class PCUChatViewController, PCUChatInterator;
+@class PCUChatViewController, PCUChatInteractor;
 
 @interface PCUChatPresenter : NSObject
 
 @property (nonatomic, strong) PCUChatViewController *userInterface;
 
-@property (nonatomic, strong) PCUChatInterator *chatInteractor;
+@property (nonatomic, strong) PCUChatInteractor *chatInteractor;
 
 - (NSArray *)orderedEventHandler;
 

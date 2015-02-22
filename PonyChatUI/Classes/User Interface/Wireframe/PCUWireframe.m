@@ -9,12 +9,12 @@
 #import "PCUWireframe.h"
 #import "PCUChatViewController.h"
 #import "PCUChatPresenter.h"
-#import "PCUToolViewController.h"
-#import "PCUTextNodeViewController.h"
-#import "PCUChatInterator.h"
+#import "PCUChatInteractor.h"
 #import "PCUMessageManager.h"
+#import "PCUToolViewController.h"
 #import "PCUToolPresenter.h"
 #import "PCUPanelViewController.h"
+#import "PCUPanelPresenter.h"
 
 @implementation PCUWireframe
 
@@ -50,7 +50,7 @@
                                                  instantiateViewControllerWithIdentifier:@"PCUChatViewController"];
     chatViewController.eventHandler = [[PCUChatPresenter alloc] init];
     chatViewController.eventHandler.userInterface = chatViewController;
-    chatViewController.eventHandler.chatInteractor = [[PCUChatInterator alloc] init];
+    chatViewController.eventHandler.chatInteractor = [[PCUChatInteractor alloc] init];
     return chatViewController;
 }
 
@@ -67,6 +67,8 @@
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"PCUStoryBoard" bundle:nil];
     PCUPanelViewController *panelViewController = [storyBoard
                                                    instantiateViewControllerWithIdentifier:@"PCUPanelViewController"];
+    panelViewController.eventHandler = [[PCUPanelPresenter alloc] init];
+    panelViewController.eventHandler.userInterface = panelViewController;
     return panelViewController;
 }
 

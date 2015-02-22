@@ -8,10 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@class PCUPanelPresenter;
+
 @interface PCUPanelViewController : UIViewController
+
+@property (nonatomic, strong) PCUPanelPresenter *eventHandler;
 
 @property (nonatomic, assign) BOOL isPresenting;
 
 - (void)configureViewLayouts;
+
+- (void)reloadCollectionView;
 
 @end

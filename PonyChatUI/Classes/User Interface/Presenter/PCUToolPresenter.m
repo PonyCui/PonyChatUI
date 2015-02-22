@@ -8,7 +8,7 @@
 
 #import "PCUToolPresenter.h"
 #import "PCUToolViewController.h"
-#import "PCUChatInterator.h"
+#import "PCUChatInteractor.h"
 #import "PCUWireframe.h"
 #import "PCUPanelViewController.h"
 

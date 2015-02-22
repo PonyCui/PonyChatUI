@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@class PCUToolViewController, PCUChatInterator;
+@class PCUToolViewController, PCUChatInteractor;
 
 @interface PCUToolPresenter : NSObject
 
 @property (nonatomic, weak) PCUToolViewController *userInterface;
 
-@property (nonatomic, weak) PCUChatInterator *chatInteractor;
+@property (nonatomic, weak) PCUChatInteractor *chatInteractor;
 
 - (void)sendTextMessage;
 

@@ -6,17 +6,17 @@
 //  Copyright (c) 2015年 多玩事业部 iOS开发组 YY Inc. All rights reserved.
 //
 
-#import "PCUChatInterator.h"
+#import "PCUChatInteractor.h"
 #import "PCUMessageManager.h"
 #import "PCUMessage.h"
 #import "PCUNodeInteractor.h"
 #import "PCUApplication.h"
 
-@interface PCUChatInterator ()<PCUMessageManagerDelegate>
+@interface PCUChatInteractor ()<PCUMessageManagerDelegate>
 
 @end
 
-@implementation PCUChatInterator
+@implementation PCUChatInteractor
 
 - (void)dealloc {
     [self.messageManager disconnect];
