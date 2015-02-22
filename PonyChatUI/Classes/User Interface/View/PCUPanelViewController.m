@@ -36,6 +36,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.collectionView.scrollsToTop = NO;
     _isPresenting = NO;
     [self configureKeyboardNotifications];
     [self configurePCUEndEditingNotifications];
