@@ -23,6 +23,8 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *collectionViewLayout;
 
+@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
+
 @end
 
 @implementation PCUPanelViewController
@@ -43,6 +45,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self configureLayoutInset];
+    [self updateView];
+}
+
+- (void)updateView {
+    [self.collectionView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -201,7 +208,7 @@
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [self configureViewLayouts];
     [self configureLayoutInset];
-    [self.collectionView reloadData];
+    [self updateView];
 }
 
 static int demoCount = 22;
@@ -228,6 +235,7 @@ static int demoCount = 22;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    [self updatePageControl];
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     NSUInteger cellIndex = [self cellIndexForIndexPath:indexPath];
     cell.hidden = cellIndex >= demoCount;
@@ -251,6 +259,10 @@ static int demoCount = 22;
     return cellIndex;
 }
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [self updatePageControl];
+}
+
 #pragma mark - CollectionViewLayout
 
 - (void)configureLayoutInset {
@@ -258,6 +270,15 @@ static int demoCount = 22;
     CGFloat gapWidth = (CGRectGetWidth(self.view.bounds) - 60.0 * numberOfCells) / (numberOfCells + 1);
     self.collectionViewLayout.sectionInset = UIEdgeInsetsMake(14, gapWidth, 0, gapWidth);
     self.collectionViewLayout.minimumLineSpacing = gapWidth;
+}
+
+#pragma mark - UIPageControl
+
+- (void)updatePageControl {
+    NSInteger numberOfPages = [self numberOfSectionsInCollectionView:self.collectionView];
+    NSInteger currentPage = (NSInteger)(self.collectionView.contentOffset.x / CGRectGetWidth(self.collectionView.bounds));
+    [self.pageControl setNumberOfPages:numberOfPages];
+    [self.pageControl setCurrentPage:currentPage];
 }
 
 @end

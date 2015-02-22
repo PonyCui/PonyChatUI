@@ -434,6 +434,7 @@
                     <connections>
                         <outlet property="collectionView" destination="XR2-6A-bqX" id="JdZ-W5-yeV"/>
                         <outlet property="collectionViewLayout" destination="D5L-hT-FUo" id="w0o-JU-RD7"/>
+                        <outlet property="pageControl" destination="OKM-DE-s9f" id="A6V-0Z-pT8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eHi-5w-c7G" userLabel="First Responder" sceneMemberID="firstResponder"/>
