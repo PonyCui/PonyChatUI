@@ -20,4 +20,6 @@
 
 - (void)togglePanelView;
 
+- (void)toggleEmotionView;
+
 @end

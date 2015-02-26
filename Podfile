@@ -7,10 +7,10 @@ pod "Objection"
 pod "ReactiveCocoa", "2.4.4"
 pod "AFNetworking"
 pod "TMCache"
+pod "PonyEmotionBoard", :podspec => "https://github.com/PonyGroup/PonyEmotionBoard/raw/master/PonyEmotionBoard.podspec"
 
 end
 
 target 'PonyChatUITests' do
 
 end
-

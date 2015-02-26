@@ -34,8 +34,12 @@
     return YES;
 }
 
-- (IBAction)handlePannelButtonTapped:(UIButton *)sender {
+- (IBAction)handlePanelButtonTapped:(UIButton *)sender {
     [self.eventHandler togglePanelView];
+}
+
+- (IBAction)handleEmotionButtonTapped:(UIButton *)sender {
+    [self.eventHandler toggleEmotionView];
 }
 
 @end

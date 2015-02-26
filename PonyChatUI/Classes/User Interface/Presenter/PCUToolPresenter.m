@@ -11,6 +11,7 @@
 #import "PCUChatInteractor.h"
 #import "PCUWireframe.h"
 #import "PCUPanelViewController.h"
+#import <PonyEmotionBoard/PEBApplication.h>
 
 @interface PCUToolPresenter ()
 
@@ -31,6 +32,10 @@
         self.panelViewController = [wireframe presentPanelViewToChatViewController:(PCUChatViewController *)[[self userInterface] parentViewController]];
     }
     self.panelViewController.isPresenting = !self.panelViewController.isPresenting;
+}
+
+- (void)toggleEmotionView {
+    [[PEBApplication sharedInstance] setEditing:YES textInputContainer:self.userInterface.textField];
 }
 
 @end
