@@ -27,6 +27,13 @@
 }
 
 - (void)togglePanelView {
+    if ([[PEBApplication sharedInstance] isEditingWithParentViewController:self.userInterface.parentViewController]) {
+        [[PEBApplication sharedInstance] setEditing:NO
+                               parentViewController:self.userInterface.parentViewController
+                                 textInputContainer:nil];
+        [self performSelector:@selector(togglePanelView) withObject:nil afterDelay:0.50];
+        return;
+    }
     if (self.panelViewController == nil) {
         PCUWireframe *wireframe = PCU[[PCUWireframe class]];
         self.panelViewController = [wireframe presentPanelViewToChatViewController:(PCUChatViewController *)[[self userInterface] parentViewController]];
@@ -35,7 +42,16 @@
 }
 
 - (void)toggleEmotionView {
-    [[PEBApplication sharedInstance] setEditing:YES textInputContainer:self.userInterface.textField];
+    if (self.panelViewController.isPresenting) {
+        self.panelViewController.isPresenting = NO;
+        [self performSelector:@selector(toggleEmotionView) withObject:nil afterDelay:0.50];
+        return;
+    }
+    BOOL isEditing = [[PEBApplication sharedInstance]
+                      isEditingWithParentViewController:self.userInterface.parentViewController];
+    [[PEBApplication sharedInstance] setEditing:!isEditing
+                           parentViewController:self.userInterface.parentViewController
+                             textInputContainer:self.userInterface.textField];
 }
 
 @end
