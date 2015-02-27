@@ -27,6 +27,8 @@ typedef NS_ENUM(NSUInteger, PCUKeyboardType) {
 
 @property (nonatomic, weak) PCUPanelViewController *panelViewController;
 
+@property (nonatomic, weak) PEBKeyboardViewController *emotionViewController;
+
 @property (nonatomic, assign) NSInteger currentKeyboardHeight;
 
 @property (nonatomic, assign) BOOL isSystemKeyboardPresented;
@@ -70,6 +72,7 @@ typedef NS_ENUM(NSUInteger, PCUKeyboardType) {
         @strongify(self);
         if (self.isSystemKeyboardPresented) {
             [self dismissKeyboardWithType:PCUKeyboardTypePanel];
+            [self dismissKeyboardWithType:PCUKeyboardTypeEmotion];
         }
         [self adjustLayouts];
     }];
@@ -77,6 +80,16 @@ typedef NS_ENUM(NSUInteger, PCUKeyboardType) {
         @strongify(self);
         if (self.panelViewController.isPresenting) {
             self.currentKeyboardHeight = CGRectGetHeight(self.panelViewController.view.bounds);
+            [self dismissKeyboardWithType:PCUKeyboardTypeSystem];
+            [self dismissKeyboardWithType:PCUKeyboardTypeEmotion];
+        }
+        [self adjustLayouts];
+    }];
+    [RACObserve(self, emotionViewController.isPresenting) subscribeNext:^(id x) {
+        @strongify(self);
+        if (self.emotionViewController.isPresenting) {
+            self.currentKeyboardHeight = CGRectGetHeight(self.emotionViewController.view.bounds);
+            [self dismissKeyboardWithType:PCUKeyboardTypePanel];
             [self dismissKeyboardWithType:PCUKeyboardTypeSystem];
         }
         [self adjustLayouts];
@@ -98,12 +111,15 @@ typedef NS_ENUM(NSUInteger, PCUKeyboardType) {
     else if (type == PCUKeyboardTypePanel && self.panelViewController.isPresenting) {
         [self.panelViewController setIsPresenting:NO];
     }
+    else if (type == PCUKeyboardTypeEmotion && self.emotionViewController.isPresenting) {
+        [self.emotionViewController setIsPresenting:NO];
+    }
 }
 
 #pragma mark - ToolView Adjusting
 
 - (void)adjustLayouts {
-    if (!self.isSystemKeyboardPresented && !self.panelViewController.isPresenting) {
+    if (!self.isSystemKeyboardPresented && !self.panelViewController.isPresenting && !self.emotionViewController.isPresenting) {
         //All Closed
         [(PCUChatViewController *)self.userInterface.parentViewController setBottomLayoutHeight:0.0];
     }
@@ -131,7 +147,7 @@ typedef NS_ENUM(NSUInteger, PCUKeyboardType) {
 #pragma mark - PanelViewController
 
 - (void)togglePanelView {
-    [self.panelViewController setIsPresenting:!self.panelViewController.isPresenting];
+    self.panelViewController.isPresenting = !self.panelViewController.isPresenting;
 }
 
 - (PCUPanelViewController *)panelViewController {
@@ -140,6 +156,21 @@ typedef NS_ENUM(NSUInteger, PCUKeyboardType) {
         _panelViewController = [wireframe presentPanelViewToChatViewController:(PCUChatViewController *)[[self userInterface] parentViewController]];
     }
     return _panelViewController;
+}
+
+#pragma mark - EmotionViewController
+
+- (void)toggleEmotionView {
+    self.emotionViewController.isPresenting = !self.emotionViewController.isPresenting;
+}
+
+- (PEBKeyboardViewController *)emotionViewController {
+    if (_emotionViewController == nil) {
+        _emotionViewController = [[PEBApplication sharedInstance]
+                                  addKeyboardViewControllerToViewController:self.userInterface.parentViewController
+                                                              withTextField:self.userInterface.textField];
+    }
+    return _emotionViewController;
 }
 
 #pragma mark - Send Message
