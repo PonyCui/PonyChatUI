@@ -15,7 +15,12 @@
 #import <PonyEmotionBoard/PEBApplication.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-//#define kPCUKeyboardIdentifier @"kPCUKeyboardIdentifier"
+typedef NS_ENUM(NSUInteger, PCUKeyboardType) {
+    PCUKeyboardTypeSystem,
+    PCUKeyboardTypePanel,
+    PCUKeyboardTypeEmotion
+};
+
 #define kPCUEndEditingNotification @"kPCUEndEditingNotification"
 
 @interface PCUToolPresenter ()
@@ -64,7 +69,7 @@
     [RACObserve(self, isSystemKeyboardPresented) subscribeNext:^(id x) {
         @strongify(self);
         if (self.isSystemKeyboardPresented) {
-            [self dismissKeyboardsWithIdentifier:@"Panel"];
+            [self dismissKeyboardWithType:PCUKeyboardTypePanel];
         }
         [self adjustLayouts];
     }];
@@ -72,17 +77,25 @@
         @strongify(self);
         if (self.panelViewController.isPresenting) {
             self.currentKeyboardHeight = CGRectGetHeight(self.panelViewController.view.bounds);
-            [self dismissKeyboardsWithIdentifier:@"System"];
+            [self dismissKeyboardWithType:PCUKeyboardTypeSystem];
         }
         [self adjustLayouts];
     }];
 }
 
-- (void)dismissKeyboardsWithIdentifier:(NSString *)keyboardIdentifier {
-    if ([keyboardIdentifier isEqualToString:@"System"]) {
+#pragma mark - Dismiss Keyboard
+
+- (void)dismissAllKeyboards {
+    [self dismissKeyboardWithType:PCUKeyboardTypeSystem];
+    [self dismissKeyboardWithType:PCUKeyboardTypePanel];
+    [self dismissKeyboardWithType:PCUKeyboardTypeEmotion];
+}
+
+- (void)dismissKeyboardWithType:(PCUKeyboardType)type {
+    if (type == PCUKeyboardTypeSystem && self.isSystemKeyboardPresented) {
         [self.userInterface.textField resignFirstResponder];
     }
-    else if ([keyboardIdentifier isEqualToString:@"Panel"]) {
+    else if (type == PCUKeyboardTypePanel && self.panelViewController.isPresenting) {
         [self.panelViewController setIsPresenting:NO];
     }
 }
@@ -112,8 +125,7 @@
 }
 
 - (void)handlePCUEndEditingNotification:(NSNotification *)sender {
-    [self dismissKeyboardsWithIdentifier:@"Panel"];
-    [self dismissKeyboardsWithIdentifier:@"System"];
+    [self dismissAllKeyboards];
 }
 
 #pragma mark - PanelViewController
