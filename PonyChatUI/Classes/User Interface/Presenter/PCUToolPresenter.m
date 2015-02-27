@@ -92,6 +92,7 @@ typedef NS_ENUM(NSUInteger, PCUKeyboardType) {
             [self dismissKeyboardWithType:PCUKeyboardTypePanel];
             [self dismissKeyboardWithType:PCUKeyboardTypeSystem];
         }
+        [self.userInterface setEmotionCoveredKeyboardButtonShow:self.emotionViewController.isPresenting];
         [self adjustLayouts];
     }];
 }

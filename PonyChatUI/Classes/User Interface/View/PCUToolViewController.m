@@ -11,6 +11,10 @@
 
 @interface PCUToolViewController ()<UITextFieldDelegate>
 
+@property (weak, nonatomic) IBOutlet UIButton *emotionButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *emotionCoveredKeyboardButton;
+
 @end
 
 @implementation PCUToolViewController
@@ -41,6 +45,21 @@
 
 - (IBAction)handleEmotionButtonTapped:(UIButton *)sender {
     [self.eventHandler toggleEmotionView];
+}
+
+- (IBAction)handleKeyboardButtonTapped:(UIButton *)sender {
+    [self.textField becomeFirstResponder];
+}
+
+- (void)setEmotionCoveredKeyboardButtonShow:(BOOL)isShow {
+    if (isShow) {
+        self.emotionCoveredKeyboardButton.hidden = NO;
+        self.emotionButton.hidden = YES;
+    }
+    else {
+        self.emotionCoveredKeyboardButton.hidden = YES;
+        self.emotionButton.hidden = NO;
+    }
 }
 
 @end
