@@ -16,6 +16,8 @@
 
 @property (nonatomic, weak) PCUChatInteractor *chatInteractor;
 
+- (void)updateView;
+
 - (void)sendTextMessage;
 
 - (void)togglePanelView;

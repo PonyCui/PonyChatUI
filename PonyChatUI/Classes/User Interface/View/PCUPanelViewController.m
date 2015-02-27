@@ -15,9 +15,9 @@
 #import "PCUPanelItemPresenter.h"
 #import "PCUApplication.h"
 
-@interface PCUPanelViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
+#define kPCUKeyboardIdentifier @"kPCUKeyboardIdentifier"
 
-@property (nonatomic, assign) BOOL wasEditing;
+@interface PCUPanelViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, weak) NSLayoutConstraint *viewHeightConstraint;
 
@@ -42,8 +42,6 @@
     [super viewDidLoad];
     self.collectionView.scrollsToTop = NO;
     _isPresenting = NO;
-    [self configureKeyboardNotifications];
-    [self configurePCUEndEditingNotifications];
     [self.eventHandler updateView];
     // Do any additional setup after loading the view.
 }
@@ -63,41 +61,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Observe Real Keyboard
-
-- (void)configureKeyboardNotifications {
-    [[NSNotificationCenter defaultCenter]
-     addObserver:self
-     selector:@selector(handleRealKeyboardWillShowNotificaiton:)
-     name:UIKeyboardWillShowNotification
-     object:nil];
-}
-
-- (void)handleRealKeyboardWillShowNotificaiton:(NSNotification *)sender {
-    if (sender.userInfo[UIKeyboardFrameBeginUserInfoKey] != nil) {
-        //It's real
-        _isPresenting = NO;
-        self.bottomSpaceConstraint.constant = -self.viewHeightConstraint.constant;
-        [self.view layoutIfNeeded];
-    }
-}
-
-#pragma mark - Observe PCUApplication endEditing Notification
-
-- (void)configurePCUEndEditingNotifications {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(handleEndEditingNotification)
-                                                 name:kPCUEndEditingNotification
-                                               object:nil];
-}
-
-- (void)handleEndEditingNotification {
-    if (self.isPresenting) {
-        self.wasEditing = NO;
-        self.isPresenting = NO;
-    }
-}
-
 #pragma mark - toggle
 
 - (void)setIsPresenting:(BOOL)isPresenting {
@@ -108,54 +71,17 @@
 }
 
 - (void)presentPanel {
-    PCUChatViewController *chatViewController = (PCUChatViewController *)[self parentViewController];
-    if (chatViewController.toolViewController.textField.editing) {
-        self.wasEditing = YES;
-        [chatViewController.toolViewController.textField endEditing:YES];
-        [self performSelector:@selector(presentPanel) withObject:nil afterDelay:0.50];
-    }
-    else {
-        self.bottomSpaceConstraint.constant = 0.0;
-        [UIView animateWithDuration:0.25 animations:^{
-            [self.view layoutIfNeeded];
-        }];
-        [[NSNotificationCenter defaultCenter]
-         postNotificationName:UIKeyboardWillShowNotification
-         object:nil
-         userInfo:@{
-                    UIKeyboardFrameEndUserInfoKey :
-                        [NSValue valueWithCGRect:CGRectMake(0,
-                                                            0,
-                                                            0,
-                                                            self.viewHeightConstraint.constant)]
-                    }];
-    }
+    self.bottomSpaceConstraint.constant = 0.0;
+    [UIView animateWithDuration:0.25 animations:^{
+        [self.view layoutIfNeeded];
+    }];
 }
 
 - (void)dismissPanel {
-    if (self.wasEditing) {
-        self.wasEditing = NO;
-        PCUChatViewController *chatViewController = (PCUChatViewController *)[self parentViewController];
-        [chatViewController.toolViewController.textField becomeFirstResponder];
-        self.bottomSpaceConstraint.constant = -self.viewHeightConstraint.constant;
+    self.bottomSpaceConstraint.constant = -self.viewHeightConstraint.constant;
+    [UIView animateWithDuration:0.25 animations:^{
         [self.view layoutIfNeeded];
-    }
-    else {
-        self.bottomSpaceConstraint.constant = -self.viewHeightConstraint.constant;
-        [UIView animateWithDuration:0.25 animations:^{
-            [self.view layoutIfNeeded];
-        }];
-        [[NSNotificationCenter defaultCenter]
-         postNotificationName:UIKeyboardWillHideNotification
-         object:nil
-         userInfo:@{
-                    UIKeyboardFrameEndUserInfoKey :
-                        [NSValue valueWithCGRect:CGRectMake(0,
-                                                            0,
-                                                            0,
-                                                            self.viewHeightConstraint.constant)]
-                    }];
-    }
+    }];
 }
 
 #pragma mark - Layouts
@@ -193,20 +119,11 @@
     }
     if (self.isPresenting) {
         self.bottomSpaceConstraint.constant = 0.0;
-        [[NSNotificationCenter defaultCenter]
-         postNotificationName:UIKeyboardWillShowNotification
-         object:nil
-         userInfo:@{
-                    UIKeyboardFrameEndUserInfoKey :
-                        [NSValue valueWithCGRect:CGRectMake(0,
-                                                            0,
-                                                            0,
-                                                            self.viewHeightConstraint.constant)]
-                    }];
     }
     else {
         self.bottomSpaceConstraint.constant = -self.viewHeightConstraint.constant;
     }
+    [self.view layoutIfNeeded];
 }
 
 #pragma mark - UICollectionViewDataSource
