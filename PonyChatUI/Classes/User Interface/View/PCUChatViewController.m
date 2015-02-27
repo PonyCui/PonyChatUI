@@ -199,6 +199,7 @@
         }
         previousViewController = nodeViewController;
     }];
+    [self.view layoutIfNeeded];
 }
 
 #pragma mark - handle events

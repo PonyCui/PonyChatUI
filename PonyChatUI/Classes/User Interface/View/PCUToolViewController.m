@@ -48,7 +48,7 @@
     @weakify(self);
     [RACObserve(self.textField, contentSize) subscribeNext:^(id x) {
         @strongify(self);
-        [UIView animateWithDuration:0.10 delay:0.15 options:UIViewAnimationOptionCurveLinear animations:^{
+        [UIView animateWithDuration:0.05 delay:0.15 options:UIViewAnimationOptionCurveLinear animations:^{
             self.textViewHeightConstraint.constant = self.textField.contentSize.height;
             [self adjustToolViewHeight];
             [self.view.superview layoutIfNeeded];
