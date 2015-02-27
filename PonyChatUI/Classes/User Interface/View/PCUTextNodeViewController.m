@@ -20,7 +20,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *textLabelBackgroundImageView;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textLabelTrailingSpace;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textLabeHorizonSpace;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textLabelTopSpace;
 
@@ -29,6 +29,8 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *sendingIndicatorView;
 
 @property (weak, nonatomic) IBOutlet UIButton *sendingRetryButton;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textLabelWidthConstraint;
 
 @end
 
@@ -82,19 +84,22 @@
     NSAttributedString *attributedString = self.textLabel.attributedText;
     CGSize size = [attributedString boundingRectWithSize:CGSizeMake(CGRectGetWidth(self.view.bounds), CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
     if (size.width > CGRectGetWidth(self.view.bounds) * 0.618) {
-        self.textLabelTrailingSpace.constant = CGRectGetWidth(self.view.bounds) - 76.0 - size.width * 0.618;//双行
-        self.textLabelTopSpace.constant = -7.0;
+        self.textLabeHorizonSpace.constant = CGRectGetWidth(self.view.bounds) - 76.0 - size.width * 0.618;//双行
+        self.textLabelTopSpace.constant = -10.0;
         self.textLabelBottomSpace.constant = 22.0;
     }
     else if (size.height > 30.0) {
-        self.textLabelTopSpace.constant = -7.0;
+        self.textLabelTopSpace.constant = -10.0;
         self.textLabelBottomSpace.constant = 22.0;
         //多行
     }
     else {
-        self.textLabelTrailingSpace.constant = 8.0;//单行
+        self.textLabeHorizonSpace.constant = 8.0;//单行
         self.textLabelTopSpace.constant = -3.0;
         self.textLabelBottomSpace.constant = 16.0;
+    }
+    if (size.width < 32.0) {
+        self.textLabelWidthConstraint.constant = size.width;
     }
 }
 
