@@ -17,7 +17,7 @@
 
 #pragma mark - IBOutlet
 
-@property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet UITextView *textField;
 
 - (void)setEmotionCoveredKeyboardButtonShow:(BOOL)isShow;
 

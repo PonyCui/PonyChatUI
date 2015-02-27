@@ -68,17 +68,6 @@
                                     <constraint firstAttribute="height" constant="1" id="os9-5Z-Ay4"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hAi-QZ-C1i">
-                                <rect key="frame" x="45" y="9" width="197" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="yKd-Zy-kLk"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="send" enablesReturnKeyAutomatically="YES"/>
-                                <connections>
-                                    <outlet property="delegate" destination="M3T-Pn-VII" id="Ww1-cx-wV7"/>
-                                </connections>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6a-xQ-lwO" userLabel="VoiceButton">
                                 <rect key="frame" x="4" y="7" width="35" height="35"/>
                                 <constraints>
@@ -125,24 +114,36 @@
                                     <action selector="handleKeyboardButtonTapped:" destination="M3T-Pn-VII" eventType="touchUpInside" id="a70-BG-M5g"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WLg-li-9kw">
+                                <rect key="frame" x="45" y="8" width="197" height="32"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="pEy-xt-Nbb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" returnKeyType="send" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="M3T-Pn-VII" id="7gN-Ve-5JF"/>
+                                </connections>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274509803926" green="0.95686274509803926" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="wHp-Ar-i0M" secondAttribute="centerY" id="4cn-IR-gOb"/>
-                            <constraint firstAttribute="centerY" secondItem="hAi-QZ-C1i" secondAttribute="centerY" id="9yo-wu-GO9"/>
+                            <constraint firstItem="6u0-sQ-X44" firstAttribute="top" secondItem="wHp-Ar-i0M" secondAttribute="bottom" constant="6" id="1ZD-pV-AcC"/>
                             <constraint firstItem="9AH-RF-GJ6" firstAttribute="top" secondItem="2aT-k5-Sby" secondAttribute="bottom" id="B18-gx-DEB"/>
                             <constraint firstItem="6F0-Cf-QO7" firstAttribute="height" secondItem="upR-l7-qJc" secondAttribute="height" id="EVT-JC-77R"/>
                             <constraint firstAttribute="trailing" secondItem="9AH-RF-GJ6" secondAttribute="trailing" id="FOF-xd-Vz2"/>
-                            <constraint firstAttribute="centerY" secondItem="i6a-xQ-lwO" secondAttribute="centerY" id="QKq-eD-nL0"/>
+                            <constraint firstItem="6u0-sQ-X44" firstAttribute="top" secondItem="i6a-xQ-lwO" secondAttribute="bottom" constant="6" id="PV2-qK-6FH"/>
+                            <constraint firstAttribute="trailing" secondItem="WLg-li-9kw" secondAttribute="trailing" constant="78" id="QDj-q6-ayV"/>
+                            <constraint firstItem="WLg-li-9kw" firstAttribute="leading" secondItem="i6a-xQ-lwO" secondAttribute="trailing" constant="6" id="YRH-8R-8EQ"/>
                             <constraint firstItem="6F0-Cf-QO7" firstAttribute="centerX" secondItem="upR-l7-qJc" secondAttribute="centerX" id="ZAt-EJ-D0v"/>
                             <constraint firstItem="6F0-Cf-QO7" firstAttribute="width" secondItem="upR-l7-qJc" secondAttribute="width" id="c6Q-IR-FIh"/>
                             <constraint firstItem="i6a-xQ-lwO" firstAttribute="leading" secondItem="iJ0-Db-Xo3" secondAttribute="leading" constant="4" id="cpT-j6-FJm"/>
                             <constraint firstItem="9AH-RF-GJ6" firstAttribute="leading" secondItem="iJ0-Db-Xo3" secondAttribute="leading" id="djQ-00-1RN"/>
+                            <constraint firstItem="6u0-sQ-X44" firstAttribute="top" secondItem="6F0-Cf-QO7" secondAttribute="bottom" constant="6" id="eb9-9I-EYl"/>
                             <constraint firstItem="6F0-Cf-QO7" firstAttribute="centerY" secondItem="upR-l7-qJc" secondAttribute="centerY" id="et9-m9-efW"/>
                             <constraint firstItem="wHp-Ar-i0M" firstAttribute="leading" secondItem="6F0-Cf-QO7" secondAttribute="trailing" id="l1u-Iu-1pv"/>
-                            <constraint firstItem="hAi-QZ-C1i" firstAttribute="leading" secondItem="i6a-xQ-lwO" secondAttribute="trailing" constant="6" id="s4I-lP-TCz"/>
-                            <constraint firstAttribute="centerY" secondItem="6F0-Cf-QO7" secondAttribute="centerY" id="ssS-22-IQd"/>
-                            <constraint firstAttribute="trailing" secondItem="hAi-QZ-C1i" secondAttribute="trailing" constant="78" id="u4l-oY-wlj"/>
+                            <constraint firstAttribute="centerY" secondItem="WLg-li-9kw" secondAttribute="centerY" id="nfK-el-WQT"/>
                             <constraint firstAttribute="trailing" secondItem="wHp-Ar-i0M" secondAttribute="trailing" constant="4" id="yRw-Eg-Szy"/>
                         </constraints>
                     </view>
@@ -153,7 +154,8 @@
                     <connections>
                         <outlet property="emotionButton" destination="6F0-Cf-QO7" id="qjf-Bl-VbO"/>
                         <outlet property="emotionCoveredKeyboardButton" destination="upR-l7-qJc" id="my2-1m-lE2"/>
-                        <outlet property="textField" destination="hAi-QZ-C1i" id="oB0-N0-dN4"/>
+                        <outlet property="textField" destination="WLg-li-9kw" id="Agv-J0-Mdq"/>
+                        <outlet property="textViewHeightConstraint" destination="pEy-xt-Nbb" id="Fqd-rl-PkA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zaa-5u-Yha" userLabel="First Responder" sceneMemberID="firstResponder"/>

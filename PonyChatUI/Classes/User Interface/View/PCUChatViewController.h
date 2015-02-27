@@ -27,6 +27,8 @@
 
 - (void)setBottomLayoutHeight:(CGFloat)layoutHeight;
 
+- (void)setToolViewLayoutHeight:(CGFloat)layoutHeight;
+
 - (void)scrollToBottom:(BOOL)animated;
 
 @end

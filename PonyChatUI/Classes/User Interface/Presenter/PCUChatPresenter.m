@@ -35,14 +35,6 @@
     if (self) {
         self.nodeEventHanlders = @[];
         [self configureReactiveCocoa];
-//        [[NSNotificationCenter defaultCenter] addObserver:self
-//                                                 selector:@selector(handleKeyboardWillShowNotification:)
-//                                                     name:UIKeyboardWillShowNotification
-//                                                   object:nil];
-//        [[NSNotificationCenter defaultCenter] addObserver:self
-//                                                 selector:@selector(handleKeyboardWillHideNotification:)
-//                                                     name:UIKeyboardWillHideNotification
-//                                                   object:nil];
     }
     return self;
 }
@@ -61,18 +53,6 @@
         [self.userInterface reloadData];
     }];
 }
-
-#pragma mark - 
-
-//- (void)handleKeyboardWillShowNotification:(NSNotification *)notification {
-//    CGRect keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-//    CGFloat keyboardHeight = CGRectGetHeight(keyboardFrame);
-//    [self.userInterface setBottomLayoutHeight:keyboardHeight];
-//}
-//
-//- (void)handleKeyboardWillHideNotification:(NSNotification *)notification {
-//    [self.userInterface setBottomLayoutHeight:0];
-//}
 
 #pragma mark - 
 

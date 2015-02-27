@@ -8,12 +8,16 @@
 
 #import "PCUToolViewController.h"
 #import "PCUToolPresenter.h"
+#import "PCUChatViewController.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
-@interface PCUToolViewController ()<UITextFieldDelegate>
+@interface PCUToolViewController ()<UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *emotionButton;
 
 @property (weak, nonatomic) IBOutlet UIButton *emotionCoveredKeyboardButton;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewHeightConstraint;
 
 @end
 
@@ -21,6 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self configureTextView];
     [self.eventHandler updateView];
     // Do any additional setup after loading the view.
 }
@@ -30,14 +35,47 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - UITextFieldDelegate
+#pragma mark - UITextView
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    if (textField.text.length) {
-        [self.eventHandler sendTextMessage];
+- (void)configureTextView {
+    [self.textField.layer setCornerRadius:6.0f];
+    [self.textField.layer setBorderWidth:0.5f];
+    [self.textField.layer setBorderColor:[UIColor colorWithRed:171.0/255.0
+                                                         green:173.0/255.0
+                                                          blue:178.0/255.0
+                                                         alpha:0.5].CGColor];
+    [self.textField setTextContainerInset:UIEdgeInsetsMake(5, 2, 5, 2)];
+    @weakify(self);
+    [RACObserve(self.textField, contentSize) subscribeNext:^(id x) {
+        @strongify(self);
+        [UIView animateWithDuration:0.10 delay:0.15 options:UIViewAnimationOptionCurveLinear animations:^{
+            self.textViewHeightConstraint.constant = self.textField.contentSize.height;
+            [self adjustToolViewHeight];
+            [self.view.superview layoutIfNeeded];
+        } completion:^(BOOL finished) {
+            
+        }];
+    }];
+}
+
+- (void)adjustToolViewHeight {
+    [(PCUChatViewController *)self.parentViewController
+     setToolViewLayoutHeight:self.textViewHeightConstraint.constant+16.0];
+}
+
+#pragma mark - UITextViewDelegate
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if ([text isEqualToString:@"\n"]) {
+        if (textView.text.length) {
+            [self.eventHandler sendTextMessage];
+        }
+        return NO;
     }
     return YES;
 }
+
+#pragma mark - Events
 
 - (IBAction)handlePanelButtonTapped:(UIButton *)sender {
     [self.eventHandler togglePanelView];

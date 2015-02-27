@@ -21,6 +21,10 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *chatScrollView;
 
+@property (nonatomic, weak) NSLayoutConstraint *toolViewBottomSpaceConstraint;
+
+@property (nonatomic, weak) NSLayoutConstraint *toolViewHeightConstraint;
+
 @end
 
 @implementation PCUChatViewController
@@ -105,16 +109,7 @@
 #pragma mark - Layouts
 
 - (void)setBottomLayoutHeight:(CGFloat)layoutHeight {
-    __block NSLayoutConstraint *constraint;
-    [self.view.constraints enumerateObjectsUsingBlock:^(NSLayoutConstraint *obj, NSUInteger idx, BOOL *stop) {
-        if (obj.secondItem == self.toolViewController.view &&
-            obj.firstItem == self.view &&
-            obj.firstAttribute == NSLayoutAttributeBottom &&
-            obj.secondAttribute == NSLayoutAttributeBottom) {
-            constraint = obj;
-        }
-    }];
-    constraint.constant = layoutHeight;
+    self.toolViewBottomSpaceConstraint.constant = layoutHeight;
     CGFloat contentHeight = [self contentHeight];
     [UIView animateWithDuration:0.25 animations:^{
         [self.view layoutIfNeeded];
@@ -123,6 +118,10 @@
             [self scrollToBottom:NO];
         }
     }];
+}
+
+- (void)setToolViewLayoutHeight:(CGFloat)layoutHeight {
+    self.toolViewHeightConstraint.constant = layoutHeight;
 }
 
 - (void)configureViewLayouts {
@@ -154,6 +153,8 @@
                                                                         metrics:nil
                                                                           views:views];
         [self.view addConstraints:constraints];
+        self.toolViewBottomSpaceConstraint = constraints[2];
+        self.toolViewHeightConstraint = constraints[1];
     }
     {
         NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[toolView]-0-|"
