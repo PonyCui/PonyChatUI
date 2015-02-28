@@ -79,7 +79,7 @@
             message.identifier = [NSString stringWithFormat:@"%u", arc4random()];
             message.orderIndex = [[NSDate date] timeIntervalSince1970] * 1000 + 2;
             message.type = PCUMessageTypeSystem;
-            message.title = @"[多玩游戏](http://www.duowan.com/) 多交朋友";
+            message.title = @"[多玩游戏](http://www.duowan.com/) 多交朋友 [微笑]";
             [self.delegate messageManagerDidReceivedMessage:message];
         }
     }

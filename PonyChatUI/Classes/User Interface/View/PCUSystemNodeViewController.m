@@ -11,6 +11,7 @@
 #import "PCUAttributedStringManager.h"
 #import "NSAttributedString+PCUAttributedString.h"
 #import "UILabel+PCUAttributedStringLinkResponder.h"
+#import <PonyEmotionBoard/PEBApplication.h>
 
 @interface PCUSystemNodeViewController ()
 
@@ -44,6 +45,7 @@
     NSAttributedString *attributedString = [PCU[[PCUAttributedStringManager class]]
                                             systemNodeAttrbutedStringWithString:string];
     attributedString = [attributedString pcu_linkAttributedString];
+    attributedString = [[PEBApplication sharedInstance] emotionAttributedStringWithAttributedString:attributedString];
     [self.textButton setAttributedTitle:attributedString forState:UIControlStateNormal];
     [self performSelector:@selector(adjustButtonHeight) withObject:nil afterDelay:0.001];
     [self performSelector:@selector(configureLinkResponder) withObject:nil afterDelay:0.001];
