@@ -49,7 +49,7 @@
         }
     }];
     [self configureNodeLayouts];
-    [self calculateContentSize];
+    [self calculateContentSizeWithCompletionBlock:nil];
 }
 
 #pragma mark - ToolViewController
@@ -73,27 +73,50 @@
 #pragma mark - ContentSize
 
 - (void)nodeViewHeightDidChange {
-    [self calculateContentSize];
+    [self calculateContentSizeWithCompletionBlock:nil];
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    if (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
+        toInterfaceOrientation == UIInterfaceOrientationLandscapeRight) {
+        [self.chatScrollView setContentSize:CGSizeMake(CGRectGetHeight(self.view.bounds),
+                                                       CGRectGetWidth(self.view.bounds))];
+    }
+    else {
+        [self.chatScrollView setContentSize:CGSizeMake(CGRectGetWidth(self.view.bounds),
+                                                       CGRectGetHeight(self.view.bounds))];
+    }
+    
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    [self calculateContentSize];
-    [self scrollToBottom:YES];
+    [self calculateContentSizeWithCompletionBlock:^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self scrollToBottom:YES];
+        });
+    }];
 }
 
-- (void)calculateContentSize {
-    BOOL isScrollToBottom = self.chatScrollView.contentOffset.y >= self.chatScrollView.contentSize.height -
-    CGRectGetHeight(self.chatScrollView.bounds) * 1.15;
-    CGFloat currentHeight = [self contentHeight];
-    if (currentHeight < CGRectGetHeight(self.chatScrollView.bounds)) {
-        currentHeight = CGRectGetHeight(self.chatScrollView.bounds) + 1.0;
-    }
-    if (currentHeight != self.chatScrollView.contentSize.height) {
-        [self.chatScrollView setContentSize:CGSizeMake(CGRectGetWidth(self.chatScrollView.bounds), currentHeight)];
-        if (isScrollToBottom) {
-            [self scrollToBottom:YES];
+- (void)calculateContentSizeWithCompletionBlock:(void (^)())completionBlock {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        BOOL isScrollToBottom = self.chatScrollView.contentOffset.y >= self.chatScrollView.contentSize.height -
+        CGRectGetHeight(self.chatScrollView.bounds) * 1.15;
+        CGFloat currentHeight = [self contentHeight];
+        if (currentHeight < CGRectGetHeight(self.chatScrollView.bounds)) {
+            currentHeight = CGRectGetHeight(self.chatScrollView.bounds) + 1.0;
         }
-    }
+        if (currentHeight != self.chatScrollView.contentSize.height) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.chatScrollView setContentSize:CGSizeMake(CGRectGetWidth(self.chatScrollView.bounds), currentHeight)];
+                if (isScrollToBottom && completionBlock == nil) {
+                    [self scrollToBottom:YES];
+                }
+                if (completionBlock) {
+                    completionBlock();
+                }
+            });
+        }
+    });
 }
 
 - (CGFloat)contentHeight {
@@ -113,7 +136,7 @@
     CGFloat contentHeight = [self contentHeight];
     [UIView animateWithDuration:0.25 animations:^{
         [self.view layoutIfNeeded];
-        [self calculateContentSize];
+        [self calculateContentSizeWithCompletionBlock:nil];
         if (contentHeight >= CGRectGetHeight(self.chatScrollView.bounds)) {
             [self scrollToBottom:NO];
         }
