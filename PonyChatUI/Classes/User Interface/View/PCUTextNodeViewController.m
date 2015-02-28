@@ -101,7 +101,7 @@
         self.textLabelBottomSpace.constant = 16.0;
     }
     if (size.width < 32.0) {
-        self.textLabelWidthConstraint.constant = size.width;
+        self.textLabelWidthConstraint.constant = size.width + 2.0;
     }
 }
 
