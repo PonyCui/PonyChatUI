@@ -95,10 +95,27 @@
         self.textLabelBottomSpace.constant = 22.0;
         //多行
     }
-    else {
+    else if (![attributedString.string stringByReplacingOccurrencesOfString:@"\U0000fffc"
+                                                                 withString:@""].length) {
+        //纯表情，单行文字
         self.textLabeHorizonSpace.constant = 8.0;//单行
-        self.textLabelTopSpace.constant = -3.0;
+        self.textLabelTopSpace.constant = -6.0;
         self.textLabelBottomSpace.constant = 16.0;
+    }
+    else {
+        //单行文字
+        if ([attributedString.string containsString:@"\U0000fffc"]) {
+            //文字表情混排
+            self.textLabeHorizonSpace.constant = 8.0;//单行
+            self.textLabelTopSpace.constant = -4.0;
+            self.textLabelBottomSpace.constant = 16.0;
+        }
+        else {
+            //纯文字
+            self.textLabeHorizonSpace.constant = 8.0;
+            self.textLabelTopSpace.constant = -3.0;
+            self.textLabelBottomSpace.constant = 16.0;
+        }
     }
     if (size.width < 32.0) {
         self.textLabelWidthConstraint.constant = size.width + 2.0;
