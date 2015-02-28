@@ -74,12 +74,12 @@
 - (void)didReceivedData {
     //System Demo
     {
-        if (arc4random() % 3 < 1) {
+        if (arc4random() % 3 < 10) {
             PCUMessage *message = [[PCUMessage alloc] init];
             message.identifier = [NSString stringWithFormat:@"%u", arc4random()];
             message.orderIndex = [[NSDate date] timeIntervalSince1970] * 1000 + 2;
             message.type = PCUMessageTypeSystem;
-            message.title = @"[多玩游戏](http://www.duowan.com/) 多交朋友 [微笑]";
+            message.title = @"[害羞][多玩游戏](http://www.duowan.com/) 多交朋友[微笑]";
             [self.delegate messageManagerDidReceivedMessage:message];
         }
     }

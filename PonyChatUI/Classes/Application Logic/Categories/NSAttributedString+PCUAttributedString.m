@@ -25,7 +25,7 @@ static UIColor *linkColor;
     NSMutableAttributedString *mutableAttributedString = [self mutableCopy];
     NSString *originalString = [self string];
     NSRegularExpression *regularExpression = [NSRegularExpression
-                                              regularExpressionWithPattern:@"\\u005B.*?]\\(.*?\\)"
+                                              regularExpressionWithPattern:@"\\u005B[^\\u005B]+\\]\\([^\\)]+\\)"
                                               options:kNilOptions
                                               error:nil];
     NSArray *matches = [regularExpression matchesInString:originalString
