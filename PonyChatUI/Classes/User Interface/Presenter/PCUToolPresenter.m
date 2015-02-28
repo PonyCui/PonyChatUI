@@ -95,6 +95,13 @@ typedef NS_ENUM(NSUInteger, PCUKeyboardType) {
         [self.userInterface setEmotionCoveredKeyboardButtonShow:self.emotionViewController.isPresenting];
         [self adjustLayouts];
     }];
+    [RACObserve(self, panelViewController.view.bounds) subscribeNext:^(id x) {
+        @strongify(self);
+        if (self.panelViewController.isPresenting) {
+            self.currentKeyboardHeight = CGRectGetHeight(self.panelViewController.view.bounds);
+        }
+        [self adjustLayouts];
+    }];
 }
 
 #pragma mark - Dismiss Keyboard

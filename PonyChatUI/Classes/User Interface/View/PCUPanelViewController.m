@@ -129,7 +129,9 @@
 #pragma mark - UICollectionViewDataSource
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    [self configureViewLayouts];
+    [UIView animateWithDuration:0.25 animations:^{
+        [self configureViewLayouts];
+    }];
     [self configureLayoutInset];
     [self reloadCollectionView];
 }
