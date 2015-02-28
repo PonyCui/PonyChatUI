@@ -136,11 +136,16 @@
     CGFloat contentHeight = [self contentHeight];
     [UIView animateWithDuration:0.25 animations:^{
         [self.view layoutIfNeeded];
-        [self calculateContentSizeWithCompletionBlock:nil];
+        if (layoutHeight != 0.0 &&
+            contentHeight > CGRectGetHeight(self.chatScrollView.bounds) &&
+            contentHeight < CGRectGetHeight(self.chatScrollView.bounds) + layoutHeight) {
+            [self.chatScrollView setContentSize:CGSizeMake(CGRectGetWidth(self.chatScrollView.bounds),
+                                                           contentHeight)];
+        }
         if (contentHeight >= CGRectGetHeight(self.chatScrollView.bounds)) {
             [self scrollToBottom:NO];
         }
-    }];
+    } completion:nil];
 }
 
 - (void)setToolViewLayoutHeight:(CGFloat)layoutHeight {
