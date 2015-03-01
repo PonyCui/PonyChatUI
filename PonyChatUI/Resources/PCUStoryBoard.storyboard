@@ -500,10 +500,10 @@
             </objects>
             <point key="canvasLocation" x="276" y="979"/>
         </scene>
-        <!--View Controller-->
+        <!--Talking View Controller-->
         <scene sceneID="E7l-mv-Uhj">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="2JJ-r0-b0d" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="2JJ-r0-b0d" customClass="PCUTalkingViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Pb0-81-rJm"/>
                         <viewControllerLayoutGuide type="bottom" id="S2w-9i-gSg"/>
@@ -520,6 +520,7 @@
                                     <color key="titleColor" white="0.37705291970802918" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="selected" title="松开 结束"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -531,6 +532,9 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
+                    <connections>
+                        <outlet property="talkingButton" destination="AzV-Gr-cNM" id="gQx-bE-DUJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F1Y-Tr-P6u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

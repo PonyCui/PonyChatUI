@@ -57,6 +57,7 @@
                                                             green:173.0/255.0
                                                              blue:178.0/255.0
                                                             alpha:1.0].CGColor];
+    self.talkingButton.clipsToBounds = YES;
     [self.textField setTextContainerInset:UIEdgeInsetsMake(5, 2, 5, 2)];
     @weakify(self);
     [RACObserve(self.textField, contentSize) subscribeNext:^(id x) {

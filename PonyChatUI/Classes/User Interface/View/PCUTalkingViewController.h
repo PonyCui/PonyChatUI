@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class PCUTalkingPresenter;
+
 @interface PCUTalkingViewController : UIViewController
+
+@property (nonatomic, strong) PCUTalkingPresenter *eventHandler;
 
 @end

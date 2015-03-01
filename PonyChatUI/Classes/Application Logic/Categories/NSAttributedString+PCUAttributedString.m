@@ -37,7 +37,7 @@ static UIColor *linkColor;
         NSString *foundString = [originalString substringWithRange:obj.range];
         NSArray *components = [foundString componentsSeparatedByString:@"]("];
         NSString *titleString;
-        NSString *URLString;
+        NSString *URLString = @"";
         if ([[components firstObject] length]) {
             titleString = [[components firstObject] substringFromIndex:1];
         }

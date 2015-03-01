@@ -16,4 +16,19 @@
 
 @property (nonatomic, strong) PCUChatInteractor *chatInteractor;
 
+/**
+ *  开始录制
+ */
+- (void)startRecording;
+
+/**
+ *  取消录制
+ */
+- (void)cancelRecord;
+
+/**
+ *  结束录制
+ */
+- (void)endRecording;
+
 @end

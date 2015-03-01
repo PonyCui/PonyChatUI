@@ -7,8 +7,15 @@
 //
 
 #import "PCUTalkingViewController.h"
+#import "PCUToolViewController.h"
+#import "PCUToolPresenter.h"
+#import "PCUTalkingPresenter.h"
 
 @interface PCUTalkingViewController ()
+
+@property (weak, nonatomic) IBOutlet UIButton *talkingButton;
+
+@property (nonatomic, strong) UILongPressGestureRecognizer *longPressGuestureRecognizer;
 
 @end
 
@@ -16,6 +23,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.eventHandler = [[PCUTalkingPresenter alloc] init];
+    self.eventHandler.userInterface = self;
+    [self configureEvents];
     // Do any additional setup after loading the view.
 }
 
@@ -23,5 +33,64 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)didMoveToParentViewController:(UIViewController *)parent {
+    if ([parent isKindOfClass:[PCUToolViewController class]]) {
+        self.eventHandler.chatInteractor = [(PCUToolViewController *)parent eventHandler].chatInteractor;
+    }
+}
+
+#pragma mark - Styles
+
+- (void)setTalkingButtonLongPressedStyle {
+    [self.talkingButton setBackgroundColor:[UIColor colorWithRed:198.0/255.0
+                                                           green:199.0/255.0
+                                                            blue:202.0/255.0
+                                                           alpha:1.0]];
+    [self.talkingButton setSelected:YES];
+}
+
+- (void)setTalkingButtonNormalStyle {
+    [self.talkingButton setBackgroundColor:[UIColor clearColor]];
+    [self.talkingButton setSelected:NO];
+}
+
+#pragma mark - Events
+
+- (void)configureEvents {
+    self.longPressGuestureRecognizer = [[UILongPressGestureRecognizer alloc]
+                                        initWithTarget:self
+                                        action:@selector(handleLongPress:)];
+    self.longPressGuestureRecognizer.minimumPressDuration = 0.15;
+    self.longPressGuestureRecognizer.numberOfTouchesRequired = 1;
+    [self.talkingButton addGestureRecognizer:self.longPressGuestureRecognizer];
+}
+
+- (void)handleLongPress:(UILongPressGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        [self setTalkingButtonLongPressedStyle];
+        [self.eventHandler startRecording];
+    }
+    else if (sender.state == UIGestureRecognizerStateEnded) {
+        CGPoint figureLocation = [sender locationInView:[[[UIApplication sharedApplication] delegate] window]];
+        if ([self shouldCancelRecordWithFigureLocation:figureLocation]) {
+            [self.eventHandler cancelRecord];
+        }
+        else {
+            [self.eventHandler endRecording];
+        }
+        [self setTalkingButtonNormalStyle];
+    }
+}
+
+- (BOOL)shouldCancelRecordWithFigureLocation:(CGPoint)location {
+    if (location.y < CGRectGetHeight([[[[UIApplication sharedApplication] delegate] window] bounds]) - 108.0) {
+        return YES;
+    }
+    else {
+        return NO;
+    }
+}
+
 
 @end
