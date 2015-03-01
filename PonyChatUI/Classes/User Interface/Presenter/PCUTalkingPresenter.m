@@ -38,13 +38,9 @@
 - (void)updateMeterView {
     [self.audioRecorder updateMeters];
     CGFloat power = [self.audioRecorder averagePowerForChannel:0];
-    NSUInteger value = 1;
-    if (power <= -32.0) {
-        value = 1;
-    }
-    else {
-        value = (32 - abs(power)) / 4;
-    }
+    NSInteger value = 1;
+    value = (32 - abs(power)) / 4;
+    value = MIN(8, MAX(value, 1));
     [self.userInterface.talkingHUDViewController setVoiceValue:value];
 }
 
