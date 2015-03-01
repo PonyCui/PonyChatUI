@@ -49,12 +49,23 @@
 }
 
 - (void)startRecording {
+    if (self.audioSession.isOtherAudioPlaying) {
+        [self.userInterface.talkingHUDViewController setWaiting:YES];
+        [self performSelector:@selector(performRecording) withObject:nil afterDelay:0.001];
+    }
+    else {
+        [self performRecording];
+    }
+}
+
+- (void)performRecording {
     NSError *error;
     [self.audioSession setCategory:AVAudioSessionCategoryPlayAndRecord
                        withOptions:AVAudioSessionCategoryOptionDuckOthers
                              error:&error];
     if (error == nil) {
         [self.audioSession setActive:YES error:&error];
+        [self.userInterface.talkingHUDViewController setWaiting:NO];
         if (error == nil) {
             NSURL *fileURL = [[NSURL alloc] initFileURLWithPath:self.audioFilePath];
             self.audioRecorder = [[AVAudioRecorder alloc] initWithURL:fileURL

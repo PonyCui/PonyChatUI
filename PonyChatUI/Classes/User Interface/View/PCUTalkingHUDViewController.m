@@ -12,6 +12,8 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *voiceValueImageView;
 
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *waitingActivityIndicator;
+
 @end
 
 @implementation PCUTalkingHUDViewController
@@ -25,6 +27,17 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setWaiting:(BOOL)isWaiting {
+    if (isWaiting) {
+        [self.waitingActivityIndicator startAnimating];
+        self.voiceValueImageView.hidden = YES;
+    }
+    else {
+        [self.waitingActivityIndicator stopAnimating];
+        self.voiceValueImageView.hidden = NO;
+    }
 }
 
 - (void)setVoiceValue:(NSUInteger)aValue {

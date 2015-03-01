@@ -17,6 +17,8 @@
  */
 - (void)setVoiceValue:(NSUInteger)aValue;
 
+- (void)setWaiting:(BOOL)isWaiting;
+
 - (void)configureViewLayouts;
 
 @end
