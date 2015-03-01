@@ -39,7 +39,7 @@
     [self.audioRecorder updateMeters];
     CGFloat power = [self.audioRecorder averagePowerForChannel:0];
     NSUInteger value = 1;
-    if (power < -32.0) {
+    if (power <= -32.0) {
         value = 1;
     }
     else {
