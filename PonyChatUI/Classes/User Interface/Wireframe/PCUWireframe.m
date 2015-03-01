@@ -15,6 +15,10 @@
 #import "PCUToolPresenter.h"
 #import "PCUPanelViewController.h"
 #import "PCUPanelPresenter.h"
+#import "PCUTalkingViewController.h"
+#import "PCUTalkingHUDViewController.h"
+#import "PCUTalkingCancelHUDViewController.h"
+
 
 @implementation PCUWireframe
 
@@ -40,6 +44,40 @@
     [chatViewController.view addSubview:panelViewController.view];
     [panelViewController configureViewLayouts];
     return panelViewController;
+}
+
+- (void)presentTalkingHUDToViewController:(PCUTalkingViewController *)viewController {
+    if (viewController.talkingHUDViewController == nil) {
+        viewController.talkingHUDViewController = [self talkingHUDViewController];
+    }
+    [viewController.cancelHUDViewController.view removeFromSuperview];
+    id trunkViewController = viewController;
+    do {
+        if ([[trunkViewController parentViewController] isKindOfClass:[UINavigationController class]] ||
+            [trunkViewController parentViewController] == nil) {
+            break;
+        }
+        trunkViewController = [trunkViewController parentViewController];
+    } while (true);
+    [[trunkViewController view] addSubview:viewController.talkingHUDViewController.view];
+    [viewController.talkingHUDViewController configureViewLayouts];
+}
+
+- (void)presentCancelHUDToViewController:(PCUTalkingViewController *)viewController {
+    if (viewController.cancelHUDViewController == nil) {
+        viewController.cancelHUDViewController = [self talkingCancelHUDViewController];
+    }
+    [viewController.talkingHUDViewController.view removeFromSuperview];
+    id trunkViewController = viewController;
+    do {
+        if ([[trunkViewController parentViewController] isKindOfClass:[UINavigationController class]] ||
+            [trunkViewController parentViewController] == nil) {
+            break;
+        }
+        trunkViewController = [trunkViewController parentViewController];
+    } while (true);
+    [[trunkViewController view] addSubview:viewController.cancelHUDViewController.view];
+    [viewController.cancelHUDViewController configureViewLayouts];
 }
 
 #pragma mark - Getter
@@ -70,6 +108,20 @@
     panelViewController.eventHandler = [[PCUPanelPresenter alloc] init];
     panelViewController.eventHandler.userInterface = panelViewController;
     return panelViewController;
+}
+
+- (PCUTalkingHUDViewController *)talkingHUDViewController {
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"PCUStoryBoard" bundle:nil];
+    PCUTalkingHUDViewController *talkingHUDViewController =
+    [storyBoard instantiateViewControllerWithIdentifier:@"PCUTalkingHUDViewController"];
+    return talkingHUDViewController;
+}
+
+- (PCUTalkingCancelHUDViewController *)talkingCancelHUDViewController {
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"PCUStoryBoard" bundle:nil];
+    PCUTalkingCancelHUDViewController *talkingCancelHUDViewController =
+    [storyBoard instantiateViewControllerWithIdentifier:@"PCUTalkingCancelHUDViewController"];
+    return talkingCancelHUDViewController;
 }
 
 @end

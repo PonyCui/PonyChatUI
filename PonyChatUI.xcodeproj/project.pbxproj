@@ -56,6 +56,8 @@
 		F0CD677D1AA2E0DC007D3F89 /* PCUDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CD677C1AA2E0DC007D3F89 /* PCUDefines.m */; };
 		F0CD67801AA2E824007D3F89 /* PCUTalkingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CD677F1AA2E824007D3F89 /* PCUTalkingViewController.m */; };
 		F0CD67831AA2EB32007D3F89 /* PCUTalkingPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CD67821AA2EB32007D3F89 /* PCUTalkingPresenter.m */; };
+		F0CD67861AA30924007D3F89 /* PCUTalkingHUDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CD67851AA30924007D3F89 /* PCUTalkingHUDViewController.m */; };
+		F0CD67891AA30CDB007D3F89 /* PCUTalkingCancelHUDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CD67881AA30CDB007D3F89 /* PCUTalkingCancelHUDViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,6 +166,10 @@
 		F0CD677F1AA2E824007D3F89 /* PCUTalkingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUTalkingViewController.m; sourceTree = "<group>"; };
 		F0CD67811AA2EB32007D3F89 /* PCUTalkingPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUTalkingPresenter.h; sourceTree = "<group>"; };
 		F0CD67821AA2EB32007D3F89 /* PCUTalkingPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUTalkingPresenter.m; sourceTree = "<group>"; };
+		F0CD67841AA30924007D3F89 /* PCUTalkingHUDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUTalkingHUDViewController.h; sourceTree = "<group>"; };
+		F0CD67851AA30924007D3F89 /* PCUTalkingHUDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUTalkingHUDViewController.m; sourceTree = "<group>"; };
+		F0CD67871AA30CDB007D3F89 /* PCUTalkingCancelHUDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUTalkingCancelHUDViewController.h; sourceTree = "<group>"; };
+		F0CD67881AA30CDB007D3F89 /* PCUTalkingCancelHUDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUTalkingCancelHUDViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -386,6 +392,10 @@
 				F0B123F21A94EDF500A0DB10 /* PCUPanelCollectionViewCell.m */,
 				F0CD677E1AA2E824007D3F89 /* PCUTalkingViewController.h */,
 				F0CD677F1AA2E824007D3F89 /* PCUTalkingViewController.m */,
+				F0CD67841AA30924007D3F89 /* PCUTalkingHUDViewController.h */,
+				F0CD67851AA30924007D3F89 /* PCUTalkingHUDViewController.m */,
+				F0CD67871AA30CDB007D3F89 /* PCUTalkingCancelHUDViewController.h */,
+				F0CD67881AA30CDB007D3F89 /* PCUTalkingCancelHUDViewController.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -604,6 +614,7 @@
 				63BACECE1A91A00D0013DB6C /* PCUSystemNodePresenter.m in Sources */,
 				F070D31C1A9A0D4D0083F6A3 /* PCUPanelItemManager.m in Sources */,
 				F070D3161A9A0BE30083F6A3 /* PCUPanelInteractor.m in Sources */,
+				F0CD67891AA30CDB007D3F89 /* PCUTalkingCancelHUDViewController.m in Sources */,
 				F0CD67831AA2EB32007D3F89 /* PCUTalkingPresenter.m in Sources */,
 				F070D3191A9A0C320083F6A3 /* PCUPanelItemInteractor.m in Sources */,
 				63BACECB1A919D040013DB6C /* PCUSystemNodeViewController.m in Sources */,
@@ -632,6 +643,7 @@
 				6390B4511A8B0AEE0025A64D /* PCUChatViewController.m in Sources */,
 				F0B123E71A93401500A0DB10 /* PCUToolPresenter.m in Sources */,
 				F0A57CC51A90E32C00068694 /* PCUAvatarManager.m in Sources */,
+				F0CD67861AA30924007D3F89 /* PCUTalkingHUDViewController.m in Sources */,
 				F070D31F1A9A0D5D0083F6A3 /* PCUPanelItem.m in Sources */,
 				63BACEB51A8DE7DB0013DB6C /* PCUChatInteractor.m in Sources */,
 				63BACEDA1A91DD410013DB6C /* UILabel+PCUAttributedStringLinkResponder.m in Sources */,

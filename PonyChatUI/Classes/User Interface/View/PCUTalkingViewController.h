@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@class PCUTalkingPresenter;
+@class PCUTalkingPresenter, PCUTalkingHUDViewController, PCUTalkingCancelHUDViewController;
 
 @interface PCUTalkingViewController : UIViewController
 
 @property (nonatomic, strong) PCUTalkingPresenter *eventHandler;
+
+@property (nonatomic, strong) PCUTalkingHUDViewController *talkingHUDViewController;
+
+@property (nonatomic, strong) PCUTalkingCancelHUDViewController *cancelHUDViewController;
 
 @end

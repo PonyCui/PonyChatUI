@@ -10,6 +10,10 @@
 #import "PCUToolViewController.h"
 #import "PCUToolPresenter.h"
 #import "PCUTalkingPresenter.h"
+#import "PCUApplication.h"
+#import "PCUWireframe.h"
+#import "PCUTalkingHUDViewController.h"
+#import "PCUTalkingCancelHUDViewController.h"
 
 @interface PCUTalkingViewController ()
 
@@ -68,18 +72,30 @@
 
 - (void)handleLongPress:(UILongPressGestureRecognizer *)sender {
     if (sender.state == UIGestureRecognizerStateBegan) {
+        [PCU[@protocol(PCUWireframe)] presentTalkingHUDToViewController:self];
         [self setTalkingButtonLongPressedStyle];
-        [self.eventHandler startRecording];
+        [self.eventHandler performSelector:@selector(startRecording) withObject:nil afterDelay:0.001];
+    }
+    else if (sender.state == UIGestureRecognizerStateChanged) {
+        CGPoint figureLocation = [sender locationInView:[[[UIApplication sharedApplication] delegate] window]];
+        if ([self shouldCancelRecordWithFigureLocation:figureLocation]) {
+            [PCU[@protocol(PCUWireframe)] presentCancelHUDToViewController:self];
+        }
+        else {
+            [PCU[@protocol(PCUWireframe)] presentTalkingHUDToViewController:self];
+        }
     }
     else if (sender.state == UIGestureRecognizerStateEnded) {
         CGPoint figureLocation = [sender locationInView:[[[UIApplication sharedApplication] delegate] window]];
         if ([self shouldCancelRecordWithFigureLocation:figureLocation]) {
-            [self.eventHandler cancelRecord];
+            [self.eventHandler performSelector:@selector(cancelRecord) withObject:nil afterDelay:0.001];
         }
         else {
-            [self.eventHandler endRecording];
+            [self.eventHandler performSelector:@selector(endRecording) withObject:nil afterDelay:0.001];
         }
         [self setTalkingButtonNormalStyle];
+        [self.talkingHUDViewController.view removeFromSuperview];
+        [self.cancelHUDViewController.view removeFromSuperview];
     }
 }
 

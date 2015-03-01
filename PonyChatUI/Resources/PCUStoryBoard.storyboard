@@ -540,10 +540,120 @@
             </objects>
             <point key="canvasLocation" x="665.5" y="760"/>
         </scene>
+        <!--TalkingHUD View Controller-->
+        <scene sceneID="5oC-Xa-j1u">
+            <objects>
+                <viewController storyboardIdentifier="PCUTalkingHUDViewController" id="Quf-XF-DLZ" customClass="PCUTalkingHUDViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gBU-CP-FLd"/>
+                        <viewControllerLayoutGuide type="bottom" id="lnm-93-nHY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6iQ-Se-dfm">
+                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手指上滑 取消发送" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wuh-p5-9m5">
+                                <rect key="frame" x="8" y="115" width="134" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="CZO-ea-5kx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RecordingBkg" translatesAutoresizingMaskIntoConstraints="NO" id="Id7-MY-YUf">
+                                <rect key="frame" x="23" y="14" width="104" height="93"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="93" id="JfU-0p-o6m"/>
+                                    <constraint firstAttribute="width" constant="104" id="ngO-Uu-vAR"/>
+                                </constraints>
+                            </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="NEX-Re-LPh">
+                                <rect key="frame" x="114" y="51" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="Id7-MY-YUf" secondAttribute="centerY" constant="14.5" id="MWl-QN-dtO"/>
+                            <constraint firstItem="wuh-p5-9m5" firstAttribute="top" secondItem="Id7-MY-YUf" secondAttribute="bottom" constant="8" id="cCw-Bk-ArA"/>
+                            <constraint firstAttribute="trailing" secondItem="wuh-p5-9m5" secondAttribute="trailing" constant="8" id="hh0-B1-fSr"/>
+                            <constraint firstAttribute="centerX" secondItem="Id7-MY-YUf" secondAttribute="centerX" id="hzH-ge-D2n"/>
+                            <constraint firstItem="wuh-p5-9m5" firstAttribute="leading" secondItem="6iQ-Se-dfm" secondAttribute="leading" constant="8" id="qu2-0G-IzW"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="150" height="150"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w1l-ZB-M0I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="966" y="642"/>
+        </scene>
+        <!--Talking CancelHUD View Controller-->
+        <scene sceneID="SJD-qh-Zit">
+            <objects>
+                <viewController storyboardIdentifier="PCUTalkingCancelHUDViewController" id="IRs-NA-iNZ" customClass="PCUTalkingCancelHUDViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MGn-BD-rCe"/>
+                        <viewControllerLayoutGuide type="bottom" id="bQN-04-bWW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6dH-oZ-Vmt">
+                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="松开手指 取消发送" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cP7-YP-wcn">
+                                <rect key="frame" x="8" y="115" width="134" height="21"/>
+                                <color key="backgroundColor" red="0.62352941176470589" green="0.22745098039215686" blue="0.2196078431372549" alpha="0.5" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="5dL-0k-lAm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RecordCancel" translatesAutoresizingMaskIntoConstraints="NO" id="BkN-dS-gm9">
+                                <rect key="frame" x="23" y="14" width="104" height="93"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="93" id="8xu-p2-wqm"/>
+                                    <constraint firstAttribute="width" constant="104" id="ryC-vP-SOH"/>
+                                </constraints>
+                            </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="a1r-mv-uYy">
+                                <rect key="frame" x="114" y="51" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cP7-YP-wcn" firstAttribute="top" secondItem="BkN-dS-gm9" secondAttribute="bottom" constant="8" id="OrE-PN-thJ"/>
+                            <constraint firstAttribute="trailing" secondItem="cP7-YP-wcn" secondAttribute="trailing" constant="8" id="ZQa-4s-LEa"/>
+                            <constraint firstAttribute="centerX" secondItem="BkN-dS-gm9" secondAttribute="centerX" id="fQM-cE-g1h"/>
+                            <constraint firstAttribute="centerY" secondItem="BkN-dS-gm9" secondAttribute="centerY" constant="14.5" id="i3O-AG-07H"/>
+                            <constraint firstItem="cP7-YP-wcn" firstAttribute="leading" secondItem="6dH-oZ-Vmt" secondAttribute="leading" constant="8" id="xsm-Z9-pm7"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="150" height="150"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hCq-xM-OSc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="966" y="862"/>
+        </scene>
     </scenes>
     <resources>
         <image name="MessageSendFail" width="28" height="28"/>
         <image name="ReceiverTextNodeBkg" width="66" height="54"/>
+        <image name="RecordCancel" width="100" height="100"/>
+        <image name="RecordingBkg" width="62" height="100"/>
         <image name="SenderTextNodeBkg" width="66" height="54"/>
         <image name="ToolViewEmotion" width="35" height="35"/>
         <image name="ToolViewInputVoice" width="35" height="35"/>
