@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="IqE-aR-LeG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="IqE-aR-LeG">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -77,6 +77,9 @@
                                 <state key="normal" image="ToolViewInputVoice">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="handleVoiceButtonTapped:" destination="M3T-Pn-VII" eventType="touchUpInside" id="D5C-SV-Bmz"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wHp-Ar-i0M" userLabel="PanelButton">
                                 <rect key="frame" x="281" y="7" width="35" height="35"/>
@@ -114,6 +117,15 @@
                                     <action selector="handleKeyboardButtonTapped:" destination="M3T-Pn-VII" eventType="touchUpInside" id="a70-BG-M5g"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T0C-qK-FOR" userLabel="KeyboardLeftButton">
+                                <rect key="frame" x="4" y="7" width="35" height="35"/>
+                                <state key="normal" image="ToolViewKeyboard">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="handleKeyboardButtonTapped:" destination="M3T-Pn-VII" eventType="touchUpInside" id="mX7-8y-TKs"/>
+                                </connections>
+                            </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WLg-li-9kw">
                                 <rect key="frame" x="45" y="8" width="197" height="32"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -126,15 +138,28 @@
                                     <outlet property="delegate" destination="M3T-Pn-VII" id="7gN-Ve-5JF"/>
                                 </connections>
                             </textView>
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AzV-Gr-cNM">
+                                <rect key="frame" x="45" y="8" width="197" height="32"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="按住 说话">
+                                    <color key="titleColor" white="0.37705291970802918" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274509803926" green="0.95686274509803926" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6u0-sQ-X44" firstAttribute="top" secondItem="wHp-Ar-i0M" secondAttribute="bottom" constant="6" id="1ZD-pV-AcC"/>
+                            <constraint firstItem="i6a-xQ-lwO" firstAttribute="centerX" secondItem="T0C-qK-FOR" secondAttribute="centerX" id="4uo-P7-ifR"/>
+                            <constraint firstItem="WLg-li-9kw" firstAttribute="height" secondItem="AzV-Gr-cNM" secondAttribute="height" id="6yS-zR-Fzl"/>
+                            <constraint firstItem="WLg-li-9kw" firstAttribute="centerX" secondItem="AzV-Gr-cNM" secondAttribute="centerX" id="9C0-7e-VOU"/>
                             <constraint firstItem="9AH-RF-GJ6" firstAttribute="top" secondItem="2aT-k5-Sby" secondAttribute="bottom" id="B18-gx-DEB"/>
                             <constraint firstItem="6F0-Cf-QO7" firstAttribute="height" secondItem="upR-l7-qJc" secondAttribute="height" id="EVT-JC-77R"/>
                             <constraint firstAttribute="trailing" secondItem="9AH-RF-GJ6" secondAttribute="trailing" id="FOF-xd-Vz2"/>
                             <constraint firstItem="6u0-sQ-X44" firstAttribute="top" secondItem="i6a-xQ-lwO" secondAttribute="bottom" constant="6" id="PV2-qK-6FH"/>
                             <constraint firstAttribute="trailing" secondItem="WLg-li-9kw" secondAttribute="trailing" constant="78" id="QDj-q6-ayV"/>
+                            <constraint firstItem="i6a-xQ-lwO" firstAttribute="height" secondItem="T0C-qK-FOR" secondAttribute="height" id="Rcc-Lv-VnO"/>
                             <constraint firstItem="WLg-li-9kw" firstAttribute="leading" secondItem="i6a-xQ-lwO" secondAttribute="trailing" constant="6" id="YRH-8R-8EQ"/>
                             <constraint firstItem="6F0-Cf-QO7" firstAttribute="centerX" secondItem="upR-l7-qJc" secondAttribute="centerX" id="ZAt-EJ-D0v"/>
                             <constraint firstItem="6F0-Cf-QO7" firstAttribute="width" secondItem="upR-l7-qJc" secondAttribute="width" id="c6Q-IR-FIh"/>
@@ -142,8 +167,12 @@
                             <constraint firstItem="9AH-RF-GJ6" firstAttribute="leading" secondItem="iJ0-Db-Xo3" secondAttribute="leading" id="djQ-00-1RN"/>
                             <constraint firstItem="6u0-sQ-X44" firstAttribute="top" secondItem="6F0-Cf-QO7" secondAttribute="bottom" constant="6" id="eb9-9I-EYl"/>
                             <constraint firstItem="6F0-Cf-QO7" firstAttribute="centerY" secondItem="upR-l7-qJc" secondAttribute="centerY" id="et9-m9-efW"/>
+                            <constraint firstItem="WLg-li-9kw" firstAttribute="centerY" secondItem="AzV-Gr-cNM" secondAttribute="centerY" id="gpa-bL-O4U"/>
+                            <constraint firstItem="i6a-xQ-lwO" firstAttribute="centerY" secondItem="T0C-qK-FOR" secondAttribute="centerY" id="izT-mJ-4zN"/>
+                            <constraint firstItem="i6a-xQ-lwO" firstAttribute="width" secondItem="T0C-qK-FOR" secondAttribute="width" id="keq-4j-A6m"/>
                             <constraint firstItem="wHp-Ar-i0M" firstAttribute="leading" secondItem="6F0-Cf-QO7" secondAttribute="trailing" id="l1u-Iu-1pv"/>
                             <constraint firstAttribute="centerY" secondItem="WLg-li-9kw" secondAttribute="centerY" id="nfK-el-WQT"/>
+                            <constraint firstItem="WLg-li-9kw" firstAttribute="width" secondItem="AzV-Gr-cNM" secondAttribute="width" id="xFq-MF-pdF"/>
                             <constraint firstAttribute="trailing" secondItem="wHp-Ar-i0M" secondAttribute="trailing" constant="4" id="yRw-Eg-Szy"/>
                         </constraints>
                     </view>
@@ -154,8 +183,11 @@
                     <connections>
                         <outlet property="emotionButton" destination="6F0-Cf-QO7" id="qjf-Bl-VbO"/>
                         <outlet property="emotionCoveredKeyboardButton" destination="upR-l7-qJc" id="my2-1m-lE2"/>
+                        <outlet property="talkingButton" destination="AzV-Gr-cNM" id="vVj-7w-q1W"/>
                         <outlet property="textField" destination="WLg-li-9kw" id="Agv-J0-Mdq"/>
                         <outlet property="textViewHeightConstraint" destination="pEy-xt-Nbb" id="Fqd-rl-PkA"/>
+                        <outlet property="voiceButton" destination="i6a-xQ-lwO" id="Wcv-YS-dPD"/>
+                        <outlet property="voiceCoveredKeyboardButton" destination="T0C-qK-FOR" id="5LO-tz-7j6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zaa-5u-Yha" userLabel="First Responder" sceneMemberID="firstResponder"/>

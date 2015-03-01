@@ -10,10 +10,7 @@
 #import <UIKit/UIKit.h>
 #import <Objection/Objection.h>
 #import "PCUProtocols.h"
-
-#define PCU [PCUApplication injector]
-
-#define kPCUEndEditingNotification @"kPCUEndEditingNotification"
+#import "PCUDefines.h"
 
 @class PCUSender;
 

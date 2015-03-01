@@ -14,14 +14,13 @@
 #import "PCUChatViewController.h"
 #import <PonyEmotionBoard/PEBApplication.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import "PCUDefines.h"
 
 typedef NS_ENUM(NSUInteger, PCUKeyboardType) {
     PCUKeyboardTypeSystem,
     PCUKeyboardTypePanel,
     PCUKeyboardTypeEmotion
 };
-
-#define kPCUEndEditingNotification @"kPCUEndEditingNotification"
 
 @interface PCUToolPresenter ()
 

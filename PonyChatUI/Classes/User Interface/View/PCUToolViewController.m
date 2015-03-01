@@ -10,6 +10,7 @@
 #import "PCUToolPresenter.h"
 #import "PCUChatViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import "PCUApplication.h"
 
 @interface PCUToolViewController ()<UITextViewDelegate>
 
@@ -18,6 +19,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *emotionCoveredKeyboardButton;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewHeightConstraint;
+
+@property (weak, nonatomic) IBOutlet UIButton *voiceButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *voiceCoveredKeyboardButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *talkingButton;
 
 @end
 
@@ -44,6 +51,12 @@
                                                          green:173.0/255.0
                                                           blue:178.0/255.0
                                                          alpha:0.5].CGColor];
+    [self.talkingButton.layer setCornerRadius:6.0f];
+    [self.talkingButton.layer setBorderWidth:0.5f];
+    [self.talkingButton.layer setBorderColor:[UIColor colorWithRed:171.0/255.0
+                                                            green:173.0/255.0
+                                                             blue:178.0/255.0
+                                                            alpha:1.0].CGColor];
     [self.textField setTextContainerInset:UIEdgeInsetsMake(5, 2, 5, 2)];
     @weakify(self);
     [RACObserve(self.textField, contentSize) subscribeNext:^(id x) {
@@ -75,6 +88,26 @@
     return YES;
 }
 
+#pragma mark - Voice Control
+
+- (void)setVoiceControlHidden:(BOOL)isHidden {
+    if (isHidden) {
+        [self setVoiceCoveredKeyboardButtonShow:NO];
+        [UIView animateWithDuration:0.15 animations:^{
+            self.talkingButton.alpha = 0.0;
+            self.textField.alpha = 1.0;
+        }];
+    }
+    else {
+        [self setVoiceCoveredKeyboardButtonShow:YES];
+        [PCUApplication endEditing];
+        [UIView animateWithDuration:0.15 animations:^{
+            self.talkingButton.alpha = 1.0;
+            self.textField.alpha = 0.0;
+        }];
+    }
+}
+
 #pragma mark - Events
 
 - (IBAction)handlePanelButtonTapped:(UIButton *)sender {
@@ -82,11 +115,17 @@
 }
 
 - (IBAction)handleEmotionButtonTapped:(UIButton *)sender {
+    [self setVoiceControlHidden:YES];
     [self.eventHandler toggleEmotionView];
 }
 
 - (IBAction)handleKeyboardButtonTapped:(UIButton *)sender {
+    [self setVoiceControlHidden:YES];
     [self.textField becomeFirstResponder];
+}
+
+- (IBAction)handleVoiceButtonTapped:(UIButton *)sender {
+    [self setVoiceControlHidden:NO];
 }
 
 - (void)setEmotionCoveredKeyboardButtonShow:(BOOL)isShow {
@@ -97,6 +136,17 @@
     else {
         self.emotionCoveredKeyboardButton.hidden = YES;
         self.emotionButton.hidden = NO;
+    }
+}
+
+- (void)setVoiceCoveredKeyboardButtonShow:(BOOL)isShow {
+    if (isShow) {
+        self.voiceCoveredKeyboardButton.hidden = NO;
+        self.voiceButton.hidden = YES;
+    }
+    else {
+        self.voiceCoveredKeyboardButton.hidden = YES;
+        self.voiceButton.hidden = NO;
     }
 }
 

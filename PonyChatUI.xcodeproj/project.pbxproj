@@ -53,6 +53,7 @@
 		F0B123ED1A938D9B00A0DB10 /* PCUPanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B123EC1A938D9B00A0DB10 /* PCUPanelViewController.m */; };
 		F0B123F31A94EDF500A0DB10 /* PCUPanelCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B123F21A94EDF500A0DB10 /* PCUPanelCollectionViewCell.m */; };
 		F0B123F61A94F0FA00A0DB10 /* PCUPanelItemPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B123F51A94F0FA00A0DB10 /* PCUPanelItemPresenter.m */; };
+		F0CD677D1AA2E0DC007D3F89 /* PCUDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CD677C1AA2E0DC007D3F89 /* PCUDefines.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -155,6 +156,8 @@
 		F0B123F21A94EDF500A0DB10 /* PCUPanelCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUPanelCollectionViewCell.m; sourceTree = "<group>"; };
 		F0B123F41A94F0FA00A0DB10 /* PCUPanelItemPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUPanelItemPresenter.h; sourceTree = "<group>"; };
 		F0B123F51A94F0FA00A0DB10 /* PCUPanelItemPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUPanelItemPresenter.m; sourceTree = "<group>"; };
+		F0CD677B1AA2E0DC007D3F89 /* PCUDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUDefines.h; sourceTree = "<group>"; };
+		F0CD677C1AA2E0DC007D3F89 /* PCUDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUDefines.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,6 +251,8 @@
 				6390B43B1A8B05A40025A64D /* PCUApplication.h */,
 				6390B43C1A8B05A40025A64D /* PCUApplication.m */,
 				6390B43E1A8B05B50025A64D /* PCUProtocols.h */,
+				F0CD677B1AA2E0DC007D3F89 /* PCUDefines.h */,
+				F0CD677C1AA2E0DC007D3F89 /* PCUDefines.m */,
 			);
 			path = PonyChatUI;
 			sourceTree = "<group>";
@@ -600,6 +605,7 @@
 				63BACEA91A8C7E7B0013DB6C /* PCUAttributedStringManager.m in Sources */,
 				F0B123F31A94EDF500A0DB10 /* PCUPanelCollectionViewCell.m in Sources */,
 				63BACEAC1A8DDFA70013DB6C /* PCUMessage.m in Sources */,
+				F0CD677D1AA2E0DC007D3F89 /* PCUDefines.m in Sources */,
 				63BACED51A91C2160013DB6C /* NSAttributedString+PCUAttributedString.m in Sources */,
 				6390B4541A8B0B760025A64D /* PCUChatPresenter.m in Sources */,
 				63BACEC71A903D9F0013DB6C /* PCUChat.m in Sources */,
