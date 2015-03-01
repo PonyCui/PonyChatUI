@@ -24,7 +24,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *voiceCoveredKeyboardButton;
 
-@property (weak, nonatomic) IBOutlet UIButton *talkingButton;
+@property (weak, nonatomic) IBOutlet UIView *talkingButton;
 
 @end
 

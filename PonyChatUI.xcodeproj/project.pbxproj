@@ -54,6 +54,7 @@
 		F0B123F31A94EDF500A0DB10 /* PCUPanelCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B123F21A94EDF500A0DB10 /* PCUPanelCollectionViewCell.m */; };
 		F0B123F61A94F0FA00A0DB10 /* PCUPanelItemPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B123F51A94F0FA00A0DB10 /* PCUPanelItemPresenter.m */; };
 		F0CD677D1AA2E0DC007D3F89 /* PCUDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CD677C1AA2E0DC007D3F89 /* PCUDefines.m */; };
+		F0CD67801AA2E824007D3F89 /* PCUTalkingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CD677F1AA2E824007D3F89 /* PCUTalkingViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +159,8 @@
 		F0B123F51A94F0FA00A0DB10 /* PCUPanelItemPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUPanelItemPresenter.m; sourceTree = "<group>"; };
 		F0CD677B1AA2E0DC007D3F89 /* PCUDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUDefines.h; sourceTree = "<group>"; };
 		F0CD677C1AA2E0DC007D3F89 /* PCUDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUDefines.m; sourceTree = "<group>"; };
+		F0CD677E1AA2E824007D3F89 /* PCUTalkingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUTalkingViewController.h; sourceTree = "<group>"; };
+		F0CD677F1AA2E824007D3F89 /* PCUTalkingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUTalkingViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -376,6 +379,8 @@
 				F0B123EC1A938D9B00A0DB10 /* PCUPanelViewController.m */,
 				F0B123F11A94EDF500A0DB10 /* PCUPanelCollectionViewCell.h */,
 				F0B123F21A94EDF500A0DB10 /* PCUPanelCollectionViewCell.m */,
+				F0CD677E1AA2E824007D3F89 /* PCUTalkingViewController.h */,
+				F0CD677F1AA2E824007D3F89 /* PCUTalkingViewController.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -621,6 +626,7 @@
 				63BACEDA1A91DD410013DB6C /* UILabel+PCUAttributedStringLinkResponder.m in Sources */,
 				63BACEA61A8C7CF10013DB6C /* PCUAttributedStringConfigure.m in Sources */,
 				6390B43D1A8B05A40025A64D /* PCUApplication.m in Sources */,
+				F0CD67801AA2E824007D3F89 /* PCUTalkingViewController.m in Sources */,
 				F0B123F61A94F0FA00A0DB10 /* PCUPanelItemPresenter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
