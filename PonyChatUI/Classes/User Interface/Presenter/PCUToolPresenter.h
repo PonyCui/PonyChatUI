@@ -14,7 +14,7 @@
 
 @property (nonatomic, weak) PCUToolViewController *userInterface;
 
-@property (nonatomic, weak) PCUChatInteractor *chatInteractor;
+@property (nonatomic, strong) PCUChatInteractor *chatInteractor;
 
 - (void)updateView;
 

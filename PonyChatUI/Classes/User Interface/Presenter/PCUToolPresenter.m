@@ -175,7 +175,7 @@ typedef NS_ENUM(NSUInteger, PCUKeyboardType) {
     if (_emotionViewController == nil) {
         _emotionViewController = [[PEBApplication sharedInstance]
                                   addKeyboardViewControllerToViewController:self.userInterface.parentViewController
-                                                              withTextField:self.userInterface.textField];
+                                                              withTextField:(id)self.userInterface.textField];
     }
     return _emotionViewController;
 }

@@ -55,6 +55,7 @@
 		F0B123F61A94F0FA00A0DB10 /* PCUPanelItemPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B123F51A94F0FA00A0DB10 /* PCUPanelItemPresenter.m */; };
 		F0CD677D1AA2E0DC007D3F89 /* PCUDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CD677C1AA2E0DC007D3F89 /* PCUDefines.m */; };
 		F0CD67801AA2E824007D3F89 /* PCUTalkingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CD677F1AA2E824007D3F89 /* PCUTalkingViewController.m */; };
+		F0CD67831AA2EB32007D3F89 /* PCUTalkingPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CD67821AA2EB32007D3F89 /* PCUTalkingPresenter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,6 +162,8 @@
 		F0CD677C1AA2E0DC007D3F89 /* PCUDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUDefines.m; sourceTree = "<group>"; };
 		F0CD677E1AA2E824007D3F89 /* PCUTalkingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUTalkingViewController.h; sourceTree = "<group>"; };
 		F0CD677F1AA2E824007D3F89 /* PCUTalkingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUTalkingViewController.m; sourceTree = "<group>"; };
+		F0CD67811AA2EB32007D3F89 /* PCUTalkingPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUTalkingPresenter.h; sourceTree = "<group>"; };
+		F0CD67821AA2EB32007D3F89 /* PCUTalkingPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUTalkingPresenter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -358,6 +361,8 @@
 				F0B123F51A94F0FA00A0DB10 /* PCUPanelItemPresenter.m */,
 				F070D3111A9A0B750083F6A3 /* PCUPanelPresenter.h */,
 				F070D3121A9A0B750083F6A3 /* PCUPanelPresenter.m */,
+				F0CD67811AA2EB32007D3F89 /* PCUTalkingPresenter.h */,
+				F0CD67821AA2EB32007D3F89 /* PCUTalkingPresenter.m */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -594,6 +599,7 @@
 				63BACECE1A91A00D0013DB6C /* PCUSystemNodePresenter.m in Sources */,
 				F070D31C1A9A0D4D0083F6A3 /* PCUPanelItemManager.m in Sources */,
 				F070D3161A9A0BE30083F6A3 /* PCUPanelInteractor.m in Sources */,
+				F0CD67831AA2EB32007D3F89 /* PCUTalkingPresenter.m in Sources */,
 				F070D3191A9A0C320083F6A3 /* PCUPanelItemInteractor.m in Sources */,
 				63BACECB1A919D040013DB6C /* PCUSystemNodeViewController.m in Sources */,
 				63BACEBE1A8DE86A0013DB6C /* PCUNodePresenter.m in Sources */,
