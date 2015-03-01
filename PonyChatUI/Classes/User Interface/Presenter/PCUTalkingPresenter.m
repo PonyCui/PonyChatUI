@@ -7,6 +7,8 @@
 //
 
 #import "PCUTalkingPresenter.h"
+#import "PCUTalkingViewController.h"
+#import "PCUTalkingHUDViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import <CoreAudio/CoreAudioTypes.h>
 
@@ -15,6 +17,8 @@
 @property (nonatomic, strong) AVAudioSession *audioSession;
 
 @property (nonatomic, strong) AVAudioRecorder *audioRecorder;
+
+@property (nonatomic, strong) NSTimer *audioMeterTimer;
 
 @property (nonatomic, strong) NSString *audioFilePath;
 
@@ -31,6 +35,19 @@
     return self;
 }
 
+- (void)updateMeterView {
+    [self.audioRecorder updateMeters];
+    CGFloat power = [self.audioRecorder averagePowerForChannel:0];
+    NSUInteger value = 1;
+    if (power < -32.0) {
+        value = 1;
+    }
+    else {
+        value = (32 - abs(power)) / 4;
+    }
+    [self.userInterface.talkingHUDViewController setVoiceValue:value];
+}
+
 - (void)startRecording {
     NSError *error;
     [self.audioSession setCategory:AVAudioSessionCategoryPlayAndRecord
@@ -43,9 +60,15 @@
             self.audioRecorder = [[AVAudioRecorder alloc] initWithURL:fileURL
                                                              settings:[self recordSetting]
                                                                 error:&error];
+            self.audioRecorder.meteringEnabled = YES;
             self.audioRecorder.delegate = self;
             if (error == nil) {
                 [self.audioRecorder record];
+                self.audioMeterTimer = [NSTimer scheduledTimerWithTimeInterval:0.5
+                                                                        target:self
+                                                                      selector:@selector(updateMeterView)
+                                                                      userInfo:nil
+                                                                       repeats:YES];
             }
         }
     }
@@ -56,6 +79,7 @@
 }
 
 - (void)endRecording {
+    [self.audioMeterTimer invalidate];
     [self.audioRecorder stop];
     self.audioFilePath = nil;
 }

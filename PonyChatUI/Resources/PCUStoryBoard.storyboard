@@ -561,8 +561,8 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RecordingBkg" translatesAutoresizingMaskIntoConstraints="NO" id="Id7-MY-YUf">
-                                <rect key="frame" x="23" y="14" width="104" height="93"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RecordingBkg" translatesAutoresizingMaskIntoConstraints="NO" id="Id7-MY-YUf">
+                                <rect key="frame" x="7" y="14" width="104" height="93"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="93" id="JfU-0p-o6m"/>
                                     <constraint firstAttribute="width" constant="104" id="ngO-Uu-vAR"/>
@@ -571,13 +571,22 @@
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="NEX-Re-LPh">
                                 <rect key="frame" x="114" y="51" width="20" height="20"/>
                             </activityIndicatorView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RecordingSignal008" translatesAutoresizingMaskIntoConstraints="NO" id="8OI-uy-QCg">
+                                <rect key="frame" x="95" y="28" width="32" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="gMF-iw-pWA"/>
+                                    <constraint firstAttribute="width" constant="32" id="m6N-nI-nRS"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="Id7-MY-YUf" secondAttribute="centerY" constant="14.5" id="MWl-QN-dtO"/>
+                            <constraint firstItem="8OI-uy-QCg" firstAttribute="centerY" secondItem="Id7-MY-YUf" secondAttribute="centerY" constant="3" id="T99-ge-0aL"/>
+                            <constraint firstItem="8OI-uy-QCg" firstAttribute="leading" secondItem="Id7-MY-YUf" secondAttribute="trailing" constant="-16" id="agJ-xG-2UZ"/>
                             <constraint firstItem="wuh-p5-9m5" firstAttribute="top" secondItem="Id7-MY-YUf" secondAttribute="bottom" constant="8" id="cCw-Bk-ArA"/>
                             <constraint firstAttribute="trailing" secondItem="wuh-p5-9m5" secondAttribute="trailing" constant="8" id="hh0-B1-fSr"/>
-                            <constraint firstAttribute="centerX" secondItem="Id7-MY-YUf" secondAttribute="centerX" id="hzH-ge-D2n"/>
+                            <constraint firstAttribute="centerX" secondItem="Id7-MY-YUf" secondAttribute="centerX" constant="16" id="hzH-ge-D2n"/>
                             <constraint firstItem="wuh-p5-9m5" firstAttribute="leading" secondItem="6iQ-Se-dfm" secondAttribute="leading" constant="8" id="qu2-0G-IzW"/>
                         </constraints>
                     </view>
@@ -586,6 +595,9 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="150" height="150"/>
+                    <connections>
+                        <outlet property="voiceValueImageView" destination="8OI-uy-QCg" id="k3n-Je-ZxZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w1l-ZB-M0I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -655,6 +667,7 @@
         <image name="ReceiverTextNodeBkg" width="66" height="54"/>
         <image name="RecordCancel" width="100" height="100"/>
         <image name="RecordingBkg" width="62" height="100"/>
+        <image name="RecordingSignal008" width="38" height="100"/>
         <image name="SenderTextNodeBkg" width="66" height="54"/>
         <image name="ToolViewEmotion" width="35" height="35"/>
         <image name="ToolViewInputVoice" width="35" height="35"/>

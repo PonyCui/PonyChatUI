@@ -10,6 +10,8 @@
 
 @interface PCUTalkingHUDViewController ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *voiceValueImageView;
+
 @end
 
 @implementation PCUTalkingHUDViewController
@@ -23,6 +25,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setVoiceValue:(NSUInteger)aValue {
+    NSString *imageFile = [NSString stringWithFormat:@"RecordingSignal00%lu", aValue];
+    self.voiceValueImageView.image = [UIImage imageNamed:imageFile];
 }
 
 - (void)configureViewLayouts {

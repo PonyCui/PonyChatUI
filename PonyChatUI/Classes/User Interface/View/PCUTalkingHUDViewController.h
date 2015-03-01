@@ -10,6 +10,13 @@
 
 @interface PCUTalkingHUDViewController : UIViewController
 
+/**
+ *  设置录音声音大小
+ *
+ *  @param aValue 1~8
+ */
+- (void)setVoiceValue:(NSUInteger)aValue;
+
 - (void)configureViewLayouts;
 
 @end
