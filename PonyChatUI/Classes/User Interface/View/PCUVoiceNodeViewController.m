@@ -28,6 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.eventHandler updateView];
     // Do any additional setup after loading the view.
 }
 

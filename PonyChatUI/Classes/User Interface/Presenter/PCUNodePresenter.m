@@ -10,9 +10,11 @@
 #import "PCUNodePresenter.h"
 #import "PCUTextNodePresenter.h"
 #import "PCUSystemNodePresenter.h"
+#import "PCUVoiceNodePresenter.h"
 #import "PCUNodeInteractor.h"
 #import "PCUTextNodeInteractor.h"
 #import "PCUSystemNodeInteractor.h"
+#import "PCUVoiceNodeInteractor.h"
 #import "PCUNodeViewController.h"
 
 
@@ -34,6 +36,11 @@
         PCUSystemNodePresenter *systemNodePresenter = [[PCUSystemNodePresenter alloc] init];
         systemNodePresenter.nodeInteractor = nodeInteractor;
         return systemNodePresenter;
+    }
+    else if ([nodeInteractor isKindOfClass:[PCUVoiceNodeInteractor class]]) {
+        PCUVoiceNodePresenter *voiceNodePresenter = [[PCUVoiceNodePresenter alloc] init];
+        voiceNodePresenter.nodeInteractor = nodeInteractor;
+        return voiceNodePresenter;
     }
     else {
         return nil;

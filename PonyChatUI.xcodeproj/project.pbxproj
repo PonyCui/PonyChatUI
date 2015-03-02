@@ -399,6 +399,8 @@
 				63FF1C011A8C4394007C3A18 /* PCUTextNodeViewController.m */,
 				63BACEC91A919D040013DB6C /* PCUSystemNodeViewController.h */,
 				63BACECA1A919D040013DB6C /* PCUSystemNodeViewController.m */,
+				638F61651AA465EB00B9B635 /* PCUVoiceNodeViewController.h */,
+				638F61661AA465EB00B9B635 /* PCUVoiceNodeViewController.m */,
 				F0B123EB1A938D9B00A0DB10 /* PCUPanelViewController.h */,
 				F0B123EC1A938D9B00A0DB10 /* PCUPanelViewController.m */,
 				F0B123F11A94EDF500A0DB10 /* PCUPanelCollectionViewCell.h */,
@@ -409,8 +411,6 @@
 				F0CD67851AA30924007D3F89 /* PCUTalkingHUDViewController.m */,
 				F0CD67871AA30CDB007D3F89 /* PCUTalkingCancelHUDViewController.h */,
 				F0CD67881AA30CDB007D3F89 /* PCUTalkingCancelHUDViewController.m */,
-				638F61651AA465EB00B9B635 /* PCUVoiceNodeViewController.h */,
-				638F61661AA465EB00B9B635 /* PCUVoiceNodeViewController.m */,
 			);
 			path = View;
 			sourceTree = "<group>";

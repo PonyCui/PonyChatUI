@@ -9,6 +9,7 @@
 #import "PCUTalkingPresenter.h"
 #import "PCUTalkingViewController.h"
 #import "PCUTalkingHUDViewController.h"
+#import "PCUChatInteractor.h"
 #import <AVFoundation/AVFoundation.h>
 #import <CoreAudio/CoreAudioTypes.h>
 
@@ -82,13 +83,27 @@
 }
 
 - (void)cancelRecord {
-    [self endRecording];
+    [self endRecordingWithCancel:YES];
 }
 
 - (void)endRecording {
+    [self endRecordingWithCancel:NO];
+}
+
+- (void)endRecordingWithCancel:(BOOL)isCancel {
     [self.audioMeterTimer invalidate];
     [self.audioRecorder stop];
+    if (!isCancel) {
+        [self sendMessageWithFilePath:self.audioFilePath];
+    }
+    else {
+        [[NSFileManager defaultManager] removeItemAtPath:self.audioFilePath error:nil];
+    }
     self.audioFilePath = nil;
+}
+
+- (void)sendMessageWithFilePath:(NSString *)filePath {
+    [self.chatInteractor sendVoiceMessageWithPath:filePath];
 }
 
 #pragma mark - AVAudioRecorderDelegate
