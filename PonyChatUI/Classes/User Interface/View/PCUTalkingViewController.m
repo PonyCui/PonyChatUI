@@ -14,6 +14,7 @@
 #import "PCUWireframe.h"
 #import "PCUTalkingHUDViewController.h"
 #import "PCUTalkingCancelHUDViewController.h"
+#import "PCUDefines.h"
 
 @interface PCUTalkingViewController ()
 
@@ -74,6 +75,8 @@
     if (sender.state == UIGestureRecognizerStateBegan) {
         [PCU[@protocol(PCUWireframe)] presentTalkingHUDToViewController:self];
         [self setTalkingButtonLongPressedStyle];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kPCUPreventScreenRotationNotification
+                                                            object:nil];
         [self.eventHandler performSelector:@selector(startRecording) withObject:nil afterDelay:0.001];
     }
     else if (sender.state == UIGestureRecognizerStateChanged) {
@@ -96,6 +99,8 @@
         [self setTalkingButtonNormalStyle];
         [self.talkingHUDViewController.view removeFromSuperview];
         [self.cancelHUDViewController.view removeFromSuperview];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kPCUAllowScreenRotationNotification
+                                                            object:nil];
     }
 }
 

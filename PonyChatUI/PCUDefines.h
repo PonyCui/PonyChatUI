@@ -11,6 +11,8 @@
 #define PCU [PCUApplication injector]
 
 #define kPCUEndEditingNotification @"kPCUEndEditingNotification"
+#define kPCUPreventScreenRotationNotification @"kPCUPreventScreenRotationNotification"
+#define kPCUAllowScreenRotationNotification @"kPCUAllowScreenRotationNotification"
 
 @interface PCUDefines : NSObject
 

@@ -28,4 +28,6 @@
 
 + (void)endEditing;
 
++ (BOOL)shouldAutorotate;
+
 @end

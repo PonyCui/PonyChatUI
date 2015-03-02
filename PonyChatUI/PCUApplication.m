@@ -12,11 +12,20 @@
 
 static PCUCore *coreModule;
 static PCUSender *ownerSender;
+static BOOL allowRotate = YES;
 
 @implementation PCUApplication
 
 + (void)load {
     coreModule = [[PCUCore alloc] init];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handlePreventRotateNotification)
+                                                 name:kPCUPreventScreenRotationNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleAllowRotateNotification)
+                                                 name:kPCUAllowScreenRotationNotification
+                                               object:nil];
 }
 
 + (JSObjectionInjector *)injector {
@@ -51,6 +60,18 @@ static PCUSender *ownerSender;
     [[NSNotificationCenter defaultCenter]
      postNotificationName:kPCUEndEditingNotification
      object:nil];
+}
+
++ (BOOL)shouldAutorotate {
+    return allowRotate;
+}
+
++ (void)handlePreventRotateNotification {
+    allowRotate = NO;
+}
+
++ (void)handleAllowRotateNotification {
+    allowRotate = YES;
 }
 
 @end
