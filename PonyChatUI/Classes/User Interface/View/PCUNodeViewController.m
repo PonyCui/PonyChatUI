@@ -89,4 +89,22 @@
     return nil;
 }
 
+- (void)sendingIndicatorViewStartAnimating {
+    [[self sendingIndicatorView] startAnimating];
+}
+
+- (void)sendingIndicatorViewStopAnimating {
+    [[self sendingIndicatorView] stopAnimating];
+}
+
+- (void)setSendingRetryButtonHidden:(BOOL)isHidden {
+    [self sendingRetryButton].hidden = isHidden;
+}
+
+#pragma mark - Retry
+
+- (IBAction)handleRetryButtonTapped:(id)sender {
+    [self.eventHandler retrySendMessage];
+}
+
 @end

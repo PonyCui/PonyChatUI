@@ -68,17 +68,17 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         if (self.nodeInteractor.isOwner) {
             if (self.nodeInteractor.sendStatus == PCUNodeSendMessageStatusSending) {
-                [[self.userInterface sendingIndicatorView] startAnimating];
-                [[self.userInterface sendingRetryButton] setHidden:YES];
+                [self.userInterface sendingIndicatorViewStartAnimating];
+                [self.userInterface setSendingRetryButtonHidden:YES];
             }
             else if (self.nodeInteractor.sendStatus == PCUNodeSendMessageStatusTimeout ||
                      self.nodeInteractor.sendStatus == PCUNodeSendMessageStatusError) {
-                [[self.userInterface sendingIndicatorView] stopAnimating];
-                [[self.userInterface sendingRetryButton] setHidden:NO];
+                [self.userInterface sendingIndicatorViewStopAnimating];
+                [self.userInterface setSendingRetryButtonHidden:NO];
             }
             else {
-                [[self.userInterface sendingIndicatorView] stopAnimating];
-                [[self.userInterface sendingRetryButton] setHidden:YES];
+                [self.userInterface sendingIndicatorViewStopAnimating];
+                [self.userInterface setSendingRetryButtonHidden:YES];
             }
         }
     });

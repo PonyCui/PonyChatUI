@@ -129,10 +129,4 @@
     }
 }
 
-#pragma mark - Events
-
-- (IBAction)handleRetryButtonTapped:(id)sender {
-    [self.eventHandler retrySendMessage];
-}
-
 @end

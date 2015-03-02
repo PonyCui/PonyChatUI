@@ -13,4 +13,8 @@
 
 - (void)setSenderThumbImageViewWithImage:(UIImage *)image;
 
+#pragma mark - IBOutlet
+
+@property (weak, nonatomic) IBOutlet UILabel *duringLabel;
+
 @end

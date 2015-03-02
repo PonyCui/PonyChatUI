@@ -43,6 +43,32 @@
     self.iconImageView.image = image;
 }
 
+#pragma mark - Juhua
+
+- (void)sendingIndicatorViewStartAnimating {
+    [super sendingIndicatorViewStartAnimating];
+    self.duringLabel.hidden = YES;
+}
+
+- (void)sendingIndicatorViewStopAnimating {
+    [super sendingIndicatorViewStopAnimating];
+    if (self.duringLabel.text.length) {
+        self.duringLabel.hidden = NO;
+    }
+}
+
+- (void)setSendingRetryButtonHidden:(BOOL)isHidden {
+    [super setSendingRetryButtonHidden:isHidden];
+    if (isHidden && !self.sendingIndicatorView.isAnimating) {
+        if (self.duringLabel.text.length) {
+            self.duringLabel.hidden = NO;
+        }
+    }
+    else {
+        self.duringLabel.hidden = YES;
+    }
+}
+
 /*
 #pragma mark - Navigation
 

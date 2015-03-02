@@ -52,7 +52,7 @@
     message.sender = [PCUApplication sender];
     message.orderIndex = [[NSDate date] timeIntervalSince1970] * 1000;
     if (argPath != nil) {
-        message.params = @{@"voicePath": argPath};
+        message.params = @{kPCUMessageParamsVoicePathKey: argPath};
     }
     [self.messageManager sendMessage:message];
 }

@@ -16,6 +16,8 @@ typedef NS_ENUM(NSUInteger, PCUMessageType) {
     PCUMessageTypeLinkMessage = 4
 };
 
+#define kPCUMessageParamsVoicePathKey @"voicePath"
+
 @class PCUSender;
 
 @interface PCUMessage : NSObject

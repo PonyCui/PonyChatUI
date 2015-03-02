@@ -34,8 +34,10 @@
 
 - (void)configureLayouts;
 
-- (UIActivityIndicatorView *)sendingIndicatorView;
+- (void)sendingIndicatorViewStartAnimating;
 
-- (UIButton *)sendingRetryButton;
+- (void)sendingIndicatorViewStopAnimating;
+
+- (void)setSendingRetryButtonHidden:(BOOL)isHidden;
 
 @end
