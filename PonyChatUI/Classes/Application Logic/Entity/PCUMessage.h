@@ -11,8 +11,9 @@
 typedef NS_ENUM(NSUInteger, PCUMessageType) {
     PCUMessageTypeSystem = 0,
     PCUMessageTypeTextMessage = 1,
-    PCUMessageTypeImageMessage = 2,
-    PCUMessageTypeLinkMessage = 3
+    PCUMessageTypeVoiceMessage = 2,
+    PCUMessageTypeImageMessage = 3,
+    PCUMessageTypeLinkMessage = 4
 };
 
 @class PCUSender;

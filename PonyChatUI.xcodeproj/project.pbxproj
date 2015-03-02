@@ -15,6 +15,9 @@
 		6328860E1A8B02790032C99C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 632886041A8B02790032C99C /* LaunchScreen.xib */; };
 		6328860F1A8B02790032C99C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 632886061A8B02790032C99C /* Main.storyboard */; };
 		632886101A8B02790032C99C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 632886081A8B02790032C99C /* AppDelegate.m */; };
+		638F61671AA465EB00B9B635 /* PCUVoiceNodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F61661AA465EB00B9B635 /* PCUVoiceNodeViewController.m */; };
+		638F616A1AA46A0100B9B635 /* PCUVoiceNodePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F61691AA46A0100B9B635 /* PCUVoiceNodePresenter.m */; };
+		638F616D1AA46A5300B9B635 /* PCUVoiceNodeInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F616C1AA46A5300B9B635 /* PCUVoiceNodeInteractor.m */; };
 		6390B43D1A8B05A40025A64D /* PCUApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 6390B43C1A8B05A40025A64D /* PCUApplication.m */; };
 		6390B44A1A8B06750025A64D /* PCUWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 6390B4491A8B06750025A64D /* PCUWireframe.m */; };
 		6390B44E1A8B08BE0025A64D /* PCUCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6390B44D1A8B08BE0025A64D /* PCUCore.m */; };
@@ -85,6 +88,12 @@
 		632886071A8B02790032C99C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
 		632886081A8B02790032C99C /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		632886091A8B02790032C99C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		638F61651AA465EB00B9B635 /* PCUVoiceNodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUVoiceNodeViewController.h; sourceTree = "<group>"; };
+		638F61661AA465EB00B9B635 /* PCUVoiceNodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUVoiceNodeViewController.m; sourceTree = "<group>"; };
+		638F61681AA46A0100B9B635 /* PCUVoiceNodePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUVoiceNodePresenter.h; sourceTree = "<group>"; };
+		638F61691AA46A0100B9B635 /* PCUVoiceNodePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUVoiceNodePresenter.m; sourceTree = "<group>"; };
+		638F616B1AA46A5300B9B635 /* PCUVoiceNodeInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUVoiceNodeInteractor.h; sourceTree = "<group>"; };
+		638F616C1AA46A5300B9B635 /* PCUVoiceNodeInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUVoiceNodeInteractor.m; sourceTree = "<group>"; };
 		6390B43B1A8B05A40025A64D /* PCUApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUApplication.h; sourceTree = "<group>"; };
 		6390B43C1A8B05A40025A64D /* PCUApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUApplication.m; sourceTree = "<group>"; };
 		6390B43E1A8B05B50025A64D /* PCUProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUProtocols.h; sourceTree = "<group>"; };
@@ -340,6 +349,8 @@
 				63BACEBA1A8DE8450013DB6C /* PCUNodeInteractor.m */,
 				63BACEB01A8DE7C70013DB6C /* PCUTextNodeInteractor.h */,
 				63BACEB11A8DE7C70013DB6C /* PCUTextNodeInteractor.m */,
+				638F616B1AA46A5300B9B635 /* PCUVoiceNodeInteractor.h */,
+				638F616C1AA46A5300B9B635 /* PCUVoiceNodeInteractor.m */,
 				63BACECF1A91A0740013DB6C /* PCUSystemNodeInteractor.h */,
 				63BACED01A91A0740013DB6C /* PCUSystemNodeInteractor.m */,
 				F070D3141A9A0BE30083F6A3 /* PCUPanelInteractor.h */,
@@ -361,6 +372,8 @@
 				63BACEBD1A8DE86A0013DB6C /* PCUNodePresenter.m */,
 				63BACEB61A8DE80B0013DB6C /* PCUTextNodePresenter.h */,
 				63BACEB71A8DE80B0013DB6C /* PCUTextNodePresenter.m */,
+				638F61681AA46A0100B9B635 /* PCUVoiceNodePresenter.h */,
+				638F61691AA46A0100B9B635 /* PCUVoiceNodePresenter.m */,
 				63BACECC1A91A00D0013DB6C /* PCUSystemNodePresenter.h */,
 				63BACECD1A91A00D0013DB6C /* PCUSystemNodePresenter.m */,
 				F0B123F41A94F0FA00A0DB10 /* PCUPanelItemPresenter.h */,
@@ -396,6 +409,8 @@
 				F0CD67851AA30924007D3F89 /* PCUTalkingHUDViewController.m */,
 				F0CD67871AA30CDB007D3F89 /* PCUTalkingCancelHUDViewController.h */,
 				F0CD67881AA30CDB007D3F89 /* PCUTalkingCancelHUDViewController.m */,
+				638F61651AA465EB00B9B635 /* PCUVoiceNodeViewController.h */,
+				638F61661AA465EB00B9B635 /* PCUVoiceNodeViewController.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -610,6 +625,7 @@
 			files = (
 				6328860B1A8B02790032C99C /* main.m in Sources */,
 				63BACEB81A8DE80B0013DB6C /* PCUTextNodePresenter.m in Sources */,
+				638F616A1AA46A0100B9B635 /* PCUVoiceNodePresenter.m in Sources */,
 				63BACED11A91A0740013DB6C /* PCUSystemNodeInteractor.m in Sources */,
 				63BACECE1A91A00D0013DB6C /* PCUSystemNodePresenter.m in Sources */,
 				F070D31C1A9A0D4D0083F6A3 /* PCUPanelItemManager.m in Sources */,
@@ -641,11 +657,13 @@
 				63BACEBB1A8DE8450013DB6C /* PCUNodeInteractor.m in Sources */,
 				F0B123ED1A938D9B00A0DB10 /* PCUPanelViewController.m in Sources */,
 				6390B4511A8B0AEE0025A64D /* PCUChatViewController.m in Sources */,
+				638F616D1AA46A5300B9B635 /* PCUVoiceNodeInteractor.m in Sources */,
 				F0B123E71A93401500A0DB10 /* PCUToolPresenter.m in Sources */,
 				F0A57CC51A90E32C00068694 /* PCUAvatarManager.m in Sources */,
 				F0CD67861AA30924007D3F89 /* PCUTalkingHUDViewController.m in Sources */,
 				F070D31F1A9A0D5D0083F6A3 /* PCUPanelItem.m in Sources */,
 				63BACEB51A8DE7DB0013DB6C /* PCUChatInteractor.m in Sources */,
+				638F61671AA465EB00B9B635 /* PCUVoiceNodeViewController.m in Sources */,
 				63BACEDA1A91DD410013DB6C /* UILabel+PCUAttributedStringLinkResponder.m in Sources */,
 				63BACEA61A8C7CF10013DB6C /* PCUAttributedStringConfigure.m in Sources */,
 				6390B43D1A8B05A40025A64D /* PCUApplication.m in Sources */,

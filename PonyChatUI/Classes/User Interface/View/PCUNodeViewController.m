@@ -11,6 +11,7 @@
 #import "PCUNodeInteractor.h"
 #import "PCUTextNodeInteractor.h"
 #import "PCUSystemNodeInteractor.h"
+#import "PCUVoiceNodeInteractor.h"
 
 @interface PCUNodeViewController ()
 
@@ -32,6 +33,9 @@
     }
     else if ([nodeInteractor isKindOfClass:[PCUSystemNodeInteractor class]]) {
         viewControllerIdentifier = @"PCUSystemNodeViewController";
+    }
+    else if ([nodeInteractor isKindOfClass:[PCUVoiceNodeInteractor class]]) {
+        viewControllerIdentifier = @"PCUVoiceNodeViewController";
     }
     if (viewControllerIdentifier == nil) {
         return nil;

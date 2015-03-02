@@ -45,6 +45,18 @@
     
 }
 
+- (void)sendVoiceMessageWithPath:(NSString *)argPath {
+    PCUMessage *message = [[PCUMessage alloc] init];
+    message.identifier = [NSString stringWithFormat:@"%d", arc4random()];
+    message.type = PCUMessageTypeVoiceMessage;
+    message.sender = [PCUApplication sender];
+    message.orderIndex = [[NSDate date] timeIntervalSince1970] * 1000;
+    if (argPath != nil) {
+        message.params = @{@"voicePath": argPath};
+    }
+    [self.messageManager sendMessage:message];
+}
+
 #pragma mark - PCUMessageManagerDelegate
 
 - (void)messageManagerDidReceivedMessage:(PCUMessage *)message {

@@ -32,8 +32,10 @@
  */
 @property (nonatomic, strong) PCUMessageManager *messageManager;
 
-#pragma mark - Send Text
+#pragma mark - Send Message
 
 - (void)sendTextMessageWithString:(NSString *)argString;
+
+- (void)sendVoiceMessageWithPath:(NSString *)argPath;
 
 @end

@@ -10,6 +10,7 @@
 #import "PCUMessage.h"
 #import "PCUTextNodeInteractor.h"
 #import "PCUSystemNodeInteractor.h"
+#import "PCUVoiceNodeInteractor.h"
 #import "PCUSender.h"
 #import "PCUApplication.h"
 #import "PCUMessageManager.h"
@@ -28,6 +29,9 @@
     }
     else if (message.type == PCUMessageTypeSystem) {
         return [[PCUSystemNodeInteractor alloc] initWithMessage:message];
+    }
+    else if (message.type == PCUMessageTypeVoiceMessage) {
+        return [[PCUVoiceNodeInteractor alloc] initWithMessage:message];
     }
     return nil;
 }
