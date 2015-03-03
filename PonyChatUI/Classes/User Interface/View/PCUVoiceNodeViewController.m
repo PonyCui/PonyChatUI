@@ -18,6 +18,8 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *voiceNodeBackgroundWidthConstraint;
 
+@property (weak, nonatomic) IBOutlet UILabel *duringLabel;
+
 @end
 
 @implementation PCUVoiceNodeViewController
@@ -67,6 +69,23 @@
     else {
         self.duringLabel.hidden = YES;
     }
+}
+
+- (void)setDuringLabelTextWithDuringTime:(NSInteger)duringTime {
+    if (duringTime <= 0) {
+        self.duringLabel.text = @"";
+    }
+    else {
+        self.duringLabel.text = [NSString stringWithFormat:@"%ld''", (long)duringTime];
+        [self adjustBackgroundImageViewWidthWithDuringTime:duringTime];
+    }
+}
+
+- (void)adjustBackgroundImageViewWidthWithDuringTime:(NSInteger)duringTime {
+    self.voiceNodeBackgroundWidthConstraint.constant = MIN(66.0 + (duringTime - 1) * 5, 220.0);
+    [UIView animateWithDuration:0.15 animations:^{
+        [self.view layoutIfNeeded];
+    }];
 }
 
 /*

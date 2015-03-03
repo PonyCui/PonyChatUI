@@ -32,13 +32,7 @@
 - (void)updateView {
     [super updateView];
     [self.userInterface setSenderThumbImageViewWithImage:self.nodeInteractor.senderThumbImage];
-    if (self.nodeInteractor.voiceDuring >= 0) {
-        self.userInterface.duringLabel.text = [NSString stringWithFormat:@"%ld''",
-                                               (long)self.nodeInteractor.voiceDuring];
-    }
-    else {
-        self.userInterface.duringLabel.text = @"";
-    }
+    [self.userInterface setDuringLabelTextWithDuringTime:self.nodeInteractor.voiceDuring];
 }
 
 - (void)configureReactiveCocoa {
@@ -53,13 +47,7 @@
     [RACObserve(self, nodeInteractor.voiceDuring) subscribeNext:^(id x) {
         @strongify(self);
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (self.nodeInteractor.voiceDuring >= 0) {
-                self.userInterface.duringLabel.text = [NSString stringWithFormat:@"%ld''",
-                                                       (long)self.nodeInteractor.voiceDuring];
-            }
-            else {
-                self.userInterface.duringLabel.text = @"";
-            }
+            [self.userInterface setDuringLabelTextWithDuringTime:self.nodeInteractor.voiceDuring];
         });
     }];
 }

@@ -13,8 +13,6 @@
 
 - (void)setSenderThumbImageViewWithImage:(UIImage *)image;
 
-#pragma mark - IBOutlet
-
-@property (weak, nonatomic) IBOutlet UILabel *duringLabel;
+- (void)setDuringLabelTextWithDuringTime:(NSInteger)duringTime;
 
 @end
