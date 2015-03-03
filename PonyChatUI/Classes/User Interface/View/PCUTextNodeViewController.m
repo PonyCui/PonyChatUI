@@ -104,7 +104,7 @@
     }
     else {
         //单行文字
-        if ([attributedString.string containsString:@"\U0000fffc"]) {
+        if ([attributedString.string rangeOfString:@"\U0000fffc"].location != NSNotFound) {
             //文字表情混排
             self.textLabeHorizonSpace.constant = 8.0;//单行
             self.textLabelTopSpace.constant = -4.0;

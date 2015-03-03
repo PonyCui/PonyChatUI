@@ -150,7 +150,6 @@
                         <constraints>
                             <constraint firstItem="6u0-sQ-X44" firstAttribute="top" secondItem="wHp-Ar-i0M" secondAttribute="bottom" constant="6" id="1ZD-pV-AcC"/>
                             <constraint firstItem="i6a-xQ-lwO" firstAttribute="centerX" secondItem="T0C-qK-FOR" secondAttribute="centerX" id="4uo-P7-ifR"/>
-                            <constraint firstItem="9AH-RF-GJ6" firstAttribute="top" secondItem="2aT-k5-Sby" secondAttribute="bottom" id="B18-gx-DEB"/>
                             <constraint firstItem="6F0-Cf-QO7" firstAttribute="height" secondItem="upR-l7-qJc" secondAttribute="height" id="EVT-JC-77R"/>
                             <constraint firstAttribute="trailing" secondItem="9AH-RF-GJ6" secondAttribute="trailing" id="FOF-xd-Vz2"/>
                             <constraint firstItem="WLg-li-9kw" firstAttribute="centerX" secondItem="bbk-Rd-sqV" secondAttribute="centerX" id="I2h-Wb-QlJ"/>
@@ -163,6 +162,7 @@
                             <constraint firstItem="i6a-xQ-lwO" firstAttribute="leading" secondItem="iJ0-Db-Xo3" secondAttribute="leading" constant="4" id="cpT-j6-FJm"/>
                             <constraint firstItem="WLg-li-9kw" firstAttribute="height" secondItem="bbk-Rd-sqV" secondAttribute="height" id="d97-b8-1Wb"/>
                             <constraint firstItem="9AH-RF-GJ6" firstAttribute="leading" secondItem="iJ0-Db-Xo3" secondAttribute="leading" id="djQ-00-1RN"/>
+                            <constraint firstItem="9AH-RF-GJ6" firstAttribute="top" secondItem="2aT-k5-Sby" secondAttribute="top" id="eTl-t4-s2w"/>
                             <constraint firstItem="6u0-sQ-X44" firstAttribute="top" secondItem="6F0-Cf-QO7" secondAttribute="bottom" constant="6" id="eb9-9I-EYl"/>
                             <constraint firstItem="6F0-Cf-QO7" firstAttribute="centerY" secondItem="upR-l7-qJc" secondAttribute="centerY" id="et9-m9-efW"/>
                             <constraint firstItem="WLg-li-9kw" firstAttribute="width" secondItem="bbk-Rd-sqV" secondAttribute="width" id="gc1-p5-nb5"/>
