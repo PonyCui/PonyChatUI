@@ -45,12 +45,16 @@
     @weakify(self);
     [RACObserve(self, chatInteractor.titleString) subscribeNext:^(id x) {
         @strongify(self);
-        self.userInterface.title = x;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.userInterface.title = x;
+        });
     }];
     [RACObserve(self, chatInteractor.nodeInteractors) subscribeNext:^(id x) {
         @strongify(self);
-        [self rebuildNodeControllers];
-        [self.userInterface reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self rebuildNodeControllers];
+            [self.userInterface reloadData];
+        });
     }];
 }
 

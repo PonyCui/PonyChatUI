@@ -69,37 +69,45 @@ typedef NS_ENUM(NSUInteger, PCUKeyboardType) {
     @weakify(self);
     [RACObserve(self, isSystemKeyboardPresented) subscribeNext:^(id x) {
         @strongify(self);
-        if (self.isSystemKeyboardPresented) {
-            [self dismissKeyboardWithType:PCUKeyboardTypePanel];
-            [self dismissKeyboardWithType:PCUKeyboardTypeEmotion];
-        }
-        [self adjustLayouts];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (self.isSystemKeyboardPresented) {
+                [self dismissKeyboardWithType:PCUKeyboardTypePanel];
+                [self dismissKeyboardWithType:PCUKeyboardTypeEmotion];
+            }
+            [self adjustLayouts];
+        });
     }];
     [RACObserve(self, panelViewController.isPresenting) subscribeNext:^(id x) {
         @strongify(self);
-        if (self.panelViewController.isPresenting) {
-            self.currentKeyboardHeight = CGRectGetHeight(self.panelViewController.view.bounds);
-            [self dismissKeyboardWithType:PCUKeyboardTypeSystem];
-            [self dismissKeyboardWithType:PCUKeyboardTypeEmotion];
-        }
-        [self adjustLayouts];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (self.panelViewController.isPresenting) {
+                self.currentKeyboardHeight = CGRectGetHeight(self.panelViewController.view.bounds);
+                [self dismissKeyboardWithType:PCUKeyboardTypeSystem];
+                [self dismissKeyboardWithType:PCUKeyboardTypeEmotion];
+            }
+            [self adjustLayouts];
+        });
     }];
     [RACObserve(self, emotionViewController.isPresenting) subscribeNext:^(id x) {
         @strongify(self);
-        if (self.emotionViewController.isPresenting) {
-            self.currentKeyboardHeight = CGRectGetHeight(self.emotionViewController.view.bounds);
-            [self dismissKeyboardWithType:PCUKeyboardTypePanel];
-            [self dismissKeyboardWithType:PCUKeyboardTypeSystem];
-        }
-        [self.userInterface setEmotionCoveredKeyboardButtonShow:self.emotionViewController.isPresenting];
-        [self adjustLayouts];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (self.emotionViewController.isPresenting) {
+                self.currentKeyboardHeight = CGRectGetHeight(self.emotionViewController.view.bounds);
+                [self dismissKeyboardWithType:PCUKeyboardTypePanel];
+                [self dismissKeyboardWithType:PCUKeyboardTypeSystem];
+            }
+            [self.userInterface setEmotionCoveredKeyboardButtonShow:self.emotionViewController.isPresenting];
+            [self adjustLayouts];
+        });
     }];
     [RACObserve(self, panelViewController.view.bounds) subscribeNext:^(id x) {
         @strongify(self);
-        if (self.panelViewController.isPresenting) {
-            self.currentKeyboardHeight = CGRectGetHeight(self.panelViewController.view.bounds);
-        }
-        [self adjustLayouts];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (self.panelViewController.isPresenting) {
+                self.currentKeyboardHeight = CGRectGetHeight(self.panelViewController.view.bounds);
+            }
+            [self adjustLayouts];
+        });
     }];
 }
 

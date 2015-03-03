@@ -94,7 +94,9 @@
     @weakify(self);
     [RACObserve(self, nodeInteractor.sendStatus) subscribeNext:^(id x) {
         @strongify(self);
-        [self updateNodeStatus];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self updateNodeStatus];
+        });
     }];
 }
 

@@ -41,7 +41,9 @@
     @weakify(self);
     [RACObserve(self, nodeInteractor.titleString) subscribeNext:^(NSString *x) {
         @strongify(self);
-        [self.userInterface setTextLabelTextWithString:x];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.userInterface setTextLabelTextWithString:x];
+        });
     }];
     [RACObserve(self, nodeInteractor.senderThumbImage) subscribeNext:^(UIImage *x) {
         @strongify(self);
@@ -51,7 +53,9 @@
     }];
     [RACObserve(self, nodeInteractor.senderName) subscribeNext:^(NSString *x) {
         @strongify(self);
-        [self.userInterface setSenderNickLabelTextWithString:x];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.userInterface setSenderNickLabelTextWithString:x];
+        });
     }];
 }
 
