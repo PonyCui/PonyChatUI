@@ -50,6 +50,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor colorWithRed:230.0/255.0 green:230.0/255.0 blue:230.0/255.0 alpha:1.0];
     // Do any additional setup after loading the view.
 }
 
@@ -62,21 +63,23 @@
     self.view.translatesAutoresizingMaskIntoConstraints = NO;
     {
         NSDictionary *views = @{@"nodeView": self.view, @"superView": [self.view superview]};
-        NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[nodeView(==superView)]"
+        NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[nodeView(0)]-0-|"
                                                                         options:kNilOptions
                                                                         metrics:nil
                                                                           views:views];
+        self.widthConstraint = constraints[1];
+        self.widthConstraint.constant = 414.0;
         [[self.view superview] addConstraints:constraints];
     }
     {
-        NSLayoutConstraint *constaints = [NSLayoutConstraint constraintWithItem:self.view
-                                                                      attribute:NSLayoutAttributeHeight
-                                                                      relatedBy:NSLayoutRelationEqual
-                                                                         toItem:nil
-                                                                      attribute:NSLayoutAttributeNotAnAttribute
-                                                                     multiplier:1.0
-                                                                       constant:self.heightConstraintDefaultValue];
-        self.heightConstraint = constaints;
+        NSLayoutConstraint *constaint = [NSLayoutConstraint constraintWithItem:self.view
+                                                                    attribute:NSLayoutAttributeHeight
+                                                                    relatedBy:NSLayoutRelationEqual
+                                                                        toItem:nil
+                                                                     attribute:NSLayoutAttributeNotAnAttribute
+                                                                    multiplier:1.0
+                                                                      constant:self.heightConstraintDefaultValue];
+        self.heightConstraint = constaint;
         [[self.view superview] addConstraint:self.heightConstraint];
     }
 }

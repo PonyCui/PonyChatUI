@@ -24,6 +24,8 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *chatScrollView;
 
+@property (weak, nonatomic) IBOutlet UIView *contentView;
+
 @property (nonatomic, weak) NSLayoutConstraint *toolViewBottomSpaceConstraint;
 
 @property (nonatomic, weak) NSLayoutConstraint *toolViewHeightConstraint;
@@ -47,7 +49,8 @@
     [self.childViewControllers enumerateObjectsUsingBlock:^(UIViewController *obj, NSUInteger idx, BOOL *stop) {
         if ([obj isKindOfClass:[PCUNodeViewController class]] &&
             [obj.view superview] == nil) {
-            [self.chatScrollView addSubview:obj.view];
+            [self.contentView addSubview:obj.view];
+//            [self.chatScrollView addSubview:obj.view];
             [(PCUNodeViewController *)obj configureLayouts];
         }
     }];
@@ -201,17 +204,17 @@
                 NSLayoutConstraint *constaints = [NSLayoutConstraint constraintWithItem:nodeViewController.view
                                                                               attribute:NSLayoutAttributeTop
                                                                               relatedBy:NSLayoutRelationEqual
-                                                                                 toItem:self.chatScrollView
+                                                                                 toItem:self.contentView
                                                                               attribute:NSLayoutAttributeTop
                                                                              multiplier:1.0
                                                                                constant:0.0];
                 nodeViewController.topConstraint = constaints;
-                [self.chatScrollView addConstraint:nodeViewController.topConstraint];
+                [self.contentView addConstraint:nodeViewController.topConstraint];
             }
         }
         else {
             if (nodeViewController.topConstraint.firstItem != previousViewController.view) {
-                [self.chatScrollView removeConstraint:nodeViewController.topConstraint];
+                [self.contentView removeConstraint:nodeViewController.topConstraint];
                 nodeViewController.topConstraint = [NSLayoutConstraint constraintWithItem:previousViewController.view
                                                                                 attribute:NSLayoutAttributeBottom
                                                                                 relatedBy:NSLayoutRelationEqual
@@ -219,8 +222,23 @@
                                                                                 attribute:NSLayoutAttributeTop
                                                                                multiplier:1.0
                                                                                  constant:0.0];
-                [self.chatScrollView addConstraint:nodeViewController.topConstraint];
+                [self.contentView addConstraint:nodeViewController.topConstraint];
             }
+        }
+        if (idx == [nodeEventHandlers count] - 1) {
+            //Add Bottom Contraint
+            [self.contentView removeConstraint:nodeViewController.bottomConstraint];
+            nodeViewController.bottomConstraint = [NSLayoutConstraint constraintWithItem:nodeViewController.view
+                                                                               attribute:NSLayoutAttributeBottom
+                                                                               relatedBy:NSLayoutRelationEqual
+                                                                                  toItem:self.contentView
+                                                                               attribute:NSLayoutAttributeBottom
+                                                                              multiplier:1.0
+                                                                                constant:0.0];
+            [self.contentView addConstraint:nodeViewController.bottomConstraint];
+        }
+        else {
+            [self.contentView removeConstraint:nodeViewController.bottomConstraint];
         }
         previousViewController = nodeViewController;
     }];
