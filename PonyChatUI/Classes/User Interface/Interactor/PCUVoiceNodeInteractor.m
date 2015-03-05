@@ -14,7 +14,9 @@
 #import <AVFoundation/AVFoundation.h>
 #import <CoreAudio/CoreAudioTypes.h>
 
-@interface PCUVoiceNodeInteractor ()
+@interface PCUVoiceNodeInteractor ()<AVAudioPlayerDelegate>
+
+@property (nonatomic, readwrite) BOOL isPlaying;
 
 @property (nonatomic, copy) NSString *senderThumbURLString;
 
@@ -72,17 +74,34 @@
                                                               error:&error];
     if (error == nil) {
         self.audioPlayer.numberOfLoops = 0;
+        self.audioPlayer.delegate = self;
         self.isPrepared = YES;
         self.voiceDuring = (NSInteger)ceil(self.audioPlayer.duration);
     }
 }
 
 - (void)play {
-    [self.audioPlayer play];
+    if (self.isPrepared) {
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback
+                                         withOptions:kNilOptions
+                                               error:nil];
+        [[AVAudioSession sharedInstance] setActive:YES error:nil];
+        self.isPlaying = YES;
+        [self.audioPlayer play];
+    }
 }
 
 - (void)pause {
     [self.audioPlayer stop];
+}
+
+#pragma mark - AVAudioPlayerDelegate
+
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
+    self.isPlaying = NO;
+    [[AVAudioSession sharedInstance] setActive:NO
+                                   withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation
+                                         error:nil];
 }
 
 @end

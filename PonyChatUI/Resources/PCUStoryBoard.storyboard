@@ -391,13 +391,16 @@
                                     <constraint firstAttribute="width" constant="40" id="MVG-LH-Ztt"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SenderTextNodeBkg" translatesAutoresizingMaskIntoConstraints="NO" id="xia-ku-vol">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SenderTextNodeBkg" translatesAutoresizingMaskIntoConstraints="NO" id="xia-ku-vol">
                                 <rect key="frame" x="202" y="8" width="66" height="54"/>
                                 <rect key="contentStretch" x="0.5" y="0.5" width="0.0" height="0.0"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="5t5-ap-dN6"/>
                                     <constraint firstAttribute="width" constant="66" id="elP-o7-cMk"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="HjK-Tk-kGB" appends="YES" id="2y8-5j-IrM"/>
+                                </connections>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="j9V-Nf-6Ge">
                                 <rect key="frame" x="178" y="21" width="20" height="20"/>
@@ -459,6 +462,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YLc-zU-hXm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="HjK-Tk-kGB">
+                    <connections>
+                        <action selector="handleVoicePlayButtonTapped:" destination="XAR-lq-LOw" id="GZJ-gg-9xU"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1051" y="286"/>
         </scene>

@@ -7,6 +7,7 @@
 //
 
 #import "PCUVoiceNodeViewController.h"
+#import "PCUVoiceNodePresenter.h"
 
 @interface PCUVoiceNodeViewController ()
 
@@ -19,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *voiceNodeBackgroundWidthConstraint;
 
 @property (weak, nonatomic) IBOutlet UILabel *duringLabel;
+
+@property (nonatomic, strong) PCUVoiceNodePresenter *eventHandler;
 
 @end
 
@@ -88,14 +91,12 @@
     }];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+/**
+ *  isPaused  播放音频
+ *  isPlaying 暂停播放
+ */
+- (IBAction)handleVoicePlayButtonTapped:(id)sender {
+    [self.eventHandler toggleVoice];
 }
-*/
 
 @end

@@ -15,8 +15,6 @@
 
 @interface PCUTalkingPresenter ()<AVAudioRecorderDelegate>
 
-@property (nonatomic, strong) AVAudioSession *audioSession;
-
 @property (nonatomic, strong) AVAudioRecorder *audioRecorder;
 
 @property (nonatomic, strong) NSTimer *audioMeterTimer;
@@ -31,7 +29,6 @@
 {
     self = [super init];
     if (self) {
-        self.audioSession = [AVAudioSession sharedInstance];
     }
     return self;
 }
@@ -46,7 +43,7 @@
 }
 
 - (void)startRecording {
-    if (self.audioSession.isOtherAudioPlaying) {
+    if ([AVAudioSession sharedInstance].isOtherAudioPlaying) {
         [self.userInterface.talkingHUDViewController setWaiting:YES];
         [self performSelector:@selector(performRecording) withObject:nil afterDelay:0.001];
     }
@@ -57,11 +54,11 @@
 
 - (void)performRecording {
     NSError *error;
-    [self.audioSession setCategory:AVAudioSessionCategoryPlayAndRecord
-                       withOptions:AVAudioSessionCategoryOptionDuckOthers
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord
+                       withOptions:kNilOptions
                              error:&error];
     if (error == nil) {
-        [self.audioSession setActive:YES error:&error];
+        [[AVAudioSession sharedInstance] setActive:YES error:&error];
         [self.userInterface.talkingHUDViewController setWaiting:NO];
         if (error == nil) {
             NSURL *fileURL = [[NSURL alloc] initFileURLWithPath:self.audioFilePath];
@@ -109,7 +106,9 @@
 #pragma mark - AVAudioRecorderDelegate
 
 - (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag {
-    [self.audioSession setActive:NO error:nil];
+    [[AVAudioSession sharedInstance] setActive:NO
+                     withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation
+                           error:nil];
 }
 
 #pragma mark - configuration

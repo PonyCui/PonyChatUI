@@ -52,4 +52,13 @@
     }];
 }
 
+- (void)toggleVoice {
+    if (!self.nodeInteractor.isPlaying) {
+        [self.nodeInteractor play];
+    }
+    else {
+        [self.nodeInteractor pause];
+    }
+}
+
 @end

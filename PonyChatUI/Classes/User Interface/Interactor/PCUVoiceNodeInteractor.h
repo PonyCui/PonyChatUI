@@ -17,6 +17,11 @@
 @property (nonatomic, assign) BOOL isPrepared;
 
 /**
+ *  声音文件正在播放
+ */
+@property (nonatomic, readonly) BOOL isPlaying;
+
+/**
  *  声音文件可播放长度
  */
 @property (nonatomic, assign) NSInteger voiceDuring;

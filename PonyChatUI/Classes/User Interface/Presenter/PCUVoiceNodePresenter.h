@@ -10,4 +10,6 @@
 
 @interface PCUVoiceNodePresenter : PCUNodePresenter
 
+- (void)toggleVoice;
+
 @end
