@@ -98,6 +98,7 @@
         self.heightConstraint = constaint;
         [[self.view superview] addConstraint:self.heightConstraint];
     }
+    [self.view layoutIfNeeded];
 }
 
 - (UIActivityIndicatorView *)sendingIndicatorView {

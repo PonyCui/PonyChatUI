@@ -19,7 +19,7 @@
 
 @property (nonatomic, strong) NSArray *nodeViewControllers;
 
-@property (weak, nonatomic) IBOutlet UIScrollView *chatScrollView;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 
@@ -66,15 +66,15 @@
 #pragma mark - ContentOffset
 
 - (void)scrollToBottom:(BOOL)animated {
-    if (self.chatScrollView.isTracking) {
+    if (self.scrollView.isTracking) {
         return;
     }
-    [self.chatScrollView scrollRectToVisible:CGRectMake(0, CGRectGetHeight(self.contentView.bounds)-1, 1, 1) animated:animated];
+    [self.scrollView scrollRectToVisible:CGRectMake(0, CGRectGetHeight(self.contentView.bounds)-1, 1, 1) animated:animated];
 }
 
 - (BOOL)shouldAutomaticallyScroll {
-    if (self.chatScrollView.contentSize.height - self.chatScrollView.contentOffset.y >
-        CGRectGetHeight(self.chatScrollView.bounds) * 1.5) {
+    if (self.scrollView.contentSize.height - self.scrollView.contentOffset.y >
+        CGRectGetHeight(self.scrollView.bounds) * 1.5) {
         return NO;//用户向上滑动1.5屏以上，禁用自动滚动功能
     }
     else {
@@ -106,10 +106,10 @@
 
 - (void)configureViewLayouts {
     self.view.translatesAutoresizingMaskIntoConstraints = NO;
-    self.chatScrollView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.scrollView.translatesAutoresizingMaskIntoConstraints = NO;
     self.toolViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
     NSDictionary *views = @{@"toolView": self.toolViewController.view,
-                            @"chatView": self.chatScrollView,
+                            @"chatView": self.scrollView,
                             @"wrapView": self.view};
     {
         
@@ -152,7 +152,7 @@
         PCUNodeViewController *nodeViewController = obj.userInterface;
         if (idx == 0) {
             if (nodeViewController.topConstraint.firstItem != nodeViewController.view) {
-                [self.chatScrollView removeConstraint:nodeViewController.topConstraint];
+                [self.scrollView removeConstraint:nodeViewController.topConstraint];
                 NSLayoutConstraint *constaints = [NSLayoutConstraint constraintWithItem:nodeViewController.view
                                                                               attribute:NSLayoutAttributeTop
                                                                               relatedBy:NSLayoutRelationEqual

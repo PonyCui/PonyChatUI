@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14D87h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="IqE-aR-LeG">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Unknown constraint types" minToolsVersion="5.1"/>
     </dependencies>
@@ -50,8 +49,8 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="chatScrollView" destination="i5v-Lt-mL3" id="67U-jL-B5B"/>
                         <outlet property="contentView" destination="xjq-tr-ej9" id="zHM-bc-UCX"/>
+                        <outlet property="scrollView" destination="i5v-Lt-mL3" id="aWs-In-ZDs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gjj-Dr-HIV" userLabel="First Responder" sceneMemberID="firstResponder"/>
