@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14D87h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="IqE-aR-LeG">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Unknown constraint types" minToolsVersion="5.1"/>
     </dependencies>
@@ -582,7 +583,7 @@
                         <constraints>
                             <constraint firstItem="OKM-DE-s9f" firstAttribute="top" secondItem="XR2-6A-bqX" secondAttribute="bottom" constant="-14" id="bJP-ya-xVy"/>
                             <constraint firstItem="XR2-6A-bqX" firstAttribute="leading" secondItem="Qkv-kk-EHW" secondAttribute="leading" id="rL1-rC-6fM"/>
-                            <constraint firstItem="XR2-6A-bqX" firstAttribute="top" secondItem="gwX-3S-eo9" secondAttribute="bottom" id="tWE-vC-nUV"/>
+                            <constraint firstItem="XR2-6A-bqX" firstAttribute="top" secondItem="gwX-3S-eo9" secondAttribute="top" id="tWE-vC-nUV"/>
                             <constraint firstAttribute="trailing" secondItem="XR2-6A-bqX" secondAttribute="trailing" id="tgm-EJ-H7B"/>
                             <constraint firstAttribute="height" secondItem="XR2-6A-bqX" secondAttribute="height" constant="22" id="tiE-dj-BTO"/>
                             <constraint firstAttribute="centerX" secondItem="OKM-DE-s9f" secondAttribute="centerX" id="yDO-g2-zqM"/>
