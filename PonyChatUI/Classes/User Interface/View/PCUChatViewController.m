@@ -94,10 +94,17 @@
 
 - (void)setBottomLayoutHeight:(CGFloat)layoutHeight {
     self.toolViewBottomSpaceConstraint.constant = layoutHeight;
-    [UIView animateWithDuration:0.25 animations:^{
-        [self.view layoutIfNeeded];
-        [self scrollToBottom:NO];
-    } completion:nil];
+    [UIView
+     animateKeyframesWithDuration:0.25
+     delay:0.0
+     options:UIViewKeyframeAnimationOptionBeginFromCurrentState | UIViewKeyframeAnimationOptionLayoutSubviews
+     animations:^{
+         [self.view layoutIfNeeded];
+         [self scrollToBottom:NO];
+     }
+     completion:^(BOOL finished) {
+         
+     }];
 }
 
 - (void)setToolViewLayoutHeight:(CGFloat)layoutHeight {

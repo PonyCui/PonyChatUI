@@ -66,22 +66,34 @@
 - (void)setIsPresenting:(BOOL)isPresenting {
     _isPresenting = isPresenting;
     isPresenting ?
-    [self performSelector:@selector(presentPanel) withObject:nil afterDelay:0.001] :
-    [self performSelector:@selector(dismissPanel) withObject:nil afterDelay:0.001];
+    [self presentPanel] :
+    [self dismissPanel];
 }
 
 - (void)presentPanel {
     self.bottomSpaceConstraint.constant = 0.0;
-    [UIView animateWithDuration:0.25 animations:^{
+    [UIView
+     animateKeyframesWithDuration:0.25
+     delay:0.0
+     options:UIViewKeyframeAnimationOptionBeginFromCurrentState animations:^{
+        [self.view layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        self.bottomSpaceConstraint.constant = 0.0;
         [self.view layoutIfNeeded];
     }];
 }
 
 - (void)dismissPanel {
     self.bottomSpaceConstraint.constant = -self.viewHeightConstraint.constant;
-    [UIView animateWithDuration:0.25 animations:^{
-        [self.view layoutIfNeeded];
-    }];
+    [UIView
+     animateKeyframesWithDuration:0.25
+     delay:0.0
+     options:UIViewKeyframeAnimationOptionBeginFromCurrentState animations:^{
+         [self.view layoutIfNeeded];
+     } completion:^(BOOL finished) {
+         self.bottomSpaceConstraint.constant = -self.viewHeightConstraint.constant;
+         [self.view layoutIfNeeded];
+     }];
 }
 
 #pragma mark - Layouts
