@@ -75,7 +75,7 @@
 - (BOOL)shouldAutomaticallyScroll {
     if (self.chatScrollView.contentSize.height - self.chatScrollView.contentOffset.y >
         CGRectGetHeight(self.chatScrollView.bounds) * 1.5) {
-        return NO;//用户向上滑动两屏以上，禁用自动滚动功能
+        return NO;//用户向上滑动1.5屏以上，禁用自动滚动功能
     }
     else {
         return YES;
@@ -85,27 +85,9 @@
 #pragma mark - ContentSize
 
 - (void)nodeViewHeightDidChange {
-    CGPoint contentOffset = self.chatScrollView.contentOffset;
     if ([self shouldAutomaticallyScroll]) {
         [self scrollToBottom:YES];
     }
-}
-
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    if (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
-        toInterfaceOrientation == UIInterfaceOrientationLandscapeRight) {
-        [self.chatScrollView setContentSize:CGSizeMake(CGRectGetHeight(self.view.bounds),
-                                                       CGRectGetWidth(self.view.bounds))];
-    }
-    else {
-        [self.chatScrollView setContentSize:CGSizeMake(CGRectGetWidth(self.view.bounds),
-                                                       CGRectGetHeight(self.view.bounds))];
-    }
-    
-}
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    [self scrollToBottom:NO];
 }
 
 #pragma mark - Layouts

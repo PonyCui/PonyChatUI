@@ -59,6 +59,22 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [self updateWidthConstraintWithOrientation:toInterfaceOrientation];
+}
+
+- (void)updateWidthConstraintWithOrientation:(UIInterfaceOrientation)orientation {
+    if (orientation == UIInterfaceOrientationLandscapeLeft ||
+        orientation == UIInterfaceOrientationLandscapeRight) {
+        self.widthConstraint.constant = MAX(CGRectGetWidth([UIScreen mainScreen].bounds),
+                                            CGRectGetHeight([UIScreen mainScreen].bounds));
+    }
+    else {
+        self.widthConstraint.constant = MIN(CGRectGetWidth([UIScreen mainScreen].bounds),
+                                            CGRectGetHeight([UIScreen mainScreen].bounds));
+    }
+}
+
 - (void)configureLayouts {
     self.view.translatesAutoresizingMaskIntoConstraints = NO;
     {
@@ -68,7 +84,7 @@
                                                                         metrics:nil
                                                                           views:views];
         self.widthConstraint = constraints[1];
-        self.widthConstraint.constant = 414.0;
+        [self updateWidthConstraintWithOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
         [[self.view superview] addConstraints:constraints];
     }
     {
