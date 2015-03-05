@@ -55,6 +55,9 @@
 #pragma mark - Render
 
 - (void)setTextLabelTextWithString:(NSString *)string {
+    if (string == nil) {
+        return;
+    }
     NSAttributedString *attributedString = [PCU[[PCUAttributedStringManager class]] attributedStringWithString:string];
     attributedString = [attributedString pcu_linkAttributedString];
     attributedString = [[PEBApplication sharedInstance] emotionAttributedStringWithAttributedString:attributedString];
