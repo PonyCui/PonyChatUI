@@ -8,6 +8,7 @@ pod "ReactiveCocoa", "2.4.4"
 pod "AFNetworking"
 pod "TMCache"
 pod "PonyEmotionBoard", :podspec => "https://github.com/PonyGroup/PonyEmotionBoard/raw/master/PonyEmotionBoard.podspec"
+pod "PonyRouter", :podspec => "https://raw.githubusercontent.com/PonyGroup/PonyRouter/master/PonyRouter.podspec"
 
 end
 
