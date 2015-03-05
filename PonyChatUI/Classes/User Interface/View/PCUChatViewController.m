@@ -15,10 +15,7 @@
 #import "PCUNodeInteractor.h"
 #import "PCUNodePresenter.h"
 
-@interface PCUChatViewController ()<UIScrollViewDelegate> {
-    CGFloat _contentHeight;
-    CGSize _contentSize;
-}
+@interface PCUChatViewController ()<UIScrollViewDelegate>
 
 @property (nonatomic, strong) NSArray *nodeViewControllers;
 
@@ -50,15 +47,11 @@
         if ([obj isKindOfClass:[PCUNodeViewController class]] &&
             [obj.view superview] == nil) {
             [self.contentView addSubview:obj.view];
-//            [self.chatScrollView addSubview:obj.view];
             [(PCUNodeViewController *)obj configureLayouts];
         }
     }];
     [self configureNodeLayouts];
-    CGPoint contentOffset = self.chatScrollView.contentOffset;
-    [self updateContentHeight];
-    [self updateContentSize];
-    if ([self shouldAutomaticallyScrollToBottomWithContentOffset:contentOffset]) {
+    if ([self shouldAutomaticallyScroll]) {
         [self scrollToBottom:YES];
     }
 }
@@ -76,11 +69,12 @@
     if (self.chatScrollView.isTracking) {
         return;
     }
-    [self.chatScrollView scrollRectToVisible:CGRectMake(0, _contentHeight-1, 1, 1) animated:animated];
+    [self.chatScrollView scrollRectToVisible:CGRectMake(0, CGRectGetHeight(self.contentView.bounds)-1, 1, 1) animated:animated];
 }
 
-- (BOOL)shouldAutomaticallyScrollToBottomWithContentOffset:(CGPoint)contentOffset {
-    if (_contentSize.height - contentOffset.y > CGRectGetHeight(self.chatScrollView.bounds) * 2) {
+- (BOOL)shouldAutomaticallyScroll {
+    if (self.chatScrollView.contentSize.height - self.chatScrollView.contentOffset.y >
+        CGRectGetHeight(self.chatScrollView.bounds) * 1.5) {
         return NO;//用户向上滑动两屏以上，禁用自动滚动功能
     }
     else {
@@ -90,32 +84,9 @@
 
 #pragma mark - ContentSize
 
-- (void)updateContentHeight {
-    __block CGFloat contentHeight = 0.0;
-    [[self childViewControllers] enumerateObjectsUsingBlock:^(PCUNodeViewController *obj, NSUInteger idx, BOOL *stop) {
-        if ([obj isKindOfClass:[PCUNodeViewController class]]) {
-            contentHeight += obj.heightConstraint.constant;
-        }
-    }];
-    _contentHeight = contentHeight;
-}
-
-- (void)updateContentSize {
-    if (_contentHeight <= CGRectGetHeight(self.chatScrollView.bounds)) {
-        _contentSize = CGSizeMake(CGRectGetWidth(self.chatScrollView.bounds),
-                                  CGRectGetHeight(self.chatScrollView.bounds) + 1);
-    }
-    else {
-        _contentSize = CGSizeMake(CGRectGetWidth(self.chatScrollView.bounds), _contentHeight);
-    }
-    [self.chatScrollView setContentSize:_contentSize];
-}
-
 - (void)nodeViewHeightDidChange {
     CGPoint contentOffset = self.chatScrollView.contentOffset;
-    [self updateContentHeight];
-    [self updateContentSize];
-    if ([self shouldAutomaticallyScrollToBottomWithContentOffset:contentOffset]) {
+    if ([self shouldAutomaticallyScroll]) {
         [self scrollToBottom:YES];
     }
 }
@@ -134,7 +105,6 @@
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    [self updateContentSize];
     [self scrollToBottom:NO];
 }
 
