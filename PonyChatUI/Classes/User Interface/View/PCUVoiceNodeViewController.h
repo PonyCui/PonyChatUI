@@ -15,4 +15,6 @@
 
 - (void)setDuringLabelTextWithDuringTime:(NSInteger)duringTime;
 
+- (void)setPlayButtonAnimated:(BOOL)isAnimated;
+
 @end

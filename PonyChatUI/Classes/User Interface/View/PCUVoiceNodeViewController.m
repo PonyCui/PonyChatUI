@@ -9,7 +9,9 @@
 #import "PCUVoiceNodeViewController.h"
 #import "PCUVoiceNodePresenter.h"
 
-@interface PCUVoiceNodeViewController ()
+@interface PCUVoiceNodeViewController () {
+    NSInteger _playButtonAnimatingFrame;
+}
 
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
 
@@ -22,6 +24,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *duringLabel;
 
 @property (nonatomic, strong) PCUVoiceNodePresenter *eventHandler;
+
+@property (nonatomic, strong) NSTimer *playButtonAnimatingTimer;
+
+@property (weak, nonatomic) IBOutlet UIImageView *playButtonImageView;
 
 @end
 
@@ -97,6 +103,30 @@
  */
 - (IBAction)handleVoicePlayButtonTapped:(id)sender {
     [self.eventHandler toggleVoice];
+}
+
+- (void)setPlayButtonAnimated:(BOOL)isAnimated {
+    if (isAnimated) {
+        _playButtonAnimatingFrame = 1;
+        __weak typeof(self) welf = self;
+        self.playButtonAnimatingTimer = [NSTimer scheduledTimerWithTimeInterval:0.35
+                                                                         target:welf
+                                                                       selector:@selector(updatePlayButtonAnimation)
+                                                                       userInfo:nil
+                                                                        repeats:YES];
+    }
+    else {
+        [self.playButtonAnimatingTimer invalidate];
+        self.playButtonImageView.image = [UIImage imageNamed:@"SenderVoiceNodePlaying"];
+    }
+}
+
+- (void)updatePlayButtonAnimation {
+    self.playButtonImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"SenderVoiceNodePlaying00%ld", (long)_playButtonAnimatingFrame]];
+    _playButtonAnimatingFrame++;
+    if (_playButtonAnimatingFrame > 3) {
+        _playButtonAnimatingFrame = 1;
+    }
 }
 
 @end

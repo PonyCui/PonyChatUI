@@ -456,6 +456,7 @@
                     <connections>
                         <outlet property="duringLabel" destination="eGd-gD-mEn" id="G20-UJ-9PT"/>
                         <outlet property="iconImageView" destination="8wk-ZS-vlz" id="cFM-ap-LoG"/>
+                        <outlet property="playButtonImageView" destination="cgF-rT-e0H" id="8DH-LB-KpF"/>
                         <outlet property="sendingIndicatorView" destination="j9V-Nf-6Ge" id="RVU-H8-Qkr"/>
                         <outlet property="sendingRetryButton" destination="X98-vf-65r" id="F7W-9x-cax"/>
                         <outlet property="voiceNodeBackgroundWidthConstraint" destination="elP-o7-cMk" id="AG2-p6-GH7"/>

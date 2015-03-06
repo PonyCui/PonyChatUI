@@ -50,6 +50,12 @@
             [self.userInterface setDuringLabelTextWithDuringTime:self.nodeInteractor.voiceDuring];
         });
     }];
+    [RACObserve(self, nodeInteractor.isPlaying) subscribeNext:^(id x) {
+        @strongify(self);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.userInterface setPlayButtonAnimated:self.nodeInteractor.isPlaying];
+        });
+    }];
 }
 
 - (void)toggleVoice {
