@@ -356,6 +356,9 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="60"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSender" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="iconImageView" destination="azx-S0-MYR" id="K7D-sX-WFQ"/>
                         <outlet property="sendingIndicatorView" destination="vMb-To-eMD" id="PoR-ld-cmT"/>
@@ -375,7 +378,7 @@
         <!--Voice Node View Controller-->
         <scene sceneID="0rg-yk-O8u">
             <objects>
-                <viewController storyboardIdentifier="PCUVoiceNodeViewController" id="XAR-lq-LOw" customClass="PCUVoiceNodeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PCUVoiceNodeViewControllerSender" id="XAR-lq-LOw" customClass="PCUVoiceNodeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1Hq-PK-lwb"/>
                         <viewControllerLayoutGuide type="bottom" id="YW8-cF-kMa"/>
@@ -453,6 +456,9 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="60"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSender" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="duringLabel" destination="eGd-gD-mEn" id="G20-UJ-9PT"/>
                         <outlet property="iconImageView" destination="8wk-ZS-vlz" id="cFM-ap-LoG"/>
@@ -470,6 +476,88 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1051" y="286"/>
+        </scene>
+        <!--Voice Node View Controller-->
+        <scene sceneID="FyC-UE-Dao">
+            <objects>
+                <viewController storyboardIdentifier="PCUVoiceNodeViewControllerReceiver" id="SE7-km-LBI" customClass="PCUVoiceNodeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8LA-KZ-MxS"/>
+                        <viewControllerLayoutGuide type="bottom" id="b7Q-PI-1Ag"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eAI-ND-d0s">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0g7-3O-39w">
+                                <rect key="frame" x="8" y="8" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="VdX-ed-Koy"/>
+                                    <constraint firstAttribute="width" constant="40" id="exw-S5-YI6"/>
+                                </constraints>
+                            </imageView>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ReceiverTextNodeBkg" translatesAutoresizingMaskIntoConstraints="NO" id="w1l-jm-Skb">
+                                <rect key="frame" x="52" y="8" width="66" height="54"/>
+                                <rect key="contentStretch" x="0.5" y="0.5" width="0.0" height="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="JaK-7K-MrD"/>
+                                    <constraint firstAttribute="width" constant="66" id="rLq-DF-Cgi"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="AiK-He-cOX" appends="YES" id="LL5-QH-4L3"/>
+                                </connections>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ReceiverVoiceNodePlaying" translatesAutoresizingMaskIntoConstraints="NO" id="TRK-Eh-pTf">
+                                <rect key="frame" x="70" y="15" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Zfi-B7-qRi"/>
+                                    <constraint firstAttribute="width" constant="30" id="nNT-hv-jb5"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1''" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUH-bx-ofq">
+                                <rect key="frame" x="118" y="32" width="18" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.49803924560000001" green="0.49803924560000001" blue="0.49803924560000001" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bUH-bx-ofq" firstAttribute="centerY" secondItem="w1l-jm-Skb" secondAttribute="centerY" constant="6" id="4dj-Va-B8R"/>
+                            <constraint firstItem="TRK-Eh-pTf" firstAttribute="leading" secondItem="w1l-jm-Skb" secondAttribute="leading" constant="18" id="DCR-BM-9EB"/>
+                            <constraint firstItem="0g7-3O-39w" firstAttribute="leading" secondItem="eAI-ND-d0s" secondAttribute="leading" constant="8" id="LFo-Bc-dLx"/>
+                            <constraint firstItem="w1l-jm-Skb" firstAttribute="centerY" secondItem="0g7-3O-39w" secondAttribute="centerY" constant="7" id="OBy-Mi-RMC"/>
+                            <constraint firstItem="w1l-jm-Skb" firstAttribute="leading" secondItem="0g7-3O-39w" secondAttribute="trailing" constant="4" id="R60-oC-vlV"/>
+                            <constraint firstItem="TRK-Eh-pTf" firstAttribute="centerY" secondItem="w1l-jm-Skb" secondAttribute="centerY" constant="-5" id="Wbd-4g-75m"/>
+                            <constraint firstItem="w1l-jm-Skb" firstAttribute="trailing" secondItem="bUH-bx-ofq" secondAttribute="leading" id="l2C-1f-nwa"/>
+                            <constraint firstItem="0g7-3O-39w" firstAttribute="top" secondAttribute="top" constant="8" id="meS-S6-IGm"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="60"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="role">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="duringLabel" destination="bUH-bx-ofq" id="Ciz-GY-Snz"/>
+                        <outlet property="iconImageView" destination="0g7-3O-39w" id="GMo-Du-da5"/>
+                        <outlet property="playButtonImageView" destination="TRK-Eh-pTf" id="9QB-ET-jva"/>
+                        <outlet property="voiceNodeBackgroundWidthConstraint" destination="rLq-DF-Cgi" id="5pt-MG-k6S"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7v7-1M-tgd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="AiK-He-cOX">
+                    <connections>
+                        <action selector="handleVoicePlayButtonTapped:" destination="SE7-km-LBI" id="C9g-I2-Wfr"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1051" y="130"/>
         </scene>
         <!--System Node View Controller-->
         <scene sceneID="OPL-1o-eIW">
@@ -781,6 +869,7 @@
     <resources>
         <image name="MessageSendFail" width="28" height="28"/>
         <image name="ReceiverTextNodeBkg" width="66" height="54"/>
+        <image name="ReceiverVoiceNodePlaying" width="20" height="20"/>
         <image name="RecordCancel" width="100" height="100"/>
         <image name="RecordingBkg" width="62" height="100"/>
         <image name="RecordingSignal001" width="38" height="100"/>

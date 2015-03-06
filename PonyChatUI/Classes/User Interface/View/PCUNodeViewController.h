@@ -20,6 +20,8 @@
 
 @interface PCUNodeViewController : UIViewController
 
+@property (nonatomic, assign) BOOL isSender;
+
 @property (nonatomic, weak) id<PCUNodeViewControllerDelegate> delegate;
 
 @property (nonatomic, strong) PCUNodePresenter *eventHandler;

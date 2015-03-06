@@ -117,12 +117,22 @@
     }
     else {
         [self.playButtonAnimatingTimer invalidate];
-        self.playButtonImageView.image = [UIImage imageNamed:@"SenderVoiceNodePlaying"];
+        if (self.isSender) {
+            self.playButtonImageView.image = [UIImage imageNamed:@"SenderVoiceNodePlaying"];
+        }
+        else {
+            self.playButtonImageView.image = [UIImage imageNamed:@"ReceiverVoiceNodePlaying"];
+        }
     }
 }
 
 - (void)updatePlayButtonAnimation {
-    self.playButtonImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"SenderVoiceNodePlaying00%ld", (long)_playButtonAnimatingFrame]];
+    if (self.isSender) {
+        self.playButtonImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"SenderVoiceNodePlaying00%ld", (long)_playButtonAnimatingFrame]];
+    }
+    else {
+        self.playButtonImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"ReceiverVoiceNodePlaying00%ld", (long)_playButtonAnimatingFrame]];
+    }
     _playButtonAnimatingFrame++;
     if (_playButtonAnimatingFrame > 3) {
         _playButtonAnimatingFrame = 1;
