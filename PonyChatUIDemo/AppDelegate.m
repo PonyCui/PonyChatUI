@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "PCUApplication.h"
 #import "PCUCustomMessageManager.h"
+#import <PonyRouter/PGRApplication.h>
 
 @interface AppDelegate ()
 
@@ -19,6 +20,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //使用这行代码，可以创建一个消息管理器
 //    [PCUApplication setMessageManagerClass:[PCUCustomMessageManager class]];
+    [UIApplication pgr_swizzleUIApplicationMethod];
     return YES;
 }
 
@@ -45,7 +47,9 @@
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    
+    if ([[PGRApplication sharedInstance] canOpenURL:url]) {
+        [[PGRApplication sharedInstance] openURL:url];
+    }
     return YES;
 }
 

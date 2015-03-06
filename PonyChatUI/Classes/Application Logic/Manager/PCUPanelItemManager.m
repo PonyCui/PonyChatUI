@@ -8,8 +8,31 @@
 
 #import "PCUPanelItemManager.h"
 #import "PCUPanelItem.h"
+#import <PonyRouter/PGRApplication.h>
 
 @implementation PCUPanelItemManager
+
++ (void)load {
+    [self configureStandardItems];
+}
+
+/**
+ *  基础对话组件的响应设置
+ */
++ (void)configureStandardItems {
+    {
+        PGRNode *node = [[PGRNode alloc] initWithIdentifier:@"photo.pcu" executingBlock:^(NSURL *sourceURL, NSDictionary *params, NSObject *sourceObject) {
+            NSLog(@"photo");
+        }];
+        [[PGRApplication sharedInstance] addNode:node];
+    }
+    {
+        PGRNode *node = [[PGRNode alloc] initWithIdentifier:@"camera.pcu" executingBlock:^(NSURL *sourceURL, NSDictionary *params, NSObject *sourceObject) {
+            NSLog(@"camera");
+        }];
+        [[PGRApplication sharedInstance] addNode:node];
+    }
+}
 
 /**
  *  一些基础对话组件
@@ -19,6 +42,7 @@
 - (NSArray *)standardItems {
     return [NSArray arrayWithObjects:
             [self album],
+            [self camera],
             nil];
 }
 
@@ -27,8 +51,16 @@
 - (PCUPanelItem *)album {
     PCUPanelItem *item = [[PCUPanelItem alloc] init];
     item.title = @"照片";
-    item.iconURLString = @"http://tp2.sinaimg.cn/1930378853/180/40066682121/1";
-    item.actionURLString = @"http://www.baidu.com/";
+    item.iconURLString = @"sharemore_pic";
+    item.actionURLString = @"ponymessager://photo.pcu/";
+    return item;
+}
+
+- (PCUPanelItem *)camera {
+    PCUPanelItem *item = [[PCUPanelItem alloc] init];
+    item.title = @"拍摄";
+    item.iconURLString = @"sharemore_video";
+    item.actionURLString = @"ponymessager://camera.pcu/";
     return item;
 }
 
