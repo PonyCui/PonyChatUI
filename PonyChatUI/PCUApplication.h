@@ -32,4 +32,8 @@
 
 + (BOOL)shouldAutorotate;
 
++ (BOOL)canUseBuiltInSpeaker;
+
++ (void)setCanUseBuiltInSpeaker:(BOOL)use;
+
 @end

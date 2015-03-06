@@ -103,16 +103,43 @@
     }
 }
 
+#pragma mark - Play Control
+
+/**
+ *  @YES 使用听筒
+ *  @NO  使用扬声器、耳机
+ */
+- (BOOL)shouldUseBuiltInSpeaker {
+    if (![PCUApplication canUseBuiltInSpeaker]) {
+        return NO;
+    }
+    else {
+        return [[UIDevice currentDevice] proximityState];
+    }
+}
+
 - (void)play {
     [self sendEndPlayingNotification];
     if (self.isPrepared) {
         [self configureEndPlayingNotification];
-        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback
-                                         withOptions:kNilOptions
-                                               error:nil];
+        [self configureSensorNotification];
+        [self switchSpeaker];
         [[AVAudioSession sharedInstance] setActive:YES error:nil];
         self.isPlaying = YES;
         [self.audioPlayer play];
+    }
+}
+
+- (void)switchSpeaker {
+    if ([self shouldUseBuiltInSpeaker]) {
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord
+                                         withOptions:kNilOptions
+                                               error:nil];
+    }
+    else {
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback
+                                         withOptions:kNilOptions
+                                               error:nil];
     }
 }
 
@@ -120,7 +147,29 @@
     self.isPlaying = NO;
     [self.audioPlayer stop];
     [self removeEndPlayingNotification];
+    [self removeSensorNotification];
 }
+
+#pragma mark - SensorNotification
+
+- (void)configureSensorNotification {
+    if ([PCUApplication canUseBuiltInSpeaker]) {
+        [[UIDevice currentDevice] setProximityMonitoringEnabled:YES];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(switchSpeaker)
+                                                     name:UIDeviceProximityStateDidChangeNotification
+                                                   object:nil];
+    }
+}
+
+- (void)removeSensorNotification {
+    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIDeviceProximityStateDidChangeNotification
+                                                  object:nil];
+}
+
+#pragma mark - EndPlayingNotification
 
 - (void)sendEndPlayingNotification {
     [[NSNotificationCenter defaultCenter] postNotificationName:kPCUEndPlayingNotification object:nil];

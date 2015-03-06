@@ -27,6 +27,7 @@
     chatItem.identifier = @"Debug";
     chatItem.title = @"Hello";
     [PCU[@protocol(PCUWireframe)] presentChatViewToViewController:self withChatItem:chatItem];
+    [PCUApplication setCanUseBuiltInSpeaker:YES];//设置为NO会禁用红外传感器，所有声音将使用扬声器播放
     // Do any additional setup after loading the view, typically from a nib.
 }
 

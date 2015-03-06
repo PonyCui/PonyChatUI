@@ -13,6 +13,7 @@
 static PCUCore *coreModule;
 static PCUSender *ownerSender;
 static BOOL allowRotate = YES;
+static BOOL canUseBuiltInSpeaker = YES;
 
 @implementation PCUApplication
 
@@ -74,6 +75,14 @@ static BOOL allowRotate = YES;
 
 + (void)handleAllowRotateNotification {
     allowRotate = YES;
+}
+
++ (BOOL)canUseBuiltInSpeaker {
+    return canUseBuiltInSpeaker;
+}
+
++ (void)setCanUseBuiltInSpeaker:(BOOL)use {
+    canUseBuiltInSpeaker = use;
 }
 
 @end

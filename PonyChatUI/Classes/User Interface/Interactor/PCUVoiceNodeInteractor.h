@@ -39,6 +39,11 @@
 - (void)play;
 
 /**
+ *  切换听筒、扬声器
+ */
+- (void)switchSpeaker;
+
+/**
  *  暂停播放
  */
 - (void)pause;
