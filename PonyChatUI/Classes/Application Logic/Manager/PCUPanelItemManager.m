@@ -28,6 +28,7 @@
                     UIImagePickerController *photoPicker = [[UIImagePickerController alloc] init];
                     photoPicker.delegate = sourceObject;
                     photoPicker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+                    photoPicker.allowsEditing = YES;
                     [sourceObject presentViewController:photoPicker animated:YES completion:nil];
                 }
                 else {
