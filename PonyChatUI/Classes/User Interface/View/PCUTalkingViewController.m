@@ -105,7 +105,7 @@
 }
 
 - (BOOL)shouldCancelRecordWithFigureLocation:(CGPoint)location {
-    if (location.y < CGRectGetHeight([[[[UIApplication sharedApplication] delegate] window] bounds]) - 108.0) {
+    if (location.y < self.view.superview.superview.frame.origin.y - 108.0) {
         return YES;
     }
     else {
