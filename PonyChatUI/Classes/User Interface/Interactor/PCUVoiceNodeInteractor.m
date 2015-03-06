@@ -13,6 +13,7 @@
 #import "PCUSender.h"
 #import <AVFoundation/AVFoundation.h>
 #import <CoreAudio/CoreAudioTypes.h>
+#import <AFNetworking/AFNetworking.h>
 
 @interface PCUVoiceNodeInteractor ()<AVAudioPlayerDelegate>
 
@@ -58,7 +59,29 @@
 - (void)sendAsyncVoiceFileRequest {
     if (self.message.params[kPCUMessageParamsVoicePathKey] != nil) {
         if ([self.message.params[kPCUMessageParamsVoicePathKey] hasPrefix:@"http"]) {
-            
+            NSString *localCachePath = [NSTemporaryDirectory() stringByAppendingFormat:@".remoteVoice.%@", self.message.identifier];
+            if ([[NSFileManager defaultManager] fileExistsAtPath:localCachePath]) {
+                [self responseWithVoiceFileLocalPath:localCachePath];
+            }
+            else {
+                NSURL *remoteURL = [NSURL URLWithString:self.message.params[kPCUMessageParamsVoicePathKey]];
+                NSURLRequest *request = [NSURLRequest requestWithURL:remoteURL];
+                AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+                [operation
+                 setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+                     if ([responseObject isKindOfClass:[NSData class]]) {
+                         NSError *error;
+                         [responseObject writeToFile:localCachePath options:kNilOptions error:&error];
+                         if (error == nil) {
+                             [self responseWithVoiceFileLocalPath:localCachePath];
+                         }
+                     }
+                }
+                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    
+                }];
+                [[[AFHTTPSessionManager manager] operationQueue] addOperation:operation];
+            }
         }
         else {
             [self responseWithVoiceFileLocalPath:self.message.params[kPCUMessageParamsVoicePathKey]];
@@ -96,6 +119,10 @@
 }
 
 #pragma mark - AVAudioPlayerDelegate
+
+- (void)audioPlayerBeginInterruption:(AVAudioPlayer *)player {
+    self.isPlaying = NO;
+}
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
     self.isPlaying = NO;

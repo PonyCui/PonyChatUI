@@ -538,11 +538,6 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="60"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="role">
-                            <integer key="value" value="1"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="duringLabel" destination="bUH-bx-ofq" id="Ciz-GY-Snz"/>
                         <outlet property="iconImageView" destination="0g7-3O-39w" id="GMo-Du-da5"/>

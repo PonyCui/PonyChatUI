@@ -35,7 +35,12 @@
         viewControllerIdentifier = @"PCUSystemNodeViewController";
     }
     else if ([nodeInteractor isKindOfClass:[PCUVoiceNodeInteractor class]]) {
-        viewControllerIdentifier = @"PCUVoiceNodeViewController";
+        if (nodeInteractor.isOwner) {
+            viewControllerIdentifier = @"PCUVoiceNodeViewControllerSender";
+        }
+        else {
+            viewControllerIdentifier = @"PCUVoiceNodeViewControllerReceiver";
+        }
     }
     if (viewControllerIdentifier == nil) {
         return nil;
