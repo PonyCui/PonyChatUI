@@ -17,6 +17,7 @@ typedef NS_ENUM(NSUInteger, PCUMessageType) {
 };
 
 #define kPCUMessageParamsVoicePathKey @"voicePath"
+#define kPCUMessageParamsImagePathKey @"imagePath"
 
 @class PCUSender;
 

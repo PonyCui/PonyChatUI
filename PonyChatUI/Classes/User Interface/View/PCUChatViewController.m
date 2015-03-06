@@ -213,6 +213,7 @@
 #pragma mark - UIImagePickerControllerDelegate
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    [self.eventHandler sendImageMessage:info[UIImagePickerControllerOriginalImage]];
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 

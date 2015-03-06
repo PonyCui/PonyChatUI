@@ -105,4 +105,14 @@
      }];
 }
 
+#pragma mark - Send Message
+
+- (void)sendImageMessage:(UIImage *)image {
+    NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
+    NSString *imagePath = [NSTemporaryDirectory() stringByAppendingFormat:@"%u.%u.%u.jpg",
+                           arc4random(), arc4random(), arc4random()];
+    [imageData writeToFile:imagePath atomically:YES];
+    [self.chatInteractor sendImageMessageWithPath:imagePath];
+}
+
 @end

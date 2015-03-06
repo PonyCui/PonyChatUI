@@ -38,4 +38,6 @@
 
 - (void)sendVoiceMessageWithPath:(NSString *)argPath;
 
+- (void)sendImageMessageWithPath:(NSString *)argPath;
+
 @end

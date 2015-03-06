@@ -57,6 +57,18 @@
     [self.messageManager sendMessage:message];
 }
 
+- (void)sendImageMessageWithPath:(NSString *)argPath {
+    PCUMessage *message = [[PCUMessage alloc] init];
+    message.identifier = [NSString stringWithFormat:@"%d", arc4random()];
+    message.type = PCUMessageTypeImageMessage;
+    message.sender = [PCUApplication sender];
+    message.orderIndex = [[NSDate date] timeIntervalSince1970] * 1000;
+    if (argPath != nil) {
+        message.params = @{kPCUMessageParamsImagePathKey: argPath};
+    }
+    [self.messageManager sendMessage:message];
+}
+
 #pragma mark - PCUMessageManagerDelegate
 
 - (void)messageManagerDidReceivedMessage:(PCUMessage *)message {
