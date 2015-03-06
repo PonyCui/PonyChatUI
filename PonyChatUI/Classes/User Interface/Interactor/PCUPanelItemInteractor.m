@@ -10,6 +10,7 @@
 #import "PCUPanelItemManager.h"
 #import "PCUPanelItem.h"
 #import <AFNetworking/AFNetworking.h>
+#import <PonyRouter/PGRApplication.h>
 
 @interface PCUPanelItemInteractor ()
 
@@ -49,8 +50,10 @@
     }
 }
 
-- (void)sendRequest {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.item.actionURLString]];
+- (void)sendRequestWithViewController:(UIViewController *)viewController {
+    [[PGRApplication sharedInstance] openURL:[NSURL URLWithString:self.item.actionURLString]
+                                sourceObject:viewController];
+    //    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.item.actionURLString]];
 }
 
 @end

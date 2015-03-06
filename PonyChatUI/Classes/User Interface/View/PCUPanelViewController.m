@@ -174,6 +174,7 @@
     [self updatePageControl];
     PCUPanelCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell"
                                                                                  forIndexPath:indexPath];
+    cell.panelViewController = self;
     NSUInteger cellIndex = [self cellIndexForIndexPath:indexPath];
     cell.hidden = cellIndex >= self.eventHandler.panelInteractor.items.count;
     if (cellIndex < self.eventHandler.panelInteractor.items.count) {

@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class PCUPanelViewController;
 
 @class PCUPanelItemPresenter;
 
 @interface PCUPanelCollectionViewCell : UICollectionViewCell
+
+@property (nonatomic, weak) PCUPanelViewController *panelViewController;
 
 @property (nonatomic, strong) PCUPanelItemPresenter *eventHandler;
 

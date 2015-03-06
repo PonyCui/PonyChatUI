@@ -11,7 +11,7 @@
 
 @class PCUChatPresenter, PCUTextNodeViewController, PCUToolViewController;
 
-@interface PCUChatViewController : UIViewController<PCUNodeViewControllerDelegate>
+@interface PCUChatViewController : UIViewController<PCUNodeViewControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic, strong) PCUChatPresenter *eventHandler;
 

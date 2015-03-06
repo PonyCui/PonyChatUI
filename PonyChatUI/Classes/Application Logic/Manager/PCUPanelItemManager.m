@@ -18,17 +18,38 @@
 
 /**
  *  基础对话组件的响应设置
+ *  只是一个示例，你可以参照以下代码自己定义想要的事件
  */
 + (void)configureStandardItems {
     {
-        PGRNode *node = [[PGRNode alloc] initWithIdentifier:@"photo.pcu" executingBlock:^(NSURL *sourceURL, NSDictionary *params, NSObject *sourceObject) {
-            NSLog(@"photo");
+        PGRNode *node = [[PGRNode alloc] initWithIdentifier:@"photo.pcu" executingBlock:^(NSURL *sourceURL, NSDictionary *params, id sourceObject) {
+            if ([sourceObject isKindOfClass:[UIViewController class]]) {
+                if ([UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
+                    UIImagePickerController *photoPicker = [[UIImagePickerController alloc] init];
+                    photoPicker.delegate = sourceObject;
+                    photoPicker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+                    [sourceObject presentViewController:photoPicker animated:YES completion:nil];
+                }
+                else {
+                    [[[UIAlertView alloc] initWithTitle:nil message:@"相册功能已被禁用" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
+                }
+            }
         }];
         [[PGRApplication sharedInstance] addNode:node];
     }
     {
-        PGRNode *node = [[PGRNode alloc] initWithIdentifier:@"camera.pcu" executingBlock:^(NSURL *sourceURL, NSDictionary *params, NSObject *sourceObject) {
-            NSLog(@"camera");
+        PGRNode *node = [[PGRNode alloc] initWithIdentifier:@"camera.pcu" executingBlock:^(NSURL *sourceURL, NSDictionary *params, id sourceObject) {
+            if ([sourceObject isKindOfClass:[UIViewController class]]) {
+                if ([UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear]) {
+                    UIImagePickerController *cameraPicker = [[UIImagePickerController alloc] init];
+                    cameraPicker.delegate = sourceObject;
+                    cameraPicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+                    [sourceObject presentViewController:cameraPicker animated:YES completion:nil];
+                }
+                else {
+                    [[[UIAlertView alloc] initWithTitle:nil message:@"相机功能已被禁用" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
+                }
+            }
         }];
         [[PGRApplication sharedInstance] addNode:node];
     }

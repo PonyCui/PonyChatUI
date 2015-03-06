@@ -46,7 +46,12 @@
 }
 
 - (void)sendAction {
-    [self.itemInteractor sendRequest];
+    id chatViewController = self.userInterface.panelViewController;//PCUChatViewController
+    while (![NSStringFromClass([chatViewController class]) isEqualToString:@"PCUChatViewController"] &&
+           chatViewController != nil) {
+        chatViewController = [chatViewController parentViewController];
+    }
+    [self.itemInteractor sendRequestWithViewController:chatViewController];
 }
 
 - (void)setItemInteractor:(PCUPanelItemInteractor *)itemInteractor {

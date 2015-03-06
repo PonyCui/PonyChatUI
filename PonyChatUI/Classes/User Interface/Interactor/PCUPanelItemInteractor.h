@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @class PCUPanelItem, UIImage;
 
@@ -21,6 +22,6 @@
 /**
  *  发送请求
  */
-- (void)sendRequest;
+- (void)sendRequestWithViewController:(UIViewController *)viewController;
 
 @end
