@@ -28,6 +28,8 @@
 
 + (void)endEditing;
 
++ (void)endPlaying;
+
 + (BOOL)shouldAutorotate;
 
 @end

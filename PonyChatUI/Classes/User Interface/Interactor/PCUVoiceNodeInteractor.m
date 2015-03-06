@@ -104,7 +104,9 @@
 }
 
 - (void)play {
+    [self sendEndPlayingNotification];
     if (self.isPrepared) {
+        [self configureEndPlayingNotification];
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback
                                          withOptions:kNilOptions
                                                error:nil];
@@ -115,14 +117,27 @@
 }
 
 - (void)pause {
+    self.isPlaying = NO;
     [self.audioPlayer stop];
+    [self removeEndPlayingNotification];
+}
+
+- (void)sendEndPlayingNotification {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kPCUEndPlayingNotification object:nil];
+}
+
+- (void)configureEndPlayingNotification {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(pause)
+                                                 name:kPCUEndPlayingNotification
+                                               object:nil];
+}
+
+- (void)removeEndPlayingNotification {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kPCUEndPlayingNotification object:nil];
 }
 
 #pragma mark - AVAudioPlayerDelegate
-
-- (void)audioPlayerBeginInterruption:(AVAudioPlayer *)player {
-    self.isPlaying = NO;
-}
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
     self.isPlaying = NO;

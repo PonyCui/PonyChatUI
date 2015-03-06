@@ -109,8 +109,9 @@
     if (isAnimated) {
         _playButtonAnimatingFrame = 1;
         __weak typeof(self) welf = self;
+        [self.playButtonAnimatingTimer invalidate];
         self.playButtonAnimatingTimer = [NSTimer scheduledTimerWithTimeInterval:0.35
-                                                                         target:welf
+                                                                         target:self
                                                                        selector:@selector(updatePlayButtonAnimation)
                                                                        userInfo:nil
                                                                         repeats:YES];

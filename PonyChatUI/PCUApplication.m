@@ -57,9 +57,11 @@ static BOOL allowRotate = YES;
 
 + (void)endEditing {
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
-    [[NSNotificationCenter defaultCenter]
-     postNotificationName:kPCUEndEditingNotification
-     object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kPCUEndEditingNotification object:nil];
+}
+
++ (void)endPlaying {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kPCUEndPlayingNotification object:nil];
 }
 
 + (BOOL)shouldAutorotate {
