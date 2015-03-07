@@ -502,15 +502,11 @@
                                     <constraint firstAttribute="height" constant="40" id="tkC-cM-89l"/>
                                 </constraints>
                             </imageView>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SenderTextNodeBkg" translatesAutoresizingMaskIntoConstraints="NO" id="9ew-Jz-2UW">
-                                <rect key="frame" x="150" y="5" width="118" height="114"/>
-                                <rect key="contentStretch" x="0.5" y="0.5" width="0.0" height="0.0"/>
-                            </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="xXB-Rn-tqL">
-                                <rect key="frame" x="126" y="48" width="20" height="20"/>
+                                <rect key="frame" x="151" y="40" width="20" height="20"/>
                             </activityIndicatorView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BcS-q7-kWI">
-                                <rect key="frame" x="114" y="36" width="44" height="44"/>
+                                <rect key="frame" x="139" y="28" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="NhB-QQ-GBu"/>
                                     <constraint firstAttribute="height" constant="44" id="c5z-L1-FEA"/>
@@ -523,27 +519,31 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PfZ-Z6-gey">
-                                <rect key="frame" x="164" y="13" width="90" height="90"/>
+                                <rect key="frame" x="178" y="7" width="90" height="90"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="hjS-fs-wCv"/>
                                     <constraint firstAttribute="width" constant="90" id="j2n-hP-H0B"/>
                                 </constraints>
                             </imageView>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SenderTextNodeBkgReversed" translatesAutoresizingMaskIntoConstraints="NO" id="9ew-Jz-2UW">
+                                <rect key="frame" x="175" y="6" width="93" height="96"/>
+                                <rect key="contentStretch" x="0.5" y="0.5" width="0.0" height="0.0"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="T2s-ZL-bBd" firstAttribute="leading" secondItem="PfZ-Z6-gey" secondAttribute="trailing" constant="18" id="1H4-gO-3wv"/>
-                            <constraint firstItem="PfZ-Z6-gey" firstAttribute="width" secondItem="9ew-Jz-2UW" secondAttribute="width" constant="-28" id="9CY-si-tsz"/>
+                            <constraint firstItem="T2s-ZL-bBd" firstAttribute="leading" secondItem="PfZ-Z6-gey" secondAttribute="trailing" constant="4" id="1H4-gO-3wv"/>
+                            <constraint firstItem="PfZ-Z6-gey" firstAttribute="width" secondItem="9ew-Jz-2UW" secondAttribute="width" constant="-3" id="9CY-si-tsz"/>
                             <constraint firstItem="9ew-Jz-2UW" firstAttribute="leading" secondItem="xXB-Rn-tqL" secondAttribute="trailing" constant="4" id="9De-9X-Mnc"/>
                             <constraint firstItem="T2s-ZL-bBd" firstAttribute="top" secondAttribute="top" constant="8" id="9ns-Kl-Yar"/>
-                            <constraint firstItem="T2s-ZL-bBd" firstAttribute="top" secondItem="PfZ-Z6-gey" secondAttribute="top" constant="-5" id="BtU-gc-4j4"/>
+                            <constraint firstItem="T2s-ZL-bBd" firstAttribute="top" secondItem="PfZ-Z6-gey" secondAttribute="top" constant="1" id="BtU-gc-4j4"/>
                             <constraint firstItem="BcS-q7-kWI" firstAttribute="centerY" secondItem="xXB-Rn-tqL" secondAttribute="centerY" id="IK5-2c-xwb"/>
                             <constraint firstAttribute="trailing" secondItem="T2s-ZL-bBd" secondAttribute="trailing" constant="8" id="QVT-LM-dLA"/>
                             <constraint firstItem="T2s-ZL-bBd" firstAttribute="leading" secondItem="9ew-Jz-2UW" secondAttribute="trailing" constant="4" id="UMP-0w-F9x"/>
-                            <constraint firstItem="9ew-Jz-2UW" firstAttribute="top" secondItem="PfZ-Z6-gey" secondAttribute="top" constant="-8" id="UpP-hC-UFV"/>
+                            <constraint firstItem="9ew-Jz-2UW" firstAttribute="top" secondItem="PfZ-Z6-gey" secondAttribute="top" constant="-1" id="UpP-hC-UFV"/>
                             <constraint firstItem="9ew-Jz-2UW" firstAttribute="centerY" secondItem="xXB-Rn-tqL" secondAttribute="centerY" constant="4" id="WxF-tP-vb9"/>
                             <constraint firstItem="BcS-q7-kWI" firstAttribute="centerX" secondItem="xXB-Rn-tqL" secondAttribute="centerX" id="tPY-Fh-dA4"/>
-                            <constraint firstItem="PfZ-Z6-gey" firstAttribute="height" secondItem="9ew-Jz-2UW" secondAttribute="height" constant="-24" id="ugu-53-ytw"/>
+                            <constraint firstItem="PfZ-Z6-gey" firstAttribute="height" secondItem="9ew-Jz-2UW" secondAttribute="height" constant="-6" id="ugu-53-ytw"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -1005,6 +1005,7 @@
         <image name="RecordingBkg" width="62" height="100"/>
         <image name="RecordingSignal001" width="38" height="100"/>
         <image name="SenderTextNodeBkg" width="66" height="54"/>
+        <image name="SenderTextNodeBkgReversed" width="66" height="54"/>
         <image name="SenderVoiceNodePlaying" width="20" height="20"/>
         <image name="ToolViewEmotion" width="35" height="35"/>
         <image name="ToolViewInputVoice" width="35" height="35"/>

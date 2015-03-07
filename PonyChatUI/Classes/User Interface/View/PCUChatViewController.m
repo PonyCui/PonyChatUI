@@ -99,7 +99,6 @@
     @weakify(self);
     [RACObserve(self, scrollView.contentSize) subscribeNext:^(id x) {
         @strongify(self);
-        NSLog(@"%f", self.scrollView.contentSize.height);
         if ([self shouldAutomaticallyScroll]) {
             [self scrollToBottom:YES];
         }
