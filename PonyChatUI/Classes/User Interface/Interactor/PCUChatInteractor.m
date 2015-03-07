@@ -40,7 +40,7 @@
     message.isRead = YES;
     message.type = PCUMessageTypeTextMessage;
     message.sender = [PCUApplication sender];
-    message.orderIndex = [[NSDate date] timeIntervalSince1970] * 1000;
+    message.orderIndex = [[NSDate date] timeIntervalSince1970] * 1000 + 4;
     message.title = argString;
     [self.messageManager sendMessage:message];
 
@@ -52,7 +52,7 @@
     message.isRead = YES;
     message.type = PCUMessageTypeVoiceMessage;
     message.sender = [PCUApplication sender];
-    message.orderIndex = [[NSDate date] timeIntervalSince1970] * 1000;
+    message.orderIndex = [[NSDate date] timeIntervalSince1970] * 1000 + 4;
     if (argPath != nil) {
         message.params = @{kPCUMessageParamsVoicePathKey: argPath};
     }
@@ -65,7 +65,7 @@
     message.isRead = YES;
     message.type = PCUMessageTypeImageMessage;
     message.sender = [PCUApplication sender];
-    message.orderIndex = [[NSDate date] timeIntervalSince1970] * 1000;
+    message.orderIndex = [[NSDate date] timeIntervalSince1970] * 1000 + 4;
     if (argPath != nil) {
         message.params = @{kPCUMessageParamsOriginalImagePathKey: argPath,
                            kPCUMessageParamsThumbImagePathKey: argPath};
