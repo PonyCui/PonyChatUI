@@ -51,14 +51,9 @@
 
 - (void)setThumbImage:(UIImage *)thumbImage {
     self.thumbImageView.image = thumbImage;
-    [self adjustHeight];
-}
-
-- (void)adjustHeight {
     self.thumbImageViewWidthConstraint.constant = self.thumbImageView.image.size.width;
     self.thumbImageViewHeightConstraint.constant = self.thumbImageView.image.size.height;
     self.heightConstraint.constant = self.thumbImageViewHeightConstraint.constant + 28.0;
-    [self.delegate nodeViewHeightDidChange];
 }
 
 @end

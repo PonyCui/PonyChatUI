@@ -128,7 +128,6 @@
 - (void)adjustHeight {
     if (CGRectGetHeight(self.textLabelBackgroundImageView.bounds) + 6.0 != self.heightConstraint.constant) {
         self.heightConstraint.constant = CGRectGetHeight(self.textLabelBackgroundImageView.bounds) + 6.0;
-        [self.delegate nodeViewHeightDidChange];
     }
 }
 

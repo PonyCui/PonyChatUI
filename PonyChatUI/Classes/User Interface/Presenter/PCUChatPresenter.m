@@ -85,7 +85,6 @@
             if (nodeViewController.eventHandler != nil) {
                 [nodeEventHandlers addObject:nodeViewController.eventHandler];
             }
-            nodeViewController.delegate = self.userInterface;
             [self.userInterface addChildViewController:nodeViewController];
         }];
         self.nodeEventHanlders = nodeEventHandlers;

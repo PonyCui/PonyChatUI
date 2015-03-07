@@ -9,20 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "PCUNodePresenter.h"
 
-@protocol PCUNodeViewControllerDelegate <NSObject>
-
-@required
-- (void)nodeViewHeightDidChange;
-
-@end
-
 @class PCUNodeInteractor, PCUNodePresenter;
 
 @interface PCUNodeViewController : UIViewController
 
 @property (nonatomic, assign) BOOL isSender;
-
-@property (nonatomic, weak) id<PCUNodeViewControllerDelegate> delegate;
 
 @property (nonatomic, strong) PCUNodePresenter *eventHandler;
 

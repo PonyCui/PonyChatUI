@@ -59,7 +59,6 @@
 - (void)adjustHeight {
     if (self.buttonHeightConstraint.constant + 12.0 != self.heightConstraint.constant) {
         self.heightConstraint.constant = self.buttonHeightConstraint.constant + 12.0;
-        [self.delegate nodeViewHeightDidChange];
     }
 }
 

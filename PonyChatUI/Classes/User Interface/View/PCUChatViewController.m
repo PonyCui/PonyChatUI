@@ -14,6 +14,7 @@
 #import "PCUChatInteractor.h"
 #import "PCUNodeInteractor.h"
 #import "PCUNodePresenter.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface PCUChatViewController ()<UIScrollViewDelegate>
 
@@ -34,6 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configureToolView];
+    [self configureAutomaticallyScroll];
     // Do any additional setup after loading the view.
 }
 
@@ -69,7 +71,18 @@
     if (self.scrollView.isTracking) {
         return;
     }
-    [self.scrollView scrollRectToVisible:CGRectMake(0, CGRectGetHeight(self.contentView.bounds)-1, 1, 1) animated:animated];
+    if (animated) {
+        [UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+            [self.scrollView scrollRectToVisible:CGRectMake(0, CGRectGetHeight(self.contentView.bounds)-1, 1, 1)
+                                        animated:NO];
+        } completion:^(BOOL finished) {
+            
+        }];
+    }
+    else {
+        [self.scrollView scrollRectToVisible:CGRectMake(0, CGRectGetHeight(self.contentView.bounds)-1, 1, 1)
+                                    animated:NO];
+    }
 }
 
 - (BOOL)shouldAutomaticallyScroll {
@@ -82,12 +95,15 @@
     }
 }
 
-#pragma mark - ContentSize
-
-- (void)nodeViewHeightDidChange {
-    if ([self shouldAutomaticallyScroll]) {
-        [self scrollToBottom:YES];
-    }
+- (void)configureAutomaticallyScroll {
+    @weakify(self);
+    [RACObserve(self, scrollView.contentSize) subscribeNext:^(id x) {
+        @strongify(self);
+        NSLog(@"%f", self.scrollView.contentSize.height);
+        if ([self shouldAutomaticallyScroll]) {
+            [self scrollToBottom:YES];
+        }
+    }];
 }
 
 #pragma mark - Layouts
