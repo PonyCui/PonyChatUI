@@ -36,7 +36,7 @@
 
 - (void)sendTextMessageWithString:(NSString *)argString {
     PCUMessage *message = [[PCUMessage alloc] init];
-    message.identifier = [NSString stringWithFormat:@"%d", arc4random()];
+    message.identifier = [NSString stringWithFormat:@"%u%u%u", arc4random(), arc4random(), arc4random()];
     message.isRead = YES;
     message.type = PCUMessageTypeTextMessage;
     message.sender = [PCUApplication sender];
@@ -48,7 +48,7 @@
 
 - (void)sendVoiceMessageWithPath:(NSString *)argPath {
     PCUMessage *message = [[PCUMessage alloc] init];
-    message.identifier = [NSString stringWithFormat:@"%d", arc4random()];
+    message.identifier = [NSString stringWithFormat:@"%u%u%u", arc4random(), arc4random(), arc4random()];
     message.isRead = YES;
     message.type = PCUMessageTypeVoiceMessage;
     message.sender = [PCUApplication sender];
@@ -61,7 +61,7 @@
 
 - (void)sendImageMessageWithPath:(NSString *)argPath {
     PCUMessage *message = [[PCUMessage alloc] init];
-    message.identifier = [NSString stringWithFormat:@"%d", arc4random()];
+    message.identifier = [NSString stringWithFormat:@"%u%u%u", arc4random(), arc4random(), arc4random()];
     message.isRead = YES;
     message.type = PCUMessageTypeImageMessage;
     message.sender = [PCUApplication sender];
