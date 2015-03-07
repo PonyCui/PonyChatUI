@@ -15,6 +15,11 @@
     self = [super initWithMessage:message];
     if (self) {
         self.titleString = message.title;
+        if (message.type != PCUMessageTypeSystem &&
+            message.params[kPCUMessageParamsErrorDescriptionKey] != nil) {
+            //It's Error Message
+            self.titleString = message.params[kPCUMessageParamsErrorDescriptionKey];
+        }
     }
     return self;
 }

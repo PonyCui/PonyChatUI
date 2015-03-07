@@ -33,6 +33,12 @@
     else if (message.type == PCUMessageTypeVoiceMessage) {
         return [[PCUVoiceNodeInteractor alloc] initWithMessage:message];
     }
+    else {
+        message.params = @{kPCUMessageParamsErrorDescriptionKey:
+                               [NSString stringWithFormat:@"%@发送了一条消息，升级客户端可查看。",
+                                message.sender.title]};
+        return [[PCUSystemNodeInteractor alloc] initWithMessage:message];//提示用户，收到未知类型信息
+    }
     return nil;
 }
 
