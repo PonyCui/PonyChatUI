@@ -67,7 +67,8 @@
     message.sender = [PCUApplication sender];
     message.orderIndex = [[NSDate date] timeIntervalSince1970] * 1000;
     if (argPath != nil) {
-        message.params = @{kPCUMessageParamsImagePathKey: argPath};
+        message.params = @{kPCUMessageParamsOriginalImagePathKey: argPath,
+                           kPCUMessageParamsThumbImagePathKey: argPath};
     }
     [self.messageManager sendMessage:message];
 }

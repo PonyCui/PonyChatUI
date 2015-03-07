@@ -45,6 +45,9 @@
 		63BACEDA1A91DD410013DB6C /* UILabel+PCUAttributedStringLinkResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BACED91A91DD410013DB6C /* UILabel+PCUAttributedStringLinkResponder.m */; };
 		63FF1C021A8C4394007C3A18 /* PCUTextNodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FF1C011A8C4394007C3A18 /* PCUTextNodeViewController.m */; };
 		77B27DC368BB62974F4FF2F5 /* libPods-PonyChatUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACC89F67F39C439C21543284 /* libPods-PonyChatUI.a */; };
+		F03568661AAAC76700708503 /* PCUImageNodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F03568651AAAC76700708503 /* PCUImageNodeViewController.m */; };
+		F03568691AAAC83B00708503 /* PCUImageNodePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F03568681AAAC83B00708503 /* PCUImageNodePresenter.m */; };
+		F035686C1AAAC89900708503 /* PCUImageNodeInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = F035686B1AAAC89900708503 /* PCUImageNodeInteractor.m */; };
 		F070D3131A9A0B750083F6A3 /* PCUPanelPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F070D3121A9A0B750083F6A3 /* PCUPanelPresenter.m */; };
 		F070D3161A9A0BE30083F6A3 /* PCUPanelInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = F070D3151A9A0BE30083F6A3 /* PCUPanelInteractor.m */; };
 		F070D3191A9A0C320083F6A3 /* PCUPanelItemInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = F070D3181A9A0C320083F6A3 /* PCUPanelItemInteractor.m */; };
@@ -147,6 +150,12 @@
 		63FF1C011A8C4394007C3A18 /* PCUTextNodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUTextNodeViewController.m; sourceTree = "<group>"; };
 		ACC89F67F39C439C21543284 /* libPods-PonyChatUI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PonyChatUI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFFD382C3BEE47F55164881E /* Pods-PonyChatUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PonyChatUI.release.xcconfig"; path = "Pods/Target Support Files/Pods-PonyChatUI/Pods-PonyChatUI.release.xcconfig"; sourceTree = "<group>"; };
+		F03568641AAAC76700708503 /* PCUImageNodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUImageNodeViewController.h; sourceTree = "<group>"; };
+		F03568651AAAC76700708503 /* PCUImageNodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUImageNodeViewController.m; sourceTree = "<group>"; };
+		F03568671AAAC83B00708503 /* PCUImageNodePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUImageNodePresenter.h; sourceTree = "<group>"; };
+		F03568681AAAC83B00708503 /* PCUImageNodePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUImageNodePresenter.m; sourceTree = "<group>"; };
+		F035686A1AAAC89900708503 /* PCUImageNodeInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUImageNodeInteractor.h; sourceTree = "<group>"; };
+		F035686B1AAAC89900708503 /* PCUImageNodeInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUImageNodeInteractor.m; sourceTree = "<group>"; };
 		F070D3111A9A0B750083F6A3 /* PCUPanelPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUPanelPresenter.h; sourceTree = "<group>"; };
 		F070D3121A9A0B750083F6A3 /* PCUPanelPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUPanelPresenter.m; sourceTree = "<group>"; };
 		F070D3141A9A0BE30083F6A3 /* PCUPanelInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUPanelInteractor.h; sourceTree = "<group>"; };
@@ -353,6 +362,8 @@
 				638F616C1AA46A5300B9B635 /* PCUVoiceNodeInteractor.m */,
 				63BACECF1A91A0740013DB6C /* PCUSystemNodeInteractor.h */,
 				63BACED01A91A0740013DB6C /* PCUSystemNodeInteractor.m */,
+				F035686A1AAAC89900708503 /* PCUImageNodeInteractor.h */,
+				F035686B1AAAC89900708503 /* PCUImageNodeInteractor.m */,
 				F070D3141A9A0BE30083F6A3 /* PCUPanelInteractor.h */,
 				F070D3151A9A0BE30083F6A3 /* PCUPanelInteractor.m */,
 				F070D3171A9A0C320083F6A3 /* PCUPanelItemInteractor.h */,
@@ -376,6 +387,8 @@
 				638F61691AA46A0100B9B635 /* PCUVoiceNodePresenter.m */,
 				63BACECC1A91A00D0013DB6C /* PCUSystemNodePresenter.h */,
 				63BACECD1A91A00D0013DB6C /* PCUSystemNodePresenter.m */,
+				F03568671AAAC83B00708503 /* PCUImageNodePresenter.h */,
+				F03568681AAAC83B00708503 /* PCUImageNodePresenter.m */,
 				F0B123F41A94F0FA00A0DB10 /* PCUPanelItemPresenter.h */,
 				F0B123F51A94F0FA00A0DB10 /* PCUPanelItemPresenter.m */,
 				F070D3111A9A0B750083F6A3 /* PCUPanelPresenter.h */,
@@ -401,6 +414,8 @@
 				63BACECA1A919D040013DB6C /* PCUSystemNodeViewController.m */,
 				638F61651AA465EB00B9B635 /* PCUVoiceNodeViewController.h */,
 				638F61661AA465EB00B9B635 /* PCUVoiceNodeViewController.m */,
+				F03568641AAAC76700708503 /* PCUImageNodeViewController.h */,
+				F03568651AAAC76700708503 /* PCUImageNodeViewController.m */,
 				F0B123EB1A938D9B00A0DB10 /* PCUPanelViewController.h */,
 				F0B123EC1A938D9B00A0DB10 /* PCUPanelViewController.m */,
 				F0B123F11A94EDF500A0DB10 /* PCUPanelCollectionViewCell.h */,
@@ -632,10 +647,12 @@
 				F070D3161A9A0BE30083F6A3 /* PCUPanelInteractor.m in Sources */,
 				F0CD67891AA30CDB007D3F89 /* PCUTalkingCancelHUDViewController.m in Sources */,
 				F0CD67831AA2EB32007D3F89 /* PCUTalkingPresenter.m in Sources */,
+				F035686C1AAAC89900708503 /* PCUImageNodeInteractor.m in Sources */,
 				F070D3191A9A0C320083F6A3 /* PCUPanelItemInteractor.m in Sources */,
 				63BACECB1A919D040013DB6C /* PCUSystemNodeViewController.m in Sources */,
 				63BACEBE1A8DE86A0013DB6C /* PCUNodePresenter.m in Sources */,
 				63BACEB21A8DE7C70013DB6C /* PCUTextNodeInteractor.m in Sources */,
+				F03568661AAAC76700708503 /* PCUImageNodeViewController.m in Sources */,
 				F0B123EA1A93631400A0DB10 /* PCUCustomMessageManager.m in Sources */,
 				63BACEAF1A8DE4150013DB6C /* PCUSender.m in Sources */,
 				6390B44E1A8B08BE0025A64D /* PCUCore.m in Sources */,
@@ -649,6 +666,7 @@
 				F0B123F31A94EDF500A0DB10 /* PCUPanelCollectionViewCell.m in Sources */,
 				63BACEAC1A8DDFA70013DB6C /* PCUMessage.m in Sources */,
 				F0CD677D1AA2E0DC007D3F89 /* PCUDefines.m in Sources */,
+				F03568691AAAC83B00708503 /* PCUImageNodePresenter.m in Sources */,
 				63BACED51A91C2160013DB6C /* NSAttributedString+PCUAttributedString.m in Sources */,
 				6390B4541A8B0B760025A64D /* PCUChatPresenter.m in Sources */,
 				63BACEC71A903D9F0013DB6C /* PCUChat.m in Sources */,

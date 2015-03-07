@@ -483,6 +483,90 @@
             </objects>
             <point key="canvasLocation" x="1051" y="286"/>
         </scene>
+        <!--Image Node View Controller-->
+        <scene sceneID="977-wI-JTv">
+            <objects>
+                <viewController storyboardIdentifier="PCUImageNodeViewControllerSender" id="JLw-rS-3Fe" customClass="PCUImageNodeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cf3-Xf-JgD"/>
+                        <viewControllerLayoutGuide type="bottom" id="uU9-L3-VFU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Tgs-LT-VcR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="118"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="T2s-ZL-bBd">
+                                <rect key="frame" x="272" y="8" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="hMM-wt-OsH"/>
+                                    <constraint firstAttribute="height" constant="40" id="tkC-cM-89l"/>
+                                </constraints>
+                            </imageView>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SenderTextNodeBkg" translatesAutoresizingMaskIntoConstraints="NO" id="9ew-Jz-2UW">
+                                <rect key="frame" x="150" y="5" width="118" height="114"/>
+                                <rect key="contentStretch" x="0.5" y="0.5" width="0.0" height="0.0"/>
+                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="xXB-Rn-tqL">
+                                <rect key="frame" x="126" y="48" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BcS-q7-kWI">
+                                <rect key="frame" x="114" y="36" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="NhB-QQ-GBu"/>
+                                    <constraint firstAttribute="height" constant="44" id="c5z-L1-FEA"/>
+                                </constraints>
+                                <state key="normal" image="MessageSendFail">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="handleRetryButtonTapped:" destination="JLw-rS-3Fe" eventType="touchUpInside" id="AI8-4l-rA9"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PfZ-Z6-gey">
+                                <rect key="frame" x="164" y="13" width="90" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="hjS-fs-wCv"/>
+                                    <constraint firstAttribute="width" constant="90" id="j2n-hP-H0B"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="T2s-ZL-bBd" firstAttribute="leading" secondItem="PfZ-Z6-gey" secondAttribute="trailing" constant="18" id="1H4-gO-3wv"/>
+                            <constraint firstItem="PfZ-Z6-gey" firstAttribute="width" secondItem="9ew-Jz-2UW" secondAttribute="width" constant="-28" id="9CY-si-tsz"/>
+                            <constraint firstItem="9ew-Jz-2UW" firstAttribute="leading" secondItem="xXB-Rn-tqL" secondAttribute="trailing" constant="4" id="9De-9X-Mnc"/>
+                            <constraint firstItem="T2s-ZL-bBd" firstAttribute="top" secondAttribute="top" constant="8" id="9ns-Kl-Yar"/>
+                            <constraint firstItem="T2s-ZL-bBd" firstAttribute="top" secondItem="PfZ-Z6-gey" secondAttribute="top" constant="-5" id="BtU-gc-4j4"/>
+                            <constraint firstItem="BcS-q7-kWI" firstAttribute="centerY" secondItem="xXB-Rn-tqL" secondAttribute="centerY" id="IK5-2c-xwb"/>
+                            <constraint firstAttribute="trailing" secondItem="T2s-ZL-bBd" secondAttribute="trailing" constant="8" id="QVT-LM-dLA"/>
+                            <constraint firstItem="T2s-ZL-bBd" firstAttribute="leading" secondItem="9ew-Jz-2UW" secondAttribute="trailing" constant="4" id="UMP-0w-F9x"/>
+                            <constraint firstItem="9ew-Jz-2UW" firstAttribute="top" secondItem="PfZ-Z6-gey" secondAttribute="top" constant="-8" id="UpP-hC-UFV"/>
+                            <constraint firstItem="9ew-Jz-2UW" firstAttribute="centerY" secondItem="xXB-Rn-tqL" secondAttribute="centerY" constant="4" id="WxF-tP-vb9"/>
+                            <constraint firstItem="BcS-q7-kWI" firstAttribute="centerX" secondItem="xXB-Rn-tqL" secondAttribute="centerX" id="tPY-Fh-dA4"/>
+                            <constraint firstItem="PfZ-Z6-gey" firstAttribute="height" secondItem="9ew-Jz-2UW" secondAttribute="height" constant="-24" id="ugu-53-ytw"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="118"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSender" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="iconImageView" destination="T2s-ZL-bBd" id="x83-MS-4sh"/>
+                        <outlet property="sendingIndicatorView" destination="xXB-Rn-tqL" id="0Q3-oO-UM9"/>
+                        <outlet property="sendingRetryButton" destination="BcS-q7-kWI" id="zZ6-0p-3qI"/>
+                        <outlet property="thumbImageView" destination="PfZ-Z6-gey" id="oqd-AU-DBv"/>
+                        <outlet property="thumbImageViewHeightConstraint" destination="hjS-fs-wCv" id="CzW-vv-2lE"/>
+                        <outlet property="thumbImageViewWidthConstraint" destination="j2n-hP-H0B" id="A1V-MQ-RVG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ep0-cN-YaC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1438" y="286"/>
+        </scene>
         <!--Voice Node View Controller-->
         <scene sceneID="FyC-UE-Dao">
             <objects>

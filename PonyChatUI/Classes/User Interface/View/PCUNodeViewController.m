@@ -12,6 +12,7 @@
 #import "PCUTextNodeInteractor.h"
 #import "PCUSystemNodeInteractor.h"
 #import "PCUVoiceNodeInteractor.h"
+#import "PCUImageNodeInteractor.h"
 
 @interface PCUNodeViewController ()
 
@@ -40,6 +41,11 @@
         }
         else {
             viewControllerIdentifier = @"PCUVoiceNodeViewControllerReceiver";
+        }
+    }
+    else if ([nodeInteractor isKindOfClass:[PCUImageNodeInteractor class]]) {
+        if (nodeInteractor.isOwner) {
+            viewControllerIdentifier = @"PCUImageNodeViewControllerSender";
         }
     }
     if (viewControllerIdentifier == nil) {

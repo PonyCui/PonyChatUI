@@ -32,7 +32,6 @@
 - (instancetype)initWithMessage:(PCUMessage *)message {
     self = [super initWithMessage:message];
     if (self) {
-        self.message = message;
         self.voiceDuring = -1;
         self.senderThumbURLString = message.sender.thumbURLString;
         self.senderThumbImage = [PCU[[PCUAvatarManager class]]
