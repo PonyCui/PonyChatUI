@@ -66,7 +66,7 @@
     self.longPressGuestureRecognizer = [[UILongPressGestureRecognizer alloc]
                                         initWithTarget:self
                                         action:@selector(handleLongPress:)];
-    self.longPressGuestureRecognizer.minimumPressDuration = 0.15;
+    self.longPressGuestureRecognizer.minimumPressDuration = 0.10;
     self.longPressGuestureRecognizer.numberOfTouchesRequired = 1;
     [self.talkingButton addGestureRecognizer:self.longPressGuestureRecognizer];
 }
