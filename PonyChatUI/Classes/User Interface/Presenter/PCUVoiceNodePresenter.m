@@ -35,8 +35,19 @@
     [self.userInterface setDuringLabelTextWithDuringTime:self.nodeInteractor.voiceDuring];
     [self.userInterface setPlayButtonAnimated:self.nodeInteractor.isPlaying];
     [self.userInterface setUnreadSignalHidden:self.nodeInteractor.isRead];
-    [self.userInterface setVoicePreparing:self.nodeInteractor.isPreparing];
-    [self.userInterface setVoiceRequestFail:self.nodeInteractor.isFailed];
+    switch (self.nodeInteractor.voiceStatus) {
+        case PCUVoiceNodeVoiceStatusPreparing:
+            [self.userInterface setVoicePreparing:YES];
+            break;
+        case PCUVoiceNodeVoiceStatusPrePared:
+            [self.userInterface setVoicePreparing:NO];
+            break;
+        case PCUVoiceNodeVoiceStatusPrepareFailed:
+            [self.userInterface setVoiceRequestFail:YES];
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)configureReactiveCocoa {
@@ -66,16 +77,22 @@
             [self.userInterface setUnreadSignalHidden:self.nodeInteractor.isRead];
         });
     }];
-    [RACObserve(self, nodeInteractor.isPreparing) subscribeNext:^(id x) {
+    [RACObserve(self, nodeInteractor.voiceStatus) subscribeNext:^(id x) {
         @strongify(self);
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.userInterface setVoicePreparing:self.nodeInteractor.isPreparing];
-        });
-    }];
-    [RACObserve(self, nodeInteractor.isFailed) subscribeNext:^(id x) {
-        @strongify(self);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.userInterface setVoiceRequestFail:self.nodeInteractor.isFailed];
+            switch (self.nodeInteractor.voiceStatus) {
+                case PCUVoiceNodeVoiceStatusPreparing:
+                    [self.userInterface setVoicePreparing:YES];
+                    break;
+                case PCUVoiceNodeVoiceStatusPrePared:
+                    [self.userInterface setVoicePreparing:NO];
+                    break;
+                case PCUVoiceNodeVoiceStatusPrepareFailed:
+                    [self.userInterface setVoiceRequestFail:YES];
+                    break;
+                default:
+                    break;
+            }
         });
     }];
 }

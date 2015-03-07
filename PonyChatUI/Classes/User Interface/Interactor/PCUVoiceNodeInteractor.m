@@ -64,8 +64,7 @@
                 [self responseWithVoiceFileLocalPath:localCachePath];
             }
             else {
-                self.isFailed = NO;
-                self.isPreparing = YES;
+                self.voiceStatus = PCUVoiceNodeVoiceStatusPreparing;
                 NSURL *remoteURL = [NSURL URLWithString:self.message.params[kPCUMessageParamsVoicePathKey]];
                 NSURLRequest *request = [NSURLRequest requestWithURL:remoteURL
                                                          cachePolicy:NSURLRequestUseProtocolCachePolicy
@@ -73,7 +72,6 @@
                 AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
                 [operation
                  setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-                     self.isPreparing = NO;
                      if ([responseObject isKindOfClass:[NSData class]]) {
                          NSError *error;
                          [responseObject writeToFile:localCachePath options:kNilOptions error:&error];
@@ -83,8 +81,7 @@
                      }
                 }
                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                     self.isPreparing = NO;
-                     self.isFailed = YES;
+                     self.voiceStatus = PCUVoiceNodeVoiceStatusPrepareFailed;
                 }];
                 [[[AFHTTPSessionManager manager] operationQueue] addOperation:operation];
             }
@@ -104,7 +101,7 @@
     if (error == nil) {
         self.audioPlayer.numberOfLoops = 0;
         self.audioPlayer.delegate = self;
-        self.isPrepared = YES;
+        self.voiceStatus = PCUVoiceNodeVoiceStatusPrePared;
         self.voiceDuring = (NSInteger)ceil(self.audioPlayer.duration);
     }
 }
@@ -126,7 +123,7 @@
 
 - (void)play {
     [self sendEndPlayingNotification];
-    if (self.isPrepared) {
+    if (self.voiceStatus == PCUVoiceNodeVoiceStatusPrePared) {
         self.isRead = YES;
         [self configureEndPlayingNotification];
         [self configureSensorNotification];

@@ -9,7 +9,7 @@
 #import "PCUNodeInteractor.h"
 
 typedef NS_ENUM(NSInteger, PCUVoiceNodeVoiceStatus) {
-    PCUVoiceNodeVoiceStatusPreparing,
+    PCUVoiceNodeVoiceStatusPreparing = 0,
     PCUVoiceNodeVoiceStatusPrePared,
     PCUVoiceNodeVoiceStatusPrepareFailed
 };
@@ -17,22 +17,10 @@ typedef NS_ENUM(NSInteger, PCUVoiceNodeVoiceStatus) {
 @class PCUMessage;
 @interface PCUVoiceNodeInteractor : PCUNodeInteractor
 
+/**
+ *  声音加载状态
+ */
 @property (nonatomic, assign) PCUVoiceNodeVoiceStatus voiceStatus;
-
-/**
- *  是否已经准备好声音文件以供播放
- */
-@property (nonatomic, assign) BOOL isPrepared;
-
-/**
- *  声音文件正在加载
- */
-@property (nonatomic, assign) BOOL isPreparing;
-
-/**
- *  声音文件加载失败
- */
-@property (nonatomic, assign) BOOL isFailed;
 
 /**
  *  声音文件正在播放
