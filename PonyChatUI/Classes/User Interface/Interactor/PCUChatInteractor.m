@@ -43,7 +43,7 @@
     message.orderIndex = [[NSDate date] timeIntervalSince1970] * 1000;
     message.title = argString;
     [self.messageManager sendMessage:message];
-    
+
 }
 
 - (void)sendVoiceMessageWithPath:(NSString *)argPath {

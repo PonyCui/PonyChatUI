@@ -34,6 +34,9 @@
                                     <constraint firstItem="xjq-tr-ej9" firstAttribute="leading" secondItem="i5v-Lt-mL3" secondAttribute="leading" id="bFr-fd-fZB"/>
                                     <constraint firstAttribute="trailing" secondItem="xjq-tr-ej9" secondAttribute="trailing" id="kMi-mr-seQ"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="scrollsToTop" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="delegate" destination="IqE-aR-LeG" id="6NY-Rb-SWO"/>
                                     <outletCollection property="gestureRecognizers" destination="gEg-Gf-2am" appends="YES" id="MCD-LZ-cs6"/>
@@ -148,6 +151,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" returnKeyType="send" enablesReturnKeyAutomatically="YES"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="scrollsToTop" value="NO"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="delegate" destination="M3T-Pn-VII" id="7gN-Ve-5JF"/>
                                 </connections>
@@ -703,6 +709,9 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="scrollsToTop" value="NO"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="dataSource" destination="7xD-ZL-EuW" id="krQ-07-4OM"/>
                                     <outlet property="delegate" destination="7xD-ZL-EuW" id="p1d-GU-tJL"/>
