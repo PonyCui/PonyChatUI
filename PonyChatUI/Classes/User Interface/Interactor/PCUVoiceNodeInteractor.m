@@ -121,6 +121,7 @@
 - (void)play {
     [self sendEndPlayingNotification];
     if (self.isPrepared) {
+        self.isRead = YES;
         [self configureEndPlayingNotification];
         [self configureSensorNotification];
         [self switchSpeaker];

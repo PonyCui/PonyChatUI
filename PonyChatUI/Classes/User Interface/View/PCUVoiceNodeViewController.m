@@ -29,6 +29,8 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *playButtonImageView;
 
+@property (weak, nonatomic) IBOutlet UILabel *unreadSignalView;
+
 @end
 
 @implementation PCUVoiceNodeViewController
@@ -111,7 +113,7 @@
         __weak typeof(self) welf = self;
         [self.playButtonAnimatingTimer invalidate];
         self.playButtonAnimatingTimer = [NSTimer scheduledTimerWithTimeInterval:0.35
-                                                                         target:self
+                                                                         target:welf
                                                                        selector:@selector(updatePlayButtonAnimation)
                                                                        userInfo:nil
                                                                         repeats:YES];
@@ -138,6 +140,10 @@
     if (_playButtonAnimatingFrame > 3) {
         _playButtonAnimatingFrame = 1;
     }
+}
+
+- (void)setUnreadSignalHidden:(BOOL)isHidden {
+    self.unreadSignalView.hidden = isHidden;
 }
 
 @end

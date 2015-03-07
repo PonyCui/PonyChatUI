@@ -36,6 +36,12 @@ typedef NS_ENUM(NSUInteger, PCUMessageType) {
 @property (nonatomic, assign) NSUInteger orderIndex;
 
 /**
+ *  消息已读
+ *  @brief @YES 已读
+ */
+@property (nonatomic, assign) BOOL isRead;
+
+/**
  *  消息类型
  */
 @property (nonatomic, assign) PCUMessageType type;

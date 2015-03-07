@@ -37,6 +37,7 @@
 - (void)sendTextMessageWithString:(NSString *)argString {
     PCUMessage *message = [[PCUMessage alloc] init];
     message.identifier = [NSString stringWithFormat:@"%d", arc4random()];
+    message.isRead = YES;
     message.type = PCUMessageTypeTextMessage;
     message.sender = [PCUApplication sender];
     message.orderIndex = [[NSDate date] timeIntervalSince1970] * 1000;
@@ -48,6 +49,7 @@
 - (void)sendVoiceMessageWithPath:(NSString *)argPath {
     PCUMessage *message = [[PCUMessage alloc] init];
     message.identifier = [NSString stringWithFormat:@"%d", arc4random()];
+    message.isRead = YES;
     message.type = PCUMessageTypeVoiceMessage;
     message.sender = [PCUApplication sender];
     message.orderIndex = [[NSDate date] timeIntervalSince1970] * 1000;
@@ -60,6 +62,7 @@
 - (void)sendImageMessageWithPath:(NSString *)argPath {
     PCUMessage *message = [[PCUMessage alloc] init];
     message.identifier = [NSString stringWithFormat:@"%d", arc4random()];
+    message.isRead = YES;
     message.type = PCUMessageTypeImageMessage;
     message.sender = [PCUApplication sender];
     message.orderIndex = [[NSDate date] timeIntervalSince1970] * 1000;

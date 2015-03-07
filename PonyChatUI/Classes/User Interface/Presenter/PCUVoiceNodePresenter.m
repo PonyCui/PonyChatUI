@@ -33,6 +33,8 @@
     [super updateView];
     [self.userInterface setSenderThumbImageViewWithImage:self.nodeInteractor.senderThumbImage];
     [self.userInterface setDuringLabelTextWithDuringTime:self.nodeInteractor.voiceDuring];
+    [self.userInterface setPlayButtonAnimated:self.nodeInteractor.isPlaying];
+    [self.userInterface setUnreadSignalHidden:self.nodeInteractor.isRead];
 }
 
 - (void)configureReactiveCocoa {
@@ -54,6 +56,12 @@
         @strongify(self);
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.userInterface setPlayButtonAnimated:self.nodeInteractor.isPlaying];
+        });
+    }];
+    [RACObserve(self, nodeInteractor.isRead) subscribeNext:^(id x) {
+        @strongify(self);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.userInterface setUnreadSignalHidden:self.nodeInteractor.isRead];
         });
     }];
 }

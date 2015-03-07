@@ -59,6 +59,14 @@
     return self.message.orderIndex;
 }
 
+- (BOOL)isRead {
+    return self.message.isRead;
+}
+
+- (void)setIsRead:(BOOL)isRead {
+    self.message.isRead = isRead;
+}
+
 - (NSUInteger)hash {
     return [self.message.identifier hash];
 }

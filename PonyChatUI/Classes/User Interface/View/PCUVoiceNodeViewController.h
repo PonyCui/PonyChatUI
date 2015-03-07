@@ -17,4 +17,6 @@
 
 - (void)setPlayButtonAnimated:(BOOL)isAnimated;
 
+- (void)setUnreadSignalHidden:(BOOL)isHidden;
+
 @end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14D87h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="IqE-aR-LeG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="IqE-aR-LeG">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -520,11 +520,30 @@
                                 <color key="textColor" red="0.49803924560000001" green="0.49803924560000001" blue="0.49803924560000001" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W5k-lO-DgC">
+                                <rect key="frame" x="119" y="10" width="6" height="6"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="6" id="V7f-Hu-hB1"/>
+                                    <constraint firstAttribute="width" constant="6" id="lbu-ut-IUj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="bUH-bx-ofq" firstAttribute="centerY" secondItem="w1l-jm-Skb" secondAttribute="centerY" constant="6" id="4dj-Va-B8R"/>
+                            <constraint firstItem="W5k-lO-DgC" firstAttribute="top" secondItem="w1l-jm-Skb" secondAttribute="top" constant="4" id="88X-s1-JjN"/>
                             <constraint firstItem="TRK-Eh-pTf" firstAttribute="leading" secondItem="w1l-jm-Skb" secondAttribute="leading" constant="18" id="DCR-BM-9EB"/>
+                            <constraint firstItem="W5k-lO-DgC" firstAttribute="leading" secondItem="bUH-bx-ofq" secondAttribute="leading" constant="1" id="IM9-vl-7pc"/>
                             <constraint firstItem="0g7-3O-39w" firstAttribute="leading" secondItem="eAI-ND-d0s" secondAttribute="leading" constant="8" id="LFo-Bc-dLx"/>
                             <constraint firstItem="w1l-jm-Skb" firstAttribute="centerY" secondItem="0g7-3O-39w" secondAttribute="centerY" constant="5" id="OBy-Mi-RMC"/>
                             <constraint firstItem="w1l-jm-Skb" firstAttribute="leading" secondItem="0g7-3O-39w" secondAttribute="trailing" constant="4" id="R60-oC-vlV"/>
@@ -542,6 +561,7 @@
                         <outlet property="duringLabel" destination="bUH-bx-ofq" id="Ciz-GY-Snz"/>
                         <outlet property="iconImageView" destination="0g7-3O-39w" id="GMo-Du-da5"/>
                         <outlet property="playButtonImageView" destination="TRK-Eh-pTf" id="9QB-ET-jva"/>
+                        <outlet property="unreadSignalView" destination="W5k-lO-DgC" id="bwb-8G-FID"/>
                         <outlet property="voiceNodeBackgroundWidthConstraint" destination="rLq-DF-Cgi" id="5pt-MG-k6S"/>
                     </connections>
                 </viewController>

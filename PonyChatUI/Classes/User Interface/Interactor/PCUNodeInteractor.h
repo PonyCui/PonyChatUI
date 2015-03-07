@@ -33,6 +33,8 @@ typedef NS_ENUM(NSUInteger, PCUNodeSendMessageStatus) {
 
 @property (nonatomic, assign) NSUInteger orderIndex;
 
+@property (nonatomic, assign) BOOL isRead;
+
 @property (nonatomic, strong) PCUMessageManager *messageManager;
 
 + (PCUNodeInteractor *)nodeInteractorWithMessage:(PCUMessage *)message;
