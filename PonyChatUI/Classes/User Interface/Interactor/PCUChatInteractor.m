@@ -12,7 +12,9 @@
 #import "PCUNodeInteractor.h"
 #import "PCUApplication.h"
 
-@interface PCUChatInteractor ()<PCUMessageManagerDelegate>
+@interface PCUChatInteractor ()<PCUMessageManagerDelegate> {
+    dispatch_queue_t receiveMessageQueue;
+}
 
 @end
 
@@ -26,6 +28,8 @@
 {
     self = [super init];
     if (self) {
+        receiveMessageQueue = dispatch_queue_create([[NSString stringWithFormat:@"PCU.ChatInteractor.%@", self] UTF8String], NULL);
+        self.isRefreshed = YES;
         self.messageManager = PCU[[PCUMessageManager class]];
         self.messageManager.delegate = self;
     }
@@ -76,18 +80,21 @@
 #pragma mark - PCUMessageManagerDelegate
 
 - (void)messageManagerDidReceivedMessage:(PCUMessage *)message {
-    NSMutableSet *nodeInteractors = self.nodeInteractors == nil ? [NSMutableSet set] : [self.nodeInteractors mutableCopy];
-    if (message != nil) {
-        PCUNodeInteractor *nodeInteractor = [PCUNodeInteractor nodeInteractorWithMessage:message];
-        nodeInteractor.messageManager = self.messageManager;
-        if ([self.nodeInteractors containsObject:nodeInteractor]) {
-            //已经有相同的消息添加到对话框中了
+    dispatch_sync(receiveMessageQueue, ^{
+        //为防止多线程影响消息处理，这里使用串行同步队列
+        NSMutableSet *nodeInteractors = self.nodeInteractors == nil ? [NSMutableSet set] : [self.nodeInteractors mutableCopy];
+        if (message != nil) {
+            PCUNodeInteractor *nodeInteractor = [PCUNodeInteractor nodeInteractorWithMessage:message];
+            nodeInteractor.messageManager = self.messageManager;
+            if ([self.nodeInteractors containsObject:nodeInteractor]) {
+                //已经有相同的消息添加到对话框中了
+            }
+            else if (nodeInteractor != nil) {
+                [nodeInteractors addObject:nodeInteractor];
+                self.nodeInteractors = nodeInteractors;
+            }
         }
-        else if (nodeInteractor != nil) {
-            [nodeInteractors addObject:nodeInteractor];
-            self.nodeInteractors = nodeInteractors;
-        }
-    }
+    });
 }
 
 - (void)messageManagerSendMessageStarted:(PCUMessage *)message {
@@ -138,12 +145,25 @@
     {
         NSMutableSet *minusSet = [self.nodeInteractors mutableCopy];
         [minusSet minusSet:newSet];
-        self.minusInteractors = [minusSet copy];
+        if (self.isRefreshed) {
+            self.minusInteractors = [minusSet copy];
+        }
+        else {
+            self.minusInteractors = [self.minusInteractors setByAddingObjectsFromSet:minusSet];
+        }
     }
     {
         NSMutableSet *plusSet = [newSet mutableCopy];
         [plusSet minusSet:self.nodeInteractors];
-        self.plusInteractors = plusSet;
+        if (self.isRefreshed) {
+            self.plusInteractors = [plusSet copy];
+        }
+        else {
+            self.plusInteractors = [self.plusInteractors setByAddingObjectsFromSet:plusSet];
+        }
+    }
+    if (self.isRefreshed) {
+        self.isRefreshed = NO;
     }
 }
 

@@ -47,6 +47,9 @@
         if (nodeInteractor.isOwner) {
             viewControllerIdentifier = @"PCUImageNodeViewControllerSender";
         }
+        else {
+            viewControllerIdentifier = @"PCUImageNodeViewControllerReceiver";
+        }
     }
     if (viewControllerIdentifier == nil) {
         return nil;

@@ -90,6 +90,7 @@
         self.nodeEventHanlders = nodeEventHandlers;
         self.chatInteractor.plusInteractors = nil;
     }
+    self.chatInteractor.isRefreshed = YES;
 }
 
 - (NSArray *)orderedEventHandler {

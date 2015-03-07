@@ -112,6 +112,22 @@
             [self.delegate messageManagerDidReceivedMessage:message];
         }
     }
+    //Image Demo
+    {
+        if (arc4random() % 3 < 3) {
+            PCUMessage *message = [[PCUMessage alloc] init];
+            message.identifier = [NSString stringWithFormat:@"%u", arc4random()];
+            message.orderIndex = [[NSDate date] timeIntervalSince1970] * 1000 + 5;
+            message.type = PCUMessageTypeImageMessage;
+            message.sender = [[PCUSender alloc] init];
+            message.sender.identifier = @"2";
+            message.sender.title = @"Pony";
+            message.sender.thumbURLString = @"http://tp3.sinaimg.cn/1642351362/180/5708018784/0";
+            message.params = @{kPCUMessageParamsThumbImagePathKey: @"http://huanju.cn/s/v1206/logo.png",
+                               kPCUMessageParamsOriginalImagePathKey: @"http://huanju.cn/s/v1206/HuanJu-LOGO-PNG.png"};
+            [self.delegate messageManagerDidReceivedMessage:message];
+        }
+    }
 }
 
 @end

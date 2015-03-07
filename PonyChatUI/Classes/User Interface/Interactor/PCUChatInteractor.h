@@ -14,6 +14,11 @@
 @interface PCUChatInteractor : NSObject<PCUMessageManagerDelegate>
 
 /**
+ *  数据处理标记
+ */
+@property (nonatomic, assign) BOOL isRefreshed;
+
+/**
  *  @brief 对话窗口标题
  */
 @property (nonatomic, copy) NSString *titleString;

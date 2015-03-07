@@ -567,6 +567,68 @@
             </objects>
             <point key="canvasLocation" x="1438" y="286"/>
         </scene>
+        <!--Image Node View Controller-->
+        <scene sceneID="A7C-ni-Tq7">
+            <objects>
+                <viewController storyboardIdentifier="PCUImageNodeViewControllerReceiver" id="e8u-Ol-mBG" customClass="PCUImageNodeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="n34-pC-ba2"/>
+                        <viewControllerLayoutGuide type="bottom" id="RTJ-IB-WqF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5d6-Iq-ROn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="118"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rl8-mv-wbe">
+                                <rect key="frame" x="8" y="8" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="Q32-Fu-UeN"/>
+                                    <constraint firstAttribute="height" constant="40" id="Yaa-mS-FlS"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ewq-Mm-ECm">
+                                <rect key="frame" x="52" y="7" width="90" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="HNy-Ou-YI1"/>
+                                    <constraint firstAttribute="width" constant="90" id="Jb9-HD-SR2"/>
+                                </constraints>
+                            </imageView>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ReceiverTextNodeBkgReversed" translatesAutoresizingMaskIntoConstraints="NO" id="p65-I7-nel">
+                                <rect key="frame" x="52" y="6" width="93" height="96"/>
+                                <rect key="contentStretch" x="0.5" y="0.5" width="0.0" height="0.0"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="p65-I7-nel" firstAttribute="top" secondItem="Ewq-Mm-ECm" secondAttribute="top" constant="-1" id="0P8-QX-4sU"/>
+                            <constraint firstItem="rl8-mv-wbe" firstAttribute="top" secondItem="Ewq-Mm-ECm" secondAttribute="top" constant="1" id="C3s-gn-CTR"/>
+                            <constraint firstItem="Ewq-Mm-ECm" firstAttribute="width" secondItem="p65-I7-nel" secondAttribute="width" constant="-3" id="H4Z-AF-fiY"/>
+                            <constraint firstItem="rl8-mv-wbe" firstAttribute="leading" secondItem="5d6-Iq-ROn" secondAttribute="leading" constant="8" id="IJd-ML-fVX"/>
+                            <constraint firstItem="Ewq-Mm-ECm" firstAttribute="leading" secondItem="rl8-mv-wbe" secondAttribute="trailing" constant="4" id="VPF-LC-uYY"/>
+                            <constraint firstItem="p65-I7-nel" firstAttribute="leading" secondItem="rl8-mv-wbe" secondAttribute="trailing" constant="4" id="aea-5c-10x"/>
+                            <constraint firstItem="rl8-mv-wbe" firstAttribute="top" secondAttribute="top" constant="8" id="chx-nv-AFL"/>
+                            <constraint firstItem="Ewq-Mm-ECm" firstAttribute="height" secondItem="p65-I7-nel" secondAttribute="height" constant="-6" id="jaw-gR-y9Z"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="118"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSender" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="iconImageView" destination="rl8-mv-wbe" id="3ha-jV-CUj"/>
+                        <outlet property="thumbImageView" destination="Ewq-Mm-ECm" id="xZq-ci-NIk"/>
+                        <outlet property="thumbImageViewHeightConstraint" destination="HNy-Ou-YI1" id="qRf-eb-rbQ"/>
+                        <outlet property="thumbImageViewWidthConstraint" destination="Jb9-HD-SR2" id="Irg-nh-ftp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iFf-Ct-lxD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1438" y="130"/>
+        </scene>
         <!--Voice Node View Controller-->
         <scene sceneID="FyC-UE-Dao">
             <objects>
@@ -1000,6 +1062,7 @@
     <resources>
         <image name="MessageSendFail" width="28" height="28"/>
         <image name="ReceiverTextNodeBkg" width="66" height="54"/>
+        <image name="ReceiverTextNodeBkgReversed" width="66" height="54"/>
         <image name="ReceiverVoiceNodePlaying" width="20" height="20"/>
         <image name="RecordCancel" width="100" height="100"/>
         <image name="RecordingBkg" width="62" height="100"/>
