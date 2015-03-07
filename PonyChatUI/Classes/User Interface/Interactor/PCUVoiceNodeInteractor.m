@@ -64,11 +64,16 @@
                 [self responseWithVoiceFileLocalPath:localCachePath];
             }
             else {
+                self.isFailed = NO;
+                self.isPreparing = YES;
                 NSURL *remoteURL = [NSURL URLWithString:self.message.params[kPCUMessageParamsVoicePathKey]];
-                NSURLRequest *request = [NSURLRequest requestWithURL:remoteURL];
+                NSURLRequest *request = [NSURLRequest requestWithURL:remoteURL
+                                                         cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                     timeoutInterval:60.0];
                 AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
                 [operation
                  setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+                     self.isPreparing = NO;
                      if ([responseObject isKindOfClass:[NSData class]]) {
                          NSError *error;
                          [responseObject writeToFile:localCachePath options:kNilOptions error:&error];
@@ -78,7 +83,8 @@
                      }
                 }
                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                    
+                     self.isPreparing = NO;
+                     self.isFailed = YES;
                 }];
                 [[[AFHTTPSessionManager manager] operationQueue] addOperation:operation];
             }

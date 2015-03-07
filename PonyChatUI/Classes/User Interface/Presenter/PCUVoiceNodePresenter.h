@@ -12,4 +12,6 @@
 
 - (void)toggleVoice;
 
+- (void)sendVoiceRequest;
+
 @end

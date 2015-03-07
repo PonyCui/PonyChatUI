@@ -31,6 +31,10 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *unreadSignalView;
 
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *voicePreparingIndicatorView;
+
+@property (weak, nonatomic) IBOutlet UIButton *voiceRequestRetryButton;
+
 @end
 
 @implementation PCUVoiceNodeViewController
@@ -144,6 +148,36 @@
 
 - (void)setUnreadSignalHidden:(BOOL)isHidden {
     self.unreadSignalView.hidden = isHidden;
+}
+
+- (void)setVoicePreparing:(BOOL)isPreparing {
+    if (isPreparing) {
+        self.voiceRequestRetryButton.hidden = YES;
+        [self.voicePreparingIndicatorView startAnimating];
+        self.playButtonImageView.hidden = YES;
+    }
+    else {
+        self.voiceRequestRetryButton.hidden = YES;
+        [self.voicePreparingIndicatorView stopAnimating];
+        self.playButtonImageView.hidden = NO;
+    }
+}
+
+- (void)setVoiceRequestFail:(BOOL)isFail {
+    if (isFail) {
+        [self.voicePreparingIndicatorView stopAnimating];
+        self.voiceRequestRetryButton.hidden = NO;
+        self.playButtonImageView.hidden = YES;
+    }
+    else {
+        [self.voicePreparingIndicatorView stopAnimating];
+        self.voiceRequestRetryButton.hidden = YES;
+        self.playButtonImageView.hidden = NO;
+    }
+}
+
+- (IBAction)handleVoiceRequestRetryButtonTapped:(id)sender {
+    [self.eventHandler sendVoiceRequest];
 }
 
 @end

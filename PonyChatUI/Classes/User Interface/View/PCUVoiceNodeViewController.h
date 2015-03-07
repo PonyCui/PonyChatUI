@@ -19,4 +19,10 @@
 
 - (void)setUnreadSignalHidden:(BOOL)isHidden;
 
+- (void)setVoicePreparing:(BOOL)isPreparing;
+
+- (void)setVoiceRequestFail:(BOOL)isFail;
+
+- (void)sendVoiceRequest;
+
 @end

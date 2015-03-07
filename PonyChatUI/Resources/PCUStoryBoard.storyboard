@@ -514,13 +514,13 @@
                                     <constraint firstAttribute="width" constant="30" id="nNT-hv-jb5"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1''" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUH-bx-ofq">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1''" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUH-bx-ofq" userLabel="Voice Length">
                                 <rect key="frame" x="118" y="30" width="18" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.49803924560000001" green="0.49803924560000001" blue="0.49803924560000001" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W5k-lO-DgC">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W5k-lO-DgC" userLabel="Unread Signal view">
                                 <rect key="frame" x="119" y="10" width="6" height="6"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -537,6 +537,23 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="RHw-5a-dCL" userLabel="Voice Preparing Juhua">
+                                <rect key="frame" x="75" y="18" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yFO-ro-9z5" userLabel="Voice Request Retry Button">
+                                <rect key="frame" x="63" y="6" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="XIN-Jd-YyQ"/>
+                                    <constraint firstAttribute="height" constant="44" id="Y7j-ep-C3e"/>
+                                </constraints>
+                                <state key="normal" image="MessageSendFail">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="handleRetryButtonTapped:" destination="XAR-lq-LOw" eventType="touchUpInside" id="jzg-ip-e9r"/>
+                                    <action selector="handleVoiceRequestRetryButtonTapped:" destination="SE7-km-LBI" eventType="touchUpInside" id="Li9-6b-xdq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -545,11 +562,15 @@
                             <constraint firstItem="TRK-Eh-pTf" firstAttribute="leading" secondItem="w1l-jm-Skb" secondAttribute="leading" constant="18" id="DCR-BM-9EB"/>
                             <constraint firstItem="W5k-lO-DgC" firstAttribute="leading" secondItem="bUH-bx-ofq" secondAttribute="leading" constant="1" id="IM9-vl-7pc"/>
                             <constraint firstItem="0g7-3O-39w" firstAttribute="leading" secondItem="eAI-ND-d0s" secondAttribute="leading" constant="8" id="LFo-Bc-dLx"/>
+                            <constraint firstItem="RHw-5a-dCL" firstAttribute="centerX" secondItem="TRK-Eh-pTf" secondAttribute="centerX" id="MMA-Kh-tyt"/>
                             <constraint firstItem="w1l-jm-Skb" firstAttribute="centerY" secondItem="0g7-3O-39w" secondAttribute="centerY" constant="5" id="OBy-Mi-RMC"/>
                             <constraint firstItem="w1l-jm-Skb" firstAttribute="leading" secondItem="0g7-3O-39w" secondAttribute="trailing" constant="4" id="R60-oC-vlV"/>
                             <constraint firstItem="TRK-Eh-pTf" firstAttribute="centerY" secondItem="w1l-jm-Skb" secondAttribute="centerY" constant="-5" id="Wbd-4g-75m"/>
+                            <constraint firstItem="RHw-5a-dCL" firstAttribute="centerY" secondItem="TRK-Eh-pTf" secondAttribute="centerY" id="gFh-sM-j4v"/>
                             <constraint firstItem="w1l-jm-Skb" firstAttribute="trailing" secondItem="bUH-bx-ofq" secondAttribute="leading" id="l2C-1f-nwa"/>
+                            <constraint firstItem="yFO-ro-9z5" firstAttribute="centerX" secondItem="RHw-5a-dCL" secondAttribute="centerX" id="lO5-nq-tdG"/>
                             <constraint firstItem="0g7-3O-39w" firstAttribute="top" secondAttribute="top" constant="8" id="meS-S6-IGm"/>
+                            <constraint firstItem="yFO-ro-9z5" firstAttribute="centerY" secondItem="RHw-5a-dCL" secondAttribute="centerY" id="riT-pH-HTM"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -563,6 +584,8 @@
                         <outlet property="playButtonImageView" destination="TRK-Eh-pTf" id="9QB-ET-jva"/>
                         <outlet property="unreadSignalView" destination="W5k-lO-DgC" id="bwb-8G-FID"/>
                         <outlet property="voiceNodeBackgroundWidthConstraint" destination="rLq-DF-Cgi" id="5pt-MG-k6S"/>
+                        <outlet property="voicePreparingIndicatorView" destination="RHw-5a-dCL" id="efe-Kg-lUA"/>
+                        <outlet property="voiceRequestRetryButton" destination="yFO-ro-9z5" id="K9u-ww-Uyk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7v7-1M-tgd" userLabel="First Responder" sceneMemberID="firstResponder"/>
