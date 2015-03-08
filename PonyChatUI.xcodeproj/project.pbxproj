@@ -49,6 +49,8 @@
 		F03568691AAAC83B00708503 /* PCUImageNodePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F03568681AAAC83B00708503 /* PCUImageNodePresenter.m */; };
 		F035686C1AAAC89900708503 /* PCUImageNodeInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = F035686B1AAAC89900708503 /* PCUImageNodeInteractor.m */; };
 		F035686F1AAADC4600708503 /* UIImage+PCUOrientationFix.m in Sources */ = {isa = PBXBuildFile; fileRef = F035686E1AAADC4600708503 /* UIImage+PCUOrientationFix.m */; };
+		F04C81501AAC590A00E3621B /* PCUGalleryPresentTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = F04C814F1AAC590A00E3621B /* PCUGalleryPresentTransition.m */; };
+		F04C81531AAC591900E3621B /* PCUGalleryDismissTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = F04C81521AAC591900E3621B /* PCUGalleryDismissTransition.m */; };
 		F070D3131A9A0B750083F6A3 /* PCUPanelPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F070D3121A9A0B750083F6A3 /* PCUPanelPresenter.m */; };
 		F070D3161A9A0BE30083F6A3 /* PCUPanelInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = F070D3151A9A0BE30083F6A3 /* PCUPanelInteractor.m */; };
 		F070D3191A9A0C320083F6A3 /* PCUPanelItemInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = F070D3181A9A0C320083F6A3 /* PCUPanelItemInteractor.m */; };
@@ -162,6 +164,10 @@
 		F035686B1AAAC89900708503 /* PCUImageNodeInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUImageNodeInteractor.m; sourceTree = "<group>"; };
 		F035686D1AAADC4600708503 /* UIImage+PCUOrientationFix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+PCUOrientationFix.h"; sourceTree = "<group>"; };
 		F035686E1AAADC4600708503 /* UIImage+PCUOrientationFix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+PCUOrientationFix.m"; sourceTree = "<group>"; };
+		F04C814E1AAC590A00E3621B /* PCUGalleryPresentTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUGalleryPresentTransition.h; sourceTree = "<group>"; };
+		F04C814F1AAC590A00E3621B /* PCUGalleryPresentTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUGalleryPresentTransition.m; sourceTree = "<group>"; };
+		F04C81511AAC591900E3621B /* PCUGalleryDismissTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUGalleryDismissTransition.h; sourceTree = "<group>"; };
+		F04C81521AAC591900E3621B /* PCUGalleryDismissTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUGalleryDismissTransition.m; sourceTree = "<group>"; };
 		F070D3111A9A0B750083F6A3 /* PCUPanelPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUPanelPresenter.h; sourceTree = "<group>"; };
 		F070D3121A9A0B750083F6A3 /* PCUPanelPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUPanelPresenter.m; sourceTree = "<group>"; };
 		F070D3141A9A0BE30083F6A3 /* PCUPanelInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUPanelInteractor.h; sourceTree = "<group>"; };
@@ -353,6 +359,7 @@
 		6390B4431A8B06380025A64D /* User Interface */ = {
 			isa = PBXGroup;
 			children = (
+				F04C814D1AAC58F200E3621B /* Transition */,
 				6390B4471A8B06630025A64D /* Wireframe */,
 				6390B4441A8B06380025A64D /* Interactor */,
 				6390B4451A8B06380025A64D /* Presenter */,
@@ -512,6 +519,17 @@
 				EFFD382C3BEE47F55164881E /* Pods-PonyChatUI.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		F04C814D1AAC58F200E3621B /* Transition */ = {
+			isa = PBXGroup;
+			children = (
+				F04C814E1AAC590A00E3621B /* PCUGalleryPresentTransition.h */,
+				F04C814F1AAC590A00E3621B /* PCUGalleryPresentTransition.m */,
+				F04C81511AAC591900E3621B /* PCUGalleryDismissTransition.h */,
+				F04C81521AAC591900E3621B /* PCUGalleryDismissTransition.m */,
+			);
+			path = Transition;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -681,6 +699,7 @@
 				6390B44A1A8B06750025A64D /* PCUWireframe.m in Sources */,
 				63BACEC11A8DE89C0013DB6C /* PCUNodeViewController.m in Sources */,
 				632886101A8B02790032C99C /* AppDelegate.m in Sources */,
+				F04C81531AAC591900E3621B /* PCUGalleryDismissTransition.m in Sources */,
 				F070D3131A9A0B750083F6A3 /* PCUPanelPresenter.m in Sources */,
 				63FF1C021A8C4394007C3A18 /* PCUTextNodeViewController.m in Sources */,
 				63BACEA91A8C7E7B0013DB6C /* PCUAttributedStringManager.m in Sources */,
@@ -690,6 +709,7 @@
 				F0CD677D1AA2E0DC007D3F89 /* PCUDefines.m in Sources */,
 				F03568691AAAC83B00708503 /* PCUImageNodePresenter.m in Sources */,
 				63BACED51A91C2160013DB6C /* NSAttributedString+PCUAttributedString.m in Sources */,
+				F04C81501AAC590A00E3621B /* PCUGalleryPresentTransition.m in Sources */,
 				6390B4541A8B0B760025A64D /* PCUChatPresenter.m in Sources */,
 				63BACEC71A903D9F0013DB6C /* PCUChat.m in Sources */,
 				6390B45E1A8B44FE0025A64D /* PCUToolViewController.m in Sources */,

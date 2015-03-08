@@ -11,8 +11,10 @@
 #import "PCUImageNodeInteractor.h"
 #import "PCUGalleryImageViewController.h"
 #import "PCUGalleryImagePresenter.h"
+#import "PCUGalleryPresentTransition.h"
+#import "PCUGalleryDismissTransition.h"
 
-@interface PCUGalleryPageViewController ()<UIPageViewControllerDataSource, UIPageViewControllerDelegate>
+@interface PCUGalleryPageViewController ()<UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIViewControllerTransitioningDelegate>
 
 @end
 
@@ -20,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self configureTransition];
     [self configureContentViewController];
     // Do any additional setup after loading the view.
 }
@@ -67,6 +70,21 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
     return nil;
+}
+
+#pragma mark - Transition
+
+- (void)configureTransition {
+    self.modalPresentationStyle = UIModalPresentationCustom;
+    self.transitioningDelegate = self;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    return [[PCUGalleryDismissTransition alloc] init];
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    return [[PCUGalleryPresentTransition alloc] init];
 }
 
 @end

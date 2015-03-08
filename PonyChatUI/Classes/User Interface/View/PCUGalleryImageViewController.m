@@ -166,7 +166,7 @@
             self.imageViewLeadingConstraint.constant = 0.0;
             self.imageViewTopConstraint.constant = 0.0;
             self.imageViewBottomConstraint.constant = 0.0;
-            [self.scrollView zoomToRect:CGRectMake(locationInView.x-22, locationInView.y-22, 44, 44) animated:NO];
+            [self.scrollView zoomToRect:CGRectMake(locationInView.x, locationInView.y, 1, 1) animated:NO];
             [self.view layoutIfNeeded];
         } completion:^(BOOL finished) {
             _isDuringDoubleTap = NO;

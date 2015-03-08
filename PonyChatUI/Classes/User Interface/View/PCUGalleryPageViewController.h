@@ -22,4 +22,6 @@
 
 @property (nonatomic, weak) id<PCUGalleryDataSource> galleryDataSource;
 
+@property (nonatomic, strong) UIView *enterView;
+
 @end

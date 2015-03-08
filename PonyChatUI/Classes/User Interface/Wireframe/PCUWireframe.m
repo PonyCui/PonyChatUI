@@ -85,6 +85,7 @@
                                               view:(UIView *)view {
     PCUGalleryPageViewController *pageViewController = [self galleryPageViewController];
     pageViewController.galleryDataSource = dataSource;
+    pageViewController.enterView = view;
     [parentViewController presentViewController:pageViewController animated:YES completion:nil];
 }
 
