@@ -11,7 +11,7 @@
 @implementation PCUGalleryDismissTransition
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
-    return 0.25;
+    return 0.20;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
@@ -28,7 +28,6 @@
      delay:0.0f
      options:kNilOptions
      animations:^{
-         fromViewController.view.transform = CGAffineTransformMakeScale(1.1, 1.1);
          fromViewController.view.alpha = 0.0;
      } completion:^(BOOL finished) {
          [transitionContext completeTransition:YES];

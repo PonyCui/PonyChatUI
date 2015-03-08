@@ -16,4 +16,6 @@
 
 @property (nonatomic, strong) PCUImageNodeInteractor *nodeInteractor;
 
+- (void)updateView;
+
 @end

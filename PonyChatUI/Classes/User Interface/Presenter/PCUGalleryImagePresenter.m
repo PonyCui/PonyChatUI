@@ -30,7 +30,10 @@
 - (void)setNodeInteractor:(PCUImageNodeInteractor *)nodeInteractor {
     _nodeInteractor.originalImage = nil;
     _nodeInteractor = nodeInteractor;
-    [nodeInteractor sendOriginalImageAsyncRequest];
+}
+
+- (void)updateView {
+    [self.nodeInteractor sendOriginalImageAsyncRequest];
 }
 
 - (void)configureReactiveCocoa {

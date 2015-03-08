@@ -108,9 +108,11 @@
 
 #pragma mark - Send Message
 
+#warning - 待重构
 - (void)sendImageMessage:(UIImage *)image {
-    image = [image pcu_resizedImageWithUncompressedSizeInMB:15.0 interpolationQuality:kCGInterpolationHigh];
-    NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
+    UIImage *theImage = [image pcu_resizedImageWithUncompressedSizeInMB:15.0
+                                                   interpolationQuality:kCGInterpolationHigh];
+    NSData *imageData = UIImageJPEGRepresentation(theImage, 1.0);
     NSString *imagePath = [NSTemporaryDirectory() stringByAppendingFormat:@"%u.%u.%u.jpg",
                            arc4random(), arc4random(), arc4random()];
     [imageData writeToFile:imagePath atomically:YES];

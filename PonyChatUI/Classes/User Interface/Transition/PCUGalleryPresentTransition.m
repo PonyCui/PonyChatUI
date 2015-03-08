@@ -15,7 +15,7 @@
 @implementation PCUGalleryPresentTransition
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
-    return 0.25;
+    return 0.20;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {

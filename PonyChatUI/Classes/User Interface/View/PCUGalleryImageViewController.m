@@ -7,6 +7,7 @@
 //
 
 #import "PCUGalleryImageViewController.h"
+#import "PCUGalleryImagePresenter.h"
 
 @interface PCUGalleryImageViewController ()<UIScrollViewDelegate> {
     BOOL _isDuringDoubleTap;
@@ -41,6 +42,11 @@
     self.scrollView.minimumZoomScale = 1.0;
     self.scrollView.maximumZoomScale = 5.0;
     // Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.eventHandler updateView];
 }
 
 - (void)didReceiveMemoryWarning {
