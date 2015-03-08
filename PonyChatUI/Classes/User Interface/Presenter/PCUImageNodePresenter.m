@@ -26,6 +26,7 @@
 }
 
 - (void)configureReactiveCocoa {
+    [super configureReactiveCocoa];
     @weakify(self);
     [RACObserve(self, nodeInteractor.senderThumbImage) subscribeNext:^(UIImage *x) {
         @strongify(self);

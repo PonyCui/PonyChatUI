@@ -14,10 +14,6 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *thumbImageView;
 
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *sendingIndicatorView;
-
-@property (weak, nonatomic) IBOutlet UIButton *sendingRetryButton;
-
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *thumbImageViewWidthConstraint;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *thumbImageViewHeightConstraint;

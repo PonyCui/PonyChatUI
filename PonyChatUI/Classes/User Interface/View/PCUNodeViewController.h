@@ -19,8 +19,6 @@
 
 @property (nonatomic, strong) NSLayoutConstraint *topConstraint;
 
-@property (nonatomic, strong) NSLayoutConstraint *widthConstraint;
-
 @property (nonatomic, strong) NSLayoutConstraint *heightConstraint;
 
 @property (nonatomic, strong) NSLayoutConstraint *bottomConstraint;

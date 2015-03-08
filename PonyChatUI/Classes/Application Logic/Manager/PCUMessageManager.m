@@ -74,7 +74,7 @@
 - (void)didReceivedData {
     //System Demo
     {
-        if (arc4random() % 3 < 1) {
+        if (arc4random() % 10 < 1) {
             PCUMessage *message = [[PCUMessage alloc] init];
             message.identifier = [NSString stringWithFormat:@"%u", arc4random()];
             message.orderIndex = [[NSDate date] timeIntervalSince1970] * 1000 + 2;
@@ -99,7 +99,7 @@
     }
     //Voice Demo
     {
-        if (arc4random() % 3 < 1) {
+        if (arc4random() % 10 < 1) {
             PCUMessage *message = [[PCUMessage alloc] init];
             message.identifier = [NSString stringWithFormat:@"%u", arc4random()];
             message.orderIndex = [[NSDate date] timeIntervalSince1970] * 1000 + 3;
@@ -114,7 +114,7 @@
     }
     //Image Demo
     {
-        if (arc4random() % 3 < 3) {
+        if (arc4random() % 10 < 1) {
             PCUMessage *message = [[PCUMessage alloc] init];
             message.identifier = [NSString stringWithFormat:@"%u", arc4random()];
             message.orderIndex = [[NSDate date] timeIntervalSince1970] * 1000 + 5;

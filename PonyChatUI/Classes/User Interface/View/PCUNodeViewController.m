@@ -16,6 +16,12 @@
 
 @interface PCUNodeViewController ()
 
+@property (nonatomic, strong) NSLayoutConstraint *widthConstraint;
+
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *sendingIndicatorView;
+
+@property (weak, nonatomic) IBOutlet UIButton *sendingRetryButton;
+
 @end
 
 @implementation PCUNodeViewController
@@ -113,14 +119,6 @@
         [[self.view superview] addConstraint:self.heightConstraint];
     }
     [self.view layoutIfNeeded];
-}
-
-- (UIActivityIndicatorView *)sendingIndicatorView {
-    return nil;
-}
-
-- (UIButton *)sendingRetryButton {
-    return nil;
 }
 
 - (void)sendingIndicatorViewStartAnimating {
