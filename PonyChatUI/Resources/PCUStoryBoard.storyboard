@@ -258,6 +258,9 @@
                                     <constraint firstAttribute="trailing" secondItem="KIt-Lj-UAf" secondAttribute="trailing" id="rX5-Ed-Uwg"/>
                                 </constraints>
                             </scrollView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="ePg-2p-hPe">
+                                <rect key="frame" x="142" y="266" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -265,6 +268,8 @@
                             <constraint firstItem="TgV-OK-Pgp" firstAttribute="top" secondItem="haE-9X-MvJ" secondAttribute="bottom" id="DwJ-QF-X9g"/>
                             <constraint firstAttribute="trailing" secondItem="haE-9X-MvJ" secondAttribute="trailing" id="ZBS-Oq-OL7"/>
                             <constraint firstItem="haE-9X-MvJ" firstAttribute="leading" secondItem="YpS-DU-2XG" secondAttribute="leading" id="cww-JZ-Lfx"/>
+                            <constraint firstAttribute="centerX" secondItem="ePg-2p-hPe" secondAttribute="centerX" id="ex7-lU-29y"/>
+                            <constraint firstAttribute="centerY" secondItem="ePg-2p-hPe" secondAttribute="centerY" id="oqb-an-PBy"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="jGp-qF-aqW" appends="YES" id="chb-Fc-J6Y"/>
@@ -275,6 +280,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="doubleTapGestureRecognizer" destination="Roj-hd-Rbb" id="kQl-2y-Zqd"/>
+                        <outlet property="imageLoadingActivityIndicator" destination="ePg-2p-hPe" id="efQ-mm-vmE"/>
                         <outlet property="imageView" destination="KIt-Lj-UAf" id="cKM-Jl-xu3"/>
                         <outlet property="imageViewBottomConstraint" destination="TYm-DE-1gH" id="Tmi-97-Wrx"/>
                         <outlet property="imageViewHeightConstraint" destination="2Og-cj-6uC" id="Wje-x7-ggt"/>

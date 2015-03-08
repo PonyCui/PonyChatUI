@@ -26,6 +26,8 @@
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *singleTapGestureRecognizer;
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *doubleTapGestureRecognizer;
 
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *imageLoadingActivityIndicator;
+
 @end
 
 @implementation PCUGalleryImageViewController
@@ -60,8 +62,11 @@
 }
 
 - (void)setImage:(UIImage *)image {
-    self.imageView.image = image;
-    [self updateImageViewLayout];
+    if (image != nil) {
+        self.imageView.image = image;
+        [self updateImageViewLayout];
+        [self.imageLoadingActivityIndicator stopAnimating];
+    }
 }
 
 - (void)updateImageViewLayout {

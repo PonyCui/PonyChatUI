@@ -11,6 +11,7 @@
 #import "PCUSender.h"
 #import "PCUApplication.h"
 #import "PCUAvatarManager.h"
+#import "UIImage+PCUOrientationFix.h"
 #import <AFNetworking/AFNetworking.h>
 
 @interface PCUImageNodeInteractor ()
