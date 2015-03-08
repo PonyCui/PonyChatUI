@@ -212,6 +212,76 @@
             </objects>
             <point key="canvasLocation" x="276" y="760"/>
         </scene>
+        <!--Gallery Page View Controller-->
+        <scene sceneID="aEG-Q1-KXp">
+            <objects>
+                <pageViewController storyboardIdentifier="PCUGalleryPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="dVr-46-TnH" customClass="PCUGalleryPageViewController" sceneMemberID="viewController">
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Ny-e2-aQw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="665" y="-286"/>
+        </scene>
+        <!--Gallery Image View Controller-->
+        <scene sceneID="ytK-Rs-Gus">
+            <objects>
+                <viewController storyboardIdentifier="PCUGalleryImageViewController" id="tN8-6W-gDD" customClass="PCUGalleryImageViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gU5-sr-U2h"/>
+                        <viewControllerLayoutGuide type="bottom" id="TgV-OK-Pgp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YpS-DU-2XG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="haE-9X-MvJ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="568" translatesAutoresizingMaskIntoConstraints="NO" id="KIt-Lj-UAf">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                        <color key="backgroundColor" red="0.5450980392" green="0.5450980392" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="568" id="2Og-cj-6uC"/>
+                                            <constraint firstAttribute="width" constant="320" id="YqL-G3-qPt"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="KIt-Lj-UAf" firstAttribute="leading" secondItem="haE-9X-MvJ" secondAttribute="leading" id="3Rx-sj-LJr"/>
+                                    <constraint firstAttribute="bottom" secondItem="KIt-Lj-UAf" secondAttribute="bottom" id="TYm-DE-1gH"/>
+                                    <constraint firstItem="KIt-Lj-UAf" firstAttribute="top" secondItem="haE-9X-MvJ" secondAttribute="top" id="WwT-VG-aLQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="KIt-Lj-UAf" secondAttribute="trailing" id="rX5-Ed-Uwg"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="haE-9X-MvJ" firstAttribute="top" secondItem="gU5-sr-U2h" secondAttribute="top" id="62g-S4-iFy"/>
+                            <constraint firstItem="TgV-OK-Pgp" firstAttribute="top" secondItem="haE-9X-MvJ" secondAttribute="bottom" id="DwJ-QF-X9g"/>
+                            <constraint firstAttribute="trailing" secondItem="haE-9X-MvJ" secondAttribute="trailing" id="ZBS-Oq-OL7"/>
+                            <constraint firstItem="haE-9X-MvJ" firstAttribute="leading" secondItem="YpS-DU-2XG" secondAttribute="leading" id="cww-JZ-Lfx"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="imageView" destination="KIt-Lj-UAf" id="cKM-Jl-xu3"/>
+                        <outlet property="imageViewBottomConstraint" destination="TYm-DE-1gH" id="Tmi-97-Wrx"/>
+                        <outlet property="imageViewHeightConstraint" destination="2Og-cj-6uC" id="Wje-x7-ggt"/>
+                        <outlet property="imageViewLeadingConstraint" destination="3Rx-sj-LJr" id="U2z-rH-Tlg"/>
+                        <outlet property="imageViewTopConstraint" destination="WwT-VG-aLQ" id="oHH-fx-IgM"/>
+                        <outlet property="imageViewTrailingConstraint" destination="rX5-Ed-Uwg" id="ruE-7T-7yP"/>
+                        <outlet property="imageViewWidthConstraint" destination="YqL-G3-qPt" id="YW7-dV-0HX"/>
+                        <outlet property="scrollView" destination="haE-9X-MvJ" id="tC1-Cd-YvV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o5C-BQ-WLo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1051" y="-286"/>
+        </scene>
         <!--Text Node View Controller-->
         <scene sceneID="3xd-uA-vXu">
             <objects>
@@ -528,6 +598,9 @@
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SenderTextNodeBkgReversed" translatesAutoresizingMaskIntoConstraints="NO" id="9ew-Jz-2UW">
                                 <rect key="frame" x="223" y="6" width="45" height="48"/>
                                 <rect key="contentStretch" x="0.5" y="0.5" width="0.0" height="0.0"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="bwH-xn-DtG" appends="YES" id="q3q-vT-ntc"/>
+                                </connections>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -564,6 +637,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ep0-cN-YaC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="bwH-xn-DtG">
+                    <connections>
+                        <action selector="handleThumbImageViewTapped:" destination="JLw-rS-3Fe" id="Jai-ub-8js"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1438" y="286"/>
         </scene>
@@ -596,6 +674,9 @@
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ReceiverTextNodeBkgReversed" translatesAutoresizingMaskIntoConstraints="NO" id="p65-I7-nel">
                                 <rect key="frame" x="52" y="6" width="45" height="48"/>
                                 <rect key="contentStretch" x="0.5" y="0.5" width="0.0" height="0.0"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="6Wr-6V-EQY" appends="YES" id="0i7-8S-vq3"/>
+                                </connections>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -626,6 +707,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iFf-Ct-lxD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="6Wr-6V-EQY">
+                    <connections>
+                        <action selector="handleThumbImageViewTapped:" destination="e8u-Ol-mBG" id="PEH-Nu-nUN"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1438" y="130"/>
         </scene>

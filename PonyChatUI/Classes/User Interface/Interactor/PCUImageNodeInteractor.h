@@ -8,16 +8,22 @@
 
 #import "PCUNodeInteractor.h"
 
-typedef NS_ENUM(NSInteger, PCUImageNodeThumbImageStatus) {
-    PCUImageNodeThumbImageStatusLoading,
-    PCUImageNodeThumbImageStatusLoaded,
-    PCUImageNodeThumbImageStatusFailed
+typedef NS_ENUM(NSInteger, PCUImageNodeImageStatus) {
+    PCUImageNodeImageStatusLoading,
+    PCUImageNodeImageStatusLoaded,
+    PCUImageNodeImageStatusFailed
 };
 
 @interface PCUImageNodeInteractor : PCUNodeInteractor
 
-@property (nonatomic, assign) PCUImageNodeThumbImageStatus thumbStatus;
+@property (nonatomic, assign) PCUImageNodeImageStatus thumbStatus;
 
 @property (nonatomic, strong) UIImage *thumbImage;
+
+@property (nonatomic, assign) PCUImageNodeImageStatus originalStatus;
+
+@property (nonatomic, strong) UIImage *originalImage;
+
+- (void)sendOriginalImageAsyncRequest;
 
 @end

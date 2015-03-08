@@ -9,9 +9,12 @@
 #import "PCUImageNodePresenter.h"
 #import "PCUImageNodeViewController.h"
 #import "PCUImageNodeInteractor.h"
+#import "PCUApplication.h"
+#import "PCUWireframe.h"
+#import "PCUGalleryPageViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-@interface PCUImageNodePresenter ()
+@interface PCUImageNodePresenter ()<PCUGalleryDataSource>
 
 @property (nonatomic, weak) PCUImageNodeViewController *userInterface;
 
@@ -45,6 +48,22 @@
             }
         });
     }];
+}
+
+- (void)enterGalleryWithImageView:(UIImageView *)imageView {
+    [PCU[@protocol(PCUWireframe)] presentGalleryViewControllerWithDataSource:self
+                                                        parentViewController:self.userInterface
+                                                                        view:imageView];
+}
+
+#pragma mark - PCUGalleryDataSource
+
+- (PCUNodeInteractor *)galleryEnterNode {
+    return self.nodeInteractor;
+}
+
+- (NSArray *)galleryNodes {
+    return @[self.nodeInteractor];
 }
 
 @end

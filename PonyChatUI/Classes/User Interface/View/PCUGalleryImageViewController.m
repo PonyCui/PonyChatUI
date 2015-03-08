@@ -1,0 +1,124 @@
+//
+//  PCUGalleryImageViewController.m
+//  PonyChatUI
+//
+//  Created by 崔 明辉 on 15-3-8.
+//  Copyright (c) 2015年 多玩事业部 iOS开发组 YY Inc. All rights reserved.
+//
+
+#import "PCUGalleryImageViewController.h"
+
+@interface PCUGalleryImageViewController ()<UIScrollViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageViewWidthConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageViewLeadingConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageViewTrailingConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageViewTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageViewBottomConstraint;
+
+@end
+
+@implementation PCUGalleryImageViewController
+
+- (void)dealloc
+{
+    self.scrollView.delegate = nil;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.scrollView.delegate = self;
+    self.scrollView.minimumZoomScale = 1.0;
+    self.scrollView.maximumZoomScale = 5.0;
+    // Do any additional setup after loading the view.
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    [self updateImageViewLayout];
+}
+
+- (void)setImage:(UIImage *)image {
+    self.imageView.image = image;
+    [self updateImageViewLayout];
+}
+
+- (void)updateImageViewLayout {
+    CGSize imageSize = self.imageView.image.size;
+    if (imageSize.width == 0.0 || imageSize.height == 0.0) {
+        return;
+    }
+    CGSize screenSize;
+    if (CGRectGetHeight(self.view.bounds) > CGRectGetWidth(self.view.bounds)) {
+        //竖屏
+        screenSize.width = MIN(CGRectGetWidth(self.view.bounds), imageSize.width);
+        screenSize.height = screenSize.width * imageSize.height / imageSize.width;
+        self.imageViewLeadingConstraint.constant = 0.0;
+        self.imageViewTrailingConstraint.constant = 0.0;
+    }
+    else {
+        //横屏
+        screenSize.height = MIN(CGRectGetHeight(self.view.bounds), imageSize.height);
+        screenSize.width = screenSize.height * imageSize.width / imageSize.height;
+        self.imageViewTopConstraint.constant = 0.0;
+        self.imageViewBottomConstraint.constant = 0.0;
+    }
+    self.imageViewWidthConstraint.constant = screenSize.width;
+    self.imageViewHeightConstraint.constant = screenSize.height;
+    [self performSelector:@selector(updateImageViewInsetLayout) withObject:nil afterDelay:0.001];
+}
+
+- (void)updateImageViewInsetLayout {
+    if (CGRectGetHeight(self.view.bounds) > CGRectGetWidth(self.view.bounds)) {
+        //竖屏
+        CGFloat heightOffset = CGRectGetHeight(self.imageView.frame) - CGRectGetHeight(self.view.bounds);
+        if (heightOffset > 0) {
+            self.imageViewTopConstraint.constant = 0.0;
+            self.imageViewBottomConstraint.constant = 0.0;
+        }
+        else {
+            self.imageViewTopConstraint.constant = abs(heightOffset) / 2.0;
+            self.imageViewBottomConstraint.constant = 0.0;
+        }
+    }
+    else {
+        //横屏
+        CGFloat widthOffset = CGRectGetWidth(self.imageView.frame) - CGRectGetWidth(self.view.bounds);
+        if (widthOffset > 0) {
+            self.imageViewLeadingConstraint.constant = 0.0;
+            self.imageViewTrailingConstraint.constant = 0.0;
+        }
+        else {
+            self.imageViewLeadingConstraint.constant = abs(widthOffset) / 2.0;
+            self.imageViewTrailingConstraint.constant = 0.0;
+        }
+    }
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    return self.imageView;
+}
+
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView {
+    [self updateImageViewInsetLayout];
+}
+
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale {
+    [self updateImageViewInsetLayout];
+    [UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        [self.view layoutIfNeeded];
+    } completion:nil];
+}
+
+@end

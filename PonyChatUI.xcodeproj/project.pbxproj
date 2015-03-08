@@ -65,6 +65,9 @@
 		F0CD67831AA2EB32007D3F89 /* PCUTalkingPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CD67821AA2EB32007D3F89 /* PCUTalkingPresenter.m */; };
 		F0CD67861AA30924007D3F89 /* PCUTalkingHUDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CD67851AA30924007D3F89 /* PCUTalkingHUDViewController.m */; };
 		F0CD67891AA30CDB007D3F89 /* PCUTalkingCancelHUDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CD67881AA30CDB007D3F89 /* PCUTalkingCancelHUDViewController.m */; };
+		F0F601621AAC15D200F5952C /* PCUGalleryPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0F601611AAC15D200F5952C /* PCUGalleryPageViewController.m */; };
+		F0F601651AAC15FA00F5952C /* PCUGalleryImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0F601641AAC15FA00F5952C /* PCUGalleryImageViewController.m */; };
+		F0F601681AAC236400F5952C /* PCUGalleryImagePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F0F601671AAC236400F5952C /* PCUGalleryImagePresenter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -191,6 +194,12 @@
 		F0CD67851AA30924007D3F89 /* PCUTalkingHUDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUTalkingHUDViewController.m; sourceTree = "<group>"; };
 		F0CD67871AA30CDB007D3F89 /* PCUTalkingCancelHUDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUTalkingCancelHUDViewController.h; sourceTree = "<group>"; };
 		F0CD67881AA30CDB007D3F89 /* PCUTalkingCancelHUDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUTalkingCancelHUDViewController.m; sourceTree = "<group>"; };
+		F0F601601AAC15D200F5952C /* PCUGalleryPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUGalleryPageViewController.h; sourceTree = "<group>"; };
+		F0F601611AAC15D200F5952C /* PCUGalleryPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUGalleryPageViewController.m; sourceTree = "<group>"; };
+		F0F601631AAC15FA00F5952C /* PCUGalleryImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUGalleryImageViewController.h; sourceTree = "<group>"; };
+		F0F601641AAC15FA00F5952C /* PCUGalleryImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUGalleryImageViewController.m; sourceTree = "<group>"; };
+		F0F601661AAC236400F5952C /* PCUGalleryImagePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUGalleryImagePresenter.h; sourceTree = "<group>"; };
+		F0F601671AAC236400F5952C /* PCUGalleryImagePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUGalleryImagePresenter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -398,6 +407,8 @@
 				F070D3121A9A0B750083F6A3 /* PCUPanelPresenter.m */,
 				F0CD67811AA2EB32007D3F89 /* PCUTalkingPresenter.h */,
 				F0CD67821AA2EB32007D3F89 /* PCUTalkingPresenter.m */,
+				F0F601661AAC236400F5952C /* PCUGalleryImagePresenter.h */,
+				F0F601671AAC236400F5952C /* PCUGalleryImagePresenter.m */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -429,6 +440,10 @@
 				F0CD67851AA30924007D3F89 /* PCUTalkingHUDViewController.m */,
 				F0CD67871AA30CDB007D3F89 /* PCUTalkingCancelHUDViewController.h */,
 				F0CD67881AA30CDB007D3F89 /* PCUTalkingCancelHUDViewController.m */,
+				F0F601601AAC15D200F5952C /* PCUGalleryPageViewController.h */,
+				F0F601611AAC15D200F5952C /* PCUGalleryPageViewController.m */,
+				F0F601631AAC15FA00F5952C /* PCUGalleryImageViewController.h */,
+				F0F601641AAC15FA00F5952C /* PCUGalleryImageViewController.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -654,6 +669,7 @@
 				F0CD67831AA2EB32007D3F89 /* PCUTalkingPresenter.m in Sources */,
 				F035686C1AAAC89900708503 /* PCUImageNodeInteractor.m in Sources */,
 				F070D3191A9A0C320083F6A3 /* PCUPanelItemInteractor.m in Sources */,
+				F0F601621AAC15D200F5952C /* PCUGalleryPageViewController.m in Sources */,
 				63BACECB1A919D040013DB6C /* PCUSystemNodeViewController.m in Sources */,
 				63BACEBE1A8DE86A0013DB6C /* PCUNodePresenter.m in Sources */,
 				63BACEB21A8DE7C70013DB6C /* PCUTextNodeInteractor.m in Sources */,
@@ -668,6 +684,7 @@
 				F070D3131A9A0B750083F6A3 /* PCUPanelPresenter.m in Sources */,
 				63FF1C021A8C4394007C3A18 /* PCUTextNodeViewController.m in Sources */,
 				63BACEA91A8C7E7B0013DB6C /* PCUAttributedStringManager.m in Sources */,
+				F0F601681AAC236400F5952C /* PCUGalleryImagePresenter.m in Sources */,
 				F0B123F31A94EDF500A0DB10 /* PCUPanelCollectionViewCell.m in Sources */,
 				63BACEAC1A8DDFA70013DB6C /* PCUMessage.m in Sources */,
 				F0CD677D1AA2E0DC007D3F89 /* PCUDefines.m in Sources */,
@@ -686,6 +703,7 @@
 				F0CD67861AA30924007D3F89 /* PCUTalkingHUDViewController.m in Sources */,
 				F070D31F1A9A0D5D0083F6A3 /* PCUPanelItem.m in Sources */,
 				63BACEB51A8DE7DB0013DB6C /* PCUChatInteractor.m in Sources */,
+				F0F601651AAC15FA00F5952C /* PCUGalleryImageViewController.m in Sources */,
 				F035686F1AAADC4600708503 /* UIImage+PCUOrientationFix.m in Sources */,
 				638F61671AA465EB00B9B635 /* PCUVoiceNodeViewController.m in Sources */,
 				63BACEDA1A91DD410013DB6C /* UILabel+PCUAttributedStringLinkResponder.m in Sources */,

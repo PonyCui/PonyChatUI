@@ -6,8 +6,11 @@
 //  Copyright (c) 2015年 多玩事业部 iOS开发组 YY Inc. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import "PCUNodePresenter.h"
 
 @interface PCUImageNodePresenter : PCUNodePresenter
+
+- (void)enterGalleryWithImageView:(UIImageView *)imageView;
 
 @end

@@ -18,7 +18,7 @@
 #import "PCUTalkingViewController.h"
 #import "PCUTalkingHUDViewController.h"
 #import "PCUTalkingCancelHUDViewController.h"
-
+#import "PCUGalleryPageViewController.h"
 
 @implementation PCUWireframe
 
@@ -80,6 +80,14 @@
     [viewController.cancelHUDViewController configureViewLayouts];
 }
 
+- (void)presentGalleryViewControllerWithDataSource:(id)dataSource
+                              parentViewController:(UIViewController *)parentViewController
+                                              view:(UIView *)view {
+    PCUGalleryPageViewController *pageViewController = [self galleryPageViewController];
+    pageViewController.galleryDataSource = dataSource;
+    [parentViewController presentViewController:pageViewController animated:YES completion:nil];
+}
+
 #pragma mark - Getter
 
 - (PCUChatViewController *)chatViewController {
@@ -122,6 +130,13 @@
     PCUTalkingCancelHUDViewController *talkingCancelHUDViewController =
     [storyBoard instantiateViewControllerWithIdentifier:@"PCUTalkingCancelHUDViewController"];
     return talkingCancelHUDViewController;
+}
+
+- (PCUGalleryPageViewController *)galleryPageViewController {
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"PCUStoryBoard" bundle:nil];
+    PCUGalleryPageViewController *pageViewController =
+    [storyBoard instantiateViewControllerWithIdentifier:@"PCUGalleryPageViewController"];
+    return pageViewController;
 }
 
 @end

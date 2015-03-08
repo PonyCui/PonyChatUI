@@ -30,6 +30,8 @@
     return self;
 }
 
+#pragma mark - Thumb Image
+
 - (void)sendThumbImageAsyncRequest {
     NSString *thumbImageURLString = self.message.params[kPCUMessageParamsThumbImagePathKey];
     if ([thumbImageURLString hasPrefix:@"http"]) {
@@ -38,7 +40,7 @@
             [self responseThumbImageWithLocalPath:localCachePath];
         }
         else {
-            self.thumbStatus = PCUImageNodeThumbImageStatusLoading;
+            self.thumbStatus = PCUImageNodeImageStatusLoading;
             NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:thumbImageURLString]
                                                      cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                  timeoutInterval:60.0];
@@ -51,11 +53,11 @@
                         [self responseThumbImageWithLocalPath:localCachePath];
                     }
                     else {
-                        self.thumbStatus = PCUImageNodeThumbImageStatusFailed;
+                        self.thumbStatus = PCUImageNodeImageStatusFailed;
                     }
                 }
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                self.thumbStatus = PCUImageNodeThumbImageStatusFailed;
+                self.thumbStatus = PCUImageNodeImageStatusFailed;
             }];
             [[[AFHTTPSessionManager manager] operationQueue] addOperation:operation];
         }
@@ -70,7 +72,7 @@
         UIImage *theImage = [UIImage imageWithContentsOfFile:localPath];//NSData -> UIImage将在子线程中进行
         if (theImage != nil) {
             self.thumbImage = [self scaleThumbImageWithImage:theImage];
-            self.thumbStatus = PCUImageNodeThumbImageStatusLoaded;
+            self.thumbStatus = PCUImageNodeImageStatusLoaded;
         }
     });
 }
@@ -92,6 +94,53 @@
     UIGraphicsEndImageContext();
     CFRelease(cutImageRef);
     return eagerImage;
+}
+
+#pragma mark - Image
+
+- (void)sendOriginalImageAsyncRequest {
+    NSString *originalImageURLString = self.message.params[kPCUMessageParamsOriginalImagePathKey];
+    if ([originalImageURLString hasPrefix:@"http"]) {
+        NSString *localCachePath = [NSTemporaryDirectory() stringByAppendingFormat:@".remoteOriginalImage.%@", self.message.identifier];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:localCachePath]) {
+            [self responseOriginalImageWithLocalPath:localCachePath];
+        }
+        else {
+            self.originalStatus = PCUImageNodeImageStatusLoading;
+            NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:originalImageURLString]
+                                                     cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                 timeoutInterval:60.0];
+            AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+            [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+                if ([responseObject isKindOfClass:[NSData class]]) {
+                    NSError *error;
+                    [responseObject writeToFile:localCachePath options:kNilOptions error:&error];
+                    if (error == nil) {
+                        [self responseOriginalImageWithLocalPath:localCachePath];
+                    }
+                    else {
+                        self.originalStatus = PCUImageNodeImageStatusFailed;
+                    }
+                }
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                self.originalStatus = PCUImageNodeImageStatusFailed;
+            }];
+            [[[AFHTTPSessionManager manager] operationQueue] addOperation:operation];
+        }
+    }
+    else {
+        [self responseOriginalImageWithLocalPath:originalImageURLString];
+    }
+}
+
+- (void)responseOriginalImageWithLocalPath:(NSString *)localPath {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        UIImage *theImage = [UIImage imageWithContentsOfFile:localPath];//NSData -> UIImage将在子线程中进行
+        if (theImage != nil) {
+            self.originalImage = theImage;
+            self.originalStatus = PCUImageNodeImageStatusLoaded;
+        }
+    });
 }
 
 @end

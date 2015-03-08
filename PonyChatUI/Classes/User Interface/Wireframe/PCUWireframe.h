@@ -24,4 +24,8 @@
 
 - (void)presentCancelHUDToViewController:(PCUTalkingViewController *)viewController;
 
+- (void)presentGalleryViewControllerWithDataSource:(id)dataSource
+                              parentViewController:(UIViewController *)parentViewController
+                                              view:(UIView *)view;
+
 @end

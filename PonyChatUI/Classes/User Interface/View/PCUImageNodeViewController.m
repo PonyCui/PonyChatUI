@@ -7,8 +7,11 @@
 //
 
 #import "PCUImageNodeViewController.h"
+#import "PCUImageNodePresenter.h"
 
 @interface PCUImageNodeViewController ()
+
+@property (nonatomic, strong) PCUImageNodePresenter *eventHandler;
 
 @property (weak, nonatomic) IBOutlet UIImageView *thumbImageView;
 
@@ -46,6 +49,10 @@
     if (isLoading) {
         self.thumbImageView.image = [UIImage imageNamed:@"sharemore_pic"];
     }
+}
+
+- (IBAction)handleThumbImageViewTapped:(id)sender {
+    [self.eventHandler enterGalleryWithImageView:self.thumbImageView];
 }
 
 @end
