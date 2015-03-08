@@ -16,4 +16,6 @@
 
 - (void)setThumbImage:(UIImage *)thumbImage;
 
+- (void)setThumbImageViewIsLoading:(BOOL)isLoading;
+
 @end

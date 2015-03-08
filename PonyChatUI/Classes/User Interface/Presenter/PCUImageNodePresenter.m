@@ -36,7 +36,12 @@
     [RACObserve(self, nodeInteractor.thumbImage) subscribeNext:^(id x) {
         @strongify(self);
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.userInterface setThumbImage:self.nodeInteractor.thumbImage];
+            if (self.nodeInteractor.thumbImage == nil) {
+                [self.userInterface setThumbImageViewIsLoading:YES];
+            }
+            else {
+                [self.userInterface setThumbImage:self.nodeInteractor.thumbImage];
+            }
         });
     }];
 }

@@ -27,7 +27,7 @@
 @implementation PCUImageNodeViewController
 
 - (CGFloat)heightConstraintDefaultValue {
-    return 118.0;
+    return 60.0;
 }
 
 - (void)viewDidLoad {
@@ -54,6 +54,12 @@
     self.thumbImageViewWidthConstraint.constant = self.thumbImageView.image.size.width;
     self.thumbImageViewHeightConstraint.constant = self.thumbImageView.image.size.height;
     self.heightConstraint.constant = self.thumbImageViewHeightConstraint.constant + 28.0;
+}
+
+- (void)setThumbImageViewIsLoading:(BOOL)isLoading {
+    if (isLoading) {
+        self.thumbImageView.image = [UIImage imageNamed:@"sharemore_pic"];
+    }
 }
 
 @end

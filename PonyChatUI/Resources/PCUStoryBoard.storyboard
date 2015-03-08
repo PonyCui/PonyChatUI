@@ -492,7 +492,7 @@
                         <viewControllerLayoutGuide type="bottom" id="uU9-L3-VFU"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Tgs-LT-VcR">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="118"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="T2s-ZL-bBd">
@@ -503,10 +503,10 @@
                                 </constraints>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="xXB-Rn-tqL">
-                                <rect key="frame" x="151" y="40" width="20" height="20"/>
+                                <rect key="frame" x="199" y="16" width="20" height="20"/>
                             </activityIndicatorView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BcS-q7-kWI">
-                                <rect key="frame" x="139" y="28" width="44" height="44"/>
+                                <rect key="frame" x="187" y="4" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="NhB-QQ-GBu"/>
                                     <constraint firstAttribute="height" constant="44" id="c5z-L1-FEA"/>
@@ -518,15 +518,15 @@
                                     <action selector="handleRetryButtonTapped:" destination="JLw-rS-3Fe" eventType="touchUpInside" id="AI8-4l-rA9"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PfZ-Z6-gey">
-                                <rect key="frame" x="178" y="7" width="90" height="90"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sharemore_pic" translatesAutoresizingMaskIntoConstraints="NO" id="PfZ-Z6-gey">
+                                <rect key="frame" x="226" y="7" width="42" height="42"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="hjS-fs-wCv"/>
-                                    <constraint firstAttribute="width" constant="90" id="j2n-hP-H0B"/>
+                                    <constraint firstAttribute="height" constant="42" id="hjS-fs-wCv"/>
+                                    <constraint firstAttribute="width" constant="42" id="j2n-hP-H0B"/>
                                 </constraints>
                             </imageView>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SenderTextNodeBkgReversed" translatesAutoresizingMaskIntoConstraints="NO" id="9ew-Jz-2UW">
-                                <rect key="frame" x="175" y="6" width="93" height="96"/>
+                                <rect key="frame" x="223" y="6" width="45" height="48"/>
                                 <rect key="contentStretch" x="0.5" y="0.5" width="0.0" height="0.0"/>
                             </imageView>
                         </subviews>
@@ -550,7 +550,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="118"/>
+                    <size key="freeformSize" width="320" height="60"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSender" value="YES"/>
                     </userDefinedRuntimeAttributes>
@@ -576,7 +576,7 @@
                         <viewControllerLayoutGuide type="bottom" id="RTJ-IB-WqF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="5d6-Iq-ROn">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="118"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rl8-mv-wbe">
@@ -586,15 +586,15 @@
                                     <constraint firstAttribute="height" constant="40" id="Yaa-mS-FlS"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ewq-Mm-ECm">
-                                <rect key="frame" x="52" y="7" width="90" height="90"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sharemore_pic" translatesAutoresizingMaskIntoConstraints="NO" id="Ewq-Mm-ECm">
+                                <rect key="frame" x="52" y="7" width="42" height="42"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="HNy-Ou-YI1"/>
-                                    <constraint firstAttribute="width" constant="90" id="Jb9-HD-SR2"/>
+                                    <constraint firstAttribute="height" constant="42" id="HNy-Ou-YI1"/>
+                                    <constraint firstAttribute="width" constant="42" id="Jb9-HD-SR2"/>
                                 </constraints>
                             </imageView>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ReceiverTextNodeBkgReversed" translatesAutoresizingMaskIntoConstraints="NO" id="p65-I7-nel">
-                                <rect key="frame" x="52" y="6" width="93" height="96"/>
+                                <rect key="frame" x="52" y="6" width="45" height="48"/>
                                 <rect key="contentStretch" x="0.5" y="0.5" width="0.0" height="0.0"/>
                             </imageView>
                         </subviews>
@@ -614,7 +614,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="118"/>
+                    <size key="freeformSize" width="320" height="60"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSender" value="YES"/>
                     </userDefinedRuntimeAttributes>
@@ -1075,6 +1075,7 @@
         <image name="ToolViewKeyboard" width="35" height="35"/>
         <image name="TypeSelectorBtnHL_Black" width="35" height="35"/>
         <image name="TypeSelectorBtn_Black" width="35" height="35"/>
+        <image name="sharemore_pic" width="59" height="59"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

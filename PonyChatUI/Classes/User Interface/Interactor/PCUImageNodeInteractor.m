@@ -90,6 +90,7 @@
     [cutImage drawInRect:eagerRect];
     UIImage *eagerImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+    CFRelease(cutImageRef);
     return eagerImage;
 }
 

@@ -123,8 +123,31 @@
             message.sender.identifier = @"2";
             message.sender.title = @"Pony";
             message.sender.thumbURLString = @"http://tp3.sinaimg.cn/1642351362/180/5708018784/0";
-            message.params = @{kPCUMessageParamsThumbImagePathKey: @"http://huanju.cn/s/v1206/logo.png",
-                               kPCUMessageParamsOriginalImagePathKey: @"http://huanju.cn/s/v1206/HuanJu-LOGO-PNG.png"};
+            switch (arc4random()%5) {
+                case 0:
+                    message.params = @{kPCUMessageParamsThumbImagePathKey: @"http://att.bbs.duowan.com/forum/201503/05/231555hf32vcpvifo6hki3.jpg",
+                                       kPCUMessageParamsOriginalImagePathKey: @"http://att.bbs.duowan.com/forum/201503/05/231555hf32vcpvifo6hki3.jpg"};
+                    break;
+                case 1:
+                    message.params = @{kPCUMessageParamsThumbImagePathKey: @"http://att.bbs.duowan.com/forum/201503/03/170748h7sxo1jjj7uxkwwx.jpg",
+                                       kPCUMessageParamsOriginalImagePathKey: @"http://att.bbs.duowan.com/forum/201503/03/170748h7sxo1jjj7uxkwwx.jpg"};
+                    break;
+                case 2:
+                    message.params = @{kPCUMessageParamsThumbImagePathKey: @"http://att.bbs.duowan.com/forum/201503/04/175629fjbf3zf2dtzet6fr.jpg",
+                                       kPCUMessageParamsOriginalImagePathKey: @"http://att.bbs.duowan.com/forum/201503/04/175629fjbf3zf2dtzet6fr.jpg"};
+                    break;
+                case 3:
+                    message.params = @{kPCUMessageParamsThumbImagePathKey: @"http://att.bbs.duowan.com/forum/201502/11/200702a50b3abraba5xkbi.jpg",
+                                       kPCUMessageParamsOriginalImagePathKey: @"http://att.bbs.duowan.com/forum/201502/11/200702a50b3abraba5xkbi.jpg"};
+                    break;
+                case 4:
+                    message.params = @{kPCUMessageParamsThumbImagePathKey: @"http://att.bbs.duowan.com/forum/201502/06/155705mymxygmexvx9zlpa.jpg",
+                                       kPCUMessageParamsOriginalImagePathKey: @"http://att.bbs.duowan.com/forum/201502/06/155705mymxygmexvx9zlpa.jpg"};
+                    break;
+                default:
+                    break;
+            }
+            
             [self.delegate messageManagerDidReceivedMessage:message];
         }
     }
