@@ -9,7 +9,7 @@
 #import "PCUGalleryImageViewController.h"
 
 @interface PCUGalleryImageViewController ()<UIScrollViewDelegate> {
-    BOOL isDoubleTapped;
+    BOOL _isDuringDoubleTap;
 }
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -126,14 +126,14 @@
 }
 
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView {
-    if (isDoubleTapped) {
+    if (_isDuringDoubleTap) {
         return;
     }
     [self updateImageViewInsetLayout];
 }
 
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale {
-    if (isDoubleTapped) {
+    if (_isDuringDoubleTap) {
         return;
     }
     [self updateImageViewInsetLayout];
@@ -145,18 +145,29 @@
 #pragma mark - Touches
 
 - (IBAction)handleDoubleTap:(UITapGestureRecognizer *)sender {
-    isDoubleTapped = YES;
+    _isDuringDoubleTap = YES;
     if (self.scrollView.zoomScale > self.scrollView.minimumZoomScale) {
         [self updateImageViewInsetLayoutForMinimumZoomScale];
         [UIView animateWithDuration:0.25 animations:^{
             [self.scrollView setZoomScale:self.scrollView.minimumZoomScale animated:NO];
             [self.view layoutIfNeeded];
         } completion:^(BOOL finished) {
-            isDoubleTapped = NO;
+            _isDuringDoubleTap = NO;
+        }];
+    }
+    else {
+        CGPoint locationInView = [sender locationInView:sender.view];
+        [UIView animateWithDuration:0.25 animations:^{
+            self.imageViewTrailingConstraint.constant = 0.0;
+            self.imageViewLeadingConstraint.constant = 0.0;
+            self.imageViewTopConstraint.constant = 0.0;
+            self.imageViewBottomConstraint.constant = 0.0;
+            [self.scrollView zoomToRect:CGRectMake(locationInView.x-22, locationInView.y-22, 44, 44) animated:NO];
+            [self.view layoutIfNeeded];
+        } completion:^(BOOL finished) {
+            _isDuringDoubleTap = NO;
         }];
     }
 }
-
-
 
 @end
