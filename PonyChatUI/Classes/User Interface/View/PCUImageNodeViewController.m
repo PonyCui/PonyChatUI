@@ -10,8 +10,6 @@
 
 @interface PCUImageNodeViewController ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
-
 @property (weak, nonatomic) IBOutlet UIImageView *thumbImageView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *thumbImageViewWidthConstraint;
@@ -35,14 +33,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)setSenderNickLabelTextWithString:(NSString *)string {
-    
-}
-
-- (void)setSenderThumbImageViewWithImage:(UIImage *)image {
-    self.iconImageView.image = image;
 }
 
 - (void)setThumbImage:(UIImage *)thumbImage {

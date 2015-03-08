@@ -35,4 +35,8 @@
 
 - (void)setSendingRetryButtonHidden:(BOOL)isHidden;
 
+- (void)setSenderThumbImageViewWithImage:(UIImage *)image;
+
+- (void)setSenderNickLabelTextWithString:(NSString *)string;
+
 @end

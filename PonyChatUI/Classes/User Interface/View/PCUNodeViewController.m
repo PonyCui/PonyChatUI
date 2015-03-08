@@ -16,6 +16,8 @@
 
 @interface PCUNodeViewController ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
+
 @property (nonatomic, strong) NSLayoutConstraint *widthConstraint;
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *sendingIndicatorView;
@@ -131,6 +133,14 @@
 
 - (void)setSendingRetryButtonHidden:(BOOL)isHidden {
     [self sendingRetryButton].hidden = isHidden;
+}
+
+- (void)setSenderNickLabelTextWithString:(NSString *)string {
+    
+}
+
+- (void)setSenderThumbImageViewWithImage:(UIImage *)image {
+    self.iconImageView.image = image;
 }
 
 #pragma mark - Retry

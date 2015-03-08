@@ -11,8 +11,6 @@
 
 @interface PCUVoiceNodeViewController : PCUNodeViewController
 
-- (void)setSenderThumbImageViewWithImage:(UIImage *)image;
-
 - (void)setDuringLabelTextWithDuringTime:(NSInteger)duringTime;
 
 - (void)setPlayButtonAnimated:(BOOL)isAnimated;

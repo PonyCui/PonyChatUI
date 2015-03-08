@@ -15,8 +15,6 @@
 
 @interface PCUTextNodeViewController ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
-
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
 
 @property (weak, nonatomic) IBOutlet UIImageView *textLabelBackgroundImageView;
@@ -63,14 +61,6 @@
     [self.textLabel performSelector:@selector(pcu_configureAttributedStringLinkResponder)
                          withObject:nil
                          afterDelay:0.001];
-}
-
-- (void)setSenderNickLabelTextWithString:(NSString *)string {
-    
-}
-
-- (void)setSenderThumbImageViewWithImage:(UIImage *)image {
-    self.iconImageView.image = image;
 }
 
 #pragma mark - Layouts

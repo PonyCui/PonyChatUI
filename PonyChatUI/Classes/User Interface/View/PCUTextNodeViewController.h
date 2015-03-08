@@ -13,8 +13,4 @@
 
 - (void)setTextLabelTextWithString:(NSString *)string;
 
-- (void)setSenderThumbImageViewWithImage:(UIImage *)image;
-
-- (void)setSenderNickLabelTextWithString:(NSString *)string;
-
 @end

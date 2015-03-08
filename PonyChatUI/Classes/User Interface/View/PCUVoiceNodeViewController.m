@@ -15,8 +15,6 @@
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *sendingIndicatorView;
 
-@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
-
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *voiceNodeBackgroundWidthConstraint;
 
 @property (weak, nonatomic) IBOutlet UILabel *duringLabel;
@@ -50,12 +48,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Render
-
-- (void)setSenderThumbImageViewWithImage:(UIImage *)image {
-    self.iconImageView.image = image;
 }
 
 #pragma mark - Juhua

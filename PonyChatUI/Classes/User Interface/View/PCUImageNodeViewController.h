@@ -10,10 +10,6 @@
 
 @interface PCUImageNodeViewController : PCUNodeViewController
 
-- (void)setSenderThumbImageViewWithImage:(UIImage *)image;
-
-- (void)setSenderNickLabelTextWithString:(NSString *)string;
-
 - (void)setThumbImage:(UIImage *)thumbImage;
 
 - (void)setThumbImageViewIsLoading:(BOOL)isLoading;
