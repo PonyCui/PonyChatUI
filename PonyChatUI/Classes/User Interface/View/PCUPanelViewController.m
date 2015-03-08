@@ -15,8 +15,6 @@
 #import "PCUPanelItemPresenter.h"
 #import "PCUApplication.h"
 
-#define kPCUKeyboardIdentifier @"kPCUKeyboardIdentifier"
-
 @interface PCUPanelViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, weak) NSLayoutConstraint *viewHeightConstraint;

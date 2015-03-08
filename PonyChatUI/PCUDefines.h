@@ -31,6 +31,36 @@
  */
 #define kPCUAllowScreenRotationNotification @"kPCUAllowScreenRotationNotification"
 
+/**
+ *  PCUMessageParamsDefines
+ */
+#define kPCUMessageParamsVoicePathKey @"voicePath"
+
+/**
+ *  PCUMessageParamsDefines
+ */
+#define kPCUMessageParamsThumbImagePathKey @"thumbPath"
+
+/**
+ *  PCUMessageParamsDefines
+ */
+#define kPCUMessageParamsOriginalImagePathKey @"imagePath"
+
+/**
+ *  PCUMessageParamsDefines
+ */
+#define kPCUMessageParamsErrorDescriptionKey @"errorDescription"
+
+/**
+ *  Notification An Avatar has been cached
+ */
+#define kPCUAvatarManagerDidResponseUIImageNotification @"kPCUAvatarManagerDidResponseUIImageNotification"
+
+/**
+ *  Defines Avatar Manager TMCache Prefix Key
+ */
+#define kPCUAvatarManagerTMCachePrefix @"kPCUAvatarManagerTMCachePrefix"
+
 @interface PCUDefines : NSObject
 
 @end

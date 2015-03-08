@@ -7,19 +7,34 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PCUDefines.h"
 
 typedef NS_ENUM(NSUInteger, PCUMessageType) {
+    /**
+     *  系统消息
+     */
     PCUMessageTypeSystem = 0,
+    /**
+     *  文本消息
+     */
     PCUMessageTypeTextMessage = 1,
+    /**
+     *  语音消息
+     */
     PCUMessageTypeVoiceMessage = 2,
+    /**
+     *  图片消息
+     */
     PCUMessageTypeImageMessage = 3,
-    PCUMessageTypeLinkMessage = 4
+    /**
+     *  链接
+     */
+    PCUMessageTypeLinkMessage = 4,
+    /**
+     *  公众号文章推送
+     */
+    PCUMessageTypeArticleMessage = 5
 };
-
-#define kPCUMessageParamsVoicePathKey @"voicePath"
-#define kPCUMessageParamsThumbImagePathKey @"thumbPath"
-#define kPCUMessageParamsOriginalImagePathKey @"imagePath"
-#define kPCUMessageParamsErrorDescriptionKey @"errorDescription"
 
 @class PCUSender;
 

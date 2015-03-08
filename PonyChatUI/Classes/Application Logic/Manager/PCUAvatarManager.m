@@ -9,8 +9,7 @@
 #import "PCUAvatarManager.h"
 #import <TMCache/TMCache.h>
 #import <AFNetworking/AFNetworking.h>
-
-#define kPCUAvatarManagerTMCachePrefix @"kPCUAvatarManagerTMCachePrefix"
+#import "PCUDefines.h"
 
 @interface PCUAvatarManager ()
 

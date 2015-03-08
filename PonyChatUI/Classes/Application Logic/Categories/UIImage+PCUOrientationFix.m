@@ -6,6 +6,7 @@
 //
 
 #import "UIImage+PCUOrientationFix.h"
+
 #define imageBytesPerMB 1048576.0f
 #define imageBytesPerPixel 4.0f
 #define imagePixelsPerMB ( imageBytesPerMB / imageBytesPerPixel ) // 262144 pixels, for 4 bytes per pixel.

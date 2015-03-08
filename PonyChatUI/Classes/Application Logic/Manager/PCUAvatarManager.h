@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "PCUDefines.h"
 
-#define kPCUAvatarManagerDidResponseUIImageNotification @"kPCUAvatarManagerDidResponseUIImageNotification"
 
 @interface PCUAvatarManager : NSObject
 
