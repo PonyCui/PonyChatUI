@@ -18,6 +18,4 @@
  */
 @property (nonatomic, copy) NSString *titleString;
 
-- (instancetype)initWithMessage:(PCUMessage *)message;
-
 @end

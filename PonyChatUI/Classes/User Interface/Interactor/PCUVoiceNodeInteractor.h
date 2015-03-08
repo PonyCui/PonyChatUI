@@ -32,8 +32,6 @@ typedef NS_ENUM(NSInteger, PCUVoiceNodeVoiceStatus) {
  */
 @property (nonatomic, assign) NSInteger voiceDuring;
 
-- (instancetype)initWithMessage:(PCUMessage *)message;
-
 /**
  *  播放声音
  */

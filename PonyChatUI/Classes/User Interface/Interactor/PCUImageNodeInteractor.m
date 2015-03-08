@@ -67,24 +67,24 @@
 
 - (void)responseThumbImageWithLocalPath:(NSString *)localPath {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        self.thumbImage = [UIImage imageWithContentsOfFile:localPath];//NSData -> UIImage将在子线程中进行
-        if (self.thumbImage != nil) {
-            self.thumbImage = [self scaleThumbImageWithImage:self.thumbImage];
+        UIImage *theImage = [UIImage imageWithContentsOfFile:localPath];//NSData -> UIImage将在子线程中进行
+        if (theImage != nil) {
+            self.thumbImage = [self scaleThumbImageWithImage:theImage];
             self.thumbStatus = PCUImageNodeThumbImageStatusLoaded;
         }
     });
 }
 
 - (UIImage *)scaleThumbImageWithImage:(UIImage *)image {
-    CGFloat eagerWidth = 180.0;
-    CGFloat eagerHeight = self.thumbImage.size.height * eagerWidth / self.thumbImage.size.width;
-    if (eagerHeight > 240.0) {
-        eagerHeight = 240.0;
+    CGFloat eagerWidth = 120.0;
+    CGFloat eagerHeight = image.size.height * eagerWidth / image.size.width;
+    if (eagerHeight > 160.0) {
+        eagerHeight = 160.0;
     }
-    CGFloat ratio = self.thumbImage.size.width / eagerWidth;
+    CGFloat ratio = image.size.width / eagerWidth;
     CGRect eagerRect = CGRectMake(0, 0, eagerWidth, eagerHeight);
     CGRect ratioRect = CGRectMake(0, 0, eagerWidth * ratio, eagerHeight *ratio);
-    CGImageRef cutImageRef = CGImageCreateWithImageInRect(self.thumbImage.CGImage, ratioRect);
+    CGImageRef cutImageRef = CGImageCreateWithImageInRect(image.CGImage, ratioRect);
     UIImage *cutImage = [UIImage imageWithCGImage:cutImageRef];
     UIGraphicsBeginImageContextWithOptions(eagerRect.size, YES, [[UIScreen mainScreen] scale]);
     [cutImage drawInRect:eagerRect];
