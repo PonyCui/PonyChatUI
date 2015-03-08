@@ -32,11 +32,6 @@ typedef NS_ENUM(NSInteger, PCUVoiceNodeVoiceStatus) {
  */
 @property (nonatomic, assign) NSInteger voiceDuring;
 
-/**
- *  @brief 发送者头像缩略图
- */
-@property (nonatomic, copy) UIImage  *senderThumbImage;
-
 - (instancetype)initWithMessage:(PCUMessage *)message;
 
 /**

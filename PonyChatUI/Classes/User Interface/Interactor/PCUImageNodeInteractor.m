@@ -17,8 +17,6 @@
 
 @property (nonatomic, strong) PCUMessage *message;
 
-@property (nonatomic, copy) NSString *senderThumbURLString;
-
 @end
 
 @implementation PCUImageNodeInteractor
@@ -27,26 +25,9 @@
     self = [super initWithMessage:message];
     if (self) {
         self.message = message;
-        self.senderThumbURLString = message.sender.thumbURLString;
-        self.senderThumbImage = [PCU[[PCUAvatarManager class]]
-                                 sendSyncRequestWithURLString:self.senderThumbURLString];
-        if (self.senderThumbImage == nil) {
-            [PCU[[PCUAvatarManager class]] sendAsyncRequestWithURLString:self.senderThumbURLString];
-        }
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(handleAvatarManagerResponseUIImage:)
-                                                     name:kPCUAvatarManagerDidResponseUIImageNotification
-                                                   object:nil];
         [self sendThumbImageAsyncRequest];
     }
     return self;
-}
-
-- (void)handleAvatarManagerResponseUIImage:(NSNotification *)sender {
-    if ([[sender userInfo][@"URLString"] isEqualToString:self.senderThumbURLString] &&
-        [sender.object isKindOfClass:[UIImage class]]) {
-        self.senderThumbImage = sender.object;
-    }
 }
 
 - (void)sendThumbImageAsyncRequest {

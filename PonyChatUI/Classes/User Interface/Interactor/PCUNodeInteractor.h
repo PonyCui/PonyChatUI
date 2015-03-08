@@ -27,14 +27,33 @@ typedef NS_ENUM(NSUInteger, PCUNodeSendMessageStatus) {
 @property (nonatomic, assign) BOOL isOwner;
 
 /**
- *  发送状态
+ *  @brief 发送状态
  */
 @property (nonatomic, assign) PCUNodeSendMessageStatus sendStatus;
 
+/**
+ *  @brief 消息顺序
+ */
 @property (nonatomic, assign) NSUInteger orderIndex;
 
+/**
+ *  @brief 消息已读
+ */
 @property (nonatomic, assign) BOOL isRead;
 
+/**
+ *  @brief 发送者昵称
+ */
+@property (nonatomic, copy) NSString *senderName;
+
+/**
+ *  @brief 发送者头像缩略图
+ */
+@property (nonatomic, copy) UIImage  *senderThumbImage;
+
+/**
+ *  @brief 消息管理器
+ */
 @property (nonatomic, strong) PCUMessageManager *messageManager;
 
 + (PCUNodeInteractor *)nodeInteractorWithMessage:(PCUMessage *)message;

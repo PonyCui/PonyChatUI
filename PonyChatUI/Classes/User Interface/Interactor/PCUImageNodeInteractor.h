@@ -20,14 +20,4 @@ typedef NS_ENUM(NSInteger, PCUImageNodeThumbImageStatus) {
 
 @property (nonatomic, strong) UIImage *thumbImage;
 
-/**
- *  @brief 发送者昵称
- */
-@property (nonatomic, copy) NSString *senderName;
-
-/**
- *  @brief 发送者头像缩略图
- */
-@property (nonatomic, copy) UIImage  *senderThumbImage;
-
 @end

@@ -7,18 +7,21 @@
 //
 
 #import "PCUNodeInteractor.h"
+#import "PCUApplication.h"
 #import "PCUMessage.h"
+#import "PCUSender.h"
 #import "PCUTextNodeInteractor.h"
 #import "PCUSystemNodeInteractor.h"
 #import "PCUVoiceNodeInteractor.h"
 #import "PCUImageNodeInteractor.h"
-#import "PCUSender.h"
-#import "PCUApplication.h"
 #import "PCUMessageManager.h"
+#import "PCUAvatarManager.h"
 
 @interface PCUNodeInteractor ()
 
 @property (nonatomic, strong) PCUMessage *message;
+
+@property (nonatomic, copy) NSString *senderThumbURLString;
 
 @end
 
@@ -46,13 +49,41 @@
     return nil;
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (instancetype)initWithMessage:(PCUMessage *)message
 {
     self = [super init];
     if (self) {
         self.message = message;
+        [self sendAvatarRequest];
     }
     return self;
+}
+
+- (void)sendAvatarRequest {
+    if (self.message.sender.thumbURLString != nil) {
+        self.senderThumbURLString = self.message.sender.thumbURLString;
+        self.senderThumbImage = [PCU[[PCUAvatarManager class]]
+                                 sendSyncRequestWithURLString:self.senderThumbURLString];
+        if (self.senderThumbImage == nil) {
+            [PCU[[PCUAvatarManager class]] sendAsyncRequestWithURLString:self.senderThumbURLString];
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(handleAvatarManagerResponseUIImage:)
+                                                         name:kPCUAvatarManagerDidResponseUIImageNotification
+                                                       object:nil];
+        }
+    }
+}
+
+- (void)handleAvatarManagerResponseUIImage:(NSNotification *)sender {
+    if ([[sender userInfo][@"URLString"] isEqualToString:self.senderThumbURLString] &&
+        [sender.object isKindOfClass:[UIImage class]]) {
+        self.senderThumbImage = sender.object;
+    }
 }
 
 - (BOOL)isOwner {
@@ -69,6 +100,10 @@
 
 - (void)setIsRead:(BOOL)isRead {
     self.message.isRead = isRead;
+}
+
+- (NSString *)senderName {
+    return self.message.sender.title;
 }
 
 - (NSUInteger)hash {

@@ -14,42 +14,17 @@
 
 @interface PCUTextNodeInteractor ()
 
-@property (nonatomic, copy) NSString *senderThumbURLString;
-
 @end
 
 @implementation PCUTextNodeInteractor
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
 
 - (instancetype)initWithMessage:(PCUMessage *)message
 {
     self = [super initWithMessage:message];
     if (self) {
         self.titleString = message.title;
-        self.senderName = message.sender.title;
-        self.senderThumbURLString = message.sender.thumbURLString;
-        self.senderThumbImage = [PCU[[PCUAvatarManager class]]
-                                 sendSyncRequestWithURLString:self.senderThumbURLString];
-        if (self.senderThumbImage == nil) {
-            [PCU[[PCUAvatarManager class]] sendAsyncRequestWithURLString:self.senderThumbURLString];
-        }
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(handleAvatarManagerResponseUIImage:)
-                                                     name:kPCUAvatarManagerDidResponseUIImageNotification
-                                                   object:nil];
     }
     return self;
-}
-
-- (void)handleAvatarManagerResponseUIImage:(NSNotification *)sender {
-    if ([[sender userInfo][@"URLString"] isEqualToString:self.senderThumbURLString] &&
-        [sender.object isKindOfClass:[UIImage class]]) {
-        self.senderThumbImage = sender.object;
-    }
 }
 
 @end

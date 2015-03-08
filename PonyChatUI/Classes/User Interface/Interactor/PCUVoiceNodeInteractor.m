@@ -19,8 +19,6 @@
 
 @property (nonatomic, readwrite) BOOL isPlaying;
 
-@property (nonatomic, copy) NSString *senderThumbURLString;
-
 @property (nonatomic, strong) PCUMessage *message;
 
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
@@ -29,30 +27,18 @@
 
 @implementation PCUVoiceNodeInteractor
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (instancetype)initWithMessage:(PCUMessage *)message {
     self = [super initWithMessage:message];
     if (self) {
         self.voiceDuring = -1;
-        self.senderThumbURLString = message.sender.thumbURLString;
-        self.senderThumbImage = [PCU[[PCUAvatarManager class]]
-                                 sendSyncRequestWithURLString:self.senderThumbURLString];
-        if (self.senderThumbImage == nil) {
-            [PCU[[PCUAvatarManager class]] sendAsyncRequestWithURLString:self.senderThumbURLString];
-        }
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(handleAvatarManagerResponseUIImage:)
-                                                     name:kPCUAvatarManagerDidResponseUIImageNotification
-                                                   object:nil];
         [self sendAsyncVoiceFileRequest];
     }
     return self;
-}
-
-- (void)handleAvatarManagerResponseUIImage:(NSNotification *)sender {
-    if ([[sender userInfo][@"URLString"] isEqualToString:self.senderThumbURLString] &&
-        [sender.object isKindOfClass:[UIImage class]]) {
-        self.senderThumbImage = sender.object;
-    }
 }
 
 - (void)sendAsyncVoiceFileRequest {

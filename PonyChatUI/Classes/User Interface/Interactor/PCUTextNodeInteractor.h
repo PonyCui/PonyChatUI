@@ -17,16 +17,6 @@
  */
 @property (nonatomic, copy) NSString *titleString;
 
-/**
- *  @brief 发送者昵称
- */
-@property (nonatomic, copy) NSString *senderName;
-
-/**
- *  @brief 发送者头像缩略图
- */
-@property (nonatomic, copy) UIImage  *senderThumbImage;
-
 - (instancetype)initWithMessage:(PCUMessage *)message;
 
 @end
