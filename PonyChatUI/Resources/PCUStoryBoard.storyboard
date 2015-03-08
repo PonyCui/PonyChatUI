@@ -239,13 +239,16 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="haE-9X-MvJ">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="568" translatesAutoresizingMaskIntoConstraints="NO" id="KIt-Lj-UAf">
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="568" translatesAutoresizingMaskIntoConstraints="NO" id="KIt-Lj-UAf">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <color key="backgroundColor" red="0.5450980392" green="0.5450980392" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="568" id="2Og-cj-6uC"/>
                                             <constraint firstAttribute="width" constant="320" id="YqL-G3-qPt"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="Roj-hd-Rbb" appends="YES" id="zGH-w0-F4B"/>
+                                        </connections>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -279,6 +282,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o5C-BQ-WLo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="Roj-hd-Rbb" userLabel="Double Tap">
+                    <connections>
+                        <action selector="handleDoubleTap:" destination="tN8-6W-gDD" id="S02-LZ-0y8"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1051" y="-286"/>
         </scene>

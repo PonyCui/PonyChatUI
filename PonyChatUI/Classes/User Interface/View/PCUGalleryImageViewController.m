@@ -8,7 +8,9 @@
 
 #import "PCUGalleryImageViewController.h"
 
-@interface PCUGalleryImageViewController ()<UIScrollViewDelegate>
+@interface PCUGalleryImageViewController ()<UIScrollViewDelegate> {
+    BOOL isDoubleTapped;
+}
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
@@ -104,6 +106,19 @@
     }
 }
 
+- (void)updateImageViewInsetLayoutForMinimumZoomScale {
+    if (CGRectGetHeight(self.view.bounds) > CGRectGetWidth(self.view.bounds)) {
+        CGFloat heightOffset = self.imageViewHeightConstraint.constant - CGRectGetHeight(self.view.bounds);
+        self.imageViewTopConstraint.constant = abs(heightOffset) / 2.0;
+        self.imageViewBottomConstraint.constant = 0.0;
+    }
+    else {
+        CGFloat widthOffset = self.imageViewWidthConstraint.constant - CGRectGetWidth(self.view.bounds);
+        self.imageViewLeadingConstraint.constant = abs(widthOffset) / 2.0;
+        self.imageViewTrailingConstraint.constant = 0.0;
+    }
+}
+
 #pragma mark - UIScrollViewDelegate
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
@@ -111,14 +126,37 @@
 }
 
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView {
+    if (isDoubleTapped) {
+        return;
+    }
     [self updateImageViewInsetLayout];
 }
 
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale {
+    if (isDoubleTapped) {
+        return;
+    }
     [self updateImageViewInsetLayout];
     [UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
         [self.view layoutIfNeeded];
     } completion:nil];
 }
+
+#pragma mark - Touches
+
+- (IBAction)handleDoubleTap:(UITapGestureRecognizer *)sender {
+    isDoubleTapped = YES;
+    if (self.scrollView.zoomScale > self.scrollView.minimumZoomScale) {
+        [self updateImageViewInsetLayoutForMinimumZoomScale];
+        [UIView animateWithDuration:0.25 animations:^{
+            [self.scrollView setZoomScale:self.scrollView.minimumZoomScale animated:NO];
+            [self.view layoutIfNeeded];
+        } completion:^(BOOL finished) {
+            isDoubleTapped = NO;
+        }];
+    }
+}
+
+
 
 @end
