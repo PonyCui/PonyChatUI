@@ -266,11 +266,15 @@
                             <constraint firstAttribute="trailing" secondItem="haE-9X-MvJ" secondAttribute="trailing" id="ZBS-Oq-OL7"/>
                             <constraint firstItem="haE-9X-MvJ" firstAttribute="leading" secondItem="YpS-DU-2XG" secondAttribute="leading" id="cww-JZ-Lfx"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="jGp-qF-aqW" appends="YES" id="chb-Fc-J6Y"/>
+                        </connections>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="doubleTapGestureRecognizer" destination="Roj-hd-Rbb" id="kQl-2y-Zqd"/>
                         <outlet property="imageView" destination="KIt-Lj-UAf" id="cKM-Jl-xu3"/>
                         <outlet property="imageViewBottomConstraint" destination="TYm-DE-1gH" id="Tmi-97-Wrx"/>
                         <outlet property="imageViewHeightConstraint" destination="2Og-cj-6uC" id="Wje-x7-ggt"/>
@@ -279,12 +283,18 @@
                         <outlet property="imageViewTrailingConstraint" destination="rX5-Ed-Uwg" id="ruE-7T-7yP"/>
                         <outlet property="imageViewWidthConstraint" destination="YqL-G3-qPt" id="YW7-dV-0HX"/>
                         <outlet property="scrollView" destination="haE-9X-MvJ" id="tC1-Cd-YvV"/>
+                        <outlet property="singleTapGestureRecognizer" destination="jGp-qF-aqW" id="byh-P3-n9y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o5C-BQ-WLo" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer numberOfTapsRequired="2" id="Roj-hd-Rbb" userLabel="Double Tap">
                     <connections>
                         <action selector="handleDoubleTap:" destination="tN8-6W-gDD" id="S02-LZ-0y8"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="jGp-qF-aqW" userLabel="Single Tap">
+                    <connections>
+                        <action selector="handleSingleTap:" destination="tN8-6W-gDD" id="sJQ-MT-xKB"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

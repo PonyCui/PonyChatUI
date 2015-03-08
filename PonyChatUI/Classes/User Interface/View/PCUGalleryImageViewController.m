@@ -22,6 +22,9 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageViewTopConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageViewBottomConstraint;
 
+@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *singleTapGestureRecognizer;
+@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *doubleTapGestureRecognizer;
+
 @end
 
 @implementation PCUGalleryImageViewController
@@ -33,6 +36,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.singleTapGestureRecognizer requireGestureRecognizerToFail:self.doubleTapGestureRecognizer];
     self.scrollView.delegate = self;
     self.scrollView.minimumZoomScale = 1.0;
     self.scrollView.maximumZoomScale = 5.0;
@@ -168,6 +172,10 @@
             _isDuringDoubleTap = NO;
         }];
     }
+}
+
+- (IBAction)handleSingleTap:(id)sender {
+    [self.parentViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
