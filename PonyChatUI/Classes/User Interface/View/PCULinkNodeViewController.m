@@ -35,5 +35,4 @@
     [self.eventHandler openLink];
 }
 
-
 @end

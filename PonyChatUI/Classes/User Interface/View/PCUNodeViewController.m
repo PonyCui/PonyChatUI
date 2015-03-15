@@ -61,7 +61,12 @@
         }
     }
     else if ([nodeInteractor isKindOfClass:[PCULinkNodeInteractor class]]) {
-        viewControllerIdentifier = @"PCULinkNodeViewControllerSender";
+        if (nodeInteractor.isOwner) {
+            viewControllerIdentifier = @"PCULinkNodeViewControllerSender";
+        }
+        else {
+            viewControllerIdentifier = @"PCULinkNodeViewControllerReceiver";
+        }
     }
     if (viewControllerIdentifier == nil) {
         return nil;

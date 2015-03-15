@@ -153,7 +153,7 @@
     }
     {
         //Link Demo
-        if (arc4random() % 10 < 10) {
+        if (arc4random() % 10 < 1) {
             PCUMessage *message = [[PCUMessage alloc] init];
             message.identifier = [NSString stringWithFormat:@"%u", arc4random()];
             message.orderIndex = [[NSDate date] timeIntervalSince1970] * 1000;
