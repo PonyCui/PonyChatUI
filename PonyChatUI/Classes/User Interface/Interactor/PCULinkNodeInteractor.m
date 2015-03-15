@@ -25,6 +25,7 @@
         self.message = message;
         self.titleString = message.title;
         self.descriptionString = message.params[kPCUMessageParamsLinkDescriptionKey];
+        self.linkURLString = message.params[kPCUMessageParamsLinkURLKey];
         [self sendIconImageAsyncRequest];
     }
     return self;

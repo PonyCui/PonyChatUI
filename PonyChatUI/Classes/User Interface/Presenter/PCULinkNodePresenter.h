@@ -10,4 +10,6 @@
 
 @interface PCULinkNodePresenter : PCUNodePresenter
 
+- (void)openLink;
+
 @end

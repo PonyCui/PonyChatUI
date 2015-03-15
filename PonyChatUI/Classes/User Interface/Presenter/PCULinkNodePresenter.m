@@ -51,4 +51,10 @@
     }];
 }
 
+- (void)openLink {
+    if (self.nodeInteractor.linkURLString.length) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.nodeInteractor.linkURLString]];
+    }
+}
+
 @end
