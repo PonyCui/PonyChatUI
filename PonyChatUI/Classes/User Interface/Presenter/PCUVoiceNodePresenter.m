@@ -31,7 +31,6 @@
 
 - (void)updateView {
     [super updateView];
-    [self.userInterface setSenderThumbImageViewWithImage:self.nodeInteractor.senderThumbImage];
     [self.userInterface setDuringLabelTextWithDuringTime:self.nodeInteractor.voiceDuring];
     [self.userInterface setPlayButtonAnimated:self.nodeInteractor.isPlaying];
     [self.userInterface setUnreadSignalHidden:self.nodeInteractor.isRead];
@@ -53,12 +52,6 @@
 - (void)configureReactiveCocoa {
     [super configureReactiveCocoa];
     @weakify(self);
-    [RACObserve(self, nodeInteractor.senderThumbImage) subscribeNext:^(UIImage *x) {
-        @strongify(self);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.userInterface setSenderThumbImageViewWithImage:x];
-        });
-    }];
     [RACObserve(self, nodeInteractor.voiceDuring) subscribeNext:^(id x) {
         @strongify(self);
         dispatch_async(dispatch_get_main_queue(), ^{

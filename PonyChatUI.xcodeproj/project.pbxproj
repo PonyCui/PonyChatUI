@@ -56,6 +56,9 @@
 		F070D3191A9A0C320083F6A3 /* PCUPanelItemInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = F070D3181A9A0C320083F6A3 /* PCUPanelItemInteractor.m */; };
 		F070D31C1A9A0D4D0083F6A3 /* PCUPanelItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F070D31B1A9A0D4D0083F6A3 /* PCUPanelItemManager.m */; };
 		F070D31F1A9A0D5D0083F6A3 /* PCUPanelItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F070D31E1A9A0D5D0083F6A3 /* PCUPanelItem.m */; };
+		F09E0D181AB5C67F0038D6D2 /* PCULinkNodeInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = F09E0D171AB5C67F0038D6D2 /* PCULinkNodeInteractor.m */; };
+		F09E0D1B1AB5C98D0038D6D2 /* PCULinkNodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F09E0D1A1AB5C98D0038D6D2 /* PCULinkNodeViewController.m */; };
+		F09E0D1E1AB5CA5B0038D6D2 /* PCULinkNodePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F09E0D1D1AB5CA5B0038D6D2 /* PCULinkNodePresenter.m */; };
 		F0A57CC51A90E32C00068694 /* PCUAvatarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A57CC41A90E32C00068694 /* PCUAvatarManager.m */; };
 		F0B123E71A93401500A0DB10 /* PCUToolPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B123E61A93401500A0DB10 /* PCUToolPresenter.m */; };
 		F0B123EA1A93631400A0DB10 /* PCUCustomMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B123E91A93631400A0DB10 /* PCUCustomMessageManager.m */; };
@@ -178,6 +181,12 @@
 		F070D31B1A9A0D4D0083F6A3 /* PCUPanelItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUPanelItemManager.m; sourceTree = "<group>"; };
 		F070D31D1A9A0D5D0083F6A3 /* PCUPanelItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUPanelItem.h; sourceTree = "<group>"; };
 		F070D31E1A9A0D5D0083F6A3 /* PCUPanelItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUPanelItem.m; sourceTree = "<group>"; };
+		F09E0D161AB5C67F0038D6D2 /* PCULinkNodeInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCULinkNodeInteractor.h; sourceTree = "<group>"; };
+		F09E0D171AB5C67F0038D6D2 /* PCULinkNodeInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCULinkNodeInteractor.m; sourceTree = "<group>"; };
+		F09E0D191AB5C98D0038D6D2 /* PCULinkNodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCULinkNodeViewController.h; sourceTree = "<group>"; };
+		F09E0D1A1AB5C98D0038D6D2 /* PCULinkNodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCULinkNodeViewController.m; sourceTree = "<group>"; };
+		F09E0D1C1AB5CA5B0038D6D2 /* PCULinkNodePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCULinkNodePresenter.h; sourceTree = "<group>"; };
+		F09E0D1D1AB5CA5B0038D6D2 /* PCULinkNodePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCULinkNodePresenter.m; sourceTree = "<group>"; };
 		F0A57CC31A90E32C00068694 /* PCUAvatarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUAvatarManager.h; sourceTree = "<group>"; };
 		F0A57CC41A90E32C00068694 /* PCUAvatarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCUAvatarManager.m; sourceTree = "<group>"; };
 		F0B123E51A93401500A0DB10 /* PCUToolPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCUToolPresenter.h; sourceTree = "<group>"; };
@@ -383,6 +392,8 @@
 				63BACED01A91A0740013DB6C /* PCUSystemNodeInteractor.m */,
 				F035686A1AAAC89900708503 /* PCUImageNodeInteractor.h */,
 				F035686B1AAAC89900708503 /* PCUImageNodeInteractor.m */,
+				F09E0D161AB5C67F0038D6D2 /* PCULinkNodeInteractor.h */,
+				F09E0D171AB5C67F0038D6D2 /* PCULinkNodeInteractor.m */,
 				F070D3141A9A0BE30083F6A3 /* PCUPanelInteractor.h */,
 				F070D3151A9A0BE30083F6A3 /* PCUPanelInteractor.m */,
 				F070D3171A9A0C320083F6A3 /* PCUPanelItemInteractor.h */,
@@ -408,6 +419,8 @@
 				63BACECD1A91A00D0013DB6C /* PCUSystemNodePresenter.m */,
 				F03568671AAAC83B00708503 /* PCUImageNodePresenter.h */,
 				F03568681AAAC83B00708503 /* PCUImageNodePresenter.m */,
+				F09E0D1C1AB5CA5B0038D6D2 /* PCULinkNodePresenter.h */,
+				F09E0D1D1AB5CA5B0038D6D2 /* PCULinkNodePresenter.m */,
 				F0B123F41A94F0FA00A0DB10 /* PCUPanelItemPresenter.h */,
 				F0B123F51A94F0FA00A0DB10 /* PCUPanelItemPresenter.m */,
 				F070D3111A9A0B750083F6A3 /* PCUPanelPresenter.h */,
@@ -437,6 +450,8 @@
 				638F61661AA465EB00B9B635 /* PCUVoiceNodeViewController.m */,
 				F03568641AAAC76700708503 /* PCUImageNodeViewController.h */,
 				F03568651AAAC76700708503 /* PCUImageNodeViewController.m */,
+				F09E0D191AB5C98D0038D6D2 /* PCULinkNodeViewController.h */,
+				F09E0D1A1AB5C98D0038D6D2 /* PCULinkNodeViewController.m */,
 				F0B123EB1A938D9B00A0DB10 /* PCUPanelViewController.h */,
 				F0B123EC1A938D9B00A0DB10 /* PCUPanelViewController.m */,
 				F0B123F11A94EDF500A0DB10 /* PCUPanelCollectionViewCell.h */,
@@ -697,7 +712,9 @@
 				6390B44E1A8B08BE0025A64D /* PCUCore.m in Sources */,
 				63BACEC41A903C7C0013DB6C /* PCUMessageManager.m in Sources */,
 				6390B44A1A8B06750025A64D /* PCUWireframe.m in Sources */,
+				F09E0D1B1AB5C98D0038D6D2 /* PCULinkNodeViewController.m in Sources */,
 				63BACEC11A8DE89C0013DB6C /* PCUNodeViewController.m in Sources */,
+				F09E0D1E1AB5CA5B0038D6D2 /* PCULinkNodePresenter.m in Sources */,
 				632886101A8B02790032C99C /* AppDelegate.m in Sources */,
 				F04C81531AAC591900E3621B /* PCUGalleryDismissTransition.m in Sources */,
 				F070D3131A9A0B750083F6A3 /* PCUPanelPresenter.m in Sources */,
@@ -717,6 +734,7 @@
 				63BACEBB1A8DE8450013DB6C /* PCUNodeInteractor.m in Sources */,
 				F0B123ED1A938D9B00A0DB10 /* PCUPanelViewController.m in Sources */,
 				6390B4511A8B0AEE0025A64D /* PCUChatViewController.m in Sources */,
+				F09E0D181AB5C67F0038D6D2 /* PCULinkNodeInteractor.m in Sources */,
 				638F616D1AA46A5300B9B635 /* PCUVoiceNodeInteractor.m in Sources */,
 				F0B123E71A93401500A0DB10 /* PCUToolPresenter.m in Sources */,
 				F0A57CC51A90E32C00068694 /* PCUAvatarManager.m in Sources */,

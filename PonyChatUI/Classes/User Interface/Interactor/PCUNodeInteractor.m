@@ -14,6 +14,7 @@
 #import "PCUSystemNodeInteractor.h"
 #import "PCUVoiceNodeInteractor.h"
 #import "PCUImageNodeInteractor.h"
+#import "PCULinkNodeInteractor.h"
 #import "PCUMessageManager.h"
 #import "PCUAvatarManager.h"
 
@@ -39,6 +40,9 @@
     }
     else if (message.type == PCUMessageTypeImageMessage) {
         return [[PCUImageNodeInteractor alloc] initWithMessage:message];
+    }
+    else if (message.type == PCUMessageTypeLinkMessage) {
+        return [[PCULinkNodeInteractor alloc] initWithMessage:message];
     }
     else {
         message.params = @{kPCUMessageParamsErrorDescriptionKey:

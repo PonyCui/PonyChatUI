@@ -32,8 +32,6 @@
 - (void)updateView {
     [super updateView];
     [self.userInterface setTextLabelTextWithString:self.nodeInteractor.titleString];
-    [self.userInterface setSenderNickLabelTextWithString:self.nodeInteractor.senderName];
-    [self.userInterface setSenderThumbImageViewWithImage:self.nodeInteractor.senderThumbImage];
 }
 
 - (void)configureReactiveCocoa {
@@ -43,18 +41,6 @@
         @strongify(self);
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.userInterface setTextLabelTextWithString:x];
-        });
-    }];
-    [RACObserve(self, nodeInteractor.senderThumbImage) subscribeNext:^(UIImage *x) {
-        @strongify(self);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.userInterface setSenderThumbImageViewWithImage:x];
-        });
-    }];
-    [RACObserve(self, nodeInteractor.senderName) subscribeNext:^(NSString *x) {
-        @strongify(self);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.userInterface setSenderNickLabelTextWithString:x];
         });
     }];
 }

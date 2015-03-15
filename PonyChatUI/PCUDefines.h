@@ -33,21 +33,40 @@
 
 /**
  *  PCUMessageParamsDefines
+ *  音频消息，音频地址
  */
 #define kPCUMessageParamsVoicePathKey @"voicePath"
 
 /**
  *  PCUMessageParamsDefines
+ *  图片消息，缩略图地址
  */
 #define kPCUMessageParamsThumbImagePathKey @"thumbPath"
 
 /**
  *  PCUMessageParamsDefines
+ *  图片消息，原图地址
  */
 #define kPCUMessageParamsOriginalImagePathKey @"imagePath"
 
 /**
  *  PCUMessageParamsDefines
+ *  链接消息，链接图标
+ */
+#define kPCUMessageParamsLinkIconPathKey @"iconPath"
+
+/**
+ *  PCUMessageParamsDefines
+ *  链接消息，链接描述
+ */
+#define kPCUMessageParamsLinkDescriptionKey @"linkDescription"
+
+
+#define kPCUMessageParamsLinkURLKey @"linkUrl"
+
+/**
+ *  PCUMessageParamsDefines
+ *  应用错误，错误描述
  */
 #define kPCUMessageParamsErrorDescriptionKey @"errorDescription"
 

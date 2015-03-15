@@ -31,12 +31,6 @@
 - (void)configureReactiveCocoa {
     [super configureReactiveCocoa];
     @weakify(self);
-    [RACObserve(self, nodeInteractor.senderThumbImage) subscribeNext:^(UIImage *x) {
-        @strongify(self);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.userInterface setSenderThumbImageViewWithImage:x];
-        });
-    }];
     [RACObserve(self, nodeInteractor.thumbImage) subscribeNext:^(id x) {
         @strongify(self);
         dispatch_async(dispatch_get_main_queue(), ^{

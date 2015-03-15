@@ -151,6 +151,24 @@
             [self.delegate messageManagerDidReceivedMessage:message];
         }
     }
+    {
+        //Link Demo
+        if (arc4random() % 10 < 10) {
+            PCUMessage *message = [[PCUMessage alloc] init];
+            message.identifier = [NSString stringWithFormat:@"%u", arc4random()];
+            message.orderIndex = [[NSDate date] timeIntervalSince1970] * 1000;
+            message.type = PCUMessageTypeLinkMessage;
+            message.sender = [[PCUSender alloc] init];
+            message.sender.identifier = [NSString stringWithFormat:@"%d", arc4random()%2+1];
+            message.sender.title = @"Pony";
+            message.sender.thumbURLString = @"http://tp3.sinaimg.cn/1642351362/180/5708018784/0";
+            message.title = @"300级大神的部落战";
+            message.params = @{kPCUMessageParamsLinkURLKey: @"http://bbs.5253.com/thread-42484284-1-1.html",
+                               kPCUMessageParamsLinkIconPathKey: @"http://res.5253.com/logo/1413981351135.png",
+                               kPCUMessageParamsLinkDescriptionKey: @"Brandon, coc史上首位300级的玩家在前一阵刚满级的时候曾经引起了不小的轰动，但是，除了全满之外，他的部落站实力究竟如何？很幸运，春节前的一场战斗中夜殿遇到了世界排名11的megaempireasia,brandon 的大名赫然在列，小伙伴们很是激动与好奇，此贴纯属娱乐，大家看的开心就好"};
+            [self.delegate messageManagerDidReceivedMessage:message];
+        }
+    }
 }
 
 @end

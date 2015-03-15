@@ -12,11 +12,13 @@
 #import "PCUSystemNodePresenter.h"
 #import "PCUVoiceNodePresenter.h"
 #import "PCUImageNodePresenter.h"
+#import "PCULinkNodePresenter.h"
 #import "PCUNodeInteractor.h"
 #import "PCUTextNodeInteractor.h"
 #import "PCUSystemNodeInteractor.h"
 #import "PCUVoiceNodeInteractor.h"
 #import "PCUImageNodeInteractor.h"
+#import "PCULinkNodeInteractor.h"
 #import "PCUNodeViewController.h"
 
 
@@ -49,6 +51,11 @@
         imageNodePresenter.nodeInteractor = nodeInteractor;
         return imageNodePresenter;
     }
+    else if ([nodeInteractor isKindOfClass:[PCULinkNodeInteractor class]]) {
+        PCULinkNodePresenter *linkNodePresenter = [[PCULinkNodePresenter alloc] init];
+        linkNodePresenter.nodeInteractor = nodeInteractor;
+        return linkNodePresenter;
+    }
     else {
         return nil;
     }
@@ -69,6 +76,8 @@
 
 - (void)updateView {
     [self updateNodeStatus];
+    [self.userInterface setSenderThumbImageViewWithImage:self.nodeInteractor.senderThumbImage];
+    [self.userInterface setSenderNickLabelTextWithString:self.nodeInteractor.senderName];
 }
 
 - (void)updateNodeStatus {
@@ -99,6 +108,12 @@
 
 - (void)configureReactiveCocoa {
     @weakify(self);
+    [RACObserve(self, nodeInteractor.senderThumbImage) subscribeNext:^(UIImage *x) {
+        @strongify(self);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.userInterface setSenderThumbImageViewWithImage:x];
+        });
+    }];
     [RACObserve(self, nodeInteractor.sendStatus) subscribeNext:^(id x) {
         @strongify(self);
         dispatch_async(dispatch_get_main_queue(), ^{
