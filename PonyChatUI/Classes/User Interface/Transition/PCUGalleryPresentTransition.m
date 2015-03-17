@@ -7,7 +7,6 @@
 //
 
 #import "PCUGalleryPresentTransition.h"
-#import "PCUChatViewController.h"
 #import "PCUGalleryPageViewController.h"
 
 @interface PCUGalleryPresentTransition ()

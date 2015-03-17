@@ -86,7 +86,10 @@
     }
     CGFloat ratio = image.size.width / eagerWidth;
     CGRect eagerRect = CGRectMake(0, 0, eagerWidth, eagerHeight);
-    CGRect ratioRect = CGRectMake(0, 0, eagerWidth * ratio, eagerHeight *ratio);
+    CGRect ratioRect = CGRectMake(0,
+                                  (image.size.height - eagerHeight *ratio) / 2.0,
+                                  eagerWidth * ratio,
+                                  eagerHeight *ratio);
     CGImageRef cutImageRef = CGImageCreateWithImageInRect(image.CGImage, ratioRect);
     UIImage *cutImage = [UIImage imageWithCGImage:cutImageRef];
     UIGraphicsBeginImageContextWithOptions(eagerRect.size, YES, [[UIScreen mainScreen] scale]);

@@ -33,6 +33,10 @@
 }
 
 - (void)updateView {
+    if (self.nodeInteractor.thumbImage != nil) {
+        [self.userInterface setImage:self.nodeInteractor.thumbImage];
+        [self.userInterface.imageLoadingActivityIndicator startAnimating];
+    }
     [self.nodeInteractor sendOriginalImageAsyncRequest];
 }
 
@@ -42,6 +46,7 @@
         @strongify(self);
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.userInterface setImage:self.nodeInteractor.originalImage];
+            [self.userInterface.imageLoadingActivityIndicator stopAnimating];
         });
     }];
 }

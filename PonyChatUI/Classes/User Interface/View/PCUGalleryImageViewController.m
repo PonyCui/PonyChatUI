@@ -7,6 +7,7 @@
 //
 
 #import "PCUGalleryImageViewController.h"
+#import "PCUGalleryPageViewController.h"
 #import "PCUGalleryImagePresenter.h"
 
 @interface PCUGalleryImageViewController ()<UIScrollViewDelegate> {
@@ -25,8 +26,6 @@
 
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *singleTapGestureRecognizer;
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *doubleTapGestureRecognizer;
-
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *imageLoadingActivityIndicator;
 
 @end
 
@@ -65,7 +64,6 @@
     if (image != nil) {
         self.imageView.image = image;
         [self updateImageViewLayout];
-        [self.imageLoadingActivityIndicator stopAnimating];
     }
 }
 

@@ -16,4 +16,8 @@
 
 - (void)setImage:(UIImage *)image;
 
+#pragma mark - IBOutlet
+
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *imageLoadingActivityIndicator;
+
 @end
