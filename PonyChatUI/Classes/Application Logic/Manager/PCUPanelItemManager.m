@@ -74,7 +74,7 @@
     PCUPanelItem *item = [[PCUPanelItem alloc] init];
     item.title = @"照片";
     item.iconURLString = @"sharemore_pic";
-    item.actionURLString = @"ponymessager://photo.pcu/";
+    item.actionURLString = @"ponymessenger://photo.pcu/";
     return item;
 }
 
@@ -82,7 +82,7 @@
     PCUPanelItem *item = [[PCUPanelItem alloc] init];
     item.title = @"拍摄";
     item.iconURLString = @"sharemore_video";
-    item.actionURLString = @"ponymessager://camera.pcu/";
+    item.actionURLString = @"ponymessenger://camera.pcu/";
     return item;
 }
 
