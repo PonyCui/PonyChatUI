@@ -26,7 +26,7 @@
                                         <color key="backgroundColor" red="0.90212959051132202" green="0.90210258960723877" blue="0.90211790800094604" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="xjq-tr-ej9" firstAttribute="top" secondItem="i5v-Lt-mL3" secondAttribute="top" id="Adr-3e-Uo8"/>
@@ -43,7 +43,7 @@
                                 </connections>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="i5v-Lt-mL3" secondAttribute="trailing" id="Kbu-Ea-3MW"/>
                             <constraint firstItem="i5v-Lt-mL3" firstAttribute="top" secondItem="8R3-1L-yn1" secondAttribute="bottom" id="RS7-mv-Fwe"/>
@@ -80,7 +80,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9AH-RF-GJ6">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
-                                <color key="backgroundColor" red="0.88627450980392153" green="0.88627450980392153" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.88627450980392153" green="0.88627450980392153" blue="0.88627450980392153" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="os9-5Z-Ay4"/>
                                 </constraints>
@@ -166,7 +166,7 @@
                                 </connections>
                             </containerView>
                         </subviews>
-                        <color key="backgroundColor" red="0.95686274509803926" green="0.95686274509803926" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.95686274509803926" green="0.95686274509803926" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="6u0-sQ-X44" firstAttribute="bottom" secondItem="wHp-Ar-i0M" secondAttribute="bottom" constant="6" id="1ZD-pV-AcC"/>
                             <constraint firstItem="i6a-xQ-lwO" firstAttribute="centerX" secondItem="T0C-qK-FOR" secondAttribute="centerX" id="4uo-P7-ifR"/>
@@ -1075,7 +1075,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uBB-ct-RYb">
                                 <rect key="frame" x="118" y="2" width="85" height="28"/>
-                                <color key="backgroundColor" red="0.80784313725490198" green="0.80784313725490198" blue="0.80784313725490198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.80784313725490198" green="0.80784313725490198" blue="0.80784313725490198" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="vd8-cn-NRc"/>
                                 </constraints>
