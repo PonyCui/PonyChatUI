@@ -107,6 +107,9 @@
 }
 
 - (void)configureLayouts {
+    if (self.view.superview == nil) {
+        return;
+    }
     self.view.translatesAutoresizingMaskIntoConstraints = NO;
     {
         NSDictionary *views = @{@"nodeView": self.view, @"superView": [self.view superview]};

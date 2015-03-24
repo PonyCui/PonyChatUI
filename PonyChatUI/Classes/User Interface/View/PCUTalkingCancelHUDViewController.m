@@ -26,6 +26,9 @@
 }
 
 - (void)configureViewLayouts {
+    if (self.view.superview == nil) {
+        return;
+    }
     self.view.translatesAutoresizingMaskIntoConstraints = NO;
     NSDictionary *views = @{@"view": self.view};
     {

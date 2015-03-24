@@ -97,6 +97,9 @@
 #pragma mark - Layouts
 
 - (void)configureViewLayouts {
+    if (self.view.superview == nil) {
+        return;
+    }
     if (self.viewHeightConstraint == nil && self.bottomSpaceConstraint == nil) {
         self.view.translatesAutoresizingMaskIntoConstraints = NO;
         NSDictionary *views = @{

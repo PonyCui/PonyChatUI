@@ -127,6 +127,9 @@
 }
 
 - (void)configureViewLayouts {
+    if (self.view.superview == nil) {
+        return;
+    }
     self.view.translatesAutoresizingMaskIntoConstraints = NO;
     self.scrollView.translatesAutoresizingMaskIntoConstraints = NO;
     self.toolViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
