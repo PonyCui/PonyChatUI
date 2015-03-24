@@ -184,7 +184,7 @@
                                                                                  toItem:self.contentView
                                                                               attribute:NSLayoutAttributeTop
                                                                              multiplier:1.0
-                                                                               constant:0.0];
+                                                                               constant:6.0];
                 nodeViewController.topConstraint = constaints;
                 [self.contentView addConstraint:nodeViewController.topConstraint];
             }
