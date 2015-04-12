@@ -97,6 +97,25 @@
     });
 }
 
+- (void)messageManagerDidReceivedMessages:(NSArray *)messages {
+    dispatch_sync(receiveMessageQueue, ^{
+        NSMutableSet *nodeInteractors = self.nodeInteractors == nil ? [NSMutableSet set] : [self.nodeInteractors mutableCopy];
+        [messages enumerateObjectsUsingBlock:^(PCUMessage *message, NSUInteger idx, BOOL *stop) {
+            if (message != nil) {
+                PCUNodeInteractor *nodeInteractor = [PCUNodeInteractor nodeInteractorWithMessage:message];
+                nodeInteractor.messageManager = self.messageManager;
+                if ([nodeInteractors containsObject:nodeInteractor]) {
+                    //已经有相同的消息添加到对话框中了
+                }
+                else if (nodeInteractor != nil) {
+                    [nodeInteractors addObject:nodeInteractor];
+                }
+            }
+        }];
+        self.nodeInteractors = nodeInteractors;
+    });
+}
+
 - (void)messageManagerSendMessageStarted:(PCUMessage *)message {
     if (message != nil) {
         [self.nodeInteractors

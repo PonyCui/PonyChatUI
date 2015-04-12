@@ -14,6 +14,7 @@
 
 @required
 - (void)messageManagerDidReceivedMessage:(PCUMessage *)message;
+- (void)messageManagerDidReceivedMessages:(NSArray *)messages;
 - (void)messageManagerSendMessageStarted:(PCUMessage *)message;
 - (void)messageManagerDidSentMessage:(PCUMessage *)message;
 - (void)messageManagerSendMessageFailed:(PCUMessage *)message error:(NSError *)error;
