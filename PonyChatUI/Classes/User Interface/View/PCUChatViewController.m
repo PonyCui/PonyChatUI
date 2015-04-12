@@ -16,7 +16,9 @@
 #import "PCUNodePresenter.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-@interface PCUChatViewController ()<UIScrollViewDelegate>
+@interface PCUChatViewController ()<UIScrollViewDelegate> {
+    BOOL _isDragged;
+}
 
 @property (nonatomic, strong) NSArray *nodeViewControllers;
 
@@ -86,8 +88,11 @@
 }
 
 - (BOOL)shouldAutomaticallyScroll {
-    if (self.scrollView.contentSize.height - self.scrollView.contentOffset.y >
-        CGRectGetHeight(self.scrollView.bounds) * 1.5) {
+    if (self.scrollView.contentOffset.y == 0.0 && !_isDragged) {
+        return YES;
+    }
+    else if (self.scrollView.contentSize.height - self.scrollView.contentOffset.y >
+             CGRectGetHeight(self.scrollView.bounds) * 1.5) {
         return NO;//用户向上滑动1.5屏以上，禁用自动滚动功能
     }
     else {
@@ -100,7 +105,12 @@
     [RACObserve(self, scrollView.contentSize) subscribeNext:^(id x) {
         @strongify(self);
         if ([self shouldAutomaticallyScroll]) {
-            [self scrollToBottom:YES];
+            if (self.scrollView.contentOffset.y == 0.0 && !_isDragged) {
+                [self scrollToBottom:NO];
+            }
+            else {
+                [self scrollToBottom:YES];
+            }
         }
     }];
 }
@@ -154,9 +164,9 @@
     }
     {
         NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[chatView]-0-[toolView(48)]-0-|"
-                                                                        options:kNilOptions
-                                                                        metrics:nil
-                                                                          views:views];
+                                                                       options:kNilOptions
+                                                                       metrics:nil
+                                                                         views:views];
         [self.view addConstraints:constraints];
         self.toolViewBottomSpaceConstraint = constraints[2];
         self.toolViewHeightConstraint = constraints[1];
@@ -237,6 +247,12 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    _isDragged = YES;
 }
 
 @end
