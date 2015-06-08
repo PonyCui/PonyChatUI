@@ -10,8 +10,4 @@
 
 @interface PCUCore : JSObjectionModule
 
-@property (nonatomic, assign) Class messageManagerClass;
-
-@property (nonatomic, assign) Class attributedStringManagerClass;
-
 @end

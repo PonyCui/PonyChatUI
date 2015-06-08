@@ -17,15 +17,6 @@
 
 @implementation PCUAttributedStringManager
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        self.configure = [[PCUAttributedStringConfigure alloc] init];
-    }
-    return self;
-}
-
 - (instancetype)initWithConfigure:(PCUAttributedStringConfigure *)configure {
     self = [super init];
     if (self) {
@@ -36,19 +27,6 @@
 
 - (NSAttributedString *)attributedStringWithString:(NSString *)argString {
     return [[NSAttributedString alloc] initWithString:argString attributes:self.attributes];
-}
-
-- (NSAttributedString *)systemNodeAttrbutedStringWithString:(NSString *)argString {
-    NSMutableAttributedString *normalString = [[self attributedStringWithString:argString]
-                                               mutableCopy];
-    [normalString addAttributes:@{
-                                  NSForegroundColorAttributeName: [UIColor whiteColor],
-                                  NSFontAttributeName : [UIFont systemFontOfSize:15.0]
-                                  }
-                          range:NSMakeRange(0, [normalString length])];
-    [normalString removeAttribute:NSParagraphStyleAttributeName
-                            range:NSMakeRange(0, [normalString length])];
-    return [normalString copy];
 }
 
 - (void)setConfigure:(PCUAttributedStringConfigure *)configure {
@@ -106,6 +84,7 @@
 
 - (NSParagraphStyle *)pragraphStyle {
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+    style.lineBreakMode = NSLineBreakByTruncatingTail;
     switch (self.configure.fontSize) {
         case PCUAttributedStringFontSizeSmall:
             style.minimumLineHeight = 21.0;

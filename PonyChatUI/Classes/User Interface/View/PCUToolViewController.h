@@ -8,17 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-
-@class PCUToolPresenter;
-
 @interface PCUToolViewController : UIViewController
-
-@property (nonatomic, strong) PCUToolPresenter *eventHandler;
-
-#pragma mark - IBOutlet
-
-@property (weak, nonatomic) IBOutlet UITextView *textField;
-
-- (void)setEmotionCoveredKeyboardButtonShow:(BOOL)isShow;
 
 @end

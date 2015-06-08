@@ -10,25 +10,15 @@
 #import "PCUToolViewController.h"
 #import "PCUApplication.h"
 #import "PCUWireframe.h"
-#import "PCUChatPresenter.h"
-#import "PCUChatInteractor.h"
-#import "PCUNodeInteractor.h"
-#import "PCUNodePresenter.h"
-#import <ReactiveCocoa/ReactiveCocoa.h>
+#import "PCUTextNodeViewController.h"
 
-@interface PCUChatViewController ()<UIScrollViewDelegate> {
-    BOOL _isDragged;
-}
+@interface PCUChatViewController ()<PCUTextNodeViewControllerDelegate>
 
 @property (nonatomic, strong) NSArray *nodeViewControllers;
 
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, strong) PCUToolViewController *toolViewController;
 
-@property (weak, nonatomic) IBOutlet UIView *contentView;
-
-@property (nonatomic, weak) NSLayoutConstraint *toolViewBottomSpaceConstraint;
-
-@property (nonatomic, weak) NSLayoutConstraint *toolViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet UIScrollView *chatScrollView;
 
 @end
 
@@ -36,8 +26,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self configureToolView];
-    [self configureAutomaticallyScroll];
+    PCUWireframe *wireframe = PCU[@protocol(PCUWireframe)];
+    self.toolViewController = [wireframe addToolViewToView:self.view];
+    [self configureViewLayouts];
+    
+    NSUInteger i=0;
+    do {
+        [wireframe addTextNodeToView:self.chatScrollView toChatViewController:self];
+        i++;
+    } while (i<15);
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [wireframe addTextNodeToView:self.chatScrollView toChatViewController:self];
+        [self scrollToLastNodeViewController];
+    });
     // Do any additional setup after loading the view.
 }
 
@@ -46,213 +47,164 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)reloadData {
-    [self.childViewControllers enumerateObjectsUsingBlock:^(UIViewController *obj, NSUInteger idx, BOOL *stop) {
-        if ([obj isKindOfClass:[PCUNodeViewController class]] &&
-            [obj.view superview] == nil) {
-            [self.contentView addSubview:obj.view];
-            [(PCUNodeViewController *)obj configureLayouts];
-        }
-    }];
+#pragma mark - NodeViewControllers
+
+- (void)addNodeViewController:(PCUTextNodeViewController *)nodeViewController {
+    NSMutableArray *nodeViewControllers = [self.nodeViewControllers mutableCopy];
+    [nodeViewControllers addObject:nodeViewController];
+    self.nodeViewControllers = [nodeViewControllers copy];
     [self configureNodeLayouts];
-    if ([self shouldAutomaticallyScroll]) {
-        [self scrollToBottom:YES];
-    }
+    [self calculateContentSize];
 }
 
-#pragma mark - ToolViewController
+- (void)insertNodeViewController:(PCUTextNodeViewController *)nodeViewController
+                         atIndex:(NSUInteger)index {
+    
+}
 
-- (void)configureToolView {
-    PCUWireframe *wireFrame = PCU[[PCUWireframe class]];
-    [wireFrame presentToolViewToChatViewController:self];
+- (void)removeNodeViewController:(PCUTextNodeViewController *)nodeViewController {
+    
+}
+
+- (void)removeNodeViewControllerAtIndex:(NSUInteger)index {
+    
 }
 
 #pragma mark - ContentOffset
 
-- (void)scrollToBottom:(BOOL)animated {
-    if (self.scrollView.isTracking) {
-        return;
-    }
-    if (animated) {
-        [UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-            [self.scrollView scrollRectToVisible:CGRectMake(0, CGRectGetHeight(self.contentView.bounds)-1, 1, 1)
-                                        animated:NO];
-        } completion:^(BOOL finished) {
-            
-        }];
-    }
-    else {
-        [self.scrollView scrollRectToVisible:CGRectMake(0, CGRectGetHeight(self.contentView.bounds)-1, 1, 1)
-                                    animated:NO];
-    }
+- (void)scrollToLastNodeViewController {
+    PCUTextNodeViewController *nodeViewController = [self.nodeViewControllers lastObject];
+    [self scrollToSpecificNodeViewController:nodeViewController];
 }
 
-- (BOOL)shouldAutomaticallyScroll {
-    if (self.scrollView.contentOffset.y == 0.0 && !_isDragged) {
-        return YES;
-    }
-    else if (self.scrollView.contentSize.height - self.scrollView.contentOffset.y >
-             CGRectGetHeight(self.scrollView.bounds) * 1.5) {
-        return NO;//用户向上滑动1.5屏以上，禁用自动滚动功能
-    }
-    else {
-        return YES;
-    }
-}
-
-- (void)configureAutomaticallyScroll {
-    @weakify(self);
-    [RACObserve(self, scrollView.contentSize) subscribeNext:^(id x) {
-        @strongify(self);
-        if ([self shouldAutomaticallyScroll]) {
-            if (self.scrollView.contentOffset.y == 0.0 && !_isDragged) {
-                [self scrollToBottom:NO];
+- (void)scrollToSpecificNodeViewController:(PCUTextNodeViewController *)nodeViewController {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.010 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //always delay
+        if ([self.nodeViewControllers containsObject:nodeViewController]) {
+            CGFloat yOffset = CGRectGetMinY(nodeViewController.view.frame);
+            if (yOffset + CGRectGetHeight(self.chatScrollView.bounds) > self.chatScrollView.contentSize.height) {
+                yOffset = self.chatScrollView.contentSize.height - CGRectGetHeight(self.chatScrollView.bounds);
             }
-            else {
-                [self scrollToBottom:YES];
-            }
+            [self.chatScrollView setContentOffset:CGPointMake(0, yOffset) animated:YES];
         }
+    });
+}
+
+- (CGPoint)offsetForSpecificNodeViewController:(PCUTextNodeViewController *)nodeViewController {
+    if ([self.nodeViewControllers containsObject:nodeViewController]) {
+        CGFloat yOffset = CGRectGetMinY(nodeViewController.view.frame);
+        if (yOffset + CGRectGetHeight(self.chatScrollView.bounds) > self.chatScrollView.contentSize.height) {
+            yOffset = self.chatScrollView.contentSize.height - CGRectGetHeight(self.chatScrollView.bounds);
+        }
+        return CGPointMake(0, yOffset);
+    }
+    else {
+        return CGPointZero;
+    }
+}
+
+#pragma mark - ContentSize
+
+- (void)textNodeViewHeightDidChange {
+    [self calculateContentSize];
+}
+
+- (void)calculateContentSize {
+    __block CGFloat currentHeight = 0.0;
+    [self.nodeViewControllers enumerateObjectsUsingBlock:^(PCUTextNodeViewController *obj, NSUInteger idx, BOOL *stop) {
+        currentHeight += obj.heightConstraint.constant;
     }];
+    if (currentHeight < CGRectGetHeight(self.chatScrollView.bounds)) {
+        currentHeight = CGRectGetHeight(self.chatScrollView.bounds) + 1.0;
+    }
+    if (currentHeight != self.chatScrollView.contentSize.height) {
+        [self.chatScrollView setContentSize:CGSizeMake(CGRectGetWidth(self.chatScrollView.bounds), currentHeight)];
+    }
 }
 
 #pragma mark - Layouts
 
-- (void)setBottomLayoutHeight:(CGFloat)layoutHeight {
-    self.toolViewBottomSpaceConstraint.constant = layoutHeight;
-    [UIView
-     animateKeyframesWithDuration:0.25
-     delay:0.0
-     options:UIViewKeyframeAnimationOptionBeginFromCurrentState | UIViewKeyframeAnimationOptionLayoutSubviews
-     animations:^{
-         [self.view layoutIfNeeded];
-         [self scrollToBottom:NO];
-     }
-     completion:^(BOOL finished) {
-         
-     }];
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [self calculateContentSize];
 }
 
-- (void)setToolViewLayoutHeight:(CGFloat)layoutHeight {
-    self.toolViewHeightConstraint.constant = layoutHeight;
+- (void)setBottomLayoutHeight:(CGFloat)layoutHeight {
+    __block NSLayoutConstraint *constraint;
+    [self.view.constraints enumerateObjectsUsingBlock:^(NSLayoutConstraint *obj, NSUInteger idx, BOOL *stop) {
+        if (obj.secondItem == self.toolViewController.view &&
+            obj.firstItem == self.view &&
+            obj.firstAttribute == NSLayoutAttributeBottom &&
+            obj.secondAttribute == NSLayoutAttributeBottom) {
+            constraint = obj;
+        }
+    }];
+    constraint.constant = layoutHeight;
+    [UIView animateWithDuration:0.25 animations:^{
+        [self.view layoutIfNeeded];
+        [self.chatScrollView
+         setContentOffset:[self offsetForSpecificNodeViewController:[self.nodeViewControllers lastObject]]
+         animated:NO];
+    }];
 }
 
 - (void)configureViewLayouts {
-    if (self.view.superview == nil) {
-        return;
-    }
-    self.view.translatesAutoresizingMaskIntoConstraints = NO;
-    self.scrollView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.toolViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
+    self.chatScrollView.translatesAutoresizingMaskIntoConstraints = NO;
     NSDictionary *views = @{@"toolView": self.toolViewController.view,
-                            @"chatView": self.scrollView,
-                            @"wrapView": self.view};
-    {
-        
-        NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[wrapView]-0-|"
-                                                                       options:kNilOptions
-                                                                       metrics:nil
-                                                                         views:views];
-        [[self.view superview] addConstraints:constraints];
-        
-    }
-    {
-        NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[wrapView]-0-|"
-                                                                       options:kNilOptions
-                                                                       metrics:nil
-                                                                         views:views];
-        [[self.view superview] addConstraints:constraints];
-    }
-    {
-        NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[chatView]-0-[toolView(48)]-0-|"
-                                                                       options:kNilOptions
-                                                                       metrics:nil
-                                                                         views:views];
-        [self.view addConstraints:constraints];
-        self.toolViewBottomSpaceConstraint = constraints[2];
-        self.toolViewHeightConstraint = constraints[1];
-    }
-    {
-        NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[toolView]-0-|"
-                                                                       options:kNilOptions
-                                                                       metrics:nil
-                                                                         views:views];
-        [self.view addConstraints:constraints];
-    }
+                            @"chatScrollView": self.chatScrollView};
+    NSArray *hConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[chatScrollView]-0-[toolView]-0-|"
+                                                                    options:kNilOptions
+                                                                    metrics:nil
+                                                                      views:views];
+    [self.view addConstraints:hConstraints];
 }
 
 - (void)configureNodeLayouts {
-    NSArray *nodeEventHandlers = [self.eventHandler orderedEventHandler];
-    __block PCUNodeViewController *previousViewController;
-    [nodeEventHandlers enumerateObjectsUsingBlock:^(PCUNodePresenter *obj, NSUInteger idx, BOOL *stop) {
-        PCUNodeViewController *nodeViewController = obj.userInterface;
-        if (idx == 0) {
-            if (nodeViewController.topConstraint.firstItem != nodeViewController.view) {
-                [self.scrollView removeConstraint:nodeViewController.topConstraint];
-                NSLayoutConstraint *constaints = [NSLayoutConstraint constraintWithItem:nodeViewController.view
+    __block PCUTextNodeViewController *previousViewController;
+    [self.nodeViewControllers enumerateObjectsUsingBlock:^(PCUTextNodeViewController *obj, NSUInteger idx, BOOL *stop) {
+        if (obj.topConstraint == nil) {
+            if (previousViewController == nil) {
+                NSLayoutConstraint *constaints = [NSLayoutConstraint constraintWithItem:obj.view
                                                                               attribute:NSLayoutAttributeTop
                                                                               relatedBy:NSLayoutRelationEqual
-                                                                                 toItem:self.contentView
+                                                                                 toItem:self.chatScrollView
                                                                               attribute:NSLayoutAttributeTop
                                                                              multiplier:1.0
-                                                                               constant:6.0];
-                nodeViewController.topConstraint = constaints;
-                [self.contentView addConstraint:nodeViewController.topConstraint];
+                                                                               constant:0.0];
+                obj.topConstraint = constaints;
             }
-        }
-        else {
-            if (nodeViewController.topConstraint.firstItem != previousViewController.view) {
-                [self.contentView removeConstraint:nodeViewController.topConstraint];
-                nodeViewController.topConstraint = [NSLayoutConstraint constraintWithItem:previousViewController.view
-                                                                                attribute:NSLayoutAttributeBottom
-                                                                                relatedBy:NSLayoutRelationEqual
-                                                                                   toItem:nodeViewController.view
-                                                                                attribute:NSLayoutAttributeTop
-                                                                               multiplier:1.0
-                                                                                 constant:0.0];
-                [self.contentView addConstraint:nodeViewController.topConstraint];
+            else {
+                NSLayoutConstraint *constaints = [NSLayoutConstraint constraintWithItem:previousViewController.view
+                                                                              attribute:NSLayoutAttributeBottom
+                                                                              relatedBy:NSLayoutRelationEqual
+                                                                                 toItem:obj.view
+                                                                              attribute:NSLayoutAttributeTop
+                                                                             multiplier:1.0
+                                                                               constant:0.0];
+                obj.topConstraint = constaints;
             }
+            [self.chatScrollView addConstraint:obj.topConstraint];
+            [self.chatScrollView layoutIfNeeded];
         }
-        if (idx == [nodeEventHandlers count] - 1) {
-            //Add Bottom Contraint
-            [self.contentView removeConstraint:nodeViewController.bottomConstraint];
-            nodeViewController.bottomConstraint = [NSLayoutConstraint constraintWithItem:nodeViewController.view
-                                                                               attribute:NSLayoutAttributeBottom
-                                                                               relatedBy:NSLayoutRelationEqual
-                                                                                  toItem:self.contentView
-                                                                               attribute:NSLayoutAttributeBottom
-                                                                              multiplier:1.0
-                                                                                constant:0.0];
-            [self.contentView addConstraint:nodeViewController.bottomConstraint];
+        if (obj.heightConstraint == nil) {
+            NSLayoutConstraint *constaints = [NSLayoutConstraint constraintWithItem:obj.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:0.0];
+            obj.heightConstraint = constaints;
+            [self.chatScrollView addConstraint:obj.heightConstraint];
         }
-        else {
-            [self.contentView removeConstraint:nodeViewController.bottomConstraint];
-        }
-        previousViewController = nodeViewController;
+        previousViewController = obj;
     }];
-    [self.view layoutIfNeeded];
+}
+
+- (NSArray *)nodeViewControllers {
+    if (_nodeViewControllers == nil) {
+        _nodeViewControllers = @[];
+    }
+    return _nodeViewControllers;
 }
 
 #pragma mark - handle events
 
 - (IBAction)handleScrollViewTapped:(UITapGestureRecognizer *)sender {
-    [PCUApplication endEditing];
-}
-
-#pragma mark - UIImagePickerControllerDelegate
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    [self.eventHandler sendImageMessage:info[UIImagePickerControllerOriginalImage]];
-    [picker dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [picker dismissViewControllerAnimated:YES completion:nil];
-}
-
-#pragma mark - UIScrollViewDelegate
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    _isDragged = YES;
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
 }
 
 @end

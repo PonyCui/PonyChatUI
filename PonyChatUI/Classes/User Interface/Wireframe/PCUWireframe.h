@@ -9,23 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "PCUApplication.h"
 
-@class PCUChatViewController, PCUChat, PCUPanelViewController, PCUTalkingViewController;
+@class PCUToolViewController, PCUTextNodeViewController, PCUChatViewController;
 
 @interface PCUWireframe : NSObject
 
-- (void)presentChatViewToViewController:(UIViewController *)viewController
-                           withChatItem:(PCUChat *)chatItem;
+- (UIView *)addChatViewToView:(UIView *)view;
 
-- (void)presentToolViewToChatViewController:(PCUChatViewController *)chatViewController;
+- (PCUToolViewController *)addToolViewToView:(UIView *)view;
 
-- (PCUPanelViewController *)presentPanelViewToChatViewController:(PCUChatViewController *)chatViewController;
-
-- (void)presentTalkingHUDToViewController:(PCUTalkingViewController *)viewController;
-
-- (void)presentCancelHUDToViewController:(PCUTalkingViewController *)viewController;
-
-- (void)presentGalleryViewControllerWithDataSource:(id)dataSource
-                              parentViewController:(UIViewController *)parentViewController
-                                              view:(UIView *)view;
+- (void)addTextNodeToView:(UIScrollView *)view toChatViewController:(PCUChatViewController *)chatViewController;
 
 @end

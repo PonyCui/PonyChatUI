@@ -7,10 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PCUNodeViewController.h"
 
-@interface PCUTextNodeViewController : PCUNodeViewController
+@protocol PCUTextNodeViewControllerDelegate <NSObject>
 
-- (void)setTextLabelTextWithString:(NSString *)string;
+@required
+- (void)textNodeViewHeightDidChange;
+
+@end
+
+@interface PCUTextNodeViewController : UIViewController
+
+@property (nonatomic, weak) id<PCUTextNodeViewControllerDelegate> delegate;
+
+@property (nonatomic, strong) NSLayoutConstraint *topConstraint;
+
+@property (nonatomic, strong) NSLayoutConstraint *heightConstraint;
+
+- (void)setTextLabelText:(NSString *)text;
 
 @end

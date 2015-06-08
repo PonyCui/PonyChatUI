@@ -8,21 +8,6 @@
 
 #import "PCUChatPresenter.h"
 #import "PCUChatViewController.h"
-#import "PCUChatInteractor.h"
-#import "PCUNodeInteractor.h"
-#import "PCUNodePresenter.h"
-#import "PCUNodeViewController.h"
-#import <ReactiveCocoa/ReactiveCocoa.h>
-#import "UIImage+PCUOrientationFix.h"
-
-@interface PCUChatPresenter ()
-
-/**
- *  NSArray -> PCUNodePresenter
- */
-@property (nonatomic, copy) NSArray *nodeEventHanlders;
-
-@end
 
 @implementation PCUChatPresenter
 
@@ -34,89 +19,26 @@
 {
     self = [super init];
     if (self) {
-        self.nodeEventHanlders = @[];
-        [self configureReactiveCocoa];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(handleKeyboardWillShowNotification:)
+                                                     name:UIKeyboardWillShowNotification
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(handleKeyboardWillHideNotification:)
+                                                     name:UIKeyboardWillHideNotification
+                                                   object:nil];
     }
     return self;
 }
 
-#pragma mark -
-
-- (void)configureReactiveCocoa {
-    @weakify(self);
-    [RACObserve(self, chatInteractor.titleString) subscribeNext:^(id x) {
-        @strongify(self);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.userInterface.title = x;
-        });
-    }];
-    [RACObserve(self, chatInteractor.nodeInteractors) subscribeNext:^(id x) {
-        @strongify(self);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self rebuildNodeControllers];
-            [self.userInterface reloadData];
-        });
-    }];
+- (void)handleKeyboardWillShowNotification:(NSNotification *)notification {
+    CGRect keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat keyboardHeight = CGRectGetHeight(keyboardFrame);
+    [self.userInterface setBottomLayoutHeight:keyboardHeight];
 }
 
-#pragma mark - 
-
-- (void)rebuildNodeControllers {
-    if (self.chatInteractor.minusInteractors != nil) {
-        NSMutableArray *nodeEventHandlers = [self.nodeEventHanlders mutableCopy];
-        for (PCUNodeInteractor *nodeInteractor in self.chatInteractor.minusInteractors) {
-            [self.nodeEventHanlders enumerateObjectsUsingBlock:^(PCUNodePresenter *obj, NSUInteger idx, BOOL *stop) {
-                if ([obj.nodeInteractor isEqual:nodeInteractor]) {
-                    [obj removeViewFromSuperView];
-                    [obj.userInterface removeFromParentViewController];
-                    [nodeEventHandlers removeObject:obj];
-                    *stop = YES;
-                }
-            }];
-        }
-        self.nodeEventHanlders = nodeEventHandlers;
-        self.chatInteractor.minusInteractors = nil;
-    }
-    if (self.chatInteractor.plusInteractors != nil) {
-        NSMutableArray *nodeEventHandlers = [self.nodeEventHanlders mutableCopy];
-        [self.chatInteractor.plusInteractors enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
-            PCUNodeViewController *nodeViewController = [PCUNodeViewController
-                                                         nodeViewControllerWithNodeInteractor:obj];
-            if (nodeViewController.eventHandler != nil) {
-                [nodeEventHandlers addObject:nodeViewController.eventHandler];
-            }
-            [self.userInterface addChildViewController:nodeViewController];
-        }];
-        self.nodeEventHanlders = nodeEventHandlers;
-        self.chatInteractor.plusInteractors = nil;
-    }
-    self.chatInteractor.isRefreshed = YES;
-}
-
-- (NSArray *)orderedEventHandler {
-    return
-    [self.nodeEventHanlders
-     sortedArrayUsingComparator:^NSComparisonResult(PCUNodePresenter *obj1, PCUNodePresenter *obj2) {
-         if (obj1.nodeInteractor.orderIndex == obj2.nodeInteractor.orderIndex) {
-             return NSOrderedSame;
-         }
-         else {
-             return obj1.nodeInteractor.orderIndex < obj2.nodeInteractor.orderIndex ? NSOrderedAscending : NSOrderedDescending;
-         }
-     }];
-}
-
-#pragma mark - Send Message
-
-#warning - 待重构
-- (void)sendImageMessage:(UIImage *)image {
-    UIImage *theImage = [image pcu_resizedImageWithUncompressedSizeInMB:8.0
-                                                   interpolationQuality:kCGInterpolationHigh];
-    NSData *imageData = UIImageJPEGRepresentation(theImage, 1.0);
-    NSString *imagePath = [NSTemporaryDirectory() stringByAppendingFormat:@"%u.%u.%u.jpg",
-                           arc4random(), arc4random(), arc4random()];
-    [imageData writeToFile:imagePath atomically:YES];
-    [self.chatInteractor sendImageMessageWithPath:imagePath];
+- (void)handleKeyboardWillHideNotification:(NSNotification *)notification {
+    [self.userInterface setBottomLayoutHeight:0];
 }
 
 @end

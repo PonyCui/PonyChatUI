@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 #import "PCUApplication.h"
-#import "PCUSender.h"
 
 @interface ViewController ()
 
@@ -18,26 +17,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    PCUSender *sender = [[PCUSender alloc] init];
-    sender.identifier = @"1";
-    sender.thumbURLString = @"http://tp3.sinaimg.cn/1642351362/180/5708018784/0";
-    sender.title = @"Pony";
-    [PCUApplication setSender:sender];
-    PCUChat *chatItem = [[PCUChat alloc] init];
-    chatItem.identifier = @"Debug";
-    chatItem.title = @"Hello";
-    [PCU[@protocol(PCUWireframe)] presentChatViewToViewController:self withChatItem:chatItem];
-    [PCUApplication setCanUseBuiltInSpeaker:YES];//设置为NO会禁用红外传感器，所有声音将使用扬声器播放
+    [PCU[@protocol(PCUWireframe)] addChatViewToView:self.view];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (BOOL)shouldAutorotate {
-    return [PCUApplication shouldAutorotate];
 }
 
 @end

@@ -21,6 +21,4 @@
 
 - (NSAttributedString *)attributedStringWithString:(NSString *)argString;
 
-- (NSAttributedString *)systemNodeAttrbutedStringWithString:(NSString *)argString;
-
 @end

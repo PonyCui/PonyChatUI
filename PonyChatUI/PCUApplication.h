@@ -10,30 +10,11 @@
 #import <UIKit/UIKit.h>
 #import <Objection/Objection.h>
 #import "PCUProtocols.h"
-#import "PCUDefines.h"
 
-@class PCUSender;
+#define PCU [PCUApplication injector]
 
 @interface PCUApplication : NSObject
 
 + (JSObjectionInjector *)injector;
-
-+ (PCUSender *)sender;
-
-+ (void)setSender:(PCUSender *)sender;
-
-+ (void)setAttributedStringManagerClass:(Class)managerClass;
-
-+ (void)setMessageManagerClass:(Class)managerClass;
-
-+ (void)endEditing;
-
-+ (void)endPlaying;
-
-+ (BOOL)shouldAutorotate;
-
-+ (BOOL)canUseBuiltInSpeaker;
-
-+ (void)setCanUseBuiltInSpeaker:(BOOL)use;
 
 @end

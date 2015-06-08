@@ -8,81 +8,18 @@
 
 #import "PCUApplication.h"
 #import "PCUCore.h"
-#import "PCUSender.h"
-
-static PCUCore *coreModule;
-static PCUSender *ownerSender;
-static BOOL allowRotate = YES;
-static BOOL canUseBuiltInSpeaker = YES;
 
 @implementation PCUApplication
-
-+ (void)load {
-    coreModule = [[PCUCore alloc] init];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(handlePreventRotateNotification)
-                                                 name:kPCUPreventScreenRotationNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(handleAllowRotateNotification)
-                                                 name:kPCUAllowScreenRotationNotification
-                                               object:nil];
-}
 
 + (JSObjectionInjector *)injector {
     static JSObjectionInjector *injector;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         injector = [JSObjection createInjectorWithModules:
-                    coreModule,
+                    [[PCUCore alloc] init],
                     nil];
     });
     return injector;
-}
-
-+ (PCUSender *)sender {
-    return ownerSender;
-}
-
-+ (void)setSender:(PCUSender *)sender {
-    ownerSender = sender;
-}
-
-+ (void)setAttributedStringManagerClass:(Class)managerClass {
-    coreModule.attributedStringManagerClass = managerClass;
-}
-
-+ (void)setMessageManagerClass:(Class)managerClass {
-    coreModule.messageManagerClass = managerClass;
-}
-
-+ (void)endEditing {
-    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kPCUEndEditingNotification object:nil];
-}
-
-+ (void)endPlaying {
-    [[NSNotificationCenter defaultCenter] postNotificationName:kPCUEndPlayingNotification object:nil];
-}
-
-+ (BOOL)shouldAutorotate {
-    return allowRotate;
-}
-
-+ (void)handlePreventRotateNotification {
-    allowRotate = NO;
-}
-
-+ (void)handleAllowRotateNotification {
-    allowRotate = YES;
-}
-
-+ (BOOL)canUseBuiltInSpeaker {
-    return canUseBuiltInSpeaker;
-}
-
-+ (void)setCanUseBuiltInSpeaker:(BOOL)use {
-    canUseBuiltInSpeaker = use;
 }
 
 @end

@@ -7,18 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 
-@class PCUChatViewController, PCUChatInteractor;
+@class PCUChatViewController;
 
 @interface PCUChatPresenter : NSObject
 
 @property (nonatomic, weak) PCUChatViewController *userInterface;
-
-@property (nonatomic, strong) PCUChatInteractor *chatInteractor;
-
-- (NSArray *)orderedEventHandler;
-
-- (void)sendImageMessage:(UIImage *)image;
 
 @end

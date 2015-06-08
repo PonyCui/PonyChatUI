@@ -9,84 +9,37 @@
 #import "PCUWireframe.h"
 #import "PCUChatViewController.h"
 #import "PCUChatPresenter.h"
-#import "PCUChatInteractor.h"
-#import "PCUMessageManager.h"
 #import "PCUToolViewController.h"
-#import "PCUToolPresenter.h"
-#import "PCUPanelViewController.h"
-#import "PCUPanelPresenter.h"
-#import "PCUTalkingViewController.h"
-#import "PCUTalkingHUDViewController.h"
-#import "PCUTalkingCancelHUDViewController.h"
-#import "PCUGalleryPageViewController.h"
+#import "PCUTextNodeViewController.h"
 
 @implementation PCUWireframe
 
-- (void)presentChatViewToViewController:(UIViewController *)viewController withChatItem:(PCUChat *)chatItem {
+- (UIView *)addChatViewToView:(UIView *)view {
     PCUChatViewController *chatViewController = [self chatViewController];
-    chatViewController.eventHandler.chatInteractor.messageManager.chatItem = chatItem;
-    [viewController addChildViewController:chatViewController];
-    [viewController.view addSubview:chatViewController.view];
-    [chatViewController configureViewLayouts];
+    id parentViewController;
+    do {
+        parentViewController = [view nextResponder];
+    } while (![parentViewController isKindOfClass:[UIViewController class]] && parentViewController != nil);
+    [parentViewController addChildViewController:chatViewController];
+    [view addSubview:chatViewController.view];
+    [self configureChatViewLayouts:chatViewController.view];
+    return chatViewController.view;
 }
 
-- (void)presentToolViewToChatViewController:(PCUChatViewController *)chatViewController {
+- (PCUToolViewController *)addToolViewToView:(UIView *)view {
     PCUToolViewController *toolViewController = [self toolViewController];
-    [chatViewController addChildViewController:toolViewController];
-    chatViewController.toolViewController = toolViewController;
-    toolViewController.eventHandler.chatInteractor = chatViewController.eventHandler.chatInteractor;
-    [chatViewController.view addSubview:toolViewController.view];
+    [view addSubview:toolViewController.view];
+    [self configureToolViewLayouts:toolViewController.view];
+    return toolViewController;
 }
 
-- (PCUPanelViewController *)presentPanelViewToChatViewController:(PCUChatViewController *)chatViewController {
-    PCUPanelViewController *panelViewController = [self panelViewController];
-    [chatViewController addChildViewController:panelViewController];
-    [chatViewController.view addSubview:panelViewController.view];
-    [panelViewController configureViewLayouts];
-    return panelViewController;
-}
-
-- (void)presentTalkingHUDToViewController:(PCUTalkingViewController *)viewController {
-    if (viewController.talkingHUDViewController == nil) {
-        viewController.talkingHUDViewController = [self talkingHUDViewController];
-    }
-    [viewController.cancelHUDViewController.view removeFromSuperview];
-    id trunkViewController = viewController;
-    do {
-        if ([[trunkViewController parentViewController] isKindOfClass:[UINavigationController class]] ||
-            [trunkViewController parentViewController] == nil) {
-            break;
-        }
-        trunkViewController = [trunkViewController parentViewController];
-    } while (true);
-    [[trunkViewController view] addSubview:viewController.talkingHUDViewController.view];
-    [viewController.talkingHUDViewController configureViewLayouts];
-}
-
-- (void)presentCancelHUDToViewController:(PCUTalkingViewController *)viewController {
-    if (viewController.cancelHUDViewController == nil) {
-        viewController.cancelHUDViewController = [self talkingCancelHUDViewController];
-    }
-    [viewController.talkingHUDViewController.view removeFromSuperview];
-    id trunkViewController = viewController;
-    do {
-        if ([[trunkViewController parentViewController] isKindOfClass:[UINavigationController class]] ||
-            [trunkViewController parentViewController] == nil) {
-            break;
-        }
-        trunkViewController = [trunkViewController parentViewController];
-    } while (true);
-    [[trunkViewController view] addSubview:viewController.cancelHUDViewController.view];
-    [viewController.cancelHUDViewController configureViewLayouts];
-}
-
-- (void)presentGalleryViewControllerWithDataSource:(id)dataSource
-                              parentViewController:(UIViewController *)parentViewController
-                                              view:(UIView *)view {
-    PCUGalleryPageViewController *pageViewController = [self galleryPageViewController];
-    pageViewController.galleryDataSource = dataSource;
-    pageViewController.enterView = view;
-    [parentViewController presentViewController:pageViewController animated:YES completion:nil];
+- (void)addTextNodeToView:(UIScrollView *)view
+     toChatViewController:(PCUChatViewController<PCUTextNodeViewControllerDelegate> *)chatViewController {
+    PCUTextNodeViewController *textNodeViewController = [self textNodeViewController];
+    textNodeViewController.delegate = chatViewController;
+    [view addSubview:textNodeViewController.view];
+    [self configureTextNodeViewLayouts:textNodeViewController.view];
+    [chatViewController addNodeViewController:textNodeViewController];
 }
 
 #pragma mark - Getter
@@ -95,9 +48,8 @@
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"PCUStoryBoard" bundle:nil];
     PCUChatViewController *chatViewController = [storyBoard
                                                  instantiateViewControllerWithIdentifier:@"PCUChatViewController"];
-    chatViewController.eventHandler = [[PCUChatPresenter alloc] init];
-    chatViewController.eventHandler.userInterface = chatViewController;
-    chatViewController.eventHandler.chatInteractor = [[PCUChatInteractor alloc] init];
+    chatViewController.chatPresenter = [[PCUChatPresenter alloc] init];
+    chatViewController.chatPresenter.userInterface = chatViewController;
     return chatViewController;
 }
 
@@ -105,39 +57,57 @@
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"PCUStoryBoard" bundle:nil];
     PCUToolViewController *toolViewController = [storyBoard
                                                  instantiateViewControllerWithIdentifier:@"PCUToolViewController"];
-    toolViewController.eventHandler = [[PCUToolPresenter alloc] init];
-    toolViewController.eventHandler.userInterface = toolViewController;
     return toolViewController;
 }
 
-- (PCUPanelViewController *)panelViewController {
+- (PCUTextNodeViewController *)textNodeViewController {
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"PCUStoryBoard" bundle:nil];
-    PCUPanelViewController *panelViewController = [storyBoard
-                                                   instantiateViewControllerWithIdentifier:@"PCUPanelViewController"];
-    panelViewController.eventHandler = [[PCUPanelPresenter alloc] init];
-    panelViewController.eventHandler.userInterface = panelViewController;
-    return panelViewController;
+    PCUTextNodeViewController *textNodeViewController = [storyBoard
+                                                         instantiateViewControllerWithIdentifier:
+                                                         @"PCUTextNodeViewControllerReceiver"];
+    return textNodeViewController;
 }
 
-- (PCUTalkingHUDViewController *)talkingHUDViewController {
-    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"PCUStoryBoard" bundle:nil];
-    PCUTalkingHUDViewController *talkingHUDViewController =
-    [storyBoard instantiateViewControllerWithIdentifier:@"PCUTalkingHUDViewController"];
-    return talkingHUDViewController;
+#pragma mark - Configure Wireframe View Autolayout
+
+- (void)configureChatViewLayouts:(UIView *)chatView {
+    chatView.translatesAutoresizingMaskIntoConstraints = NO;
+    NSDictionary *views = @{@"chatView": chatView};
+    NSArray *wConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[chatView]-0-|"
+                                                                    options:kNilOptions
+                                                                    metrics:nil
+                                                                      views:views];
+    NSArray *hConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[chatView]-0-|"
+                                                                    options:kNilOptions
+                                                                    metrics:nil
+                                                                      views:views];
+    [[chatView superview] addConstraints:wConstraints];
+    [[chatView superview] addConstraints:hConstraints];
 }
 
-- (PCUTalkingCancelHUDViewController *)talkingCancelHUDViewController {
-    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"PCUStoryBoard" bundle:nil];
-    PCUTalkingCancelHUDViewController *talkingCancelHUDViewController =
-    [storyBoard instantiateViewControllerWithIdentifier:@"PCUTalkingCancelHUDViewController"];
-    return talkingCancelHUDViewController;
+- (void)configureToolViewLayouts:(UIView *)toolView {
+    toolView.translatesAutoresizingMaskIntoConstraints = NO;
+    NSDictionary *views = @{@"toolView": toolView};
+    NSArray *wConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[toolView]-0-|"
+                                                                    options:kNilOptions
+                                                                    metrics:nil
+                                                                      views:views];
+    NSArray *hConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[toolView(48)]"
+                                                                    options:kNilOptions
+                                                                    metrics:nil
+                                                                      views:views];
+    [[toolView superview] addConstraints:wConstraints];
+    [[toolView superview] addConstraints:hConstraints];
 }
 
-- (PCUGalleryPageViewController *)galleryPageViewController {
-    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"PCUStoryBoard" bundle:nil];
-    PCUGalleryPageViewController *pageViewController =
-    [storyBoard instantiateViewControllerWithIdentifier:@"PCUGalleryPageViewController"];
-    return pageViewController;
+- (void)configureTextNodeViewLayouts:(UIView *)textNodeView {
+    textNodeView.translatesAutoresizingMaskIntoConstraints = NO;
+    NSDictionary *views = @{@"textNodeView": textNodeView, @"topView": [textNodeView superview]};
+    NSArray *wConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[textNodeView(==topView)]"
+                                                                    options:kNilOptions
+                                                                    metrics:nil
+                                                                      views:views];
+    [[textNodeView superview] addConstraints:wConstraints];
 }
 
 @end
